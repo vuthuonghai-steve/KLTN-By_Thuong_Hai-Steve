@@ -5,7 +5,7 @@
 >
 > **Ngày tạo**: 2026-02-13
 > **Tác giả**: Steve + AI Agent
-> **Trạng thái**: 🔵 ĐANG THIẾT KẾ (Skill #1)
+> **Trạng thái**: 🟢 HOÀN THÀNH THIẾT KẾ (Bộ 3 Skill)
 
 ---
 
@@ -419,9 +419,9 @@ python .agent/skills/skill-architect/scripts/init_context.py my-api-analyzer
 
 ---
 
-## 5. SKILL #3: BUILDER — PHÁC THẢO
+## 5. SKILL #3: BUILDER — THIẾT KẾ CHI TIẾT
 
-> **Trạng thái**: ⚪ Chưa bắt đầu (đợi Skill #1 + #2 xong)
+> **Trạng thái**: 🟢 HOÀN THÀNH THIẾT KẾ (Sẵn sàng triển khai)
 
 ### 5.1 Ý tưởng sơ bộ
 - Đọc `design.md` + `todo.md` từ `.skill-context/`

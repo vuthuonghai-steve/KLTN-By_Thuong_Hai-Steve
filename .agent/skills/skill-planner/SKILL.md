@@ -17,47 +17,46 @@ This skill ONLY plans — it does NOT write implementation code or design archit
 
 1. Read this `SKILL.md` file.
 2. Read `knowledge/skill-packaging.md` — the skill packaging framework (3 tiers, conversion checklist, anti-hallucination).
-3. Determine the skill name from user input or context.
-4. Proceed to Step READ.
+3. Read `knowledge/architect.md` — the master 7-Zone architecture framework.
+4. Determine the skill name from user input or context.
+5. Proceed to Step READ.
 
-## Step READ — Đọc Input
+## Step READ — Đọc Input & Audit Tài nguyên
 
-Read all available input sources:
+Read all available input sources and audit current state:
 
-1. **design.md** (REQUIRED): Read `.skill-context/{skill-name}/design.md`.
-   - If file does not exist or is empty → Report error:
-     "design.md not found. Run Skill Architect first to create the architecture design."
-   - Extract Zone Mapping (§3) as the primary analysis target.
+1. **Master Design** (REQUIRED): Refer to `knowledge/architect.md` and read `.skill-context/DESIGN.md` to understand the overarching standards and the 7-Zone framework.
+   
+2. **design.md** (REQUIRED): Read `.skill-context/{skill-name}/design.md`.
+   - Extract Zone Mapping (§3) and Capability Map (§2) as the primary analysis targets.
 
-2. **resources/** (IF EXISTS): Read `.skill-context/{skill-name}/resources/`.
-   - If folder contains files → read and integrate into analysis.
+3. **Audit resources/** (IF EXISTS): List all files in `.skill-context/{skill-name}/resources/`.
+   - For each file: Read filename and content.
+   - **Evaluative Audit**: Planner must judge if the content is "Thin" (lack of detail) or "Rich" (ready for Builder implementation).
 
-3. **Context prompt** (IF EXISTS): If user provides additional documents
-   or references in their prompt → note and integrate.
+4. **Context prompt** (IF EXISTS): Integrate user specific instructions.
 
-## Step ANALYZE — Phân tích 3 Tầng Kiến thức
+## Step ANALYZE — Phân tích 3 Tầng & Audit Kiến thức
 
 Apply the 3-tier knowledge model from `knowledge/skill-packaging.md`.
 
 For EACH Zone that has content in design.md §3 (Zone Mapping):
 
-1. **Tier 1 — Domain**: What domain knowledge is needed to understand the
-   essence of what this zone handles?
-   - Example: If Zone Knowledge needs "UML standards" → domain knowledge
-     about UML, its components, rules, best practices.
+1. **Tier 1 — Domain (THE AUDIT)**: What domain knowledge is needed?
+   - **Audit Logic**: Đối chiếu kiến thức cần thiết với "Danh sách tài nguyên hiện có" (từ Step READ).
+   - **Case 1: Đã có đủ** → Ghi Status: `✅` trong Pre-requisites table.
+   - **Case 2: Chưa có hoặc Sơ sài** (ví dụ file rỗng, chỉ có heading) → Ghi Status: `⬜` trong Pre-requisites table **VÀ** sinh một **TASK** trong Phase 1: "Chuẩn bị/Soạn thảo tài liệu domain cho {Topic} tại resources/{topic}.md". [TỪ AUDIT TÀI NGUYÊN]
 
-2. **Tier 2 — Technical**: What tools, syntax, or technical skills are needed
-   to implement this zone?
+2. **Tier 2 — Technical**: What tools, syntax, or technical skills are needed to implement this zone?
    - Example: Mermaid syntax, Python scripting, YAML format.
+   - If documentation for these tools is missing → sinh pre-requisite entry.
 
-3. **Tier 3 — Packaging**: How to map this into the specific zone of the
-   agent skill? What files to create, what format to follow?
-   - Example: Create `knowledge/uml-standards.md` following progressive
-     disclosure principles.
+3. **Tier 3 — Packaging**: How to map this into the specific zone of the agent skill? What files to create, what format to follow?
+   - Example: Create `knowledge/uml-standards.md` following progressive disclosure principles.
 
 For each tier, generate:
-- **Pre-requisite entries**: Knowledge the user/builder needs to prepare
-- **Task entries**: Specific implementation steps with trace references
+- **Pre-requisite entries**: Knowledge/Resource needed, Status (✅ Found / ⬜ Missing).
+- **Task entries**: Specific implementation steps WITH Resource Acquisition tasks if missing.
 
 Zones marked "Không cần" or empty → SKIP entirely.
 
@@ -102,9 +101,20 @@ The file MUST contain exactly 5 sections:
 Every item MUST end with a trace tag:
 - `[TỪ DESIGN §N]` — derived directly from design.md section N
 - `[GỢI Ý BỔ SUNG]` — suggested by Planner, not in design.md
+- `[TỪ AUDIT TÀI NGUYÊN]` — generated because a required resource was found missing during audit
 - `[CẦN LÀM RÕ]` — unclear in design.md, needs clarification
 
-After writing, read `loop/plan-checklist.md` and self-verify the output.
+## Step VERIFY — Kiểm chứng & Đóng băng Kế hoạch
+
+Sau khi viết `todo.md`, Planner thực hiện bước tự kiểm tra cuối cùng:
+
+1. **Resource Integrity Check**: Đối chiếu bảng Pre-requisites với thực tế `resources/`.
+   - Nếu bất kỳ tài nguyên Sống còn (Crucial) nào ghi `Status: ⬜`, Planner PHẢI thông báo: "Kế hoạch chưa thể hoàn thành vì thiếu tài nguyên kiến thức."
+   - Planner hỗ trợ user soạn thảo bản nháp (draft) các resources thiếu trước khi xác nhận xong.
+
+2. **Standard Alignment**: Kiểm tra xem các task và pre-requisites có tuân thủ `architect.md` (7 Zones) và `DESIGN.md` (Master Suite workflow) không.
+
+3. **DoD Verification**: Đảm bảo bảng Definition of Done trong `todo.md` bao quát hết các zone trong thiết kế.
 
 ## Confirm
 
@@ -115,13 +125,12 @@ Present the completed todo.md to the user for review.
 
 ## Guardrails
 
-| #  | Rule                | Description                                                        |
-| -- | ------------------- | ------------------------------------------------------------------ |
 | G1 | Trace required      | Every item in todo.md MUST trace back to `design.md §N`            |
-| G2 | Label sources       | Mark `[TỪ DESIGN]` vs `[GỢI Ý BỔ SUNG]` on every entry           |
+| G2 | Label sources       | Mark `[TỪ DESIGN]` / `[GỢI Ý]` / `[TỪ AUDIT CUSTOM]`              |
 | G3 | No inventing        | Only DECOMPOSE the design — do NOT add new requirements            |
 | G4 | List, don't do      | List knowledge needed → user prepares. Do NOT search/generate      |
 | G5 | Ground in design.md | design.md is the ONLY ground truth. If unclear → Notes [CẦN LÀM RÕ] |
+| G6 | **Resource Gate**   | Planner chỉ được đánh dấu 'Complete' khi `resources/` đã đủ dữ liệu domain để Builder làm việc. |
 
 ## Error Handling
 

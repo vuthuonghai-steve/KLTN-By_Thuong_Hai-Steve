@@ -1,39 +1,24 @@
-# Plan Checklist — Kiểm tra Chất lượng todo.md
+# Plan Quality & Resource Checklist
 
-> Planner PHẢI đọc checklist này SAU khi ghi todo.md
-> và tự verify TRƯỚC khi trình bày cho user.
+> Dùng trong Step VERIFY của Skill Planner
 
----
+## 1. Resource Verification (Cốt lõi)
 
-## Trace Check
-- [ ] Mọi task trong Phase Breakdown có trace tag (`[TỪ DESIGN §N]` hoặc `[GỢI Ý BỔ SUNG]`)
-- [ ] Mọi pre-requisite trong bảng có cột Trace
-- [ ] Không có entry nào thiếu trace tag
-- [ ] Các entry `[GỢI Ý BỔ SUNG]` chiếm tỷ lệ hợp lý (< 30% tổng entries)
+- [ ] **Existence**: Mọi tài nguyên liệt kê trong `todo.md` §Pre-requisites đều có file tương ứng trong `resources/`.
+- [ ] **Richness**: Tài liệu trong `resources/` không phải là file rỗng. Có đủ thông tin "hành động được" (actionable).
+- [ ] **Traceability**: `todo.md` chỉ ra rõ task nào sử dụng tài nguyên nào tại §3 Knowledge & Resources.
 
-## Completeness Check
-- [ ] Mọi Zone có nội dung trong design.md §3 đều được phân tích
-- [ ] Không có Zone nào bị bỏ sót (đối chiếu 1-1 với design §3)
-- [ ] Mỗi Zone phân tích đều có cả 3 tầng (Domain, Technical, Packaging)
-- [ ] Checklist chuyển đổi 5 câu hỏi đã áp dụng cho mỗi Zone
+## 2. Structure & Standard Alignment
 
-## Actionability Check
-- [ ] Mỗi task có cấu trúc: verb + object cụ thể (ví dụ: "Tạo file X", "Viết section Y")
-- [ ] Không có task mơ hồ kiểu "Xử lý phần Z" hay "Làm việc với T"
-- [ ] Mỗi task đủ nhỏ để thực hiện trong 1 session
+- [ ] **7-Zone Check**: Kế hoạch có bao phủ đủ các Zone quan trọng đã định nghĩa trong `design.md §3`.
+- [ ] **Phase Order**: Các phase được sắp xếp theo trình tự logic (Knowledge/Audit → Setup → Build → Verify).
+- [ ] **Trace Tag Check**: Mọi task đều có tag `[TỪ DESIGN]`, `[GỢI Ý]`, hoặc `[TỪ AUDIT]`.
 
-## Dependencies Check
-- [ ] Tasks xếp theo thứ tự dependency (việc nào cần làm trước xếp trước)
-- [ ] Nếu task B phụ thuộc task A → A đứng trước B trong danh sách
-- [ ] Các phases chia nhóm logic (không gộp tasks không liên quan)
+## 3. Definition of Done (DoD)
 
-## 3 Tầng Check
-- [ ] Pre-requisites có phân loại theo Tier (Domain / Technical / Packaging)
-- [ ] Tầng Domain: liệt kê kiến thức miền cần hiểu
-- [ ] Tầng Technical: liệt kê công cụ/kỹ thuật cần biết
-- [ ] Tầng Packaging: liệt kê cách map vào agent skill zones
+- [ ] DoD có bao gồm tiêu chí về chất lượng tài nguyên kiến thức không?
+- [ ] DoD có yêu cầu Builder phải chạy script verify trước khi bàn giao không?
 
-## Final Check
-- [ ] todo.md có đủ 5 sections (Pre-reqs, Phases, Resources, DoD, Notes)
-- [ ] Definition of Done có tiêu chí kiểm tra rõ ràng
-- [ ] Notes section ghi lại mọi điểm `[CẦN LÀM RÕ]` (nếu có)
+## 4. Gatekeeper Rule
+
+- [ ] Planner có đang để trạng thái `🟢 COMPLETE` trong khi tài nguyên quan trọng vẫn là `⬜ Missing` không? (NẾU CÓ -> Chuyển về `⚪ PENDING`).

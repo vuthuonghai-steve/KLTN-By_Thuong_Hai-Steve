@@ -12,7 +12,19 @@ Mọi kỹ năng con người đều gồm 3 thành phần:
 
 ```
 KỸ NĂNG CON NGƯỜI = KIẾN THỨC + QUY TRÌNH + PHÁN ĐOÁN
+TRẠNG THÁI SẴN SÀNG = TÀI LIỆU RICH (Đủ chi tiết) + TRACEABILITY (Dẫn nguồn)
 ```
+
+## 2. Tiêu chuẩn Sẵn sàng của Tài nguyên (Resource Readiness)
+
+Một tài nguyên kiến thức trong `resources/` chỉ được coi là đạt chuẩn (✅) khi:
+1. **Content Density**: Không được là file rỗng hoặc chỉ có heading chung chung. Phải có quy tắc (rules), ví dụ (examples), hoặc quy trình (procedures) cụ thể.
+2. **Context Alignment**: Phải giải quyết được ít nhất một "Blind Spot" hoặc "Domain Knowledge" được liệt kê trong `design.md`.
+3. **Builder Friendly**: Thông tin phải ở dạng mà Builder có thể copy/transform thành các file `knowledge/` trong skill package.
+
+**Quy tắc Gatekeeper**:
+- Planner **KHÔNG ĐƯỢC** đánh dấu hoàn thành (🟢 COMPLETE) nếu còn tài nguyên quan trọng ở trạng thái `⬜ Missing`.
+- Nếu tài nguyên quan trọng thiếu, Planner phải yêu cầu user cung cấp hoặc hỗ trợ user viết nháp.
 
 | Thành phần | Ở con người | Ở Agent Skill | Zone tương ứng |
 |-----------|-------------|---------------|----------------|
@@ -31,19 +43,19 @@ KỸ NĂNG CON NGƯỜI = KIẾN THỨC + QUY TRÌNH + PHÁN ĐOÁN
 
 Khi phân tích mỗi Zone trong design.md, Planner PHẢI hỏi 3 câu hỏi theo 3 tầng:
 
-| Tầng | Tên | Câu hỏi chuẩn | Ví dụ (skill vẽ sequence diagram) |
-|------|-----|---------------|----------------------------------|
-| **1** | **Domain** | "Kiến thức miền nào cần để HIỂU bản chất thứ cần làm?" | Sequence diagram là gì? Actors, Messages, Lifelines, Combined Fragments là gì? Khi nào dùng sync vs async? |
-| **2** | **Technical** | "Công cụ/kỹ thuật nào cần để TRIỂN KHAI?" | Mermaid syntax: `sequenceDiagram`, `participant`, `->>`, `Note`, `alt/loop/opt`. Giới hạn của Mermaid |
-| **3** | **Packaging** | "Làm sao MAP vào Zone tương ứng của agent skill?" | Ghi domain rules vào `knowledge/uml-standards.md`. Ghi Mermaid templates vào `templates/sequence.mmd`. Tạo checklist vào `loop/diagram-checklist.md` |
+| Tầng | Tên | Câu hỏi chuẩn | Logic Audit (MỚI) |
+|------|-----|---------------|-------------------|
+| **1** | **Domain** | "Kiến thức miền nào cần để HIỂU bản chất thứ cần làm?" | **BẮT BUỘC Audit**: Kiểm tra thư mục `resources/`. Nếu chưa có tài liệu tương ứng → sinh **TASK** chuẩn bị tài liệu. Nếu đã có → sinh **PRE-REQ** và đánh dấu `✅`. |
+| **2** | **Technical** | "Công cụ/kỹ thuật nào cần để TRIỂN KHAI?" | Kiểm tra tài liệu kỹ thuật/hướng dẫn tool. |
+| **3** | **Packaging** | "Làm sao MAP vào Zone tương ứng của agent skill?" | Ghi domain rules vào `knowledge/`. Tạo templates, script validation, và loop checklist. |
 
 ### Cách áp dụng:
 
 ```
-Với MỖI Zone có nội dung trong design.md §3:
-│
 ├── Hỏi Tầng 1 (Domain):
-│   → Sinh PRE-REQUISITE: "User cần chuẩn bị kiến thức về X"
+│   ├── Audit `resources/`: Tài liệu X đã có chưa?
+│   ├── CÓ → Sinh PRE-REQUISITE (đánh dấu ✅)
+│   └── KHÔNG → Sinh **TASK**: "Soạn thảo tài liệu X" [TỪ AUDIT TÀI NGUYÊN]
 │
 ├── Hỏi Tầng 2 (Technical):
 │   → Sinh PRE-REQUISITE: "User cần chuẩn bị tài liệu kỹ thuật Y"
@@ -60,7 +72,7 @@ Cho MỖI Zone trong design.md §3, hỏi 5 câu hỏi sau:
 
 | # | Câu hỏi | Nếu CÓ → Sinh gì? | Ví dụ |
 |---|---------|---------------------|-------|
-| C1 | Kiến thức miền nào cần? | Pre-req: liệt kê để user chuẩn bị | "Cần hiểu cấu trúc UML sequence diagram" |
+| C1 | Kiến thức miền nào cần? | Audit `resources/`. Nếu thiếu sinh **Task soạn thảo**, nếu đủ sinh **Pre-req ✅** | "Soạn thảo tài liệu cấu trúc UML Sequence" |
 | C2 | Công cụ/kỹ thuật nào cần? | Pre-req: liệt kê tài liệu kỹ thuật | "Cần tham khảo Mermaid docs" |
 | C3 | Quy trình nào cần chuẩn hóa? | Task: tạo phase/step trong SKILL.md | "Tạo Phase 2: Vẽ diagram" |
 | C4 | Phán đoán nào cần guardrail? | Task: tạo checklist trong loop/ | "Tạo loop/diagram-quality-checklist.md" |
@@ -84,6 +96,7 @@ Cho MỖI Zone trong design.md §3, hỏi 5 câu hỏi sau:
 | AH2 | **Không phát minh** | Chỉ PHÂN RÃ thiết kế thành steps, KHÔNG thêm requirements mới | Viết requirement mà design.md không đề cập |
 | AH3 | **Không đoán domain** | Nếu không chắc về kiến thức miền → liệt kê để user cung cấp | Tự viết nội dung domain knowledge |
 | AH4 | **Đánh dấu nguồn** | Mọi entry phải ghi rõ nguồn | Không phân biệt `[TỪ DESIGN]` và `[GỢI Ý]` |
+| AH5 | **Verify or Fail** | Phải xác minh tài nguyên thực tế trước khi kết thúc planning | Hoàn thành planning khi resources còn trống |
 
 ### Tags chuẩn:
 
