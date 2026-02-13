@@ -1,0 +1,229 @@
+/**
+ * {{FEATURE_NAME}} Service
+ * 
+ * Business logic cho {{FEATURE_NAME}} API.
+ * 
+ * @security
+ * - Map Payload entities sang DTO trước khi return
+ * - Loại bỏ sensitive fields (users, customers)
+ * 
+ * @generated-by api-from-ui skill
+ * @date {{DATE}}
+ */
+
+import { getPayload, Where } from 'payload'
+import config from '@payload-config'
+import type { {{PAYLOAD_COLLECTION}} } from '@/payload-types'
+import type { {{FEATURE_NAME}}DTO, {{FEATURE_NAME}}ListResult } from './types'
+
+// ============================================================================
+// TYPES
+// ============================================================================
+
+export interface {{FEATURE_NAME}}Filters {
+  // Required
+  {{PRIMARY_FILTER}}: string  // e.g., storeId
+  
+  // Pagination
+  page?: number
+  limit?: number
+  
+  // Filters
+  status?: string
+  // paymentStatus?: string
+  search?: string
+  
+  // Sorting
+  sortBy?: string
+  sortOrder?: 'asc' | 'desc'
+  
+  // Query options
+  depth?: number
+}
+
+// ============================================================================
+// HELPER FUNCTIONS
+// ============================================================================
+
+/**
+ * Map {{PAYLOAD_COLLECTION}} (Payload) sang {{FEATURE_NAME}}DTO
+ * 
+ * @security
+ * - Loại bỏ customer object
+ * - Loại bỏ uploadedBy (users)
+ * - Chỉ giữ thông tin cần cho UI
+ */
+function mapToDTO(entity: {{PAYLOAD_COLLECTION}}): {{FEATURE_NAME}}DTO {
+  // Map items (loại bỏ full relationship objects)
+  const items = (entity.items || []).map((item) => {
+    // Handle populated vs ID-only relationship
+    let name = 'Item'
+    let type = 'default'
+    
+    if (typeof item.product === 'object' && item.product !== null) {
+      // Populated relationship
+      name = item.product.name || 'Item'
+      type = item.product.type || 'default'
+    }
+    
+    return {
+      name,
+      type,
+      quantity: item.quantity,
+      price: item.price,
+      totalPrice: item.totalPrice,
+    }
+  })
+  
+  // Map deliveryAddress (chỉ giữ fields cần thiết)
+  const deliveryAddress = {
+    names: entity.deliveryAddress?.names || [],
+    phoneNumbers: entity.deliveryAddress?.phoneNumbers || [],
+    address: entity.deliveryAddress?.address || '',
+  }
+  
+  // Return DTO (không có customer, uploadedBy)
+  return {
+    id: entity.id,
+    code: entity.code,
+    customerEmail: entity.customerEmail,
+    deliveryAddress,
+    items,
+    status: entity.status,
+    shippingFee: entity.shippingFee,
+    createdAt: entity.createdAt,
+    note: entity.note ?? undefined,
+  }
+}
+
+// ============================================================================
+// MAIN SERVICE FUNCTIONS
+// ============================================================================
+
+/**
+ * List {{FEATURE_NAME}}s với filters và pagination
+ */
+export async function list{{FEATURE_NAME}}s(
+  filters: {{FEATURE_NAME}}Filters
+): Promise<{{FEATURE_NAME}}ListResult> {
+  const payload = await getPayload({ config })
+  
+  const {
+    {{PRIMARY_FILTER}},
+    page = 1,
+    limit = 20,
+    status,
+    search,
+    sortBy = 'createdAt',
+    sortOrder = 'desc',
+    depth = 1,
+  } = filters
+  
+  // Build where clause
+  const whereClause: Record<string, unknown> = {
+    {{PRIMARY_FILTER}}: { equals: {{PRIMARY_FILTER}} },
+  }
+  
+  // Add status filter
+  if (status && status !== 'all') {
+    whereClause.status = { equals: status }
+  }
+  
+  // Add search filter
+  if (search) {
+    whereClause.or = [
+      { code: { contains: search } },
+      { 'deliveryAddress.names.fullName': { contains: search } },
+      { 'deliveryAddress.phoneNumbers.number': { contains: search } },
+    ]
+  }
+  
+  // Query collection
+  const result = await payload.find({
+    collection: '{{COLLECTION_SLUG}}',
+    where: whereClause as Where,
+    page,
+    limit,
+    sort: sortOrder === 'desc' ? `-${sortBy}` : sortBy,
+    depth,
+  })
+  
+  // Map sang DTOs
+  const dtos = result.docs.map(mapToDTO)
+  
+  // Build summary (optional - customize as needed)
+  const summary = await buildSummary(payload, {{PRIMARY_FILTER}})
+  
+  return {
+    {{FEATURE_NAME_LOWER}}s: dtos,
+    pagination: {
+      page: result.page || 1,
+      limit: result.limit || 20,
+      totalDocs: result.totalDocs,
+      totalPages: result.totalPages,
+      hasNextPage: result.hasNextPage,
+      hasPrevPage: result.hasPrevPage,
+    },
+    summary,
+  }
+}
+
+/**
+ * Build summary statistics
+ */
+async function buildSummary(
+  payload: Awaited<ReturnType<typeof getPayload>>,
+  {{PRIMARY_FILTER}}: string
+) {
+  const baseWhere = { {{PRIMARY_FILTER}}: { equals: {{PRIMARY_FILTER}} } }
+  
+  const [pending, confirmed, processing, completed] = await Promise.all([
+    payload.count({
+      collection: '{{COLLECTION_SLUG}}',
+      where: { ...baseWhere, status: { equals: 'pending' } },
+    }),
+    payload.count({
+      collection: '{{COLLECTION_SLUG}}',
+      where: { ...baseWhere, status: { equals: 'confirmed' } },
+    }),
+    payload.count({
+      collection: '{{COLLECTION_SLUG}}',
+      where: { ...baseWhere, status: { equals: 'processing' } },
+    }),
+    payload.count({
+      collection: '{{COLLECTION_SLUG}}',
+      where: { ...baseWhere, status: { equals: 'completed' } },
+    }),
+  ])
+  
+  return {
+    pending: pending.totalDocs,
+    confirmed: confirmed.totalDocs,
+    processing: processing.totalDocs,
+    completed: completed.totalDocs,
+    total: pending.totalDocs + confirmed.totalDocs + processing.totalDocs + completed.totalDocs,
+  }
+}
+
+/**
+ * Get single {{FEATURE_NAME}} by ID
+ */
+export async function get{{FEATURE_NAME}}ById(
+  id: string,
+  depth = 1
+): Promise<{{FEATURE_NAME}}DTO | null> {
+  const payload = await getPayload({ config })
+  
+  try {
+    const entity = await payload.findByID({
+      collection: '{{COLLECTION_SLUG}}',
+      id,
+      depth,
+    })
+    
+    return mapToDTO(entity)
+  } catch (error) {
+    // Not found or other error
+    return null
+  }
+}

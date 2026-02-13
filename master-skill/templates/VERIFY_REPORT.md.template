@@ -1,0 +1,33 @@
+# VERIFY_REPORT.md
+
+## Session Context
+- Session Name: {{session_name}}
+- Session Mode: {{session_mode}}
+
+## 1. Completeness
+Status: {{completeness_status}}
+- {{completeness_evidence_1}}
+
+## 2. Correctness
+Status: {{correctness_status}}
+- {{correctness_evidence_1}}
+
+## 3. Coherence
+Status: {{coherence_status}}
+- {{coherence_evidence_1}}
+
+## 4. Issues by severity
+### CRITICAL
+- {{critical_issue_or_none}}
+
+### WARNING
+- {{warning_issue_or_none}}
+
+### SUGGESTION
+- {{suggestion_issue_or_none}}
+
+## 5. Final Assessment
+{{final_assessment}}
+
+## Next Step
+{{next_step}}

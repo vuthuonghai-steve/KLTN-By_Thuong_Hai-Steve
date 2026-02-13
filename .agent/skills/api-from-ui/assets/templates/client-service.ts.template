@@ -1,0 +1,179 @@
+/**
+ * {{FEATURE_NAME}} Client Service
+ * 
+ * Frontend service để gọi {{FEATURE_NAME}} API.
+ * 
+ * @generated-by api-from-ui skill
+ * @date {{DATE}}
+ */
+
+import { ApiService } from '@/api/config/axios.config'
+
+// ============================================================================
+// TYPES (copy từ backend hoặc shared types)
+// ============================================================================
+
+/** Item trong {{FEATURE_NAME}} (DTO) */
+export interface {{FEATURE_NAME}}ItemDTO {
+  name: string
+  type: '{{TYPE_1}}' | '{{TYPE_2}}' | '{{TYPE_3}}'
+  quantity: number
+  price: number
+  totalPrice: number
+}
+
+/** Địa chỉ giao hàng (DTO) */
+export interface DeliveryAddressDTO {
+  names: Array<{ fullName: string }>
+  phoneNumbers: Array<{ number: string }>
+  address: string
+}
+
+/** {{FEATURE_NAME}} DTO - Response từ API */
+export interface {{FEATURE_NAME}}DTO {
+  id: string
+  code: string
+  customerEmail: string
+  deliveryAddress: DeliveryAddressDTO
+  items: {{FEATURE_NAME}}ItemDTO[]
+  shippingFee: number
+  createdAt: string
+  status: '{{STATUS_1}}' | '{{STATUS_2}}' | '{{STATUS_3}}' | '{{STATUS_4}}'
+  note?: string
+}
+
+// ============================================================================
+// FILTER & RESPONSE INTERFACES
+// ============================================================================
+
+export interface {{FEATURE_NAME}}Filters {
+  {{PRIMARY_FILTER}}: string
+  page?: number
+  limit?: number
+  status?: string
+  search?: string
+  sortBy?: string
+  sortOrder?: 'asc' | 'desc'
+  depth?: number
+  /** AbortSignal để hủy request khi component unmount */
+  signal?: AbortSignal
+}
+
+export interface PaginationInfo {
+  page: number
+  limit: number
+  totalDocs: number
+  totalPages: number
+  hasNextPage: boolean
+  hasPrevPage: boolean
+}
+
+export interface {{FEATURE_NAME}}Summary {
+  pending: number
+  confirmed: number
+  processing: number
+  completed: number
+  total: number
+}
+
+export interface {{FEATURE_NAME}}Response {
+  {{FEATURE_NAME_LOWER}}s: {{FEATURE_NAME}}DTO[]
+  pagination: PaginationInfo
+  summary: {{FEATURE_NAME}}Summary
+}
+
+// ============================================================================
+// SERVICE FUNCTIONS
+// ============================================================================
+
+/**
+ * Fetch {{FEATURE_NAME}}s với pagination và filters
+ */
+export const fetch{{FEATURE_NAME}}s = async (
+  filters: {{FEATURE_NAME}}Filters
+): Promise<{{FEATURE_NAME}}Response> => {
+  try {
+    // Build query params
+    const params = new URLSearchParams({
+      {{PRIMARY_FILTER}}: filters.{{PRIMARY_FILTER}},
+      page: (filters.page || 1).toString(),
+      limit: (filters.limit || 20).toString(),
+      sortBy: filters.sortBy || 'createdAt',
+      sortOrder: filters.sortOrder || 'desc',
+      depth: (filters.depth || 1).toString(),
+    })
+    
+    // Optional filters
+    if (filters.status && filters.status !== 'all') {
+      params.append('status', filters.status)
+    }
+    
+    if (filters.search) {
+      params.append('search', filters.search)
+    }
+    
+    // Make request
+    const response = await ApiService.get<{{FEATURE_NAME}}Response>(
+      `/v1/{{API_PATH}}?${params.toString()}`,
+      { signal: filters.signal }
+    )
+    
+    return response
+  } catch (error) {
+    const message =
+      error instanceof Error
+        ? error.message
+        : 'Không thể tải danh sách {{FEATURE_NAME_LOWER}}'
+    throw new Error(message)
+  }
+}
+
+/**
+ * Fetch single {{FEATURE_NAME}} by ID
+ */
+export const fetch{{FEATURE_NAME}}ById = async (
+  id: string,
+  signal?: AbortSignal
+): Promise<{{FEATURE_NAME}}DTO> => {
+  try {
+    const response = await ApiService.get<{{FEATURE_NAME}}DTO>(
+      `/v1/{{API_PATH}}/${id}`,
+      { signal }
+    )
+    
+    return response
+  } catch (error) {
+    const message =
+      error instanceof Error
+        ? error.message
+        : 'Không thể tải thông tin {{FEATURE_NAME_LOWER}}'
+    throw new Error(message)
+  }
+}
+
+// ============================================================================
+// ACTION FUNCTIONS (optional - add as needed)
+// ============================================================================
+
+/**
+ * Update {{FEATURE_NAME}} status
+ */
+export const update{{FEATURE_NAME}}Status = async (
+  id: string,
+  status: string
+): Promise<{ success: boolean; message?: string }> => {
+  try {
+    const response = await ApiService.patch<{ success: boolean; message?: string }>(
+      `/v1/{{API_PATH}}/${id}/status`,
+      { status }
+    )
+    
+    return response
+  } catch (error) {
+    const message =
+      error instanceof Error
+        ? error.message
+        : 'Không thể cập nhật trạng thái'
+    throw new Error(message)
+  }
+}

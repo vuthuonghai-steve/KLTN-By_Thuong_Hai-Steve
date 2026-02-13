@@ -1,0 +1,150 @@
+/**
+ * {{FEATURE_NAME}} DTO Types
+ * 
+ * @description
+ * DTO interfaces cho {{FEATURE_NAME}} API.
+ * Response không chứa sensitive data (users, customers object).
+ * 
+ * @generated-by api-from-ui skill
+ * @date {{DATE}}
+ */
+
+// ============================================================================
+// ITEM DTOs (cho nested arrays)
+// ============================================================================
+
+/**
+ * {{FEATURE_NAME}} Item DTO
+ * 
+ * @security
+ * - Không chứa full product object
+ * - Chỉ chứa thông tin cần cho UI
+ */
+export interface {{FEATURE_NAME}}ItemDTO {
+  // Product info (flattened)
+  name: string
+  type: '{{TYPE_1}}' | '{{TYPE_2}}' | '{{TYPE_3}}'
+  
+  // Item specific
+  quantity: number
+  price: number
+  totalPrice: number
+  
+  // Optional fields
+  // commissionRate?: number
+}
+
+// ============================================================================
+// NESTED DTOs
+// ============================================================================
+
+/**
+ * Delivery Address DTO
+ * 
+ * @note Only contact info, no full customer object
+ */
+export interface DeliveryAddressDTO {
+  names: Array<{ fullName: string }>
+  phoneNumbers: Array<{ number: string }>
+  address: string
+}
+
+/**
+ * Recurring Config DTO (optional)
+ */
+export interface RecurringConfigDTO {
+  frequency?: 'daily' | 'weekly' | 'monthly' | 'yearly'
+  daysOfWeek?: string[]
+  startDate?: string
+  endDate?: string
+}
+
+// ============================================================================
+// MAIN DTO
+// ============================================================================
+
+/**
+ * {{FEATURE_NAME}} DTO - Main response type
+ * 
+ * @security
+ * - Không chứa customer object (chỉ có customerEmail)
+ * - Không chứa uploadedBy (users)
+ * - Không chứa internal notes
+ */
+export interface {{FEATURE_NAME}}DTO {
+  // Identifiers
+  id: string
+  code: string
+  // assignmentId?: string  // Uncomment if needed
+  
+  // Contact info (safe)
+  customerEmail: string
+  deliveryAddress: DeliveryAddressDTO
+  
+  // Items
+  items: {{FEATURE_NAME}}ItemDTO[]
+  
+  // Order/Entity info
+  status: '{{STATUS_1}}' | '{{STATUS_2}}' | '{{STATUS_3}}' | '{{STATUS_4}}'
+  // paymentStatus?: 'pending' | 'paid' | 'failed'
+  // orderType?: 'immediate' | 'scheduled' | 'recurring'
+  
+  // Amounts
+  shippingFee: number
+  // total?: number
+  
+  // Timestamps
+  createdAt: string
+  // updatedAt?: string
+  
+  // Optional configs
+  // scheduledDeliveryTime?: string
+  // recurringConfig?: RecurringConfigDTO
+  
+  // Notes (public, không phải internal)
+  note?: string
+}
+
+// ============================================================================
+// RESPONSE TYPES
+// ============================================================================
+
+/**
+ * Pagination Info
+ */
+export interface PaginationInfo {
+  page: number
+  limit: number
+  totalDocs: number
+  totalPages: number
+  hasNextPage: boolean
+  hasPrevPage: boolean
+}
+
+/**
+ * Summary Info
+ */
+export interface {{FEATURE_NAME}}Summary {
+  // Status counts
+  pending: number
+  confirmed: number
+  processing: number
+  completed: number
+  total: number
+}
+
+/**
+ * List Response
+ */
+export interface {{FEATURE_NAME}}ListResult {
+  {{FEATURE_NAME_LOWER}}s: {{FEATURE_NAME}}DTO[]
+  pagination: PaginationInfo
+  summary: {{FEATURE_NAME}}Summary
+}
+
+// ============================================================================
+// EXPORT TYPE ALIASES (for convenience)
+// ============================================================================
+
+export type { {{FEATURE_NAME}}DTO as DTO }
+export type { {{FEATURE_NAME}}ListResult as ListResult }
