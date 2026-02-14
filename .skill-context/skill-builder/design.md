@@ -26,8 +26,10 @@ Sau khi có bản thiết kế kiến trúc (`design.md` từ Architect) và k�
 |---|-----------|-------|
 | B-D1 | Autonomous | AI tự viết nội dung dựa 100% trên tài liệu sẵn có |
 | B-D2 | Bám sát architect.md | Mọi file tạo ra PHẢI map được về 7 Zones |
-| B-D3 | Chạy 1 mạch | Ít interaction — build xong mới trình bày kết quả |
-| B-D4 | Clarify-first | Gặp `[CẦN LÀM RÕ]` → hỏi user ngay → ghi vào design.md → loop đến hết |
+| B-D3 | Sub-step Build | Chia nhỏ bước BUILD theo từng Phase của todo.md để tránh quá tải ngữ cảnh |
+| B-D4 | **Engineer Stance** | Kỹ sư tự chủ, có quyền thẩm định, phản biện và sửa lỗi logic trong design.md |
+| B-D5 | Error Stop | Gặp lỗi hệ thống (Permission/Disk) -> Ghi log -> Thông báo -> DỪNG NGAY |
+| B-D6 | Placeholder Gate | Ngưỡng cảnh báo tịnh tiến cho Placeholder (5: Level Up, >10: FAIL) |
 
 ## 2. Capability Map
 
@@ -64,21 +66,21 @@ flowchart LR
 
 | Step | Hành động | Input | Output | Interaction? |
 |------|----------|-------|--------|-------------|
-| **PREPARE** | Đọc design.md (§3 Zone Mapping) + todo.md (§2 Phases) + resources/ + architect.md | Files từ `.skill-context/{name}/` | Model nội bộ: danh sách files cần tạo, nội dung, thứ tự | ❌ |
-| **CLARIFY** | Scan todo.md tìm `[CẦN LÀM RÕ]` → hỏi user từng cái (tối đa 5 mục/phiên) → ghi trả lời vào design.md (mục Clarifications cuối §9) → loop đến hết | todo.md items | design.md cập nhật, mọi ambiguity resolved | ✅ Hỏi user |
-| **BUILD** | Tạo folder + viết từng file theo todo.md phases, bám design.md zones, tuân thủ architect.md | Kế hoạch đã clarified | `.agent/skills/{skill-name}/` hoàn chỉnh | ❌ Chạy 1 mạch |
-| **VERIFY** | Chạy `validate_skill.py` + đối chiếu output vs design.md §3 + todo.md §4 DoD | Skill package + design + todo | Verification report | ❌ |
+| **PREPARE** | Đọc design.md, todo.md, resources. **Thẩm định logic thiết kế**. | Files từ `.skill-context/{name}/` | Model nội bộ: danh sách sub-steps, phản biện (nếu có) | ❌ |
+| **CLARIFY** | Hỏi user về `[CẦN LÀM RÕ]` hoặc **các điểm phi logic phát hiện được**. Ghi vào design.md §9. | todo.md + Thẩm định | design.md cập nhật, ambiguity & logic flaws resolved | ✅ Hỏi user |
+| **BUILD** | Triển khai theo từng **Phase** của todo.md. Xong Phase nào mark Phase đó. | Kế hoạch đã thẩm định | `.agent/skills/{skill-name}/` | ❌ Chunked per Phase |
+| **VERIFY** | Chạy `validate_skill.py`. Kiểm tra ngưỡng Placeholder (Thang 5/10). | Skill package + design + todo | Verification report | ❌ |
 | **DELIVER** | Trình bày kết quả + ghi `build-log.md` | Verification report | build-log.md + báo cáo | ✅ Trình bày |
 
 ### 2.3 Kiem soat (Guardrails)
 
 | # | Rule | Mô tả | Chống risk |
 |---|------|-------|-----------|
-| G1 | **Bám sát tài liệu** | Mọi nội dung PHẢI dẫn nguồn từ design.md, todo.md, resources/, architect.md. Thiếu → để trống + note | B1 (ảo giác) |
-| G2 | **Tuân thủ architect.md** | Cấu trúc PHẢI map về 7 Zones. SKILL.md viết theo §9.1. Progressive Disclosure theo §6 | B4 (sai cấu trúc) |
-| G3 | **Todo-driven** | Thực thi theo thứ tự todo.md phases. Không skip, không re-order | B3 (bỏ sót) |
-| G4 | **Clarify trước Build** | Giải quyết MỌI `[CẦN LÀM RÕ]` trước khi tạo file đầu tiên | B1 (đoán sai) |
-| G5 | **Verify trước Deliver** | Đối chiếu output vs design.md §3 + todo.md §4 trước khi báo cáo | B3 (bỏ sót) |
+| G1 | **Kỹ sư Phản biện** | Phải verify bản thiết kế trước khi build. Có quyền cãi lại và sửa logic sai | Thiết kế phi thực tế |
+| G2 | **Phase-driven Build** | Phải chia nhỏ BUILD theo Phase của todo.md. Mark-as-done từng phase | Context Overload |
+| G3 | **Log-Notify-Stop** | Lỗi ghi file/hệ thống -> Log -> Notify -> STOP. Không chạy cố | Data Corruption |
+| G4 | **Placeholder Scale** | Cảnh báo mỗi 5 Placeholders. >10 Placeholders = Thất bại (Failure) | Nội dung rỗng |
+| G5 | **Build-log bắt buộc** | Mọi quyết định, phản biện, file tạo -> ghi rõ vào build-log.md | Traceability |
 | G6 | **Ghi log** | Mọi quyết định, file tạo, issue → ghi vào build-log.md | Traceability |
 | G7 | **Giới hạn CLARIFY** | Mỗi phiên hỏi tối đa 5 mục `[CẦN LÀM RÕ]`, mọi trả lời phải lưu vào design.md mục Clarifications | B1 (đoán sai), tránh loop vô hạn |
 
