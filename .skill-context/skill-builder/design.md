@@ -80,9 +80,9 @@ flowchart LR
 | G2 | **Phase-driven Build** | Phải chia nhỏ BUILD theo Phase của todo.md. Mark-as-done từng phase | Context Overload |
 | G3 | **Log-Notify-Stop** | Lỗi ghi file/hệ thống -> Log -> Notify -> STOP. Không chạy cố | Data Corruption |
 | G4 | **Placeholder Scale** | Cảnh báo mỗi 5 Placeholders. >10 Placeholders = Thất bại (Failure) | Nội dung rỗng |
-| G5 | **Build-log bắt buộc** | Mọi quyết định, phản biện, file tạo -> ghi rõ vào build-log.md | Traceability |
-| G6 | **Ghi log** | Mọi quyết định, file tạo, issue → ghi vào build-log.md | Traceability |
-| G7 | **Giới hạn CLARIFY** | Mỗi phiên hỏi tối đa 5 mục `[CẦN LÀM RÕ]`, mọi trả lời phải lưu vào design.md mục Clarifications | B1 (đoán sai), tránh loop vô hạn |
+| G5 | **Source Grounding** | Nội dung 100% từ design, todo, resources. Tuyệt đối không ảo giác. | Hallucination |
+| G6 | **PD Tiering** | Tuân thủ Progressive Disclosure (Tier 1 vs Tier 2). | Context Bloat |
+| G7 | **Build-log Mandatory** | Mọi quyết định, phản biện, file tạo -> ghi rõ vào build-log.md | Traceability |
 
 ## 3. Zone Mapping
 
@@ -110,11 +110,11 @@ flowchart TD
 | Zone | Cần? | Nội dung | Lý do |
 |------|------|---------|-------|
 | **Core (SKILL.md)** | ✅ | Persona "Senior Skill Builder". Flow 5 steps. 7 Guardrails | Linh hồn điều khiển |
-| **Knowledge** | ✅ | `architect.md` (copy chuẩn) + `build-guidelines.md` (imperative SKILL.md ≤500 dòng, knowledge tách tham chiếu, loop checklist format, placeholder khi thiếu domain) | Cần hiểu CẤU TRÚC CHUẨN + CÁCH VIẾT |
-| **Scripts** | ✅ | `validate_skill.py` — kiểm tra: đủ 4 Zones dùng (Core/Knowledge/Scripts/Loop), SKILL.md < 500 dòng, file list khớp design.md §3 + todo.md §2, tuân thủ Progressive Disclosure, báo cáo thiếu/sai | Automation cho Step VERIFY |
+| **Knowledge** | ✅ | `knowledge/architect.md` (copy chuẩn) + `knowledge/build-guidelines.md` (imperative SKILL.md ≤500 dòng, knowledge tách tham chiếu, loop checklist format, placeholder khi thiếu domain) | Cần hiểu CẤU TRÚC CHUẨN + CÁCH VIẾT |
+| **Scripts** | ✅ | `scripts/validate_skill.py` — kiểm tra: đủ 4 Zones dùng (Core/Knowledge/Scripts/Loop), SKILL.md < 500 dòng, file list khớp design.md §3 + todo.md §2, tuân thủ Progressive Disclosure, báo cáo thiếu/sai | Automation cho Step VERIFY |
 | **Templates** | ❌ | — | Mỗi skill khác nhau, design.md đã là "template" |
 | **Data** | ❌ | — | Không có config tĩnh |
-| **Loop** | ✅ | `build-checklist.md` — checklist kiểm tra chất lượng cuối cùng; build-log yêu cầu ghi input set, clarifications, files, validation, issues | Kiểm soát output trước deliver |
+| **Loop** | ✅ | `loop/build-checklist.md` — checklist kiểm tra chất lượng cuối cùng; `loop/build-log.md` yêu cầu ghi input set, clarifications, files, validation, issues | Kiểm soát output trước deliver |
 | **Assets** | ❌ | — | Không có media |
 
 **Zones sử dụng: 4/7** (Core, Knowledge, Scripts, Loop).
@@ -258,8 +258,9 @@ B-D3 yêu cầu ít interaction, chạy 1 mạch.
 
 Không có — tất cả decisions đã xác nhận qua Phase 1 và Phase 2.
 
-**Clarifications (điền khi chạy Step CLARIFY):**
-- (placeholder) Append mỗi câu trả lời cho `[CẦN LÀM RÕ]` vào đây để giữ nguồn duy nhất.
+**Clarifications:**
+1. [B-C1]: Builder có quyền sửa DESIGN.md? -> YES.
+2. [B-C2]: PD Check dùng MD link hay inline? -> Markdown link `[Label](path)` là bắt buộc.
 
 ## 10. Metadata
 

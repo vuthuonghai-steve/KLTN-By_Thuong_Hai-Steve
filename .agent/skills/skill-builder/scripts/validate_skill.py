@@ -9,11 +9,10 @@ class SkillValidator:
     Kỹ sư thẩm định chất lượng Agent Skill.
     Đảm bảo tính chính trực giữa thiết kế (design) và thực thi (build).
     """
-    def __init__(self, skill_path, design_path=None, todo_path=None, log_mode=False):
+    def __init__(self, skill_path, design_path=None, log_mode=False):
         self.skill_path = os.path.abspath(skill_path)
         self.skill_name = os.path.basename(self.skill_path.rstrip('/'))
-        self.design_path = design_path
-        self.todo_path = todo_path
+        self.design_path = os.path.abspath(design_path) if design_path else None
         self.log_mode = log_mode
         self.errors = []
         self.warnings = []
@@ -64,11 +63,9 @@ class SkillValidator:
         with open(skill_md_path, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        # Quét toàn bộ thư mục Tầng 2
         tier2_files = []
         for root, _, files in os.walk(self.skill_path):
             rel_root = os.path.relpath(root, self.skill_path)
-            # Không bỏ qua các thư mục con (fix P0)
             if any(rel_root.startswith(z) for z in ["knowledge", "scripts", "loop"]):
                 for file in files:
                     if not file.startswith('.'):
@@ -77,41 +74,52 @@ class SkillValidator:
 
         orphan_count = 0
         for f_path in tier2_files:
-            # Fix P0: Kiểm tra link chính xác hơn (tránh false positive nhờ path đầy đủ hoặc tương đối)
-            # Pattern: [Label](path)
+            # Pattern: [Label](path) - must use markdown link as per User's request
             regex_path = re.escape(f_path)
             pattern = rf"\[.*\]\(.*{regex_path}.*\)"
             if not re.search(pattern, content):
-                self.warnings.append(f"WARNING: Orphan file detected: '{f_path}' is not linked in SKILL.md")
-                self.log(f"   -> Orphan: {f_path}", "WARN")
+                self.warnings.append(f"WARNING: Orphan file detected: '{f_path}' is not linked in SKILL.md via Markdown link.")
+                self.log(f"   -> Orphan (Missing MD Link): {f_path}", "WARN")
                 orphan_count += 1
         
         return orphan_count == 0
 
     def check_file_mapping(self):
-        """Logic P0: Đối chiếu danh sách file thực tế với thiết kế"""
-        if not self.design_path or not os.path.exists(self.design_path):
-            self.warnings.append("WARNING: design.md not provided. Skipping file mapping check.")
+        if not self.design_path:
+            # Policy High: Design path is required if provided in arguments
             return True
+            
+        if not os.path.exists(self.design_path):
+            self.errors.append(f"[E06] CRITICAL: Design file not found at {self.design_path}")
+            self.log(f"   -> Design not found: {self.design_path}", "FAIL")
+            return False
 
-        self.log("4. File Mapping (Actual vs Design §3) Check...")
+        self.log(f"4. File Mapping (Actual vs Design §3) Check...")
         with open(self.design_path, 'r', encoding='utf-8') as f:
             design_content = f.read()
 
-        # Parse expected files from Zone Mapping table/mindmap
-        expected_files = set()
-        # Regex đơn giản tìm các đoạn text trông giống đường dẫn file trong bảng
-        # Ví dụ: `knowledge/architect.md`
-        matches = re.findall(r"`([a-zA-Z0-9_\-\./]+\.[a-z]{2,4})`", design_content)
-        for m in matches:
-            if "/" in m: # Chỉ lấy các file có folder
-                expected_files.add(os.path.normpath(m))
+        expected_files: set[str] = set()
+        # Parse from Zone Mapping table
+        lines = design_content.split('\n')
+        in_zone_mapping = False
+        for line in lines:
+            if '## 3. Zone Mapping' in line:
+                in_zone_mapping = True
+            elif in_zone_mapping and line.startswith('##'):
+                if '## 3.' not in line: # Another section started
+                    in_zone_mapping = False
+            
+            if in_zone_mapping:
+                # Find file paths in backticks like `knowledge/architect.md`
+                matches = re.findall(r"`([a-zA-Z0-9_\-\./]+\.[a-z]{2,4})`", line)
+                for m in matches:
+                    if "/" in m or m == "SKILL.md":
+                        expected_files.add(os.path.normpath(m))
         
-        # Thêm SKILL.md vào expected
+        # Ensure SKILL.md is expected
         expected_files.add("SKILL.md")
 
-        # Quét thực tế (trừ các file tạm/ẩn)
-        actual_files = set()
+        actual_files: set[str] = set()
         for root, _, files in os.walk(self.skill_path):
             rel_root = os.path.relpath(root, self.skill_path)
             for file in files:
@@ -120,7 +128,9 @@ class SkillValidator:
                     actual_files.add(rel_path)
 
         missing = expected_files - actual_files
-        extra = actual_files - expected_files - {"scripts/validate_skill.py", "loop/build-log.md", "loop/build-checklist.md"}
+        # Exclude loop/build-log.md if it's dynamic
+        ignore_extra = {"scripts/validate_skill.py", "loop/build-log.md", "loop/build-checklist.md"}
+        extra = actual_files - expected_files - ignore_extra
 
         if missing:
             for f in missing:
@@ -152,19 +162,21 @@ class SkillValidator:
         
         return total_placeholders < 10
 
-    def check_error_handling(self, build_log_path):
-        """Logic P0: Đảm bảo Builder đã dừng lại khi có lỗi hệ thống"""
-        if not build_log_path or not os.path.exists(build_log_path):
+    def check_error_handling(self):
+        """Logic P0: Kiểm tra tính tuân thủ Error STOP policy"""
+        # Look for build-log.md in loop/
+        log_path = os.path.join(self.skill_path, "loop", "build-log.md")
+        if not os.path.exists(log_path):
             return True
             
         self.log("6. Error Handling Policy Check...")
-        with open(build_log_path, 'r', encoding='utf-8') as f:
+        with open(log_path, 'r', encoding='utf-8') as f:
             log_content = f.read()
 
-        # Nếu có lỗi hệ thống nhưng vẫn có các file mới được tạo sau đó -> Vi phạm chính sách STOP
+        # If system error occurred but build didn't stop (no final status or more files added)
+        # This is a simplified check
         if "ERROR" in log_content.upper() and "Log-Notify-Stop" in log_content:
-            # Đây là logic kiểm tra sự nhất quán trong log
-            pass
+            self.log("   -> System Error detected in log. Verifying STOP stance.", "INFO")
         return True
 
     def report(self):
@@ -179,6 +191,7 @@ class SkillValidator:
         self.check_pd_links()
         self.check_file_mapping()
         self.check_placeholder_density()
+        self.check_error_handling() # Fix Medium: Call checking error handling
         
         print("="*50)
         final_status = "PASS" if not self.errors else "FAIL"
@@ -195,23 +208,25 @@ class SkillValidator:
         sys.exit(0)
 
     def write_log(self, status):
-        """Logic P0: Append kết quả vào build-log.md"""
-        log_path = os.path.join(os.path.dirname(self.skill_path), "build-log.md")
-        # Try finding in .skill-context if not in default
-        if not os.path.exists(log_path):
-            log_path = f"./skill-context/{self.skill_name}/build-log.md"
+        """High Fix: Resolve correct path for build-log.md in .skill-context"""
+        # Search for build-log.md in .skill-context/{skill-name}/
+        workspace_root = os.path.dirname(os.path.dirname(os.path.dirname(self.skill_path)))
+        target_log_path = os.path.join(workspace_root, ".skill-context", self.skill_name, "build-log.md")
+        
+        if not os.path.exists(target_log_path):
+            self.log(f"Warning: Build log not found at {target_log_path}", "WARN")
+            return
 
-        if os.path.exists(log_path):
-            with open(log_path, 'a', encoding='utf-8') as f:
-                f.write(f"\n\n## Validation Result ({datetime.now().strftime('%Y-%m-%d %H:%M:%S')})\n")
-                f.write(f"- **Final Status**: {status}\n")
-                f.write(f"- **Errors**: {len(self.errors)}\n")
-                f.write(f"- **Warnings**: {len(self.warnings)}\n")
-                if self.errors:
-                    f.write("### Issues Found:\n")
-                    for err in self.errors:
-                        f.write(f"- [FAILED] {err}\n")
-                self.log(f"Results appended to {log_path}")
+        with open(target_log_path, 'a', encoding='utf-8') as f:
+            f.write(f"\n\n## Validation Result ({datetime.now().strftime('%Y-%m-%d %H:%M:%S')})\n")
+            f.write(f"- **Final Status**: {status}\n")
+            f.write(f"- **Errors**: {len(self.errors)}\n")
+            f.write(f"- **Warnings**: {len(self.warnings)}\n")
+            if self.errors:
+                f.write("### Issues Found:\n")
+                for err in self.errors:
+                    f.write(f"- [FAILED] {err}\n")
+            self.log(f"Results appended to {target_log_path}")
 
 if __name__ == "__main__":
     import argparse

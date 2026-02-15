@@ -1,0 +1,168 @@
+# 📋 Plan Checklist — Website Mạng Xã Hội Chia Sẻ Kiến Thức
+
+> **File:** `Docs/check.list.md`  
+> **Nguồn:** `Docs/life-1/lifecycle-checklist-and-folder-structure.md`, `Docs/life-1/01-vision/product-vision.md`  
+> **Mục đích:** Giúp bạn biết đang ở giai đoạn nào, đang làm gì và cần làm gì tiếp theo.
+
+---
+
+## 1. Giai đoạn hiện tại
+
+**Cách xác định:** Đối chiếu trạng thái file trong `Docs/life-1` → `Docs/life-4` với bảng dưới.
+
+| Giai đoạn | Điều kiện (đã có đủ tài liệu then chốt) |
+|-----------|----------------------------------------|
+| **Life-1** | `01-vision/`, `02-decisions/`, `03-research/` — vision, personas, stories, requirements, technical decisions |
+| **Life-2** | `diagrams/`, `database/`, `ui/`, `api/`, `specs/` — sơ đồ, schema, wireframe, API spec |
+| **Life-3** | `setup/`, `architecture/` — env, deployment, folder-structure, đang code theo `life-2/specs/` |
+| **Life-4** | `verification/`, `release/`, `archive/` — spec coverage, test report, release notes |
+
+**Ghi vào đây (cập nhật khi chuyển phase):**
+
+- **Giai đoạn hiện tại:** _Life-2_ (Life-1 đã xong; Life-2 **mới chỉ có khung sườn**, chưa triển khai đủ nội dung tính năng)
+- **Ngày cập nhật:** _2026-02-01_
+
+---
+
+## 2. Đang làm
+
+Mô tả ngắn công việc đang thực hiện trong giai đoạn hiện tại (1–2 dòng).
+
+**Ví dụ:**
+- Life-1: "Đang viết User Stories và bổ sung requirements-srs.md"
+- Life-2: "Đang thiết kế API spec và wireframe feed"
+- Life-3: "Đang implement Auth theo auth-spec.md"
+- Life-4: "Đang chạy E2E và đối chiếu spec-coverage"
+
+**Đang làm:** _Triển khai nội dung Life-2: bổ sung đầy đủ sơ đồ, schema từng collection, wireframes từng màn, API chi tiết từng endpoint, và specs cho AI code generation._
+
+---
+
+## 3. Cần làm tiếp
+
+Việc cần làm ngay sau khi hoàn thành mục "Đang làm" (theo checklist từng giai đoạn bên dưới).
+
+**Cần làm tiếp:** _1) Life-2 diagrams: điền đủ (ER cập nhật entities, Sequence/Flow thêm News Feed Load, Bookmark Save, Notification). 2) schema-design: thêm chi tiết collections comments, bookmarks, follows, notifications. 3) wireframes từng màn (auth, feed, profile) và specs (auth-spec, posts-spec, feed-spec, …)._
+
+---
+
+## 4. Checklist theo giai đoạn
+
+Mọi mục map với tài liệu trong `Docs/` theo `lifecycle-checklist-and-folder-structure.md`.
+
+---
+
+### Life-1 — Định hướng  
+*Thư mục: `Docs/life-1/`*
+
+- [x] **1.1** Nghiên cứu & Phân tích (bỏ qua nếu demo)
+- [x] **1.2** Xác định người dùng mục tiêu  
+  - [x] Tạo 2–3 User Personas → `Docs/life-1/01-vision/user-personas.md`  
+  - [x] Xác định pain points (có thể gộp trong user-personas hoặc product-vision)
+- [x] **1.3** Xây dựng User Stories (Focus MVP)  
+  - [x] Epic 1–10 (Auth, Profile, Posts, Feed, Bookmarking, Search, …) → `Docs/life-1/01-vision/user-stories.md`
+- [ ] **1.4** Nghiên cứu kỹ thuật  
+  - [x] News Feed Ranking Algorithm → `Docs/life-1/03-research/news-feed-algorithm.md`  
+  - [ ] SSE với Next.js → `Docs/life-1/03-research/sse-nextjs.md`  
+  - [ ] MongoDB Atlas Search → `Docs/life-1/03-research/mongodb-search.md`
+- [x] **1.5** Đặc tả yêu cầu chi tiết  
+  - [x] Functional + Non-functional Requirements → `Docs/life-1/01-vision/requirements-srs.md`  
+  - [x] Database Schema sơ bộ (có thể trong requirements hoặc artkitacture)  
+  - [x] API Endpoints specification (sơ bộ)  
+  - [x] Tầm nhìn, USP, target market → `Docs/life-1/01-vision/product-vision.md`
+- [x] **1.6** Quyết định kỹ thuật → `Docs/life-1/02-decisions/technical-decisions.md`
+
+---
+
+### Life-2 — Phân tích & Thiết kế  
+*Thư mục: `Docs/life-2/` — **Chỉ [x] khi tài liệu có nội dung đầy đủ, không chỉ khung/placeholder.***
+
+- [ ] **2.1** Sơ đồ quan hệ thực thể (ER) → `Docs/life-2/diagrams/er-diagram.md` *(hiện mới khung, comment "Cập nhật với entities thực tế")*
+- [ ] **2.2** Sơ đồ Use Case → `Docs/life-2/diagrams/use-case-diagram.md` *(mới khung, "Mở rộng theo 10 MVP features")*
+- [ ] **2.3** Sơ đồ tuần tự (Sequence) → `Docs/life-2/diagrams/sequence-diagram.md` *(mới Auth + Post Creation, thiếu News Feed Load, Bookmark Save)*
+- [ ] **2.4** Sơ đồ luồng (Flow) → `Docs/life-2/diagrams/flow-diagram.md` *(mới 2 flow, thiếu Bookmark save, Notification trigger)*
+- [ ] **2.5** Sơ đồ lớp (Class) → `Docs/life-2/diagrams/class-diagram.md` *(mới User + Post, optional)*
+- [ ] **2.6** Thiết kế Database chi tiết → `Docs/life-2/database/schema-design.md` *(mới users + posts, thiếu "Thêm các collections khác")*
+- [ ] **2.7** Thiết kế khung giao diện UI  
+  - [ ] Wireframe từng màn hình → `Docs/life-2/ui/wireframes/` (auth, feed, profile, …) *(thư mục trống, chỉ .gitkeep)*  
+  - [ ] Tổng hợp frame layout → `Docs/life-2/ui/ui-frame-design.md` *(mới list màn hình, tham chiếu wireframes chưa tồn tại)*
+- [ ] **2.8** Thiết kế API  
+  - [ ] REST/GraphQL endpoints → `Docs/life-2/api/api-spec.md` *(mới bảng category, chưa đủ endpoint từng resource)*  
+  - [ ] Request/Response, auth → `Docs/life-2/api/api-design.md` *(mới vài ví dụ, chưa đủ spec từng API)*
+- [ ] **2.9** Spec chi tiết phục vụ AI code generation → `Docs/life-2/specs/`  
+  - [ ] auth-spec.md, posts-spec.md, feed-spec.md, … (theo từng tính năng MVP) *(thư mục specs trống)*
+
+---
+
+### Life-3 — Triển khai  
+*Thư mục: `Docs/life-3/`*
+
+- [ ] **3.1** Setup môi trường (tài liệu)  
+  - [ ] Init Next.js + Payload  
+  - [ ] Configure MongoDB Atlas  
+  - [ ] Setup Vercel project  
+  - [ ] TypeScript, ESLint, Prettier  
+  - [ ] Biến môi trường, secrets → `Docs/life-3/setup/env-setup.md`  
+  - [ ] Hướng dẫn deploy → `Docs/life-3/setup/deployment-guide.md`
+- [ ] **3.2** Xây dựng kiến trúc dự án (tài liệu)  
+  - [ ] Cấu trúc thư mục theo template Next.js → `Docs/life-3/architecture/folder-structure.md`  
+  - [ ] App Router, layouts, route groups (khi code)
+- [ ] **3.3** Xác định thư viện & dependencies (tài liệu)  
+  - [ ] package.json, lockfile  
+  - [ ] Shadcn UI, Tailwind, … → `Docs/life-3/architecture/tech-choices.md`
+- [ ] **3.4** Xây dựng theo spec  
+  - [ ] Tham chiếu `Docs/life-2/specs/`  
+  - [ ] AI agent đọc spec → tạo sinh code  
+  - [ ] (Tùy chọn) Prompt tham chiếu → `Docs/life-3/ai-prompt-refs/`
+- [ ] **3.5** Test ⇄ AI agent  
+  - [ ] Unit tests, integration tests  
+  - [ ] AI hỗ trợ viết test, debug
+- [ ] (Tùy chọn) Ghi chú sprint → `Docs/life-3/sprint-logs/`
+
+---
+
+### Life-4 — Verify  
+*Thư mục: `Docs/life-4/`*
+
+- [ ] **4.1** Đối chiếu với spec (file đã có, nội dung chưa điền)  
+  - [ ] Tất cả requirements đã implement?  
+  - [ ] Database schema khớp thiết kế?  
+  - [ ] Ghi nhận → `Docs/life-4/verification/spec-coverage.md`
+- [ ] **4.2** Kiểm thử chức năng (file đã có, chưa chạy test)  
+  - [ ] E2E, smoke tests  
+  - [ ] Performance benchmarks  
+  - [ ] Báo cáo → `Docs/life-4/verification/test-report.md`
+- [ ] **4.3** Tài liệu vận hành (file đã có)  
+  - [ ] README, hướng dẫn deploy  
+  - [ ] Runbook (nếu cần)  
+  - [ ] Release notes → `Docs/life-4/release/release-notes.md`  
+  - [ ] Deployment checklist → `Docs/life-4/release/deployment-checklist.md`
+- [ ] **4.4** Sign-off & Archive (file đã có)  
+  - [ ] Lessons learned → `Docs/life-4/archive/lessons-learned.md`  
+  - [ ] Lịch sử quyết định → `Docs/life-4/archive/decisions-log.md`
+
+---
+
+## 📌 Ghi chú nhanh
+
+- **Tiêu chí đánh dấu [x]:** Chỉ khi tài liệu **có nội dung đầy đủ tính năng**, không chỉ file tồn tại hay khung/placeholder. Rà soát bằng cách đọc nội dung thực tế trong Docs.
+- **MVP Scope** (theo product-vision): Auth, Profile, Posts (text+image+link), News Feed (ranking), Interactions (like/comment/share), Bookmarking (collections), Search, Notifications (SSE), Moderation (report), Privacy & Connections.
+- **Spec-driven flow:** `Docs/life-2/specs/*.md` → AI đọc → sinh code → `src/` → Test ⇄ Fix.
+- Cập nhật **Giai đoạn hiện tại**, **Đang làm**, **Cần làm tiếp** mỗi khi chuyển task hoặc chuyển phase.
+
+---
+
+---
+
+## 📌 Kết quả rà soát (docs-driven)
+
+*Rà soát bằng cách **đọc nội dung thực tế** trong `Docs/`, không chỉ "file tồn tại". Chỉ đánh [x] khi tài liệu có nội dung đầy đủ tính năng, không chỉ khung/placeholder/null. Cập nhật: 2026-02-01.*
+
+| Giai đoạn | Đã xong (nội dung đủ) | Chưa / chỉ khung sườn |
+|-----------|------------------------|------------------------|
+| **Life-1** | 1.2, 1.3, 1.5, 1.6; 1.4 chỉ có news-feed-algorithm | 1.4: `sse-nextjs.md`, `mongodb-search.md`; 1.7: competitor-analysis (tùy chọn) |
+| **Life-2** | *(không mục nào)* | Toàn bộ 2.1–2.9: file có nhưng **chỉ khung sườn** — diagrams có comment "Thêm/Cập nhật", schema chỉ users+posts, wireframes trống, api tổng quan, specs trống |
+| **Life-3** | 3.1–3.3 (tài liệu setup, architecture, tech-choices có nội dung) | 3.1 thực tế: init project, MongoDB, Vercel; 3.4, 3.5 khi có specs |
+| **Life-4** | File verification, release, archive đã tạo | Nội dung đối chiếu spec, test, release điền khi triển khai xong |
+
+*Cập nhật: 2026-02-01*

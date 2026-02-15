@@ -18,28 +18,28 @@ description: Kỹ sư triển khai Agent Skill (Senior Implementation Engineer).
 ## Step 1: PREPARE & Evaluate
 
 Read all inputs and assess feasibility:
-- Read `.skill-context/{skill-name}/design.md` (Architecture).
-- Read `.skill-context/{skill-name}/todo.md` (Execution Plan).
-- Read `.skill-context/{skill-name}/resources/` (Domain Data).
+- Read [../../.skill-context/{skill-name}/design.md](../../.skill-context/{skill-name}/design.md) (Architecture).
+- Read [../../.skill-context/{skill-name}/todo.md](../../.skill-context/{skill-name}/todo.md) (Execution Plan).
+- Read [../../.skill-context/{skill-name}/resources/](../../.skill-context/{skill-name}/resources/) (Domain Data).
 - **The Stance**: Audit the design. Identify "phi logic" or missing bridges. Build an internal mental model of phases.
 
 ## Step 2: CLARIFY (Closing the Loop)
 
 - Scan `todo.md` for `[CẦN LÀM RÕ]` or logic flaws found in Step 1.
 - Ask user for clarification (Max 5 items per session).
-- **Engineer's Audit**: Suggest corrections. Record answers into `.skill-context/{skill-name}/design.md` §Clarifications (Section 9).
+- **Engineer's Audit**: Suggest corrections. Record answers into [../../.skill-context/{skill-name}/design.md](../../.skill-context/{skill-name}/design.md) §Clarifications (Section 9).
 
 ## Step 3: BUILD (Phase-driven Workflow)
 
 Implement the skill according to `todo.md` phases. Execute ONLY one phase at a time to prevent context rot:
 - **Phase Execution**: Create folders and files as specified in Zone Mapping.
 - **Content Source**: Use `resources/` data. For missing data, use `[MISSING_DOMAIN_DATA]`.
-- **Progress Tracking**: Mark tasks as done in `todo.md` ONLY after files are verified.
+- **Progress Tracking**: Mark tasks as done in [../../.skill-context/{skill-name}/todo.md](../../.skill-context/{skill-name}/todo.md) ONLY after files are verified.
 
 ## Step 4: VERIFY (The Gatekeeper)
 
 Run automatic and manual quality gates:
-- Execute `python scripts/validate_skill.py . --design ../../.skill-context/{skill-name}/design.md --log`.
+- Execute: `python scripts/validate_skill.py . --design ../../../.skill-context/{skill-name}/design.md --log`.
 - Apply [loop/build-checklist.md](loop/build-checklist.md).
 - **Placeholder Density**:
   - < 5: PASS (Normal).
@@ -49,7 +49,7 @@ Run automatic and manual quality gates:
 ## Step 5: DELIVER
 
 - Finalize [loop/build-log.md](loop/build-log.md). Ensure it matches reality (tick boxes, correct counts).
-- Present summarized results. Exit build mode.
+- Present summarized results in [../../.skill-context/{skill-name}/build-log.md](../../.skill-context/{skill-name}/build-log.md). Exit build mode.
 
 ## Guardrails
 
@@ -69,3 +69,6 @@ If any critical command fails (e.g., `write_to_file` error):
 1. Append error detail into [loop/build-log.md](loop/build-log.md).
 2. Use **AskUserQuestion** to notify about the blockage.
 3. **STOP** all subsequent tasks. Exit session to prevent data corruption.
+
+## Scripts & Tools
+- Validator: [scripts/validate_skill.py](scripts/validate_skill.py)
