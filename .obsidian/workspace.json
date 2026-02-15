@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "workspace/History-architect/skill-builder/design.md",
+                "file": "Docs/life-2/diagrams/UseCase/use-case-diagram.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "design"
+              "title": "use-case-diagram"
             }
           }
         ]
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "aeb514a1b3fb9c9d",
@@ -186,6 +185,22 @@
   },
   "active": "bdf134431ba4402f",
   "lastOpenFiles": [
+    "Docs/life-2/diagrams/UseCase/use-case-m6-notifications-moderation.md",
+    "Docs/life-2/diagrams/UseCase/use-case-m5-bookmarking.md",
+    "Docs/life-2/diagrams/UseCase/use-case-m4-engagement-connections.md",
+    "Docs/life-2/diagrams/UseCase/use-case-m3-discovery-feed.md",
+    "Docs/life-2/diagrams/UseCase/use-case-m2-content-engine.md",
+    "Docs/life-2/diagrams/UseCase/use-case-m1-auth-profile.md",
+    "Docs/life-2/diagrams/UseCase/use-case-overview.md",
+    "Docs/life-2/diagrams/UseCase/index.md",
+    "openspec/changes/decompose-usecase-diagrams/tasks.md",
+    "openspec/changes/decompose-usecase-diagrams/specs/usecase-diagram-decomposition/spec.md",
+    "openspec/changes/decompose-usecase-diagrams/design.md",
+    "openspec/changes/decompose-usecase-diagrams/specs/usecase-diagram-decomposition",
+    "openspec/changes/decompose-usecase-diagrams/specs",
+    "openspec/changes/decompose-usecase-diagrams/proposal.md",
+    "openspec/changes/decompose-usecase-diagrams",
+    "workspace/History-architect/skill-builder/design.md",
     "architect.md",
     "workspace/History-architect/skill-planner/phase-3-design.md",
     "workspace/History-architect/skill-planner/phase-2-analyze.md",
