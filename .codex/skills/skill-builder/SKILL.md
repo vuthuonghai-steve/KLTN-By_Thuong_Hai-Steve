@@ -21,6 +21,11 @@ Read all inputs and assess feasibility:
 - Read [../../.skill-context/{skill-name}/design.md](../../.skill-context/{skill-name}/design.md) (Architecture).
 - Read [../../.skill-context/{skill-name}/todo.md](../../.skill-context/{skill-name}/todo.md) (Execution Plan).
 - Read [../../.skill-context/{skill-name}/resources/](../../.skill-context/{skill-name}/resources/) (Domain Data).
+- Read [../../.skill-context/{skill-name}/data/](../../.skill-context/{skill-name}/data/) (Rule configs, scoring, technical constraints) if present.
+- Read [../../.skill-context/{skill-name}/loop/](../../.skill-context/{skill-name}/loop/) (Existing verification assets) if present.
+- Build a context inventory (all files in sub-skill context) and classify:
+  - `Critical`: `design.md`, `todo.md`, all `resources/*`, all `data/*`.
+  - `Supportive`: `loop/*`, proofs, notes.
 - **The Stance**: Audit the design. Identify "phi logic" or missing bridges. Build an internal mental model of phases.
 
 ## Step 2: CLARIFY (Closing the Loop)
@@ -35,11 +40,15 @@ Implement the skill according to `todo.md` phases. Execute ONLY one phase at a t
 - **Phase Execution**: Create folders and files as specified in Zone Mapping.
 - **Content Source**: Use `resources/` data. For missing data, use `[MISSING_DOMAIN_DATA]`.
 - **Progress Tracking**: Mark tasks as done in [../../.skill-context/{skill-name}/todo.md](../../.skill-context/{skill-name}/todo.md) ONLY after files are verified.
+- **Usage Trace Mandatory**: For every completed task, append source trace in `.skill-context/{skill-name}/build-log.md` with format:
+  - `Task -> Output file -> Source files used`.
+  - Include at least one explicit source path in backticks.
 
 ## Step 4: VERIFY (The Gatekeeper)
 
 Run automatic and manual quality gates:
 - Execute: `python scripts/validate_skill.py . --design ../../../.skill-context/{skill-name}/design.md --log`.
+- Execute: `python scripts/validate_skill.py . --design ../../../.skill-context/{skill-name}/design.md --log --strict-context`.
 - Apply [loop/build-checklist.md](loop/build-checklist.md).
 - **Placeholder Density**:
   - < 5: PASS (Normal).
@@ -50,6 +59,10 @@ Run automatic and manual quality gates:
 
 - Finalize [loop/build-log.md](loop/build-log.md). Ensure it matches reality (tick boxes, correct counts).
 - Present summarized results in [../../.skill-context/{skill-name}/build-log.md](../../.skill-context/{skill-name}/build-log.md). Exit build mode.
+- Ensure `.skill-context/{skill-name}/build-log.md` has these mandatory sections:
+  - `## Resource Inventory`
+  - `## Resource Usage Matrix`
+  - `## Validation Result`
 
 ## Guardrails
 
@@ -62,6 +75,7 @@ Run automatic and manual quality gates:
 | G5 | **Source Grounding** | Nội dung 100% từ design, todo, resources. Tuyệt đối không ảo giác. |
 | G6 | **PD Tiering** | Tuân thủ Progressive Disclosure (Tier 1 vs Tier 2). |
 | G7 | **Build-log Mandatory** | Ghi rõ mọi quyết định, phản biện, file tạo và issue vào build-log.md. |
+| G8 | **Context Coverage** | Không được bỏ sót file critical trong `.skill-context/{skill-name}`; phải có evidence sử dụng trong Resource Usage Matrix. |
 
 ## Error Policy (Log-Notify-Stop)
 

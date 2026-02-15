@@ -9,6 +9,9 @@
 - [ ] Nội dung bám sát 100% bản thiết kế `design.md`.
 - [ ] Mọi mục `[CẦN LÀM RÕ]` trong `todo.md` đã được giải quyết hoặc trả lời tại `design.md §9`.
 - [ ] Mọi Task trong `todo.md` đồng bộ với thực tế file đã tạo.
+- [ ] Đã tạo `Resource Inventory` trong `.skill-context/{skill-name}/build-log.md`.
+- [ ] Đã tạo `Resource Usage Matrix` trong `.skill-context/{skill-name}/build-log.md`.
+- [ ] 100% file `Critical` (`design.md`, `todo.md`, `resources/*`, `data/*`) có evidence được dùng.
 
 ## 3. Progressive Disclosure Check (Phân tầng thông tin)
 - [ ] Mọi file Tier 2 đều được dẫn link từ `SKILL.md`.
@@ -23,3 +26,4 @@
 ## 5. Engineer Stance (Thẩm định Kỹ sư)
 - [ ] Đã thực hiện phản biện bản thiết kế (nếu có phi logic).
 - [ ] Quy trình xử lý lỗi tuân thủ Log-Notify-Stop (Dừng ngay khi có lỗi hệ thống).
+- [ ] Không có kết luận nào không truy vết được về resource hoặc design/todo.

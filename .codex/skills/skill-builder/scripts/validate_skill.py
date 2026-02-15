@@ -9,14 +9,29 @@ class SkillValidator:
     Kỹ sư thẩm định chất lượng Agent Skill.
     Đảm bảo tính chính trực giữa thiết kế (design) và thực thi (build).
     """
-    def __init__(self, skill_path, design_path=None, log_mode=False):
+    def __init__(self, skill_path, design_path=None, log_mode=False, strict_context=False):
         self.skill_path = os.path.abspath(skill_path)
         self.skill_name = os.path.basename(self.skill_path.rstrip('/'))
         self.design_path = os.path.abspath(design_path) if design_path else None
         self.log_mode = log_mode
+        self.strict_context = strict_context
+        self.workspace_root = self.find_workspace_root()
         self.errors = []
         self.warnings = []
         self.reports = []
+
+    def find_workspace_root(self):
+        """Find nearest parent containing .skill-context to anchor workflow paths."""
+        current = self.skill_path
+        for _ in range(12):
+            marker = os.path.join(current, ".skill-context")
+            if os.path.isdir(marker):
+                return current
+            parent = os.path.dirname(current)
+            if parent == current:
+                break
+            current = parent
+        return os.path.dirname(os.path.dirname(os.path.dirname(self.skill_path)))
 
     def log(self, message, level="INFO"):
         prefix = f"[{level}] " if level != "INFO" else ""
@@ -179,6 +194,99 @@ class SkillValidator:
             self.log("   -> System Error detected in log. Verifying STOP stance.", "INFO")
         return True
 
+    def get_context_dir(self):
+        return os.path.join(self.workspace_root, ".skill-context", self.skill_name)
+
+    def collect_context_critical_files(self):
+        """
+        Critical coverage contract:
+        - design.md, todo.md
+        - all files under resources/
+        - all files under data/
+        """
+        context_dir = self.get_context_dir()
+        critical = []
+        if not os.path.isdir(context_dir):
+            return critical
+
+        for fixed in ("design.md", "todo.md"):
+            fixed_path = os.path.join(context_dir, fixed)
+            if os.path.isfile(fixed_path):
+                critical.append(fixed)
+
+        for rel_root in ("resources", "data"):
+            root_dir = os.path.join(context_dir, rel_root)
+            if not os.path.isdir(root_dir):
+                continue
+            for root, _, files in os.walk(root_dir):
+                for name in files:
+                    if name.startswith("."):
+                        continue
+                    full = os.path.join(root, name)
+                    rel = os.path.relpath(full, context_dir)
+                    critical.append(rel.replace("\\", "/"))
+
+        # Stable ordering for deterministic validation output
+        return sorted(set(critical))
+
+    def check_context_resource_coverage(self):
+        """
+        Verify builder actually captured context usage in .skill-context/{skill-name}/build-log.md.
+        """
+        self.log("7. Context Resource Coverage Check...")
+        context_dir = self.get_context_dir()
+        if not os.path.isdir(context_dir):
+            self.warnings.append(f"WARNING: Context directory not found for coverage check: {context_dir}")
+            self.log(f"   -> Missing context dir: {context_dir}", "WARN")
+            return True
+
+        build_log = os.path.join(context_dir, "build-log.md")
+        if not os.path.isfile(build_log):
+            code = "[E07]" if self.strict_context else "[W07]"
+            msg = f"{code} {'ERROR' if self.strict_context else 'WARNING'}: Missing context build log required for coverage: {build_log}"
+            (self.errors if self.strict_context else self.warnings).append(msg)
+            self.log(f"   -> Missing build-log: {build_log}", "FAIL")
+            return not self.strict_context
+
+        with open(build_log, "r", encoding="utf-8") as f:
+            build_log_content = f.read()
+
+        for section in ("## Resource Inventory", "## Resource Usage Matrix"):
+            if section not in build_log_content:
+                code = "[E08]" if self.strict_context else "[W08]"
+                msg = f"{code} {'ERROR' if self.strict_context else 'WARNING'}: build-log.md missing mandatory section '{section}'"
+                (self.errors if self.strict_context else self.warnings).append(msg)
+                self.log(f"   -> Missing section: {section}", "FAIL")
+
+        critical_files = self.collect_context_critical_files()
+        if not critical_files:
+            self.warnings.append(
+                "WARNING: No critical context files detected (design/todo/resources/data)."
+            )
+            self.log("   -> No critical context files detected.", "WARN")
+            return len(self.errors) == 0
+
+        uncovered = []
+        for rel in critical_files:
+            rel_norm = rel.replace("\\", "/")
+            full_norm = os.path.join(context_dir, rel).replace("\\", "/")
+            if rel_norm not in build_log_content and full_norm not in build_log_content:
+                uncovered.append(rel_norm)
+
+        if uncovered:
+            for rel in uncovered:
+                code = "[E09]" if self.strict_context else "[W09]"
+                msg = f"{code} {'ERROR' if self.strict_context else 'WARNING'}: Critical context resource has no usage evidence in build-log.md: {rel}"
+                (self.errors if self.strict_context else self.warnings).append(msg)
+                self.log(f"   -> Uncovered critical resource: {rel}", "FAIL")
+        else:
+            self.log(
+                f"   -> Coverage OK: {len(critical_files)}/{len(critical_files)} critical resources traced.",
+                "INFO",
+            )
+
+        return len(uncovered) == 0 if self.strict_context else True
+
     def report(self):
         print("\n" + "="*50)
         print("   AGENT SKILL VALIDATION REPORT")
@@ -192,6 +300,7 @@ class SkillValidator:
         self.check_file_mapping()
         self.check_placeholder_density()
         self.check_error_handling() # Fix Medium: Call checking error handling
+        self.check_context_resource_coverage()
         
         print("="*50)
         final_status = "PASS" if not self.errors else "FAIL"
@@ -210,8 +319,9 @@ class SkillValidator:
     def write_log(self, status):
         """High Fix: Resolve correct path for build-log.md in .skill-context"""
         # Search for build-log.md in .skill-context/{skill-name}/
-        workspace_root = os.path.dirname(os.path.dirname(os.path.dirname(self.skill_path)))
-        target_log_path = os.path.join(workspace_root, ".skill-context", self.skill_name, "build-log.md")
+        target_log_path = os.path.join(
+            self.workspace_root, ".skill-context", self.skill_name, "build-log.md"
+        )
         
         if not os.path.exists(target_log_path):
             self.log(f"Warning: Build log not found at {target_log_path}", "WARN")
@@ -234,7 +344,17 @@ if __name__ == "__main__":
     parser.add_argument("path", help="Path to the skill directory")
     parser.add_argument("--design", help="Path to design.md")
     parser.add_argument("--log", action="store_true", help="Append results to build-log.md")
+    parser.add_argument(
+        "--strict-context",
+        action="store_true",
+        help="Fail validation if context resource coverage in .skill-context/{skill-name}/build-log.md is incomplete",
+    )
     args = parser.parse_args()
     
-    validator = SkillValidator(args.path, design_path=args.design, log_mode=args.log)
+    validator = SkillValidator(
+        args.path,
+        design_path=args.design,
+        log_mode=args.log,
+        strict_context=args.strict_context,
+    )
     validator.report()

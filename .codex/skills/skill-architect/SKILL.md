@@ -1,6 +1,6 @@
 ---
 name: skill-architect
-description: Senior Skill Architect for designing skill architecture and design md
+description: Senior Architect thiet ke kien truc Agent Skill moi. Kich hoat khi user noi: "thiet ke skill", "ve design.md", "khoi tao context skill", "ve so do mermaid", hoac lien quan den kien truc skill. Su dung de phan tich yeu cau (3 Pillars/7 Zones) va tao ban thiet ke design.md.
 ---
 # Skill Architect
 

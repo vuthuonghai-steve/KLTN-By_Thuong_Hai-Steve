@@ -71,3 +71,45 @@
 - **Final Status**: PASS
 - **Errors**: 0
 - **Warnings**: 0
+
+## Resource Inventory
+
+| Resource File | Priority | Purpose | Status |
+|---|---|---|---|
+| `design.md` | Critical | Architecture source of truth for builder behavior and constraints | Used |
+| `todo.md` | Critical | Phase/task execution plan for builder implementation | Used |
+| `resources/validation-logic.md` | Critical | Validation logic reference for `scripts/validate_skill.py` behavior | Used |
+| `resources/test-fixtures/fail-pd-links/scripts/orphan.py` | Critical | Fixture for PD/orphan link validation cases | Used |
+| `resources/test-fixtures/valid-skill/knowledge/doc.md` | Critical | Fixture for valid skill mapping and expected pass behavior | Used |
+| `resources/test-fixtures/valid-skill/loop/check.md` | Critical | Fixture for loop/checklist structure validation | Used |
+| `resources/test-fixtures/valid-skill/scripts/tool.py` | Critical | Fixture for script path validation and file mapping checks | Used |
+
+## Resource Usage Matrix
+
+| Resource File | Priority | Used In Task | Output File(s) | Notes |
+|---|---|---|---|---|
+| `design.md` | Critical | `2.1`, `2.2`, `2.3` | `.agent/skills/skill-builder/SKILL.md` | Drives workflow steps, guardrails, and delivery contract |
+| `todo.md` | Critical | `2.2`, `3.3` | `.agent/skills/skill-builder/loop/build-checklist.md` | Syncs executable checks with planned tasks |
+| `resources/validation-logic.md` | Critical | `2.3`, `2.4`, `3.1` | `.agent/skills/skill-builder/scripts/validate_skill.py` | Source for validator checks and reporting behavior |
+| `resources/test-fixtures/fail-pd-links/scripts/orphan.py` | Critical | `3.1`, `3.2` | `.agent/skills/skill-builder/scripts/validate_skill.py` | Used to verify non-strict warning behavior on orphan files |
+| `resources/test-fixtures/valid-skill/knowledge/doc.md` | Critical | `3.1`, `3.3` | `.agent/skills/skill-builder/scripts/validate_skill.py` | Used to verify strict-mode coverage and mapping checks |
+| `resources/test-fixtures/valid-skill/loop/check.md` | Critical | `3.1`, `3.3` | `.agent/skills/skill-builder/scripts/validate_skill.py` | Used in loop-related validation scenarios |
+| `resources/test-fixtures/valid-skill/scripts/tool.py` | Critical | `3.1`, `3.3` | `.agent/skills/skill-builder/scripts/validate_skill.py` | Used to validate scripts path handling in coverage checks |
+
+## Validation Result (2026-02-16 01:08:45)
+- **Session**: sync-agent-codex-skills
+- **Non-strict Validator**: PASS (Exit Code 0)
+- **Strict Validator**: PASS (Exit Code 0)
+- **Context Coverage**: 7/7 critical resources traced
+- **Evidence Files**:
+  - `openspec/changes/sync-agent-codex-skills/evidence/validator-nonstrict-before.log`
+  - `openspec/changes/sync-agent-codex-skills/evidence/validator-strict-before.log`
+  - `openspec/changes/sync-agent-codex-skills/evidence/validator-nonstrict-after.log`
+  - `openspec/changes/sync-agent-codex-skills/evidence/validator-strict-after.log`
+
+## Sync Verification Result (2026-02-16 01:08:45)
+- `skill-architect` parity check: PASS (`diff -qr` exit 0)
+- `skill-builder` parity check: PASS (`diff -qr` exit 0)
+- **Evidence Files**:
+  - `openspec/changes/sync-agent-codex-skills/evidence/diff-architect-after.log`
+  - `openspec/changes/sync-agent-codex-skills/evidence/diff-builder-after.log`

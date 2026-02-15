@@ -30,3 +30,43 @@
 - **Files trong Knowledge**: kebab-case.
 - **Scripts**: snake_case hoặc kebab-case.
 - **Checklist/Log**: kebab-case.
+
+## 5. CONTEXT DIRECTORY COVERAGE (BAT BUOC)
+
+Muc tieu: Dam bao Builder khong bo sot tai nguyen trong `.skill-context/{skill-name}/`.
+
+### 5.1 Cau truc sub-skill context can hieu ro
+
+```
+.skill-context/{skill-name}/
+├── design.md        # Architecture source of truth
+├── todo.md          # Execution plan source of truth
+├── build-log.md     # Evidence + usage matrix + validation log
+├── resources/       # Domain references (business/uml/analysis docs)
+├── data/            # Rule configs (yaml/json), scoring matrix
+└── loop/            # Prior checks, proofs, phase logs (supportive)
+```
+
+### 5.2 Phan loai muc do uu tien tai nguyen
+
+- `Critical`:
+  - `design.md`
+  - `todo.md`
+  - Tat ca file trong `resources/`
+  - Tat ca file trong `data/`
+- `Supportive`:
+  - Tat ca file trong `loop/`
+  - Tai lieu proof/snapshot
+
+### 5.3 Resource Usage Matrix (bat buoc trong build-log.md)
+
+Builder phai co bang sau trong `.skill-context/{skill-name}/build-log.md`:
+
+| Resource File | Priority | Used In Task | Output File(s) | Notes |
+|---|---|---|---|---|
+| `resources/...` | Critical | `Task x.y` | `knowledge/...` | rationale |
+
+Quy tac:
+- Moi file `Critical` phai xuat hien it nhat 1 dong.
+- Moi dong phai co duong dan resource trong backticks.
+- Khong duoc danh dau task done neu chua co dong trace tuong ung.
