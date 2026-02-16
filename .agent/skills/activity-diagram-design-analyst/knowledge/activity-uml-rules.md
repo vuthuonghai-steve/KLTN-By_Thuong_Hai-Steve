@@ -98,3 +98,28 @@ flowchart TD
 - `{Choice?}`: Hình thoi (Decision).
 - `(((End)))`: Tròn đôi (Final).
 - `subgraph`: Phân làn trách nhiệm.
+
+---
+
+## 6. Strict Mermaid Syntax Rules (Hạn chế Parse Error)
+
+Để tránh các lỗi cú pháp nghiêm trọng khi render đồ họa, BẮT BUỘC tuân thủ:
+
+### 6.1 Quy tắc bọc nhãn (Label Quoting)
+- **MANDATORY**: Mọi nội dung nằm trong `[]`, `{}`, `(( ))`, `((( )))` PHẢI được bọc trong dấu ngoặc kép `""`.
+- **Lý do**: Tránh lỗi khi nhãn chứa ký tự đặc biệt như `( )`, `:`, `?`, `_`, `&`, `/`.
+- **Ví dụ Đúng**: `B2{"Mã trả về (Status)?"}`.
+- **Ví dụ Sai**: `B2{Mã trả về (Status)?}`.
+
+### 6.2 Quy tắc xuống dòng (Line Breaks)
+- **MANDATORY**: Không được dùng ký tự `\n` trong nhãn.
+- **Sử dụng**: Dùng thẻ `<br/>` của HTML để ngắt dòng.
+- **Ví dụ**: `C4["Tạo tài khoản mới<br/>_verified: false"]`.
+
+### 6.3 Quy tắc Decision Nodes
+- Không để trống nhãn của Decision node.
+- Guard conditions trên mũi tên cũng nên bọc trong `""` nếu có dấu cách hoặc ký tự đặc biệt: `B2 -- "Thành công (200)" --> C1`.
+
+---
+*Tài liệu được cập nhật dựa trên phản hồi thực tế để tối ưu hóa khả năng hiển thị.*
+

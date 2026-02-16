@@ -32,5 +32,10 @@
 - [ ] Các thuật ngữ nghiệp vụ được giữ nguyên hoặc dịch sát nghĩa (không dùng placeholder vô nghĩa).
 - [ ] Các "Giả định" (Assumptions) được ghi chú rõ ràng cho người dùng.
 
+## 5. Kiểm tra Cú pháp Kỹ thuật (Technical Mermaid Syntax)
+- [ ] **TS-01 (Label Quoting)**: Tất cả các nhãn node (Action, Decision, Terminal) đều được bọc trong dấu ngoặc kép `""`.
+- [ ] **TS-02 (Line Break)**: Không sử dụng `\n`, sử dụng thẻ `<br/>` để xuống dòng trong nhãn.
+- [ ] **TS-03 (Special Characters)**: Kiểm tra các nhãn chứa dấu `()`, `:`, `?`, `_` đã được escaped hoặc bọc ngoặc kép an toàn chưa.
+
 ---
-**Kết quả**: Nếu vi phạm bất kỳ mục nào ở phần 1 hoặc 2 (mức Critical/Major), sơ đồ phải được Refactor lại.
+**Kết quả**: Nếu vi phạm bất kỳ mục nào ở phần 1, 2 hoặc 5 (mức Critical/Major), sơ đồ phải được Refactor lại.

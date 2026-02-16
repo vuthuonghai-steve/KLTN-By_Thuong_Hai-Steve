@@ -47,6 +47,7 @@ description: Chuyên gia phân tích và thiết kế sơ đồ Activity Diagram
 | **G3** | **Logic First** | Luôn kiểm tra "Implicit AND" (CF-01) và "Fork misuse" (PL-01) trước khi xuất kết quả. |
 | **G4** | **Clean Swimlanes** | Tuyệt đối không để Logic nghiệp vụ (Entity) nằm ở lane User hay External. |
 | **G5** | **Strict Mermaid** | Kiểm tra cú pháp Mermaid trước khi trả kết quả. Đảm bảo Flowchart TD được sử dụng đúng cách. |
+| **G6** | **Safe Labels** | LUÔN bọc nhãn node trong dấu ngoặc kép `""`. Tuyệt đối không dùng `\n`, dùng `<br/>` để xuống dòng. |
 
 ## Error Policy (Log-Notify-Stop)
 Nếu phát hiện mâu thuẫn nghiệp vụ nghiêm trọng hoặc lỗi cú pháp không thể tự sửa:

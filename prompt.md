@@ -1,10 +1,20 @@
-dựa trên context vừa được triển khai . giúp mình phân rã tinh chỉnh tài
-  liệu '/home/steve/Documents/KLTN/Docs/life-2/diagrams/UseCase/use-case-
-  diagram.md' .
-  ## vấn đề hiên tại
-  - sơ đồ khổng lồ khá khó trong việc tiếp cận với người đọc cần cái nhìn
-  + sơ đồ tổng quát
-  + sơ đồ phân rã
-  - cần có một lược đồ tổng quát tầm nhìn chung và những lược đồ phân ra đảm
-  nhiệm  phẫn ra các thành phần chức năng lớn thành các lược đồ phân ra con
-  chi tiết .
+```mermaid
+flowchart TD
+    %% Nodes
+    Start(["Bắt đầu soạn thảo"])
+    A1["M2-A1: Soạn thảo nội dung (Rich-text)"]
+    A2{"Có đính kèm Media?"}
+    A3["M2-A2: Xử lý Media (Upload/Optim)"]
+    A4["M2-A3: Kiểm tra & Gắn Tag"]
+    A5["M2-A4: Cấu hình Visibility"]
+    End(["Xuất bản bài viết"])
+
+    %% Flow
+    Start --> A1
+    A1 --> A2
+    A2 -- "Có" --> A3
+    A3 --> A4
+    A2 -- "Không" --> A4
+    A4 --> A5
+    A5 --> End
+```
