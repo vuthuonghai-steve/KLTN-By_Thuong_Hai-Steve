@@ -25,7 +25,9 @@
 
 | # | Quyet dinh | Ly do | Anh huong |
 |---|-----------|-------|----------|
-| 1 | <!-- e.g. Dung Python thay vi Bash --> | <!-- e.g. Logic phuc tap hon --> | <!-- e.g. Can Python 3.10+ --> |
+| 1 | Dung Python thay vi Bash | Logic phuc tap hon | Can Python 3.10+ |
+| 2 | Guardrail G9 - Knowledge Fidelity | Ngăn chặn việc AI tự ý tóm tắt tri thức kỹ thuật | Tăng mật độ thông tin trong Skill |
+| 3 | Double-Pass Infusion Flow | Bảo toàn tri thức cho các tài liệu dài | Giảm rủi ro mất mát tri thức khi build |
 
 ## 4. Issues Encountered
 

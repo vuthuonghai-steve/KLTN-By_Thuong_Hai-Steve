@@ -11,10 +11,11 @@
 - **Phases**: Chia workflow thành các Phase có thể đánh dấu hoàn thành.
 
 ## 2. NGUYÊN TẮC VIẾT KNOWLEDGE
-
-- Mỗi file phải có header **Usage** mô tả mục đích và thời điểm sử dụng.
-- Ưu tiên bảng và sơ đồ Mermaid.
-- Nội dung domain phải dẫn nguồn từ `resources/`.
+ 
+ - Mỗi file phải có header **Usage** mô tả mục đích và thời điểm sử dụng.
+ - Ưu tiên bảng và sơ đồ Mermaid.
+ - Nội dung domain phải dẫn nguồn từ `resources/`.
+ - **Fidelity Standard**: Tuyệt đối không tóm tắt tài nguyên `Critical`. Mọi định nghĩa, mã định danh (Rule IDs, Error codes) phải được chuyển hóa chính xác. Nếu resource có danh sách chi tiết, kết quả build phải có danh sách tương ứng.
 
 ## 3. NGUYÊN TẮC VIẾT LOOP (CHECKLIST & LOG)
 

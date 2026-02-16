@@ -84,6 +84,7 @@ The file MUST contain exactly 5 sections:
   Tasks grouped by execution phase, each with checkbox and trace tag.
   Order tasks by dependency (what must be done first).
   Each task: - [ ] Task description [TỪ DESIGN §N] or [GỢI Ý BỔ SUNG]
+  **High-fidelity Constraint**: For tasks involving Zone Knowledge or Data, use active, high-fidelity verbs such as "Transform 100% of...", "Implement Exhaustively...", or "Generate with high-fidelity...". ALWAYS specify the source section or file from `resources/` (e.g., `From resources/research.md #3.2`).
 
 ## 3. Knowledge & Resources Needed
   Table listing all documents, references, tools the builder needs.

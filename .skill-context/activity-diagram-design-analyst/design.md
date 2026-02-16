@@ -7,78 +7,65 @@
 
 ## 1. Problem Statement
 
-Skill nay giai quyet bai toan phan tich va thiet ke so do Activity Diagram theo context nguoi dung cung cap, thay vi ve theo cam tinh hoac chi "happy path".
+Skill này giải quyết bài toán phân tích và thiết kế sơ đồ Activity Diagram theo dữ liệu nghiệp vụ thực tế, thay vì vẽ sơ đồ "happy path" đơn giản.
 
-Nhom nguoi dung chinh:
-- Analyst/BA can chuyen hoa use case thanh luong hoat dong ro rang.
-- Engineer can review logic nghiep vu truoc khi implement.
-- Team lead can kiem soat chat luong mo hinh hoa va giam risk sai luong.
+**Vấn đề cần giải quyết (Refactor v2.0):**
+- **Sự mất mát tri thức (Knowledge Loss)**: Các phiên bản trước thường tóm tắt (summarize) tài liệu gốc, dẫn đến việc AI bỏ sót các tiểu tiết kỹ thuật quan trọng (Fork/Join, Object Flow, Flow Final).
+- **Thiếu tính phản biện**: AI dễ dàng chấp nhận logic của người dùng mà không kiểm tra các rủi ro kinh điển như Deadlock khi dùng Fork/Join sai cách.
+- **Tính đóng gói**: Cần chuẩn hóa lại bộ tri thức Clean Architecture B-U-E để áp dụng vào modeling nghiệp vụ một cách nhất quán.
 
-Hai tinh huong dau vao:
-1. Mode A (Design V1): nguoi dung chua co so do, skill phai phan tich context va tao ban Mermaid V1.
-2. Mode B (Refactor/Audit): nguoi dung da co so do, skill phai chi ra rui ro logic, diem mo ho, va de xuat cai tien.
+**Nhóm người dùng chính:**
+- Analyst/BA cần chuyển hóa use case thành luồng hoạt động rạng ngời tri thức.
+- Senior Engineer cần một công cụ review logic có khả năng phát hiện lỗi Semantic.
+- Team Lead cần audit thiết kế theo tiêu chuẩn Clean Architecture.
 
-Gia tri cot loi:
-- Tao Activity Diagram co cau truc chuan UML.
-- Doi chieu voi tai lieu context/research de phat hien thieu sot.
-- Giai thich nhu ky su thiet ke theo tu duy clean architecture: ro boundary, ro trach nhiem, ro luong chinh-va-ngoai-le.
+**Hai tình huống đầu vào (Modes):**
+1. **Mode A (Design V1)**: Người dùng chưa có sơ đồ, skill phải phân tích Context và tạo bản Mermaid V1 với độ chi tiết cao.
+2. **Mode B (Refactor/Audit)**: Người dùng đã có sơ đồ, skill phải đóng vai trò "Kỹ sư Audit" để chỉ ra rủi ro logic (CF-0x, DL-0x...) và đề xuất cải tiến.
+
+**Giá trị cốt lõi:**
+- **High-Fidelity**: Chuyển hóa 100% tri thức từ tài liệu nghiên cứu, không tóm tắt.
+- **Traceability**: Mọi thành phần sơ đồ đều phải truy vết được nguồn từ Context.
+- **Clean Architecture Lens**: Áp dụng triệt để phân lớp Boundary-UseCase-Entity vào Swimlane.
 
 ## 2. Capability Map
 
-### 2.1 Tri thuc (Knowledge)
-- UML Activity Diagram fundamentals:
-  - Initial/Final node, Action/Activity, Control Flow, Decision/Merge, Fork/Join, Swimlanes.
-  - Guard conditions va cach dat nhanh theo dieu kien.
-- Best practices:
-  - One use case -> one diagram.
-  - Luon co happy path + alternative/error path.
-  - Ten action dang dong tu, ngan gon, nhat quan.
-- Tai lieu nen:
-  - `Docs/diagram/activity-diagram-research.md` (nguon nghien cuu nen).
-  - Context user cung cap (use case, policy, constraint, actor).
-- Clean architecture lens:
-  - Phan bien use-case logic theo boundary, entity, interaction.
-  - Tach quyet dinh nghiep vu khoi chi tiet UI/ha tang.
+### 2.1 Tri thức (Knowledge) - Tầm nhìn High-Fidelity
+- **UML Activity Diagram Specialization**:
+  - Không chỉ các node cơ bản, mà phải nắm vững: Object Node, Pin, Expansion Region (nếu cần), các cơ chế Token flow.
+  - Phân biệt rạch ròi giữa Fork/Join (Concurrency) và Decision/Merge (Choice).
+- **Comprehensive Research (100% Transform)**:
+  - Tài nguyên gốc: `resources/activity-diagram-research.md`.
+  - Nhiệm vụ: Chuyển hóa toàn bộ quy tắc, ký hiệu, và cạm bẫy logic vào skill. Tuyệt đối không viết kiểu "tóm tắt".
+- **Clean Architecture B-U-E Lens**:
+  - Tư duy phân lớp: Boundary (Giao diện/Tương tác), Use Case (Logic phối hợp), Entity (Luật nghiệp vụ cốt lõi).
+  - Khả năng ánh xạ (Mapping) từ Use Case steps sang Swimlane tương ứng.
 
-### 2.2 Quy trinh (Process)
-Workflow tong quat:
-1. Nhap context va xac dinh mode A/B.
-2. Trich xuat actor, trigger, business rules, exception points.
-3. Research tai lieu nen de lap "logical baseline".
-4. Tong hop va tao Mermaid (V1 moi hoac V2 refactor).
-5. Kiem dinh:
-   - structural check (ky hieu + luong),
-   - semantic check (logic nghiep vu),
-   - traceability check (context -> diagram).
-6. Tra output gom diagram, findings, recommendations, assumptions.
+### 2.2 Quy trình (Process) - Expert Persona
+Workflow 4-Phase (Gate-based):
+1. **Phase 1: Collect**: Nhận dạng Mode A/B và thẩm định Context.
+2. **Phase 2: Analyze**: Trích xuất Logical Baseline. Đào sâu các "Edge cases" và "Exception flows".
+3. **Phase 3: Design/Refactor**: Tạo Mermaid với độ thẩm mỹ cao và báo cáo Findings chuyên sâu.
+4. **Phase 4: Explain**: Giải thích lý do thiết kế dựa trên Clean Architecture.
 
-Nhanh xu ly theo mode:
-- Mode A:
-  - Build V1 tu context.
-  - Danh dau cac gia dinh va cau hoi con thieu.
-- Mode B:
-  - Audit diagram hien tai.
-  - Xac dinh diem rui ro tiem an, diem can lam ro, de xuat refactor logic nghiep vu.
-
-### 2.3 Kiem soat (Guardrails)
-- Khong doan nghiep vu neu context thieu: phai no assumptions ro rang.
-- Tach ro "syntax issue" va "business logic issue".
-- Khong bo qua luong loi/ngoai le.
-- Moi ket luan review phai co can cu tu context hoac research base.
-- Neu do tin cay < 70% (thieu du lieu), bat buoc hoi lai user.
-- Khong implement code ung dung; chi phan tich, thiet ke, va de xuat.
+### 2.3 Kiểm soát (Guardrails) - Thắt chặt kỷ luật
+- **G1: High-Fidelity**: Không summarize tri thức kỹ thuật. Nếu tài nguyên nói có 10 loại lỗi, skill phải biết 10 loại lỗi.
+- **G2: Anti-Hallucination**: Không tự bịa nghiệp vụ. Dùng `[MISSING_DOMAIN_DATA]` khi thiếu context.
+- **G3: Risk Focus**: Phải phát hiện ít nhất một rủi ro tiềm ẩn (ví dụ: thiếu luồng lỗi) nếu nghiệp vụ phức tạp.
+- **G4: Interaction Gate**: Không tự ý hoàn thiện nếu độ tin cậy < 70%.
+- **G5: Language Accuracy**: Sử dụng Tiếng Việt chuyên nghiệp, thuật ngữ Tiếng Anh giữ nguyên (Swimlane, Fork, Join).
 
 ## 3. Zone Mapping
 
-| Zone | Noi dung | Bat buoc? |
+| Zone | Nội dung | Bắt buộc? |
 |------|----------|----------|
-| Core (SKILL.md) | Persona "Activity Diagram Design Engineer", 2 modes A/B, phase gates, output contract | ✅ |
-| Knowledge | UML activity rules, anti-patterns, clean-architecture review lens, source mapping guide | ✅ |
-| Scripts | Context parser, mermaid builder helper, rule checker, risk classifier | Optional (recommended) |
-| Templates | Mermaid activity template (A/B), findings report template, recommendation template | ✅ |
-| Data | Rule config (required nodes, severity), glossary actor/action/condition | Optional |
-| Loop | phase-verify, final-verify, test-cases theo use case | ✅ |
-| Assets | Symbol cheat sheet, visual example snippets | Optional |
+| Core (`SKILL.md`) | Persona "Senior Activity Design Engineer", Quy trình 4-Phase, High-Fidelity Guards | ✅ |
+| Knowledge | **100% Transform** từ `activity-diagram-research.md`, `refactor-risk-patterns.md`, `clean-architecture-lens.md` | ✅ |
+| Scripts | `scripts/validate_syntax.py`, `scripts/report_generator.py` (Hỗ trợ AI kiểm tra syntax và tạo báo cáo) | Optional |
+| Templates | `templates/activity-mode-a.template.md`, `templates/activity-mode-b.template.md`, `templates/findings-report.template.md` | ✅ |
+| Data | `data/rules.yaml`, `data/severity-matrix.yaml` (Dữ liệu cứng về tiêu chuẩn) | ✅ |
+| Loop | `loop/checklist.md`, `loop/phase-verify.md`, `loop/final-verify.md` | ✅ |
+| Assets | `assets/symbols-cheatsheet.md` | Optional |
 
 ## 4. Folder Structure
 
@@ -98,10 +85,8 @@ mindmap
       clean-architecture-lens.md
       source-prioritization.md
     scripts
-      parse_context.py
-      build_mermaid.py
-      evaluate_diagram.py
-      generate_review_report.py
+      validate_syntax.py
+      report_generator.py
     templates
       activity-mode-a.template.md
       activity-mode-b.template.md
@@ -208,8 +193,8 @@ flowchart LR
 
 - **Skill Name**: activity-diagram-design-analyst
 - **Created**: 2026-02-15
-- **Author**: Skill Architect
+- **Refactored**: 2026-02-16 (v2.0 - High-Fidelity Upgrade)
+- **Author**: Anti-gravity (using Master Skill Suite)
 - **Framework**: architect.md v2.0
-- **Primary Use**: Analyze and design/refactor Activity Diagram from user context
-- **Modes**: A (Design V1), B (Refactor/Audit)
-- **Status**: 🟢 DRAFT READY FOR REVIEW
+- **Primary Use**: Phân tích, thiết kế và Audit Activity Diagram chuyên sâu.
+- **Status**: � DESIGN REFACTORED - READY FOR PLANNING

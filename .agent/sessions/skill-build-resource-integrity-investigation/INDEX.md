@@ -1,0 +1,11 @@
+# Session Index: Skill Build Resource Integrity Investigation
+- **Mô tả**: Nghiên cứu nguyên nhân và đề xuất cải thiện việc chuyển hóa tài nguyên tri thức từ `.skill-context/` sang `.agent/skills/` nhằm đảm bảo hàm lượng thông tin cao nhất.
+- **Trạng thái**: In progress
+- **Quy tắc đặc thù**:
+  - Ưu tiên tính chính trực của dữ liệu (Data Integrity).
+  - Đối chiếu 1-1 giữa tài nguyên gốc và kết quả build.
+- **Tài liệu liên quan**:
+  - [Analysis](./analysis.md)
+  - [Tasks](./tasks.md)
+  - [Risks](./risks.md)
+  - [Data Structure](./data.yaml)

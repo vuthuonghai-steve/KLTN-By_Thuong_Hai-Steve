@@ -1,0 +1,13 @@
+session_info:
+  name: "skill-build-resource-integrity-investigation"
+  created_at: "2026-02-16"
+root_causes:
+  - id: RC-01
+    name: "Summarization Bias"
+    description: "AI xu hướng tóm tắt thay vì bảo toàn độ sâu"
+  - id: RC-02
+    name: "Weak Instruction in Todo"
+    description: "Task thiếu tính mệnh lệnh về hàm lượng tri thức"
+  - id: RC-03
+    name: "Structure-only Validation"
+    description: "Script validate chỉ check file tồn tại, không check nội dung"
