@@ -200,6 +200,16 @@
   },
   "active": "01003737352ad9dc",
   "lastOpenFiles": [
+    "Docs/life-2/diagrams/sequence-diagrams/detailed-m6-safety.md",
+    "Docs/life-2/diagrams/sequence-diagrams/detailed-m5-bookmarking.md",
+    "Docs/life-2/diagrams/sequence-diagrams/detailed-m4-engagement.md",
+    "Docs/life-2/diagrams/sequence-diagrams/detailed-m3-discovery.md",
+    "Docs/life-2/diagrams/sequence-diagrams/detailed-m2-content.md",
+    "Docs/life-2/diagrams/sequence-diagrams/detailed-m1-auth.md",
+    "Docs/life-2/diagrams/sequence-diagrams/global-flows.md",
+    "Docs/life-2/diagrams/sequence-diagrams/index.md",
+    "Docs/life-2/diagrams/sequence-diagrams/sequence-diagram.md",
+    "Docs/life-2/diagrams/sequence-diagrams",
     "Docs/life-2/diagrams/activity-diagrams/m6-a3-enforcement-action.md",
     "Docs/life-2/diagrams/activity-diagrams/m6-a2-report-pipeline.md",
     "Docs/life-2/diagrams/activity-diagrams/m6-a1-sse-dispatcher.md",
@@ -217,15 +227,6 @@
     "Docs/life-2/diagrams/activity-diagrams/m3-discovery-feed-summary.md",
     "Docs/life-2/diagrams/activity-diagrams/m2-a4-visibility.md",
     "Docs/life-2/diagrams/activity-diagrams/m2-a3-post-integrity.md",
-    "Docs/life-2/diagrams/activity-diagrams/m2-a2-media-handler.md",
-    "Docs/life-2/diagrams/activity-diagrams/m2-a1-editor-pipeline.md",
-    "Docs/life-2/diagrams/activity-diagrams/m2-a1-registration.md",
-    "Docs/life-2/diagrams/activity-diagrams/m2-content-engine-summary.md",
-    "Docs/life-2/diagrams/activity-diagrams/m1-a5-onboarding.md",
-    "Docs/life-2/diagrams/activity-diagrams/m1-a4-recovery.md",
-    "Docs/life-2/diagrams/activity-diagrams/m1-a2-login.md",
-    "Docs/life-2/diagrams/activity-diagrams/m1-a3-verification.md",
-    "Docs/life-2/diagrams/activity-diagrams/m1-a1-registration.md",
     "Docs/life-2/diagrams/activity-diagrams",
     "openspec/changes/improve-skill-build-resource-fidelity/specs/fidelity-assurance-gate",
     "openspec/changes/improve-skill-build-resource-fidelity/specs/skill-builder-fidelity",
@@ -234,7 +235,6 @@
     "openspec/changes/sync-agent-codex-skills/evidence/diff-builder-after.log",
     "openspec/changes/sync-agent-codex-skills/evidence/diff-architect-after.log",
     "openspec/changes/sync-agent-codex-skills/evidence/validator-strict-after.log",
-    "openspec/changes/sync-agent-codex-skills/evidence/validator-nonstrict-after.log",
-    "openspec/changes/sync-agent-codex-skills/evidence/validator-strict-before.log"
+    "openspec/changes/sync-agent-codex-skills/evidence/validator-nonstrict-after.log"
   ]
 }
