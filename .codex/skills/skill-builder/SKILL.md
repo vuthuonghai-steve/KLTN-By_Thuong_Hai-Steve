@@ -34,15 +34,18 @@ Read all inputs and assess feasibility:
 - Ask user for clarification (Max 5 items per session).
 - **Engineer's Audit**: Suggest corrections. Record answers into [../../.skill-context/{skill-name}/design.md](../../.skill-context/{skill-name}/design.md) §Clarifications (Section 9).
 
-## Step 3: BUILD (Phase-driven Workflow)
-
-Implement the skill according to `todo.md` phases. Execute ONLY one phase at a time to prevent context rot:
+### Step 3: BUILD (Phase-Driven)
+Execute the plan from `todo.md` phase by phase.
 - **Phase Execution**: Create folders and files as specified in Zone Mapping.
-- **Content Source**: Use `resources/` data. For missing data, use `[MISSING_DOMAIN_DATA]`.
+- **Zero-Summarization Enforcement**: When building `knowledge` or `data` zones, you MUST maintain a 1:1 conceptual mapping with source resources.
+- **Parity Mapping**: List the source sections and ensure each has a corresponding target section.
+- **Fidelity Rule**: For Knowledge/Data zones, transform 100% of technical definitions, diagrams, Rule IDs, and logic. DO NOT summarize. If the source has a list of 10 items, the target MUST have 10 items.
+- **Double-Pass Infusion**: After completing each phase, perform a refinement pass (Self-Reflect) specifically to check for information loss. Compare line counts and detail density. Re-read the source resources and "infuse" any missing technical details, examples, or identifiers into the target files to ensure high information density.
 - **Progress Tracking**: Mark tasks as done in [../../.skill-context/{skill-name}/todo.md](../../.skill-context/{skill-name}/todo.md) ONLY after files are verified.
 - **Usage Trace Mandatory**: For every completed task, append source trace in `.skill-context/{skill-name}/build-log.md` with format:
   - `Task -> Output file -> Source files used`.
   - Include at least one explicit source path in backticks.
+  - Include a "Fidelity Confirmation" note for Knowledge/Data files.
 
 ## Step 4: VERIFY (The Gatekeeper)
 
@@ -76,6 +79,8 @@ Run automatic and manual quality gates:
 | G6 | **PD Tiering** | Tuân thủ Progressive Disclosure (Tier 1 vs Tier 2). |
 | G7 | **Build-log Mandatory** | Ghi rõ mọi quyết định, phản biện, file tạo và issue vào build-log.md. |
 | G8 | **Context Coverage** | Không được bỏ sót file critical trong `.skill-context/{skill-name}`; phải có evidence sử dụng trong Resource Usage Matrix. |
+| G9 | **Knowledge Fidelity**: Tuyệt đối không tóm tắt (summarize) tài nguyên Tier-Critical của Zone Knowledge/Data. Phải chuyển hóa (Transform) 100% tri thức kỹ thuật. **Quy tắc Parity**: Nếu tài nguyên gốc có N mục, kết quả build phải có ít nhất N mục tương ứng.
+ |
 
 ## Error Policy (Log-Notify-Stop)
 

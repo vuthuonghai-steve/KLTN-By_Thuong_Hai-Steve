@@ -1,6 +1,6 @@
 ---
 name: skill-planner
-description: Senior Skill Planner for creating todo md from design md
+description: Doc ban thiet ke kien truc (design.md) va tao ke hoach trien khai chi tiet (todo.md). Trigger khi user noi: "lap ke hoach skill", "tao todo.md", "phan ra task tu design.md", "trace design -> task". Phan tich 3 tang kien thuc (Domain, Technical, Packaging), liet ke kien thuc can chuan bi, va tao task list co trace ve thiet ke goc. Skill nay la #2 trong bo Master Skill Suite (Architect -> Planner -> Builder).
 ---
 # Skill Planner
 
@@ -84,6 +84,7 @@ The file MUST contain exactly 5 sections:
   Tasks grouped by execution phase, each with checkbox and trace tag.
   Order tasks by dependency (what must be done first).
   Each task: - [ ] Task description [TỪ DESIGN §N] or [GỢI Ý BỔ SUNG]
+  **High-fidelity Constraint**: For tasks involving Zone Knowledge or Data, use active, high-fidelity verbs such as "Transform 100% of...", "Implement Exhaustively...", or "Generate with high-fidelity...". ALWAYS specify the source section or file from `resources/` (e.g., `From resources/research.md #3.2`).
 
 ## 3. Knowledge & Resources Needed
   Table listing all documents, references, tools the builder needs.

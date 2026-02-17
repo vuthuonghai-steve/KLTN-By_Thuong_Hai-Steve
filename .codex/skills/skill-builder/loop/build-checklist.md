@@ -20,6 +20,7 @@
 
 ## 4. Completeness & Performance (Hoàn thiện & Chất lượng)
 - [ ] Mật độ Placeholder `[MISSING_DOMAIN_DATA]` < 5 (Normal).
+- [ ] **Zero-Summarization Verification**: Đã đối soát 1:1 với resources; không có hiện tượng tóm tắt hay lược bỏ chi tiết kỹ thuật.
 - [ ] Script `validate_skill.py` trả về Exit Code 0 (PASS).
 - [ ] Nhật ký `build-log.md` phản ánh trung thực trạng thái validation.
 
