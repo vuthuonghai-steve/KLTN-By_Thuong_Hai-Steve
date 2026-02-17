@@ -16,3 +16,4 @@
 - When in doubt, re-check `architect.md` before proceeding.
 - Ensure each skill is an independent module. Reference only internet sources or files within the skill folder.
 - If a skill needs project-level knowledge, copy the required content into the skill (e.g., `knowledge/`, `data/`, `templates/`) and reference it locally.
+- **Barrel Pattern (Aggregate Export)**: LUÔN sử dụng `index.ts` tại mỗi thư mục để quản lý tập trung việc import/export. Chỉ export những gì cần sử dụng bên ngoài thông qua `index.ts`.

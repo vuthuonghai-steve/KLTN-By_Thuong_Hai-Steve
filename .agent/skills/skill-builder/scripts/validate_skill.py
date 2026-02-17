@@ -9,18 +9,18 @@ class SkillValidator:
     Kỹ sư thẩm định chất lượng Agent Skill.
     Đảm bảo tính chính trực giữa thiết kế (design) và thực thi (build).
     """
-    def __init__(self, skill_path, design_path=None, log_mode=False, strict_context=False):
-        self.skill_path = os.path.abspath(skill_path)
-        self.skill_name = os.path.basename(self.skill_path.rstrip('/'))
-        self.design_path = os.path.abspath(design_path) if design_path else None
-        self.log_mode = log_mode
-        self.strict_context = strict_context
-        self.workspace_root = self.find_workspace_root()
-        self.errors = []
-        self.warnings = []
-        self.reports = []
+    def __init__(self, skill_path: str, design_path: str | None = None, log_mode: bool = False, strict_context: bool = False):
+        self.skill_path: str = os.path.abspath(skill_path)
+        self.skill_name: str = os.path.basename(self.skill_path.rstrip('/'))
+        self.design_path: str | None = os.path.abspath(design_path) if design_path else None
+        self.log_mode: bool = log_mode
+        self.strict_context: bool = strict_context
+        self.workspace_root: str = self.find_workspace_root()
+        self.errors: list[str] = []
+        self.warnings: list[str] = []
+        self.reports: list[str] = []
 
-    def find_workspace_root(self):
+    def find_workspace_root(self) -> str:
         """Find nearest parent containing .skill-context to anchor workflow paths."""
         current = self.skill_path
         for _ in range(12):
@@ -100,17 +100,18 @@ class SkillValidator:
         return orphan_count == 0
 
     def check_file_mapping(self):
-        if not self.design_path:
+        design_file = self.design_path
+        if not design_file:
             # Policy High: Design path is required if provided in arguments
             return True
             
-        if not os.path.exists(self.design_path):
-            self.errors.append(f"[E06] CRITICAL: Design file not found at {self.design_path}")
-            self.log(f"   -> Design not found: {self.design_path}", "FAIL")
+        if not os.path.exists(design_file):
+            self.errors.append(f"[E06] CRITICAL: Design file not found at {design_file}")
+            self.log(f"   -> Design not found: {design_file}", "FAIL")
             return False
 
         self.log(f"4. File Mapping (Actual vs Design §3) Check...")
-        with open(self.design_path, 'r', encoding='utf-8') as f:
+        with open(design_file, 'r', encoding='utf-8') as f:
             design_content = f.read()
 
         expected_files: set[str] = set()
@@ -205,7 +206,7 @@ class SkillValidator:
         - all files under data/
         """
         context_dir = self.get_context_dir()
-        critical = []
+        critical: list[str] = []
         if not os.path.isdir(context_dir):
             return critical
 
@@ -287,6 +288,44 @@ class SkillValidator:
 
         return len(uncovered) == 0 if self.strict_context else True
 
+    def check_fidelity_heuristics(self):
+        """
+        Check for potential summarization by comparing line counts between sources and targets.
+        """
+        self.log("8. Fidelity Heuristics Check...")
+        context_dir = self.get_context_dir()
+        build_log_path = os.path.join(context_dir, "build-log.md")
+        if not os.path.isfile(build_log_path):
+            return True
+
+        with open(build_log_path, 'r', encoding='utf-8') as f:
+            log_content = f.read()
+
+        # Extract Resource Usage Matrix rows
+        # Format: | `resources/...` | Priority | Used In Task | `knowledge/...` | Notes |
+        matrix_rows = re.findall(r'\|\s*`([^`]+)`\s*\|\s*Critical\s*\|\s*[^\|]+\|(?:\s*`([^`]+)`\s*\|)?', log_content)
+        
+        for source_rel, target_rel in matrix_rows:
+            if not target_rel: continue
+            
+            source_path = os.path.join(context_dir, source_rel)
+            target_path = os.path.join(self.skill_path, target_rel)
+            
+            if os.path.isfile(source_path) and os.path.isfile(target_path):
+                with open(source_path, 'r', encoding='utf-8') as fs:
+                    source_lines = len(fs.readlines())
+                with open(target_path, 'r', encoding='utf-8') as ft:
+                    target_lines = len(ft.readlines())
+                
+                # If target is less than 60% of source and source is significant (> 50 lines)
+                if source_lines > 50 and target_lines < source_lines * 0.6:
+                    self.warnings.append(f"FIDELITY WARNING: '{target_rel}' is significantly shorter than its source '{source_rel}' ({target_lines} vs {source_lines} lines). Potential summarization detected.")
+                    self.log(f"   -> Potential summarization: {target_rel} ({target_lines} lines) vs {source_rel} ({source_lines} lines)", "WARN")
+                else:
+                    self.log(f"   -> Fidelity OK: {target_rel} maintains healthy ratio to {source_rel}.", "INFO")
+        
+        return True
+
     def report(self):
         print("\n" + "="*50)
         print("   AGENT SKILL VALIDATION REPORT")
@@ -301,6 +340,7 @@ class SkillValidator:
         self.check_placeholder_density()
         self.check_error_handling() # Fix Medium: Call checking error handling
         self.check_context_resource_coverage()
+        self.check_fidelity_heuristics()
         
         print("="*50)
         final_status = "PASS" if not self.errors else "FAIL"
