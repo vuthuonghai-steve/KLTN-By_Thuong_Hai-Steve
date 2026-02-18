@@ -101,4 +101,35 @@ sequenceDiagram
 ```
 
 ---
+
+## 🔍 2. Kịch bản: Tìm kiếm nội dung (Atlas Search Flow)
+
+Mô tả quá trình người dùng tìm kiếm bài viết hoặc người dùng thông qua hệ thống Atlas Search.
+
+```mermaid
+sequenceDiagram
+    actor Viewer
+    participant UI as SearchBar/Results
+    participant API as SearchAPI
+    participant Atlas as Atlas Search Index
+    participant DB as MongoDB
+
+    Viewer->>UI: Nhập từ khóa "NoSQL"
+    UI->>API: GET /api/v1/search?q=NoSQL
+    activate API
+
+    API->>Atlas: $search Aggregation Pipeline
+    activate Atlas
+    Atlas-->>API: Match Results (IDs & Score)
+    deactivate Atlas
+
+    API->>DB: Fetch full documents by IDs
+    DB-->>API: Posts/Users Docs
+    
+    API-->>UI: SearchResultsDTO[]
+    deactivate API
+    UI-->>Viewer: Hiển thị kết quả (có Highlighting)
+```
+
+---
 *Fidelity Note: Thuật toán Ranking được tích hợp trực tiếp vào Aggregation Pipeline của MongoDB để đảm bảo hiệu năng tối ưu cho MVP.* 🥰

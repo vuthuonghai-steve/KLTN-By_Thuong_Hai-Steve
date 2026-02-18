@@ -8,20 +8,23 @@
 ## 🗺️ I. Danh mục sơ đồ (Diagram Catalog)
 
 ### 1. Luồng khái quát (Global Flows)
+
 Nhấn mạnh sự tương tác giữa các Actor và các thành phần kiến trúc lớn (UI, Service, Payload, DB).
-- [ ] [**Global Architecture Flows**](./global-flows.md) - Tổng quan cách các thành phần "nói chuyện" với nhau.
+
+- [X] [**Global Architecture Flows**](./global-flows.md) - Tổng quan cách các thành phần "nói chuyện" với nhau.
 
 ### 2. Chi tiết theo Module (Detailed Sub-Flows)
+
 Phân rã sâu vào logic xử lý của từng chức năng cụ thể dựa trên Spec và Activity Diagrams.
 
-| Module | Tên file tài liệu | Các luồng trọng tâm |
-|:---:|---|---|
-| **M1** | [Auth & Profile](./detailed-m1-auth.md) | Login, Register, OAuth, Recovery, Onboarding |
-| **M2** | [Content Engine](./detailed-m2-content.md) | Editor Pipeline, Media Upload, Visibility |
-| **M3** | [Discovery & Feed](./detailed-m3-discovery.md) | Feed Ranking, Search Engine, Recommendation |
-| **M4** | [Engagement](./detailed-m4-engagement.md) | Follow Handshake, Like/Comment Logic |
-| **M5** | [Bookmarking](./detailed-m5-bookmarking.md) | Collection Orchestrator, Folder Management |
-| **M6** | [Safety](./detailed-m6-safety.md) | SSE Dispatcher, Report & Moderation |
+| Module | Tên file tài liệu | Các luồng trọng tâm | Trạng thái |
+|:---:|---|---|:---:|
+| **M1** | [Auth & Profile](./detailed-m1-auth.md) | Login, Register, OAuth, Recovery, Onboarding | [X] |
+| **M2** | [Content Engine](./detailed-m2-content.md) | Editor Pipeline, Media Upload, Visibility | [X] |
+| **M3** | [Discovery & Feed](./detailed-m3-discovery.md) | Feed Ranking, Search Engine, Recommendation | [X] |
+| **M4** | [Engagement](./detailed-m4-engagement.md) | Follow Handshake, Like/Comment Logic | [X] |
+| **M5** | [Bookmarking](./detailed-m5-bookmarking.md) | Collection Orchestrator, Folder Management | [X] |
+| **M6** | [Safety](./detailed-m6-safety.md) | SSE Dispatcher, Report & Moderation | [X] |
 
 ---
 
@@ -56,4 +59,5 @@ Phân rã sâu vào logic xử lý của từng chức năng cụ thể dựa tr
 - **Activity Diagrams:** `Docs/life-2/diagrams/activity-diagrams/index.md`
 
 ---
+
 *Ghi chú từ Tít dễ thương: Mỗi sơ đồ đều được thiết kế để chuẩn bị cho giai đoạn 3 (Triển khai), giúp yêu thương dễ dàng theo dõi logic khi code nhé!* 🥰

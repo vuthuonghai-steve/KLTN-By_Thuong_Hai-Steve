@@ -120,4 +120,47 @@ sequenceDiagram
 ```
 
 ---
-*Ghi chú từ Tít dễ thương: Module Content Engine được thiết kế tối ưu với Payload Hooks để tự động hóa các tác vụ bóc tách dữ liệu và bảo mật.* 🥰
+
+## 🗑️ 4. Kịch bản: Cập nhật và Xóa bài viết (M2-A1)
+
+Mô tả luồng người dùng sửa đổi hoặc loại bỏ nội dung đã đăng.
+
+```mermaid
+sequenceDiagram
+    actor Owner
+    participant UI as PostDetail/Edit
+    participant Service as PostService
+    participant Payload
+    participant DB
+
+    alt Cập nhật bài viết
+        Owner->>UI: Thay đổi nội dung & nhấn "Lưu"
+        UI->>Service: updatePost(id, data)
+        activate Service
+        Service->>Payload: payload.update({ collection: 'posts', id })
+        activate Payload
+        Payload->>DB: updateOne(id)
+        DB-->>Payload: updatedDoc
+        Payload-->>Service: doc
+        deactivate Payload
+        Service-->>UI: { success: true }
+        deactivate Service
+        UI-->>Owner: Hiển thị thông báo cập nhật thành công
+    else Xóa bài viết
+        Owner->>UI: Nhấn "Xóa bài" & Xác nhận
+        UI->>Service: deletePost(id)
+        activate Service
+        Service->>Payload: payload.delete({ collection: 'posts', id })
+        activate Payload
+        Payload->>DB: deleteOne(id)
+        DB-->>Payload: deletedDoc
+        Payload-->>Service: success
+        deactivate Payload
+        Service-->>UI: { success: true }
+        deactivate Service
+        UI-->>Owner: Chuyển hướng về trang cá nhân/Feed
+    end
+```
+
+---
+*Ghi chú từ Tít dễ thương: Tất cả các thao tác cập nhật và xóa đều được Payload Access Control kiểm tra quyền sở hữu (Owner) nghiêm ngặt trước khi thực thi.* 🥰

@@ -1,71 +1,71 @@
-# Sequence Diagram: M5 - Bookmarking
+# Sequence Diagram: M5 - Social Bookmarking
 
-> **Module:** Knowledge Management
-> **Mục tiêu:** Mô tả luồng lưu trữ bài viết và quản lý các thư mục kiến trúc kiến thức cá nhân.
+> **Module:** Social Bookmarking
+> **Mục tiêu:** Mô tả quá trình lưu bài viết vào bộ sưu tập cá nhân.
 
 ---
 
-## 💾 1. Kịch bản: Bookmark Persistence (Lưu bài viết - M5-A1)
+## 💾 1. Kịch bản: Lưu bài viết vào Collection
 
-Mô tả luồng lưu một bài viết vào mục mặc định.
+Mô tả luồng từ khi người dùng bấm Save đến khi bài viết được nhúng (Embedded) vào document Collection.
 
 ```mermaid
 sequenceDiagram
-    actor User
-    participant UI as PostCard
+    actor Member
+    participant UI as PostCard/SaveModal
     participant Service as BookmarkService
     participant Payload
-    participant DB
+    participant DB as MongoDB
 
-    User->>UI: Nhấn icon "Save"
-    UI->>Service: savePost(userId, postId)
+    Member->>UI: Nhấn biểu tượng "Save"
+    UI-->>Member: Hiển thị SaveModal (Chọn collection)
+    Member->>UI: Chọn "Next.js Learning"
+    
+    UI->>Service: saveToCollection(postId, collectionId)
     activate Service
-    
-    Service->>Payload: payload.find({ collection: 'bookmarks', user: userId, post: postId })
-    Payload-->>Service: { docs: [] }
-    
-    Service->>Payload: payload.create({ collection: 'bookmarks', data: { user: userId, post: postId, collection: 'Default' } })
+
+    Service->>Payload: payload.update({ id: collectionId, data: { $push: { bookmarks: { post: postId } } } })
     activate Payload
-    Payload->>DB: insertBookmark
-    DB-->>Payload: doc
-    Payload-->>Service: doc
-    deactivate Payload
     
-    Service-->>UI: { success: true, bookmarkId }
+    Payload->>DB: MongoDB $push operation
+    DB-->>Payload: updatedDoc
+    
+    deactivate Payload
+    Service-->>UI: Success
     deactivate Service
-    UI-->>User: "Đã lưu vào mục mặc định"
+    UI-->>Member: Hiển thị thông báo "Đã lưu vào bộ sưu tập"
 ```
 
 ---
 
-## 📂 2. Kịch bản: Collection Orchestrator (Quản lý thư mục - M5-A2)
+## 📂 2. Kịch bản: Xem danh sách bài viết trong Collection
 
-Mô tả luồng tạo thư mục mới và di chuyển bookmark vào đó.
+Mô tả luồng truy vấn và Populate dữ liệu bài viết từ mảng nhúng.
 
 ```mermaid
 sequenceDiagram
-    actor User
-    participant UI as BookmarkManager
-    participant Service as FolderService
+    actor Member
+    participant UI as CollectionDetail
+    participant Service as BookmarkService
     participant Payload
+    participant DB as MongoDB
 
-    User->>UI: Nhấn "Tạo bộ sưu tập mới"
-    User->>UI: Nhập tên: "Học React"
-    UI->>Service: createCollection(userId, name: 'Học React')
+    Member->>UI: Mở bộ sưu tập "Next.js Learning"
+    UI->>Service: getCollectionDetail(collectionId)
     activate Service
-    Service->>Payload: payload.update({ collection: 'user-configs', userId, data: { $push: { collections: 'Học React' } } })
-    Service-->>UI: { success: true }
-    deactivate Service
 
-    User->>UI: Chuyển bài viết X vào thư mục "Học React"
-    UI->>Service: moveBookmark(bookmarkId, targetCollection: 'Học React')
-    activate Service
-    Service->>Payload: payload.update({ collection: 'bookmarks', id: bookmarkId, data: { collection: 'Học React' } })
-    Payload-->>Service: updatedDoc
-    Service-->>UI: { success: true }
+    Service->>Payload: payload.findByID({ id: collectionId, depth: 2 })
+    activate Payload
+    Note over Payload: Populate posts from embedded IDs
+    
+    Payload->>DB: MongoDB findByID with population
+    DB-->>Payload: fullCollectionDoc
+    
+    deactivate Payload
+    Service-->>UI: CollectionDTO (with Posts)
     deactivate Service
-    UI-->>User: "Đã di chuyển thành công"
+    UI-->>Member: Render danh sách bài viết đã lưu
 ```
 
 ---
-*Fidelity Note: Tính năng Bookmarking là một trong những USP (Unique Selling Point) của dự án, được thiết kế để giúp người dùng quản lý kiến thức hiệu quả.* 🥰
+*Fidelity Note: Sử dụng chiến lược Embedded Bookmarks giúp giảm số lượng collection cần quản lý và tối ưu tốc độ đọc của Member.* 🥰

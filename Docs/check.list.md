@@ -19,31 +19,20 @@
 
 **Ghi vào đây (cập nhật khi chuyển phase):**
 
-- **Giai đoạn hiện tại:** _Life-2_ (Life-1 đã xong; Life-2 **mới chỉ có khung sườn**, chưa triển khai đủ nội dung tính năng)
-- **Ngày cập nhật:** _2026-02-01_
+- **Giai đoạn hiện tại:** _Life-2_ (Đã hoàn thành phần lớn Specs, Wireframes và Sequence Diagrams chính).
+- **Ngày cập nhật:** _2026-02-18_
 
 ---
 
 ## 2. Đang làm
 
-Mô tả ngắn công việc đang thực hiện trong giai đoạn hiện tại (1–2 dòng).
-
-**Ví dụ:**
-
-- Life-1: "Đang viết User Stories và bổ sung requirements-srs.md"
-- Life-2: "Đang thiết kế API spec và wireframe feed"
-- Life-3: "Đang implement Auth theo auth-spec.md"
-- Life-4: "Đang chạy E2E và đối chiếu spec-coverage"
-
-**Đang làm:** _Triển khai nội dung Life-2: bổ sung đầy đủ sơ đồ, schema từng collection, wireframes từng màn, API chi tiết từng endpoint, và specs cho AI code generation._
+**Đang làm:** _Hoàn thiện nốt Spec/Wireframe cho các module Engagement (M4) và Notifications (M6). Rà soát và fix lỗi trình bày tài liệu._
 
 ---
 
 ## 3. Cần làm tiếp
 
-Việc cần làm ngay sau khi hoàn thành mục "Đang làm" (theo checklist từng giai đoạn bên dưới).
-
-**Cần làm tiếp:** _1) Life-2 diagrams: điền đủ (ER cập nhật entities, Sequence/Flow thêm News Feed Load, Bookmark Save, Notification). 2) schema-design: thêm chi tiết collections comments, bookmarks, follows, notifications. 3) wireframes từng màn (auth, feed, profile) và specs (auth-spec, posts-spec, feed-spec, …)._
+**Cần làm tiếp:** _1) Hoàn thiện Spec & Wireframe cho Module M4, M6. 2) Cập nhật Sơ đồ Luồng (Flow Diagram) tổng quát. 3) Chuẩn bị bước sang Giai đoạn 3: Triển khai (Phát triển theo Spec)._
 
 ---
 
@@ -63,10 +52,10 @@ Mọi mục map với tài liệu trong `Docs/` theo `lifecycle-checklist-and-fo
   - [X] Xác định pain points (có thể gộp trong user-personas hoặc product-vision)
 - [X] **1.3** Xây dựng User Stories (Focus MVP)
   - [X] Epic 1–10 (Auth, Profile, Posts, Feed, Bookmarking, Search, …) → `Docs/life-1/01-vision/user-stories.md`
-- [ ] **1.4** Nghiên cứu kỹ thuật
+- [X] **1.4** Nghiên cứu kỹ thuật
   - [X] News Feed Ranking Algorithm → `Docs/life-1/03-research/news-feed-algorithm.md`
-  - [ ] SSE với Next.js → `Docs/life-1/03-research/sse-nextjs.md`
-  - [ ] MongoDB Atlas Search → `Docs/life-1/03-research/mongodb-search.md`
+  - [X] SSE với Next.js → `Docs/life-1/03-research/sse-nextjs.md`
+  - [X] MongoDB Atlas Search → `Docs/life-1/03-research/mongodb-search.md`
 - [X] **1.5** Đặc tả yêu cầu chi tiết
   - [X] Functional + Non-functional Requirements → `Docs/life-1/01-vision/requirements-srs.md`
   - [X] Database Schema sơ bộ (có thể trong requirements hoặc artkitacture)
@@ -80,20 +69,20 @@ Mọi mục map với tài liệu trong `Docs/` theo `lifecycle-checklist-and-fo
 
 *Thư mục: `Docs/life-2/` — **Chỉ [x] khi tài liệu có nội dung đầy đủ, không chỉ khung/placeholder.***
 
-- [ ] **2.1** Sơ đồ quan hệ thực thể (ER) → `Docs/life-2/diagrams/er-diagram.md` *(hiện mới khung, comment "Cập nhật với entities thực tế")*
-- [ ] **2.2** Sơ đồ Use Case → `Docs/life-2/diagrams/use-case-diagram.md` *(mới khung, "Mở rộng theo 10 MVP features")*
-- [ ] **2.3** Sơ đồ tuần tự (Sequence) → `Docs/life-2/diagrams/sequence-diagram.md` *(mới Auth + Post Creation, thiếu News Feed Load, Bookmark Save)*
-- [ ] **2.4** Sơ đồ luồng (Flow) → `Docs/life-2/diagrams/flow-diagram.md` *(mới 2 flow, thiếu Bookmark save, Notification trigger)*
-- [ ] **2.5** Sơ đồ lớp (Class) → `Docs/life-2/diagrams/class-diagram.md` *(mới User + Post, optional)*
-- [ ] **2.6** Thiết kế Database chi tiết → `Docs/life-2/database/schema-design.md` *(mới users + posts, thiếu "Thêm các collections khác")*
+- [ ] **2.1** Sơ đồ quan hệ thực thể (ER) → `Docs/life-2/diagrams/er-diagram.md`
+- [X] **2.2** Sơ đồ Use Case → `Docs/life-2/diagrams/use-case-diagram.md`
+- [X] **2.3** Sơ đồ tuần tự (Sequence) → `Docs/life-2/diagrams/sequence-diagram.md` (Đã có M1, M2, M3, M5)
+- [ ] **2.4** Sơ đồ luồng (Flow) → `Docs/life-2/diagrams/flow-diagram.md`
+- [ ] **2.5** Sơ đồ lớp (Class) → `Docs/life-2/diagrams/class-diagram.md` (Gộp trong database/schema-design.md)
+- [ ] **2.6** Thiết kế Database chi tiết → `Docs/life-2/database/schema-design.md`
 - [ ] **2.7** Thiết kế khung giao diện UI
-  - [ ] Wireframe từng màn hình → `Docs/life-2/ui/wireframes/` (auth, feed, profile, …) *(thư mục trống, chỉ .gitkeep)*
-  - [ ] Tổng hợp frame layout → `Docs/life-2/ui/ui-frame-design.md` *(mới list màn hình, tham chiếu wireframes chưa tồn tại)*
+  - [ ] Wireframe từng màn hình (M1, M2, M3, M5) → `Docs/life-2/ui/wireframes/`
+  - [ ] Tổng hợp frame layout → `Docs/life-2/ui/ui-frame-design.md`
 - [ ] **2.8** Thiết kế API
-  - [ ] REST/GraphQL endpoints → `Docs/life-2/api/api-spec.md` *(mới bảng category, chưa đủ endpoint từng resource)*
-  - [ ] Request/Response, auth → `Docs/life-2/api/api-design.md` *(mới vài ví dụ, chưa đủ spec từng API)*
+  - [ ] REST/GraphQL endpoints → `Docs/life-2/api/api-spec.md`
+  - [ ] Request/Response, auth → `Docs/life-2/api/api-design.md`
 - [ ] **2.9** Spec chi tiết phục vụ AI code generation → `Docs/life-2/specs/`
-  - [ ] auth-spec.md, posts-spec.md, feed-spec.md, … (theo từng tính năng MVP) *(thư mục specs trống)*
+  - [ ] m1-auth-profile-spec.md, m2-content-engine-spec.md, m3-discovery-feed-spec.md, m5-bookmarking-spec.md
 
 ---
 
