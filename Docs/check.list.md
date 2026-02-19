@@ -69,7 +69,7 @@ Mọi mục map với tài liệu trong `Docs/` theo `lifecycle-checklist-and-fo
 
 *Thư mục: `Docs/life-2/` — **Chỉ [x] khi tài liệu có nội dung đầy đủ, không chỉ khung/placeholder.***
 
-- [ ] **2.1** Sơ đồ quan hệ thực thể (ER) → `Docs/life-2/diagrams/er-diagram.md`
+- [X] **2.1** Sơ đồ quan hệ thực thể (ER) → `Docs/life-2/diagrams/er-diagram.md`
 - [X] **2.2** Sơ đồ Use Case → `Docs/life-2/diagrams/use-case-diagram.md`
 - [X] **2.3** Sơ đồ tuần tự (Sequence) → `Docs/life-2/diagrams/sequence-diagram.md` (Đã có M1, M2, M3, M5)
 - [ ] **2.4** Sơ đồ luồng (Flow) → `Docs/life-2/diagrams/flow-diagram.md`

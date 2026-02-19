@@ -200,6 +200,7 @@
   },
   "active": "01003737352ad9dc",
   "lastOpenFiles": [
+    "source_dump.txt",
     "Docs/life-2/specs/index.md",
     "Docs/life-2/ui/wireframes/m6-notifications-moderation.md",
     "Docs/life-2/specs/m6-notifications-moderation-spec.md",
@@ -234,7 +235,6 @@
     "skill-planner",
     "skill-creator/scripts/__pycache__/quick_validate.cpython-312.pyc",
     "skill-creator/scripts/quick_validate.py",
-    "skill-creator/SKILL.md",
-    "skill-builder/loop/build-log.md"
+    "skill-creator/SKILL.md"
   ]
 }

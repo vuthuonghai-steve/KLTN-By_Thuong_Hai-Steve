@@ -1,0 +1,3050 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "GVWxJ",
+      "x": -3730,
+      "y": -16997,
+      "name": "Lib-Component",
+      "width": 1440,
+      "height": 4200,
+      "fill": "#F5F2EE",
+      "layout": "vertical",
+      "gap": 64,
+      "padding": 80,
+      "children": [
+        {
+          "type": "frame",
+          "id": "7eGrO",
+          "name": "libHeader",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "ocl3o",
+              "name": "libTitle",
+              "fill": "#000000",
+              "content": "COMPONENT LIBRARY_",
+              "fontFamily": "Inter",
+              "fontSize": 40,
+              "fontWeight": "900"
+            },
+            {
+              "type": "text",
+              "id": "KbYJz",
+              "name": "libSubtitle",
+              "fill": "#666666",
+              "content": "// Neobrutalism Design System · NeoSocial Project",
+              "fontFamily": "Fira Code",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "gffQv",
+              "name": "libDivider",
+              "width": "fill_container",
+              "height": 4,
+              "fill": "#000000"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Ssj3p",
+          "name": "colorSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "NJ3Ow",
+              "name": "colorLabel",
+              "fill": "#FF4500",
+              "content": "01 · COLOR TOKENS",
+              "fontFamily": "Fira Code",
+              "fontSize": 11,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "wsnJo",
+              "name": "colorTitle",
+              "fill": "#000000",
+              "content": "DESIGN TOKENS",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "900"
+            },
+            {
+              "type": "frame",
+              "id": "dgzFd",
+              "name": "colorRow",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "0SW6c",
+                  "name": "c1",
+                  "width": 160,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "sgSk5",
+                      "name": "c1Swatch",
+                      "width": 160,
+                      "height": 80,
+                      "fill": "#FF4500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "6Ukmx",
+                      "name": "c1Name",
+                      "fill": "#000000",
+                      "content": "PRIMARY",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "NR7Ii",
+                      "name": "c1Hex",
+                      "fill": "#666666",
+                      "content": "#FF4500",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "xJPxs",
+                  "name": "c2",
+                  "width": 160,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "foPSs",
+                      "name": "c2Swatch",
+                      "width": 160,
+                      "height": 80,
+                      "fill": "#000000"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Uyb0d",
+                      "name": "c2Name",
+                      "fill": "#000000",
+                      "content": "INK BLACK",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "AY8l3",
+                      "name": "c2Hex",
+                      "fill": "#666666",
+                      "content": "#000000",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "l0nCJ",
+                  "name": "c3",
+                  "width": 160,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "NLAQC",
+                      "name": "c3Swatch",
+                      "width": 160,
+                      "height": 80,
+                      "fill": "#FDF6E3"
+                    },
+                    {
+                      "type": "text",
+                      "id": "pLI41",
+                      "name": "c3Name",
+                      "fill": "#000000",
+                      "content": "CREAM BG",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "AyCWt",
+                      "name": "c3Hex",
+                      "fill": "#666666",
+                      "content": "#FDF6E3",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "swcJT",
+                  "name": "c4",
+                  "width": 160,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "4Qodb",
+                      "name": "c4Swatch",
+                      "width": 160,
+                      "height": 80,
+                      "fill": "#C1FFD7"
+                    },
+                    {
+                      "type": "text",
+                      "id": "0haoo",
+                      "name": "c4Name",
+                      "fill": "#000000",
+                      "content": "PASTEL GREEN",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XCnaq",
+                      "name": "c4Hex",
+                      "fill": "#666666",
+                      "content": "#C1FFD7",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8qTSx",
+                  "name": "c5",
+                  "width": 160,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "GyR80",
+                      "name": "c5Swatch",
+                      "width": 160,
+                      "height": 80,
+                      "fill": "#CAB8FF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "r5FW1",
+                      "name": "c5Name",
+                      "fill": "#000000",
+                      "content": "PASTEL BLUE",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "b9pRb",
+                      "name": "c5Hex",
+                      "fill": "#666666",
+                      "content": "#CAB8FF",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "VyBhI",
+                  "name": "c6",
+                  "width": 160,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "UiEnA",
+                      "name": "c6Swatch",
+                      "width": 160,
+                      "height": 80,
+                      "fill": "#FFF59D"
+                    },
+                    {
+                      "type": "text",
+                      "id": "j1sTJ",
+                      "name": "c6Name",
+                      "fill": "#000000",
+                      "content": "PASTEL YELLOW",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZHAPL",
+                      "name": "c6Hex",
+                      "fill": "#666666",
+                      "content": "#FFF59D",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "lfMj2",
+          "name": "typoSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "xMfPR",
+              "name": "typoLabel",
+              "fill": "#FF4500",
+              "content": "02 · TYPOGRAPHY",
+              "fontFamily": "Fira Code",
+              "fontSize": 11,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "PsaVr",
+              "name": "typoTitle",
+              "fill": "#000000",
+              "content": "TYPE SCALE",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "900"
+            },
+            {
+              "type": "frame",
+              "id": "6an05",
+              "name": "typoDividerLine",
+              "width": "fill_container",
+              "height": 2,
+              "fill": "#000000"
+            },
+            {
+              "type": "text",
+              "id": "xeUA8",
+              "name": "t1",
+              "fill": "#000000",
+              "content": "DISPLAY — HEADLINE (56px / Black / Uppercase)",
+              "fontFamily": "Inter",
+              "fontSize": 40,
+              "fontWeight": "900"
+            },
+            {
+              "type": "text",
+              "id": "CR0Ne",
+              "name": "t2",
+              "fill": "#000000",
+              "content": "HEADING 1 — Section Title (32px / Bold)",
+              "fontFamily": "Inter",
+              "fontSize": 32,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "MMvvb",
+              "name": "t3",
+              "fill": "#000000",
+              "content": "Heading 2 — Subsection (24px / SemiBold)",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "6bnrO",
+              "name": "t4",
+              "fill": "#333333",
+              "content": "Body Copy — Paragraph text (16px / Regular)",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "5p1pB",
+              "name": "t5",
+              "fill": "#666666",
+              "content": "// MONO CODE TAG — metadata, labels (12px / Fira Code)",
+              "fontFamily": "Fira Code",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "9HrDK",
+          "name": "btnSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "aJ9TR",
+              "name": "btnLabel",
+              "fill": "#FF4500",
+              "content": "03 · BUTTONS",
+              "fontFamily": "Fira Code",
+              "fontSize": 11,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "iryOs",
+              "name": "btnTitle",
+              "fill": "#000000",
+              "content": "BUTTON VARIANTS",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "900"
+            },
+            {
+              "type": "frame",
+              "id": "dlp9w",
+              "name": "btnRow",
+              "width": "fill_container",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ummoX",
+                  "name": "btnPrimWrap",
+                  "width": 220,
+                  "height": 56,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "TfpeD",
+                      "x": 4,
+                      "y": 4,
+                      "name": "btnPrimShadow",
+                      "width": 220,
+                      "height": 52,
+                      "fill": "#000000"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "x821o",
+                      "x": 0,
+                      "y": 0,
+                      "name": "btnPrimFront",
+                      "width": 220,
+                      "height": 52,
+                      "fill": "#FF4500",
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "aiQJV",
+                          "name": "btnPrimText",
+                          "fill": "#000000",
+                          "content": "PRIMARY ACTION",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ai3FV",
+                  "name": "btnSecWrap",
+                  "width": 220,
+                  "height": 56,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qaI1Q",
+                      "x": 4,
+                      "y": 4,
+                      "name": "btnSecShadow",
+                      "width": 220,
+                      "height": 52,
+                      "fill": "#000000"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "REzRR",
+                      "x": 0,
+                      "y": 0,
+                      "name": "btnSecFront",
+                      "width": 220,
+                      "height": 52,
+                      "fill": "#ffffff",
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "w3buk",
+                          "name": "btnSecText",
+                          "fill": "#000000",
+                          "content": "SECONDARY ACTION",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "E0Nq6",
+                  "name": "btnDarkWrap",
+                  "width": 220,
+                  "height": 56,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "gMgk8",
+                      "x": 4,
+                      "y": 4,
+                      "name": "btnDarkShadow",
+                      "width": 220,
+                      "height": 52,
+                      "fill": "#FF4500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "13Uou",
+                      "x": 0,
+                      "y": 0,
+                      "name": "btnDarkFront",
+                      "width": 220,
+                      "height": 52,
+                      "fill": "#000000",
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "6wJKk",
+                          "name": "btnDarkText",
+                          "fill": "#ffffff",
+                          "content": "DARK / CTA ACTION",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Tz7tk",
+                  "name": "btnGhostWrap",
+                  "width": 220,
+                  "height": 56,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "UizlM",
+                      "x": 0,
+                      "y": 0,
+                      "name": "btnGhostFront",
+                      "width": 220,
+                      "height": 52,
+                      "fill": "#F5F2EE",
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "F4dOc",
+                          "name": "btnGhostText",
+                          "fill": "#000000",
+                          "content": "GHOST / OUTLINE",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "sxK3g",
+          "name": "badgeSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "m7fVt",
+              "name": "badgeLabel",
+              "fill": "#FF4500",
+              "content": "04 · BADGES & TAGS",
+              "fontFamily": "Fira Code",
+              "fontSize": 11,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "uLaO9",
+              "name": "badgeTitle",
+              "fill": "#000000",
+              "content": "LABELS / STATUS CHIPS",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "900"
+            },
+            {
+              "type": "frame",
+              "id": "rKcNH",
+              "name": "badgeRow",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "RP6Rp",
+                  "name": "liveBadge",
+                  "fill": "#000000",
+                  "cornerRadius": 20,
+                  "padding": [
+                    6,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "nEJQ9",
+                      "name": "liveText",
+                      "fill": "#ffffff",
+                      "content": "● LIVE",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ZA87r",
+                  "name": "dateBadge",
+                  "fill": "#FF4500",
+                  "padding": [
+                    6,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NuaqC",
+                      "name": "dateText",
+                      "fill": "#ffffff",
+                      "content": "Jan 2021 – Present",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "stDM3",
+                  "name": "tag1",
+                  "fill": "#ffffff",
+                  "cornerRadius": 20,
+                  "padding": [
+                    6,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "4mBoA",
+                      "name": "tag1Text",
+                      "fill": "#000000",
+                      "content": "FINTECH",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "0RUHy",
+                  "name": "tag2",
+                  "fill": "#ffffff",
+                  "cornerRadius": 20,
+                  "padding": [
+                    6,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "uYGL8",
+                      "name": "tag2Text",
+                      "fill": "#000000",
+                      "content": "2021–2024",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "7Ftpa",
+                  "name": "tech1",
+                  "fill": "#000000",
+                  "padding": [
+                    6,
+                    12
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "yMR34",
+                      "name": "tech1Text",
+                      "fill": "#ffffff",
+                      "content": "NODE.JS",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "MeLXC",
+                  "name": "tech2",
+                  "fill": "#FF4500",
+                  "padding": [
+                    6,
+                    12
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sTxwp",
+                      "name": "tech2Text",
+                      "fill": "#000000",
+                      "content": "TYPESCRIPT",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XdiUy",
+                  "name": "tech3",
+                  "fill": "#C1FFD7",
+                  "padding": [
+                    6,
+                    12
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "MRXBv",
+                      "name": "tech3Text",
+                      "fill": "#000000",
+                      "content": "POSTGRESQL",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tj3DW",
+                  "name": "tech4",
+                  "fill": "#CAB8FF",
+                  "padding": [
+                    6,
+                    12
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sOCeO",
+                      "name": "tech4Text",
+                      "fill": "#000000",
+                      "content": "KAFKA",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XbKui",
+                  "name": "updBadge",
+                  "fill": "#FF4500",
+                  "padding": [
+                    6,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "fFb0i",
+                      "name": "updText",
+                      "fill": "#ffffff",
+                      "content": "UPDATED_DAILY",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "15v5Z",
+          "name": "statSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "yb0gK",
+              "name": "statLabel",
+              "fill": "#FF4500",
+              "content": "05 · STAT METRIC CARDS",
+              "fontFamily": "Fira Code",
+              "fontSize": 11,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "980gH",
+              "name": "statTitle",
+              "fill": "#000000",
+              "content": "METRICS DISPLAY",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "900"
+            },
+            {
+              "type": "frame",
+              "id": "LXIoJ",
+              "name": "statRow",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "RWOfG",
+                  "name": "sc1",
+                  "width": 286,
+                  "fill": "#C1FFD7",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "RUhm4",
+                      "name": "sc1Icon",
+                      "fill": "#000000",
+                      "content": "↗",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "gzjIj",
+                      "name": "sc1Value",
+                      "fill": "#000000",
+                      "content": "99.95%",
+                      "fontFamily": "Inter",
+                      "fontSize": 32,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "troZg",
+                      "name": "sc1Label",
+                      "fill": "#555555",
+                      "content": "UPTIME RELIABILITY",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "gS8r5",
+                  "name": "sc2",
+                  "width": 286,
+                  "fill": "#FFF59D",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "BlzpK",
+                      "name": "sc2Icon",
+                      "fill": "#000000",
+                      "content": "⚡",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rc1PC",
+                      "name": "sc2Value",
+                      "fill": "#000000",
+                      "content": "70%",
+                      "fontFamily": "Inter",
+                      "fontSize": 32,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "0lQ4J",
+                      "name": "sc2Label",
+                      "fill": "#555555",
+                      "content": "DEPLOY TIME REDUCED",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "07Z6R",
+                  "name": "sc3",
+                  "width": 286,
+                  "fill": "#CAB8FF",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "is9Yq",
+                      "name": "sc3Icon",
+                      "fill": "#000000",
+                      "content": "↘",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "9mTZY",
+                      "name": "sc3Value",
+                      "fill": "#000000",
+                      "content": "40%",
+                      "fontFamily": "Inter",
+                      "fontSize": 32,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mmY2K",
+                      "name": "sc3Label",
+                      "fill": "#555555",
+                      "content": "COST REDUCED",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tVs0s",
+                  "name": "sc4",
+                  "width": 286,
+                  "fill": "#ffffff",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lG0uE",
+                      "name": "sc4Icon",
+                      "fill": "#FF4500",
+                      "content": "◉",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "dd8jI",
+                      "name": "sc4Value",
+                      "fill": "#000000",
+                      "content": "50k+",
+                      "fontFamily": "Inter",
+                      "fontSize": 32,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jE85a",
+                      "name": "sc4Label",
+                      "fill": "#555555",
+                      "content": "DAILY TRANSACTIONS",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZF1KR",
+          "name": "cardSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "f9EXV",
+              "name": "cardLabel",
+              "fill": "#FF4500",
+              "content": "06 · CONTENT CARDS",
+              "fontFamily": "Fira Code",
+              "fontSize": 11,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "Gljni",
+              "name": "cardTitle",
+              "fill": "#000000",
+              "content": "EXPERIENCE / PROJECT CARD",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "900"
+            },
+            {
+              "type": "frame",
+              "id": "PFiGO",
+              "name": "cardWrap",
+              "width": "fill_container",
+              "height": 300,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "PKijg",
+                  "x": 8,
+                  "y": 8,
+                  "name": "cardShadow",
+                  "width": 1280,
+                  "height": 288,
+                  "fill": "#000000"
+                },
+                {
+                  "type": "frame",
+                  "id": "FEkTl",
+                  "x": 0,
+                  "y": 0,
+                  "name": "cardFront",
+                  "width": 1280,
+                  "height": 288,
+                  "fill": "#ffffff",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "9DWBY",
+                      "name": "card-tab",
+                      "width": "fill_container",
+                      "fill": "#000000",
+                      "padding": [
+                        8,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "S0Evj",
+                          "name": "cardTabText",
+                          "fill": "#ffffff",
+                          "content": "▦  PAYMENT_GATEWAY_V1.0",
+                          "fontFamily": "Fira Code",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "hacAy",
+                      "name": "cardBody",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "gM8xW",
+                          "name": "cardLeft",
+                          "width": 400,
+                          "layout": "vertical",
+                          "gap": 16,
+                          "padding": 28,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "FLhOK",
+                              "name": "cardTagRow",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "tDTJz",
+                                  "name": "cardTag1",
+                                  "fill": "#ffffff",
+                                  "cornerRadius": 20,
+                                  "padding": [
+                                    4,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "Jcjyb",
+                                      "name": "c1t",
+                                      "fill": "#000000",
+                                      "content": "2021–2024",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 11,
+                                      "fontWeight": "700"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "gPfuD",
+                                  "name": "cardTag2",
+                                  "fill": "#ffffff",
+                                  "cornerRadius": 20,
+                                  "padding": [
+                                    4,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "8YMVD",
+                                      "name": "c2t",
+                                      "fill": "#000000",
+                                      "content": "FINTECH",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 11,
+                                      "fontWeight": "700"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "xdCvx",
+                              "name": "cardHeading",
+                              "fill": "#000000",
+                              "content": "VIETPAY\nPAYMENT GATEWAY",
+                              "fontFamily": "Inter",
+                              "fontSize": 26,
+                              "fontWeight": "900"
+                            },
+                            {
+                              "type": "text",
+                              "id": "sCcpn",
+                              "name": "cardRole",
+                              "fill": "#FF4500",
+                              "content": "⚡ Tech Lead & Solution Architect",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "XV5dd",
+                              "name": "cardDesc",
+                              "fill": "#333333",
+                              "content": "A robust payment processing platform handling millions of transactions for Vietnamese merchants.",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "zriei",
+                          "name": "cardSep",
+                          "width": 3,
+                          "height": "fill_container",
+                          "fill": "#000000"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "gGnMh",
+                          "name": "cardRight",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 20,
+                          "padding": 28,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "sAuOs",
+                              "name": "cardRightTitle",
+                              "fill": "#000000",
+                              "content": "⊟  SYSTEM ARCHITECTURE",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "AVsI4",
+                              "name": "featGrid",
+                              "width": "fill_container",
+                              "gap": 16,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "9uEeb",
+                                  "name": "feat1",
+                                  "width": 220,
+                                  "fill": "#F5F2EE",
+                                  "layout": "vertical",
+                                  "gap": 4,
+                                  "padding": 12,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "28Px6",
+                                      "name": "f1title",
+                                      "fill": "#000000",
+                                      "content": "MICROSERVICES",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 12,
+                                      "fontWeight": "700"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "iBzhZ",
+                                      "name": "f1desc",
+                                      "fill": "#555555",
+                                      "content": "Event-driven architecture with independent scaling.",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "d7ylr",
+                                  "name": "feat2",
+                                  "width": 220,
+                                  "fill": "#F5F2EE",
+                                  "layout": "vertical",
+                                  "gap": 4,
+                                  "padding": 12,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "1QkxU",
+                                      "name": "f2title",
+                                      "fill": "#000000",
+                                      "content": "RESILIENCE",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 12,
+                                      "fontWeight": "700"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "pIgLE",
+                                      "name": "f2desc",
+                                      "fill": "#555555",
+                                      "content": "Circuit breakers & fallback mechanisms.",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Xc2k4",
+          "name": "artSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "UDytn",
+              "name": "artLabel",
+              "fill": "#FF4500",
+              "content": "07 · ARTICLE / BLOG CARD",
+              "fontFamily": "Fira Code",
+              "fontSize": 11,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "ScZVA",
+              "name": "artTitle",
+              "fill": "#000000",
+              "content": "LIST ITEMS",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "900"
+            },
+            {
+              "type": "frame",
+              "id": "kRqMD",
+              "name": "artRow",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "qeEj5",
+                  "name": "art1",
+                  "width": 380,
+                  "fill": "#ffffff",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "rHOhE",
+                      "name": "art1Meta",
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "zwDtF",
+                          "name": "art1Date",
+                          "fill": "#ffffff",
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "OYdf6",
+                              "name": "art1DateTxt",
+                              "fill": "#000000",
+                              "content": "OCT 15, 2024",
+                              "fontFamily": "Fira Code",
+                              "fontSize": 11,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "RIzkI",
+                          "name": "art1ReadTime",
+                          "fill": "#888888",
+                          "content": "8 min READ",
+                          "fontFamily": "Fira Code",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "zOIJY",
+                      "name": "art1Heading",
+                      "fill": "#000000",
+                      "content": "THE HIDDEN COSTS OF\nMICROSERVICES",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "nz4Vh",
+                      "name": "art1Sub",
+                      "fill": "#555555",
+                      "content": "(And How to Avoid Them)",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Zta4g",
+                      "name": "art1Divider",
+                      "width": "fill_container",
+                      "height": 2,
+                      "fill": "#000000"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Jwv1D",
+                  "name": "art2Wrap",
+                  "width": 380,
+                  "height": 220,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Nbx6K",
+                      "x": 6,
+                      "y": 6,
+                      "name": "art2Shadow",
+                      "width": 380,
+                      "height": 210,
+                      "fill": "#FF4500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "XPMBc",
+                      "x": 0,
+                      "y": 0,
+                      "name": "art2",
+                      "width": 380,
+                      "height": 210,
+                      "fill": "#000000",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "YKUst",
+                          "name": "art2Meta",
+                          "width": "fill_container",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "0urL8",
+                              "name": "art2Date",
+                              "fill": "#333333",
+                              "padding": [
+                                4,
+                                10
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "b3gwJ",
+                                  "name": "art2DateTxt",
+                                  "fill": "#aaaaaa",
+                                  "content": "AUG 30, 2024",
+                                  "fontFamily": "Fira Code",
+                                  "fontSize": 11,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "7HAI3",
+                              "name": "art2ReadTime",
+                              "fill": "#666666",
+                              "content": "10 min READ",
+                              "fontFamily": "Fira Code",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "DR5o6",
+                          "name": "art2Heading",
+                          "fill": "#ffffff",
+                          "content": "CODE REVIEW\nBEST PRACTICES",
+                          "fontFamily": "Inter",
+                          "fontSize": 20,
+                          "fontWeight": "900"
+                        },
+                        {
+                          "type": "text",
+                          "id": "PrLKS",
+                          "name": "art2Sub",
+                          "fill": "#888888",
+                          "content": "For Growing Teams",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "sOaQl",
+                          "name": "art2ReadMore",
+                          "fill": "#FF4500",
+                          "content": "READ ARTICLE ↗",
+                          "fontFamily": "Fira Code",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "XQwaf",
+          "name": "techBarSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "wxeZy",
+              "name": "techBarLabel",
+              "fill": "#FF4500",
+              "content": "08 · TECH STACK BAR",
+              "fontFamily": "Fira Code",
+              "fontSize": 11,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "Qvico",
+              "name": "techBarTitle",
+              "fill": "#000000",
+              "content": "SCROLLING TICKER / FOOTER BAR",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "900"
+            },
+            {
+              "type": "frame",
+              "id": "AzV5V",
+              "name": "tickerBar",
+              "width": "fill_container",
+              "fill": "#000000",
+              "gap": 24,
+              "padding": [
+                14,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tEIkY",
+                  "name": "t1b",
+                  "fill": "#ffffff",
+                  "content": "REACT",
+                  "fontFamily": "Fira Code",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "hXHzK",
+                  "name": "t2b",
+                  "fill": "#FF4500",
+                  "content": "NODE.JS",
+                  "fontFamily": "Fira Code",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "46bgS",
+                  "name": "t3b",
+                  "fill": "#ffffff",
+                  "content": "TYPESCRIPT",
+                  "fontFamily": "Fira Code",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "Gj6ab",
+                  "name": "t4b",
+                  "fill": "#FF4500",
+                  "content": "KAFKA",
+                  "fontFamily": "Fira Code",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "P6aRv",
+                  "name": "t5b",
+                  "fill": "#ffffff",
+                  "content": "POSTGRESQL",
+                  "fontFamily": "Fira Code",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "N7Rv2",
+                  "name": "t6b",
+                  "fill": "#FF4500",
+                  "content": "REDIS",
+                  "fontFamily": "Fira Code",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "FDRBJ",
+                  "name": "t7b",
+                  "fill": "#ffffff",
+                  "content": "KUBERNETES",
+                  "fontFamily": "Fira Code",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "KTkd7",
+                  "name": "t8b",
+                  "fill": "#FF4500",
+                  "content": "AWS",
+                  "fontFamily": "Fira Code",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "72TBe",
+      "x": -1810,
+      "y": -16997,
+      "name": "Page · Đăng Ký",
+      "reusable": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#FDF6E3",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ok8a0",
+          "x": 0,
+          "y": 0,
+          "name": "gridBg",
+          "width": 680,
+          "height": 900,
+          "fill": "#F0EBE0"
+        },
+        {
+          "type": "frame",
+          "id": "CZPOX",
+          "x": 0,
+          "y": 0,
+          "name": "brandSide",
+          "width": 680,
+          "height": 900,
+          "fill": "#F0EBE0",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            80,
+            60,
+            80,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "ao741",
+              "name": "brandLogo",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "LGL74",
+                  "name": "brandIcon",
+                  "width": 48,
+                  "height": 48,
+                  "fill": "#FF4500",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xb4d5",
+                      "name": "brandIconText",
+                      "fill": "#ffffff",
+                      "content": "⊟",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "u91cM",
+                  "name": "brandName",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "PGNGw",
+                      "name": "brandLine1",
+                      "fill": "#000000",
+                      "content": "EXPERIENCE",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "0FeH2",
+                      "name": "brandLine2",
+                      "fill": "#FF4500",
+                      "content": "LOG_",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "900"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "5ReSs",
+              "name": "brandTagline",
+              "fill": "#000000",
+              "content": "Nơi chia sẻ hành trình\nkỹ thuật của bạn.",
+              "fontFamily": "Inter",
+              "fontSize": 40,
+              "fontWeight": "900"
+            },
+            {
+              "type": "text",
+              "id": "nVfym",
+              "name": "brandDesc",
+              "fill": "#555555",
+              "content": "// Kết nối với cộng đồng developer, chia sẻ kinh nghiệm và xây dựng portfolio kỹ thuật của bạn.",
+              "fontFamily": "Fira Code",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "dru4k",
+              "name": "statsMini",
+              "gap": 24,
+              "padding": [
+                24,
+                0,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "DkIa8",
+                  "name": "sm1",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "M797a",
+                      "name": "sm1Val",
+                      "fill": "#000000",
+                      "content": "50K+",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "W6S6v",
+                      "name": "sm1Lbl",
+                      "fill": "#888888",
+                      "content": "MEMBERS",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "IeHRL",
+                  "name": "sm2",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "hC4Xq",
+                      "name": "sm2Val",
+                      "fill": "#FF4500",
+                      "content": "99%",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "YA5Gr",
+                      "name": "sm2Lbl",
+                      "fill": "#888888",
+                      "content": "UPTIME",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "a3eiS",
+                  "name": "sm3",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "j82mJ",
+                      "name": "sm3Val",
+                      "fill": "#000000",
+                      "content": "2M+",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "j9iYq",
+                      "name": "sm3Lbl",
+                      "fill": "#888888",
+                      "content": "POSTS",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tdwi6",
+          "x": 680,
+          "y": 0,
+          "name": "formSide",
+          "width": 760,
+          "height": 900,
+          "fill": "#FDF6E3",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "XUv4r",
+              "name": "formCenter",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "padding": 80,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "hRG6d",
+                  "name": "regCardWrap",
+                  "width": 480,
+                  "height": 580,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "7jDwg",
+                      "x": 8,
+                      "y": 8,
+                      "name": "regCardShadow",
+                      "width": 480,
+                      "height": 572,
+                      "fill": "#000000"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Y7Eio",
+                      "x": 0,
+                      "y": 0,
+                      "name": "regCard",
+                      "width": 480,
+                      "height": 572,
+                      "fill": "#ffffff",
+                      "layout": "vertical",
+                      "gap": 20,
+                      "padding": 40,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "1e7Ge",
+                          "name": "regTitle",
+                          "fill": "#000000",
+                          "content": "TẠO TÀI KHOẢN",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": "900"
+                        },
+                        {
+                          "type": "text",
+                          "id": "dPv7o",
+                          "name": "regSubtitle",
+                          "fill": "#888888",
+                          "content": "Gia nhập ngay để kết nối.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ZeJ98",
+                          "name": "emailGroup",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "D5L5O",
+                              "name": "emailLabel",
+                              "fill": "#000000",
+                              "content": "EMAIL",
+                              "fontFamily": "Fira Code",
+                              "fontSize": 11,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vS7o3",
+                              "name": "emailInput",
+                              "width": "fill_container",
+                              "height": 48,
+                              "fill": "#ffffff",
+                              "padding": [
+                                0,
+                                16
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "MRdtn",
+                                  "name": "emailPlaceholder",
+                                  "fill": "#AAAAAA",
+                                  "content": "email@example.com",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ZEArT",
+                          "name": "nameGroup",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "mzXdv",
+                              "name": "nameLabel",
+                              "fill": "#000000",
+                              "content": "TÊN NGƯỜI DÙNG",
+                              "fontFamily": "Fira Code",
+                              "fontSize": 11,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "xlcSZ",
+                              "name": "nameInput",
+                              "width": "fill_container",
+                              "height": 48,
+                              "fill": "#ffffff",
+                              "padding": [
+                                0,
+                                16
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "9qJC7",
+                                  "name": "namePlaceholder",
+                                  "fill": "#AAAAAA",
+                                  "content": "Tên của bạn",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "oVHPB",
+                          "name": "passGroup",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "gkBEk",
+                              "name": "passLabel",
+                              "fill": "#000000",
+                              "content": "MẬT KHẨU",
+                              "fontFamily": "Fira Code",
+                              "fontSize": 11,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ANq7c",
+                              "name": "passInput",
+                              "width": "fill_container",
+                              "height": 48,
+                              "fill": "#ffffff",
+                              "padding": [
+                                0,
+                                16
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "pzxJ6",
+                                  "name": "passPlaceholder",
+                                  "fill": "#AAAAAA",
+                                  "content": "Nhập mật khẩu của bạn",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "H1GR9",
+                                  "name": "passEye",
+                                  "fill": "#888888",
+                                  "content": "◉",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "BwVZ5",
+                          "name": "regBtnWrap",
+                          "width": "fill_container",
+                          "height": 56,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "mGjln",
+                              "x": 4,
+                              "y": 4,
+                              "name": "regBtnShadow",
+                              "width": 400,
+                              "height": 52,
+                              "fill": "#000000"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "BpAQj",
+                              "x": 0,
+                              "y": 0,
+                              "name": "regBtnFront",
+                              "width": 400,
+                              "height": 52,
+                              "fill": "#FF4500",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "YHjNQ",
+                                  "name": "regBtnText",
+                                  "fill": "#000000",
+                                  "content": "GIA NHẬP",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "900"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "7WWjt",
+                          "name": "regFooter",
+                          "fill": "#555555",
+                          "content": "Đã có tài khoản?  → Đăng nhập",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "2znhD",
+      "x": -1810,
+      "y": -15797,
+      "name": "Page · Đăng Nhập",
+      "reusable": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#FDF6E3",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "LHtMh",
+          "x": 0,
+          "y": 0,
+          "name": "loginBrandSide",
+          "width": 680,
+          "height": 900,
+          "fill": "#F0EBE0",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            80,
+            60,
+            80,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "vtFFy",
+              "name": "loginLogo",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "RCxIy",
+                  "name": "loginLogoIcon",
+                  "width": 48,
+                  "height": 48,
+                  "fill": "#FF4500",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "BxAU4",
+                      "name": "loginLogoIconTxt",
+                      "fill": "#ffffff",
+                      "content": "⊟",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mRHvw",
+                  "name": "loginLogoName",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "PHPwP",
+                      "name": "loginLogoL1",
+                      "fill": "#000000",
+                      "content": "EXPERIENCE",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "AlTwc",
+                      "name": "loginLogoL2",
+                      "fill": "#FF4500",
+                      "content": "LOG_",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "900"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "EVaZY",
+              "name": "loginTagline",
+              "fill": "#000000",
+              "content": "Chào mừng\ntrở lại!",
+              "fontFamily": "Inter",
+              "fontSize": 52,
+              "fontWeight": "900"
+            },
+            {
+              "type": "text",
+              "id": "ntjqq",
+              "name": "loginDesc",
+              "fill": "#555555",
+              "content": "// Đăng nhập để tiếp tục hành trình kỹ thuật của bạn.",
+              "fontFamily": "Fira Code",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "19LP0",
+              "name": "loginStatBox",
+              "width": 280,
+              "height": 100,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "LutCO",
+                  "x": 6,
+                  "y": 6,
+                  "name": "loginStatShadow",
+                  "width": 280,
+                  "height": 90,
+                  "fill": "#000000"
+                },
+                {
+                  "type": "frame",
+                  "id": "wHD1V",
+                  "x": 0,
+                  "y": 0,
+                  "name": "loginStatFront",
+                  "width": 280,
+                  "height": 90,
+                  "fill": "#FF4500",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": [
+                    16,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "q3sFp",
+                      "name": "loginStatVal",
+                      "fill": "#000000",
+                      "content": "5M+ SESSIONS / MONTH",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "LywWQ",
+                      "name": "loginStatSub",
+                      "fill": "#000000",
+                      "content": "// SYSTEM_ONLINE",
+                      "fontFamily": "Fira Code",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "veW5b",
+          "x": 680,
+          "y": 0,
+          "name": "loginFormSide",
+          "width": 760,
+          "height": 900,
+          "fill": "#FDF6E3",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "56omw",
+              "name": "loginFormCenter",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "padding": 80,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "36LkX",
+                  "name": "loginCardWrap",
+                  "width": 480,
+                  "height": 480,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "4ZAVY",
+                      "x": 8,
+                      "y": 8,
+                      "name": "loginCardShadow",
+                      "width": 480,
+                      "height": 472,
+                      "fill": "#000000"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "01ykU",
+                      "x": 0,
+                      "y": 0,
+                      "name": "loginCard",
+                      "width": 480,
+                      "height": 472,
+                      "fill": "#ffffff",
+                      "layout": "vertical",
+                      "gap": 20,
+                      "padding": 40,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "6Aw9n",
+                          "name": "loginTitle",
+                          "fill": "#000000",
+                          "content": "ĐĂNG NHẬP",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": "900"
+                        },
+                        {
+                          "type": "text",
+                          "id": "dXaW9",
+                          "name": "loginSubtitle",
+                          "fill": "#888888",
+                          "content": "Điền thông tin để vào hệ thống.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "D25Ct",
+                          "name": "loginEmailGrp",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "xilOm",
+                              "name": "loginEmailLbl",
+                              "fill": "#000000",
+                              "content": "EMAIL",
+                              "fontFamily": "Fira Code",
+                              "fontSize": 11,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "804rv",
+                              "name": "loginEmailInput",
+                              "width": "fill_container",
+                              "height": 48,
+                              "fill": "#ffffff",
+                              "padding": [
+                                0,
+                                16
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Kdd2M",
+                                  "name": "loginEmailPH",
+                                  "fill": "#AAAAAA",
+                                  "content": "email@example.com",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "FVM0S",
+                          "name": "loginPassGrp",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "BFDdS",
+                              "name": "loginPassLbl",
+                              "fill": "#000000",
+                              "content": "MẬT KHẨU",
+                              "fontFamily": "Fira Code",
+                              "fontSize": 11,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "dL15L",
+                              "name": "loginPassInput",
+                              "width": "fill_container",
+                              "height": 48,
+                              "fill": "#ffffff",
+                              "padding": [
+                                0,
+                                16
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "R9tDu",
+                                  "name": "loginPassPH",
+                                  "fill": "#AAAAAA",
+                                  "content": "Mật khẩu",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "nEJD4",
+                                  "name": "loginPassEye",
+                                  "fill": "#888888",
+                                  "content": "◉",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "BrYrp",
+                          "name": "loginForgot",
+                          "fill": "#FF4500",
+                          "content": "Quên mật khẩu? ↗",
+                          "fontFamily": "Fira Code",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "kRbEZ",
+                          "name": "loginBtnWrap",
+                          "width": "fill_container",
+                          "height": 56,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "2UYCh",
+                              "x": 4,
+                              "y": 4,
+                              "name": "loginBtnShadow",
+                              "width": 400,
+                              "height": 52,
+                              "fill": "#000000"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "yBB11",
+                              "x": 0,
+                              "y": 0,
+                              "name": "loginBtnFront",
+                              "width": 400,
+                              "height": 52,
+                              "fill": "#FF4500",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "uDA5W",
+                                  "name": "loginBtnText",
+                                  "fill": "#000000",
+                                  "content": "ĐĂNG NHẬP",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "900"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "lTR1w",
+                          "name": "loginFooter",
+                          "fill": "#555555",
+                          "content": "Chưa có tài khoản?  → Đăng ký ngay",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "rl2ju",
+      "x": -1810,
+      "y": -14424,
+      "name": "Page · Reset Mật Khẩu",
+      "reusable": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#000000",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "zI2Mm",
+          "x": 0,
+          "y": 0,
+          "name": "resetBrandSide",
+          "width": 680,
+          "height": 900,
+          "fill": "#111111",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            80,
+            60,
+            80,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "W5EoM",
+              "name": "resetLogo",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "RUTOn",
+                  "name": "resetLogoIcon",
+                  "width": 48,
+                  "height": 48,
+                  "fill": "#FF4500",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Fnpyf",
+                      "name": "resetLogoIconTxt",
+                      "fill": "#ffffff",
+                      "content": "⊟",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "M5FAa",
+                  "name": "resetLogoName",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "IhCW5",
+                      "name": "resetLogoL1",
+                      "fill": "#ffffff",
+                      "content": "EXPERIENCE",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "8C0ux",
+                      "name": "resetLogoL2",
+                      "fill": "#FF4500",
+                      "content": "LOG_",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "900"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "vMiee",
+              "name": "resetTagline",
+              "fill": "#ffffff",
+              "content": "Bảo mật\ntài khoản.",
+              "fontFamily": "Inter",
+              "fontSize": 52,
+              "fontWeight": "900"
+            },
+            {
+              "type": "text",
+              "id": "tidtc",
+              "name": "resetDesc",
+              "fill": "#888888",
+              "content": "// Chúng tôi sẽ gửi link đặt lại mật khẩu\nqua email của bạn trong vài giây.",
+              "fontFamily": "Fira Code",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "oycCH",
+              "name": "resetSteps",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                16,
+                0,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "fODRJ",
+                  "name": "step1",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Dp5TM",
+                      "name": "step1Num",
+                      "width": 28,
+                      "height": 28,
+                      "fill": "#FF4500",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "mYSSy",
+                          "name": "step1NumTxt",
+                          "fill": "#000000",
+                          "content": "01",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "900"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "jo2fq",
+                      "name": "step1Txt",
+                      "fill": "#cccccc",
+                      "content": "Nhập địa chỉ email đã đăng ký",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uRMvI",
+                  "name": "step2",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "7YW7Q",
+                      "name": "step2Num",
+                      "width": 28,
+                      "height": 28,
+                      "fill": "#333333",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RPhhu",
+                          "name": "step2NumTxt",
+                          "fill": "#888888",
+                          "content": "02",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "900"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "iCU0R",
+                      "name": "step2Txt",
+                      "fill": "#888888",
+                      "content": "Kiểm tra hộp thư đến của bạn",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Hw1tv",
+                  "name": "step3",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "LtJW4",
+                      "name": "step3Num",
+                      "width": 28,
+                      "height": 28,
+                      "fill": "#333333",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ep0IA",
+                          "name": "step3NumTxt",
+                          "fill": "#888888",
+                          "content": "03",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "900"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "00hVu",
+                      "name": "step3Txt",
+                      "fill": "#888888",
+                      "content": "Đặt lại mật khẩu mới cho bạn",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mV21P",
+          "x": 680,
+          "y": 0,
+          "name": "resetFormSide",
+          "width": 760,
+          "height": 900,
+          "fill": "#000000",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "6CbDS",
+              "name": "resetFormCenter",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "padding": 80,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "zwlDt",
+                  "name": "resetCardWrap",
+                  "width": 480,
+                  "height": 420,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "JbLPB",
+                      "x": 8,
+                      "y": 8,
+                      "name": "resetCardShadow",
+                      "width": 480,
+                      "height": 412,
+                      "fill": "#FF4500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "xMEsN",
+                      "x": 0,
+                      "y": 0,
+                      "name": "resetCard",
+                      "width": 480,
+                      "height": 412,
+                      "fill": "#ffffff",
+                      "layout": "vertical",
+                      "gap": 20,
+                      "padding": 40,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ngfoU",
+                          "name": "resetCardTag",
+                          "fill": "#111111",
+                          "padding": [
+                            4,
+                            12
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "WH966",
+                              "name": "resetCardTagTxt",
+                              "fill": "#FF4500",
+                              "content": "// PASSWORD_RESET_MODULE",
+                              "fontFamily": "Fira Code",
+                              "fontSize": 11,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "82DQm",
+                          "name": "resetTitle",
+                          "fill": "#000000",
+                          "content": "ĐẶT LẠI\nMẬT KHẨU",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": "900"
+                        },
+                        {
+                          "type": "text",
+                          "id": "hvH8z",
+                          "name": "resetSubtitle",
+                          "fill": "#888888",
+                          "content": "Nhập email để nhận hướng dẫn đặt lại mật khẩu.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "s5CW6",
+                          "name": "resetEmailGrp",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "P6NqU",
+                              "name": "resetEmailLbl",
+                              "fill": "#000000",
+                              "content": "ĐỊA CHỈ EMAIL",
+                              "fontFamily": "Fira Code",
+                              "fontSize": 11,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "5NMnD",
+                              "name": "resetEmailInput",
+                              "width": "fill_container",
+                              "height": 48,
+                              "fill": "#F5F2EE",
+                              "padding": [
+                                0,
+                                16
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "ClGAD",
+                                  "name": "resetEmailPH",
+                                  "fill": "#AAAAAA",
+                                  "content": "email@example.com",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Tklpt",
+                          "name": "resetBtnWrap",
+                          "width": "fill_container",
+                          "height": 56,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "S9wZg",
+                              "x": 4,
+                              "y": 4,
+                              "name": "resetBtnShadow",
+                              "width": 400,
+                              "height": 52,
+                              "fill": "#FF4500"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "CefuV",
+                              "x": 0,
+                              "y": 0,
+                              "name": "resetBtnFront",
+                              "width": 400,
+                              "height": 52,
+                              "fill": "#000000",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "cQeUR",
+                                  "name": "resetBtnText",
+                                  "fill": "#ffffff",
+                                  "content": "GỬI LINK ĐẶT LẠI →",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "900"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "v4fZx",
+                          "name": "resetFooter",
+                          "fill": "#FF4500",
+                          "content": "← Quay lại Đăng nhập",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
