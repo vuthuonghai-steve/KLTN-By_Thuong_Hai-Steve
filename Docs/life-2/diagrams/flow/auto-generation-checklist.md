@@ -4,7 +4,7 @@
 | --- | --- | --- | --- | --- |
 | M1 | UC01 | Đăng ký tài khoản | `flow-user-registration.md` | ✅ Done |
 | M1 | UC02 | Đăng nhập Email/Password | `flow-login-email.md` | ✅ Done |
-| M1 | UC03 | Đăng nhập OAuth (Google) | `flow-login-oauth.md` | ✅ Done |
+| M1 | UC03 | Đăng nhập OAuth (Google) | `flow-login-oauth.md` | 🔒 Khóa |
 | M1 | UC04 | Đăng xuất | `flow-logout.md` | ✅ Done |
 | M1 | UC05 | Quên mật khẩu / Reset Password | `flow-password-recovery.md` | ✅ Done |
 | M1 | UC06 | Quản lý hồ sơ cá nhân | `flow-profile-management.md` | ✅ Done |

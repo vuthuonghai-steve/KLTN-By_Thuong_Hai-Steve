@@ -6,7 +6,7 @@
 ---
 
 ## 1. Overview
-Cung cấp khả năng đăng nhập, đăng ký và quản lý thông tin cá nhân. Hỗ trợ Email/Password truyền thống và Google OAuth.
+Cung cấp khả năng đăng nhập, đăng ký và quản lý thông tin cá nhân. Hỗ trợ Email/Password truyền thống (Tính năng Google OAuth tạm thời bị 🔒 khóa).
 
 ## 2. Data Models (PayloadCMS)
 
@@ -32,7 +32,7 @@ Dựa trên `ENDPOINTS` config:
 *   **Colors**: Primary (Pink-500), Secondary (Orange-500).
 *   **Components**: Radix UI based.
 *   **Screens**:
-    - `LoginScreen`: Form với email/password + "Sign in with Google" button.
+    - `LoginScreen`: Form với email/password (Nút "Sign in with Google" đã bị ẩn vì đang 🔒 khóa).
     - `RegisterScreen`: Username, Email, Password, Confirm Password.
     - `ProfileScreen`: View profile info + "Edit Profile" button.
     - `EditProfileScreen`: Form cập nhật Avatar, Bio, Social Links.

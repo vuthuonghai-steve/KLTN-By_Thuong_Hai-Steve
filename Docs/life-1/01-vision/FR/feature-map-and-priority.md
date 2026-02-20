@@ -53,7 +53,7 @@
 | Bậc 2 | Id (Bậc 3) | Chức năng cụ thể | FR | Collection / Ghi chú |
 |-------|------------|-------------------|-----|----------------------|
 | M1.1  | M1.1.1     | Đăng nhập Email/Password | FR-1 | Users (payload auth) |
-| M1.1  | M1.1.2     | Đăng nhập Google (OAuth) | FR-1 | Users |
+| M1.1  | M1.1.2     | Đăng nhập Google (OAuth) [🔒 Đã khóa] | FR-1 | Users |
 | M1.1  | M1.1.3     | Quên mật khẩu / Đổi mật khẩu | FR-1 | Users |
 | M1.1  | M1.1.4     | Logout, refresh token | FR-1 | — |
 | M1.2  | M1.2.1     | Ảnh đại diện & ảnh bìa (Local Storage) | FR-2 | Users |

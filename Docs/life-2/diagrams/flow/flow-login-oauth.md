@@ -1,5 +1,8 @@
 # Flow Diagram: Đăng nhập OAuth Google (UC03)
 
+> **TRẠNG THÁI: 🔒 ĐÃ KHÓA (LOCKED)**
+> Chức năng Đăng nhập OAuth (Google) hiện tại đang bị khóa và không khả dụng trong hệ thống. Dữ liệu diagram dưới đây chỉ mang tính chất lưu trữ.
+
 ```mermaid
 flowchart TD
   subgraph User ["👤 User"]

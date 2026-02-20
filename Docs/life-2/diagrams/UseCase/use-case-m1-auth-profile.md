@@ -12,7 +12,7 @@ Module M1 quản lý danh tính người dùng (Guest/Member) và hồ sơ cá n
 |---|---|---|---|
 | UC01 | Đăng ký tài khoản | M1.1 | FR-1 |
 | UC02 | Đăng nhập Email/Password | M1.1 | FR-1 |
-| UC03 | Đăng nhập OAuth | M1.1 | FR-1 |
+| UC03 | Đăng nhập OAuth 🔒 | M1.1 | FR-1 |
 | UC04 | Đăng xuất | M1.1 | FR-1 |
 | UC05 | Quên/đặt lại mật khẩu | M1.1 | FR-1 |
 | UC06 | Quản lý hồ sơ cá nhân | M1.2 | FR-2 |
@@ -28,7 +28,7 @@ flowchart LR
     subgraph M1["M1: Auth & Profile"]
         UC01((UC01: Đăng ký tài khoản))
         UC02((UC02: Đăng nhập Email/Password))
-        UC03((UC03: Đăng nhập OAuth))
+        UC03((UC03: Đăng nhập OAuth 🔒))
         UC04((UC04: Đăng xuất))
         UC05((UC05: Quên/đặt lại mật khẩu))
         UC06((UC06: Quản lý hồ sơ cá nhân))

@@ -14,12 +14,12 @@ Hệ thống tập trung vào việc quản lý nội dung, tương tác xã h�
 | Member | Primary | Người dùng đã xác thực, sử dụng các chức năng cốt lõi M1-M6 | FR-2..FR-10 |
 | Admin | Primary (kế thừa Member) | Xử lý kiểm duyệt và duyệt báo cáo | FR-9 (M6.2.3) |
 | External Services | Secondary (actor tổng quát) | Nhóm hệ thống tích hợp bên ngoài | Technical Decisions |
-| OAuth Provider | Secondary (kế thừa External Services) | Xác thực OAuth cho đăng nhập social | FR-1 (M1.1.2) |
+| OAuth Provider | Secondary (kế thừa External Services) | Xác thực OAuth cho đăng nhập social (🔒 Bị khóa) | FR-1 (M1.1.2) |
 | Atlas Search Service | Secondary (kế thừa External Services) | Cung cấp full-text search + autocomplete | FR-7 (M3.2) |
 
 ### Actor Generalization
 - `Admin` kế thừa toàn bộ quyền của `Member`.
-- `OAuth Provider` và `Atlas Search Service` kế thừa từ `External Services`.
+- `OAuth Provider` (Tính năng đang 🔒 bị khóa) và `Atlas Search Service` kế thừa từ `External Services`.
 
 ## 3) High-level Module Overview Diagram
 
@@ -30,7 +30,7 @@ flowchart LR
     Guest["👤 Guest"]
     Member["👤 Member"]
     Admin["🛡️ Admin"]
-    OAuth["☁️ OAuth Provider"]
+    OAuth["☁️ OAuth Provider (🔒 Locked)"]
     SearchSvc["🖥️ Atlas Search Service"]
 
     Admin -- "|> Kế thừa" --> Member
