@@ -240,6 +240,8 @@
   - **G4 Path Termination**: Mọi nhánh PHẢI có điểm kết thúc: `([End])` hoặc endpoint rõ ràng.
   - **G5 Assumption Required**: Khi spec chưa rõ logic, PHẢI khai báo `## Assumptions` dưới sơ đồ. Tuyệt đối không suy đoán ngầm.
   - **G6 Discover Before Ask**: Skill PHẢI hoàn thành Phase 0 DETECT + Phase 1 DISCOVER trước Gate 1. Gate 1 PHẢI kèm Discovery Report — KHÔNG được hỏi câu mở "Bạn muốn vẽ gì?".
+  - **G7 Anti-Fabrication**: Các ví dụ trong file `knowledge/` CHỈ MANG TÍNH CÚ PHÁP. Nghiêm cấm Agent tự ý copy logic từ ví dụ vào output.
+  - **G8 Source of Truth**: Spec/User Stories là Nguồn Sự Thật Tuyệt Đối, cấm sáng tạo thêm.
   - `[TỪ DESIGN §2.3]`
 
 - [ ] **Task 2.5**: Viết `SKILL.md` — Output Naming Convention & Index Management
@@ -265,6 +267,7 @@
     4. `## 4. Safe Label Rules` — quote `""`, `<br/>` vs `\n`, escape chars, node ID constraints
     5. `## 5. Decision Node Rules` — mandatory 2+ branches, label requirements
     6. `## 6. Complete 3-Lane Example` — flowchart TD hoàn chỉnh với decision + 3 paths
+  - **BẮT BUỘC [Anti-Tunneling]**: Chèn Header cảnh báo ở đầu file: `> ⚠️ LƯU Ý CHO AI AGENT: Tài liệu này CHỈ định nghĩa CÚ PHÁP (Syntax). TUYỆT ĐỐI KHÔNG COPY business logic (tên biến, luồng đi) từ các ví dụ ở đây vào bài làm thực tế. Bám sát Spec!`
   - Tham chiếu `activity-uml-rules.md §6` để đồng nhất safe label convention (Q3 §9).
   - `[TỪ DESIGN §3 - knowledge/mermaid-flowchart-guide.md]`
 
@@ -272,6 +275,7 @@
   - Transform TOÀN BỘ từ `resources/business-flow-patterns.md`.
   - 4 sections: Happy Path, Alternative Path, Exception Path, Combined Example.
   - Mỗi pattern: tên, định nghĩa, khi nào dùng, dấu hiệu nhận biết trong spec/US, Mermaid snippet có label rõ ràng.
+  - **BẮT BUỘC [Anti-Fabrication]**: Thêm cảnh báo ở đầu file: `> ⚠️ LƯU Ý CHO AI AGENT: Không phải flow nào cũng bắt buộc có đủ 3 paths. Chỉ vẽ Alternative/Exception Path nếu Spec/US thực sự có định nghĩa. Tuyệt đối không tự đoán (guessing) Error Path nếu Spec không yêu cầu!`
   - `[TỪ DESIGN §3 - knowledge/business-flow-patterns.md]`
 
 - [ ] **Task 3.3**: Tạo `knowledge/actor-lane-taxonomy.md`

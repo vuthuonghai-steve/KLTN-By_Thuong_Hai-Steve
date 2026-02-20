@@ -85,6 +85,8 @@ Bước 5: VALIDATE    — Kiểm tra: no dangling branch, all paths terminate,
 | G4 | **Path Termination** | Mọi nhánh trong flow PHẢI có điểm kết thúc: `([End])` hoặc endpoint rõ ràng. |
 | G5 | **Assumption Required** | Khi spec chưa rõ logic, PHẢI khai báo `## Assumptions` dưới sơ đồ. Tuyệt đối không suy đoán ngầm. |
 | G6 | **Discover Before Ask** | Skill PHẢI hoàn thành Discover (quét UC + spec + US) trước khi đưa ra bất kỳ câu hỏi nào cho User. Gate 1 PHẢI kèm Discovery Report — KHÔNG được hỏi câu mở. |
+| G7 | **Anti-Fabrication (Chống Bịa Đặt)** | Các ví dụ trong file `knowledge/` CHỈ MANG TÍNH CÚ PHÁP (Syntax). Nghiêm cấm Agent tự ý nhặt business logic từ ví dụ nhét vào output. |
+| G8 | **Source of Truth** | Spec và User Stories là Nguồn Sự Thật Tuyệt Đối. Bất kỳ mâu thuẫn nào phát sinh, Spec luôn thắng. |
 
 ---
 
@@ -237,6 +239,8 @@ sequenceDiagram
 | R4 | Spec đang xây dựng → thiếu input → không vẽ được | Life-2 đang trong quá trình hoàn thiện | Gate 2: Assumption Mode, fallback về User Story |
 | R5 | Flow quá phức tạp → Mermaid render lỗi | Module phức tạp nhiều nhánh (M3 Feed Ranking) | Rule: flow > 15 nodes → tách thành sub-flow riêng |
 | R6 | Không đồng nhất style với activity/sequence skill | Mỗi skill dùng convention khác | `mermaid-flowchart-guide.md` thống nhất naming convention chung |
+| R7 | Context Tunneling (Mất bối cảnh cục bộ) | AI mải mê copy cấu trúc Mermaid chuẩn mẫu mà quên đi Business Logic của luồng hiện tại | Cắm cờ `[STRICT RULE: NO BUSINESS INVENTION]` thẳng vào các file knowledge mẫu |
+| R8 | Ambiguity Guessing (Đoán mò) | Spec lỏng lẻo khiến AI phải đoán mò Error Flow/Alternative Flow | Gắn Rule: Chỉ vẽ Error Flow nếu Spec đề cập, nếu không thì chỉ vẽ Happy Path. Không cố over-engineer. |
 
 ---
 

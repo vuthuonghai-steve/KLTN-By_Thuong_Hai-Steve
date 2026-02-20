@@ -1,0 +1,31 @@
+# ULTRA-THINK SESSION DATA: schema-analyst-risk
+
+session:
+  name: schema-analyst-risk
+  objective: Phân tích lỗ hổng pháp lý/logic của tài liệu payload-mongodb-patterns-raw.md khi dùng cho AI Agent, ngăn chặn ảo giác và mất context.
+  status: IN_PROGRESS
+  created_at: '2026-02-21T05:50:00+07:00'
+  updated_at: '2026-02-21T05:55:00+07:00'
+
+findings:
+  - id: RISK_HALLUCINATION_OVER_ENGINEER
+    type: Hallucination
+    severity: P0
+    description: AI tự bịa field/collection mới (VD likes_count, notification) chỉ vì thấy trong danh sách "ví dụ minh họa" của Advanced Patterns.
+  - id: RISK_CONTEXT_TUNNELING_ACCESS
+    type: Context Loss
+    severity: P1
+    description: AI nhìn thấy ví dụ Access Control (owner, admin) và tự động rải bừa lên các collection công khai vì không đọc Context Business (Flow/YAML) mà bị "tập trung hẹp/tunneling" vào file Pattern này.
+  - id: RISK_LOGIC_CONFLICT
+    type: Logical Conflict
+    severity: P0
+    description: Xung đột luật giữa "Bảng Map Type: Array -> Embedded Array" và "Chiến lược 2.1: Data đẻ liên tục -> Reference". AI sẽ hoang mang và sinh cấu trúc random.
+  - id: RISK_AMBIGUOUS_QUANTITY
+    type: Ambiguity
+    severity: P2
+    description: Các từ khóa ước lượng định tính như "nhiều", "vô hạn", "vài trăm" khiến AI phải đoán mò (guess business logic) khi gặp data array.
+
+action_items:
+  - Cập nhật payload-mongodb-patterns-raw.md bằng cờ strict (Bắt buộc dựa vào YAML).
+  - Phân định thứ tự ưu tiên các luật (Rule Hierarchy).
+  - Định lượng rõ ràng các ranh giới.
