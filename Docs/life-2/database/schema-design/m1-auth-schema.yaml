@@ -1,0 +1,60 @@
+schema:
+  module: "M1"
+  collections:
+    - slug: "users"
+      type: "aggregate"
+      fields:
+        - name: "email"
+          type: "email"
+          index: true
+          required: true
+        - name: "username"
+          type: "text"
+          index: true
+          required: true
+        - name: "passwordHash"
+          type: "text"
+          index: false
+          required: true
+        - name: "verified"
+          type: "checkbox"
+          index: false
+          required: true
+        - name: "role"
+          type: "select"
+          index: false
+          required: true
+        - name: "status"
+          type: "select"
+          index: false
+          required: true
+        - name: "profileVisibility"
+          type: "select"
+          index: false
+          required: true
+        - name: "followerCount"
+          type: "number"
+          index: false
+          required: true
+        - name: "followingCount"
+          type: "number"
+          index: false
+          required: true
+        - name: "createdAt"
+          type: "date"
+          index: true
+          required: true
+        - name: "updatedAt"
+          type: "date"
+          index: false
+          required: true
+      hooks:
+        beforeChange:
+          - "Sanitize email, username input trước khi lưu"
+        afterChange:
+          - "Gửi email xác nhận sau khi tạo tài khoản mới (operation=create)"
+      access:
+        create: ["guest", "anyone"]
+        read: ["owner", "member", "admin"]
+        update: ["owner", "admin"]
+        delete: ["admin"]

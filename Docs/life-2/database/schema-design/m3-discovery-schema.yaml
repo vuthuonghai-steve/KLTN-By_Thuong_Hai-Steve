@@ -1,0 +1,45 @@
+schema:
+  module: "M3"
+  collections:
+    - slug: "feedQuery"
+      type: "valueObject"
+      fields:
+        - name: "userId"
+          type: "text"
+          index: false
+          required: true
+        - name: "followingIds"
+          type: "array"
+          index: false
+          required: false
+        - name: "feedType"
+          type: "select"
+          index: false
+          required: true
+        - name: "sortStrategy"
+          type: "select"
+          index: false
+          required: true
+        - name: "page"
+          type: "number"
+          index: false
+          required: false
+        - name: "limit"
+          type: "number"
+          index: false
+          required: false
+        - name: "statusFilter"
+          type: "array"
+          index: false
+          required: false
+        - name: "visibilityFilter"
+          type: "array"
+          index: false
+          required: false
+        - name: "cursorTimestamp"
+          type: "date"
+          index: false
+          required: false
+      hooks: {}
+      access:
+        read: ["member"]

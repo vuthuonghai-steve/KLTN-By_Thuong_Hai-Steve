@@ -1,0 +1,136 @@
+schema:
+  module: "M2"
+  collections:
+    - slug: "posts"
+      type: "aggregate"
+      fields:
+        - name: "authorId"
+          type: "relationship"
+          relationTo: "users"
+          index: true
+          required: true
+        - name: "title"
+          type: "text"
+          index: true
+          required: false
+        - name: "content"
+          type: "richText"
+          index: true
+          required: true
+        - name: "status"
+          type: "select"
+          index: true
+          required: true
+        - name: "visibility"
+          type: "select"
+          index: true
+          required: true
+        - name: "rankingScore"
+          type: "number"
+          index: true
+          required: false
+        - name: "likesCount"
+          type: "number"
+          index: false
+          required: true
+        - name: "commentsCount"
+          type: "number"
+          index: false
+          required: true
+        - name: "sharesCount"
+          type: "number"
+          index: false
+          required: true
+        - name: "publishedAt"
+          type: "date"
+          index: true
+          required: false
+        - name: "createdAt"
+          type: "date"
+          index: true
+          required: true
+        - name: "updatedAt"
+          type: "date"
+          index: false
+          required: true
+        - name: "tags"
+          type: "relationship"
+          relationTo: "tags"
+          hasMany: true
+          index: false
+          required: false
+        - name: "mediaItems"
+          type: "relationship"
+          relationTo: "media"
+          hasMany: true
+          index: false
+          required: false
+      hooks:
+        beforeChange:
+          - "Sanitize HTML/JSON content để chống XSS (dompurify/Lexical validator)"
+          - "Phân tách hashtag từ content, upsert Tag documents, gán IDs vào tags[]"
+        afterChange:
+          - "Cập nhật rankingScore async sau khi post thay đổi trạng thái/tương tác"
+      access:
+        create: ["member"]
+        read: ["member", "public"]
+        update: ["owner", "admin"]
+        delete: ["owner", "admin"]
+
+    - slug: "media"
+      type: "aggregate"
+      fields:
+        - name: "filename"
+          type: "text"
+          index: false
+          required: true
+        - name: "mimeType"
+          type: "text"
+          index: false
+          required: true
+        - name: "filesize"
+          type: "number"
+          index: false
+          required: true
+        - name: "url"
+          type: "text"
+          index: false
+          required: true
+        - name: "createdAt"
+          type: "date"
+          index: false
+          required: true
+        - name: "updatedAt"
+          type: "date"
+          index: false
+          required: true
+      hooks: {}
+      access:
+        create: ["member"]
+        read: ["public"]
+        update: ["owner", "admin"]
+        delete: ["owner", "admin"]
+
+    - slug: "tags"
+      type: "aggregate"
+      fields:
+        - name: "name"
+          type: "text"
+          index: true
+          required: true
+        - name: "slug"
+          type: "text"
+          index: true
+          required: true
+        - name: "createdAt"
+          type: "date"
+          index: false
+          required: true
+      hooks:
+        beforeChange:
+          - "Convert name -> slug (lowercase, remove special chars)"
+      access:
+        create: ["system"]
+        read: ["public"]
+        update: ["admin"]
+        delete: ["admin"]

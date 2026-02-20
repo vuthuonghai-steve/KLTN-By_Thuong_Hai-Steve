@@ -1,0 +1,126 @@
+schema:
+  module: "M6"
+  collections:
+    - slug: "notifications"
+      type: "aggregate"
+      fields:
+        - name: "recipientId"
+          type: "relationship"
+          relationTo: "users"
+          index: true
+          required: true
+        - name: "actorId"
+          type: "relationship"
+          relationTo: "users"
+          index: false
+          required: false
+        - name: "type"
+          type: "select"
+          index: true
+          required: true
+        - name: "entityType"
+          type: "select"
+          index: false
+          required: true
+        - name: "entityId"
+          type: "text"
+          index: true
+          required: false
+        - name: "isRead"
+          type: "checkbox"
+          index: true
+          required: true
+        - name: "readAt"
+          type: "date"
+          index: false
+          required: false
+        - name: "createdAt"
+          type: "date"
+          index: true
+          required: true
+      hooks:
+        afterChange:
+          - "Sau khi tạo Notification, dispatch event qua SSE stream đến recipientId"
+      access:
+        create: ["system"]
+        read: ["recipient"]
+        update: ["recipient"]
+        delete: ["system"]
+
+    - slug: "reports"
+      type: "aggregate"
+      fields:
+        - name: "reporterId"
+          type: "relationship"
+          relationTo: "users"
+          index: true
+          required: true
+        - name: "targetType"
+          type: "select"
+          index: true
+          required: true
+        - name: "targetId"
+          type: "text"
+          index: true
+          required: true
+        - name: "reason"
+          type: "text"
+          index: false
+          required: true
+        - name: "status"
+          type: "select"
+          index: true
+          required: true
+        - name: "resolvedBy"
+          type: "relationship"
+          relationTo: "users"
+          index: false
+          required: false
+        - name: "resolvedAt"
+          type: "date"
+          index: false
+          required: false
+        - name: "createdAt"
+          type: "date"
+          index: true
+          required: true
+      hooks:
+        afterChange:
+          - "Mỗi thay đổi status Report tạo AuditLog record"
+      access:
+        create: ["member"]
+        read: ["admin", "reporter"]
+        update: ["admin"]
+        delete: []
+
+    - slug: "auditLogs"
+      type: "aggregate"
+      fields:
+        - name: "reportId"
+          type: "relationship"
+          relationTo: "reports"
+          index: true
+          required: true
+        - name: "adminId"
+          type: "relationship"
+          relationTo: "users"
+          index: true
+          required: true
+        - name: "action"
+          type: "select"
+          index: false
+          required: true
+        - name: "reason"
+          type: "text"
+          index: false
+          required: true
+        - name: "createdAt"
+          type: "date"
+          index: true
+          required: true
+      hooks: {}
+      access:
+        create: ["system"]
+        read: ["admin"]
+        update: []
+        delete: []

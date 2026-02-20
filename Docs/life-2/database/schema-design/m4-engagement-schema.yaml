@@ -1,0 +1,142 @@
+schema:
+  module: "M4"
+  collections:
+    - slug: "comments"
+      type: "aggregate"
+      fields:
+        - name: "postId"
+          type: "relationship"
+          relationTo: "posts"
+          index: true
+          required: true
+        - name: "authorId"
+          type: "relationship"
+          relationTo: "users"
+          index: true
+          required: true
+        - name: "parentCommentId"
+          type: "relationship"
+          relationTo: "comments"
+          index: true
+          required: false
+        - name: "content"
+          type: "text"
+          index: false
+          required: true
+        - name: "status"
+          type: "select"
+          index: true
+          required: true
+        - name: "createdAt"
+          type: "date"
+          index: true
+          required: true
+        - name: "updatedAt"
+          type: "date"
+          index: false
+          required: true
+      hooks:
+        beforeChange:
+          - "Kiểm tra từ cấm, sanitize nội dung comment"
+        afterChange:
+          - "Cập nhật posts.commentsCount (Computed Pattern)"
+          - "Gọi M6 notification service khi có comment mới"
+      access:
+        create: ["member"]
+        read: ["member", "public"]
+        update: ["owner"]
+        delete: ["owner", "admin"]
+
+    - slug: "likes"
+      type: "aggregate"
+      fields:
+        - name: "postId"
+          type: "relationship"
+          relationTo: "posts"
+          index: true
+          required: true
+        - name: "userId"
+          type: "relationship"
+          relationTo: "users"
+          index: true
+          required: true
+        - name: "createdAt"
+          type: "date"
+          index: true
+          required: true
+      hooks:
+        afterChange:
+          - "Cập nhật posts.likesCount — Tăng khi create, Giảm khi delete (toggle)"
+          - "Gọi M6 notification service khi có like mới"
+      access:
+        create: ["member"]
+        read: ["member"]
+        update: []
+        delete: ["owner"]
+
+    - slug: "connections"
+      type: "aggregate"
+      fields:
+        - name: "followerId"
+          type: "relationship"
+          relationTo: "users"
+          index: true
+          required: true
+        - name: "followingId"
+          type: "relationship"
+          relationTo: "users"
+          index: true
+          required: true
+        - name: "status"
+          type: "select"
+          index: false
+          required: true
+        - name: "createdAt"
+          type: "date"
+          index: true
+          required: true
+      hooks:
+        afterChange:
+          - "Cập nhật users.followerCount của followingId"
+          - "Cập nhật users.followingCount của followerId"
+          - "Gọi M6 notification service khi có follow mới"
+      access:
+        create: ["member"]
+        read: ["member"]
+        update: []
+        delete: ["owner"]
+
+    - slug: "shares"
+      type: "aggregate"
+      fields:
+        - name: "postId"
+          type: "relationship"
+          relationTo: "posts"
+          index: true
+          required: true
+        - name: "userId"
+          type: "relationship"
+          relationTo: "users"
+          index: true
+          required: true
+        - name: "shareType"
+          type: "select"
+          index: true
+          required: true
+        - name: "sharedPostId"
+          type: "relationship"
+          relationTo: "posts"
+          index: false
+          required: false
+        - name: "createdAt"
+          type: "date"
+          index: true
+          required: true
+      hooks:
+        afterChange:
+          - "Cập nhật posts.sharesCount (Computed Pattern) — áp dụng cho cả copy_link và repost"
+      access:
+        create: ["member"]
+        read: ["public"]
+        update: []
+        delete: ["owner", "admin"]

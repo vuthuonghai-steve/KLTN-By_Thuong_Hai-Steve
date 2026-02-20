@@ -1,0 +1,66 @@
+schema:
+  module: "M5"
+  collections:
+    - slug: "bookmarkCollections"
+      type: "aggregate"
+      fields:
+        - name: "ownerId"
+          type: "relationship"
+          relationTo: "users"
+          index: true
+          required: true
+        - name: "name"
+          type: "text"
+          index: true
+          required: true
+        - name: "isDefault"
+          type: "checkbox"
+          index: false
+          required: true
+        - name: "createdAt"
+          type: "date"
+          index: true
+          required: true
+        - name: "updatedAt"
+          type: "date"
+          index: false
+          required: true
+      hooks:
+        beforeChange:
+          - "Đảm bảo mỗi user chỉ có 1 collection với isDefault=true"
+      access:
+        create: ["member"]
+        read: ["owner"]
+        update: ["owner"]
+        delete: ["owner"]
+
+    - slug: "bookmarks"
+      type: "aggregate"
+      fields:
+        - name: "userId"
+          type: "relationship"
+          relationTo: "users"
+          index: true
+          required: true
+        - name: "postId"
+          type: "relationship"
+          relationTo: "posts"
+          index: true
+          required: true
+        - name: "collectionId"
+          type: "relationship"
+          relationTo: "bookmark-collections"
+          index: true
+          required: true
+        - name: "savedAt"
+          type: "date"
+          index: true
+          required: true
+      hooks:
+        beforeChange:
+          - "Kiểm tra (userId, postId) chưa tồn tại trước khi tạo — enforce unique constraint"
+      access:
+        create: ["member"]
+        read: ["owner"]
+        update: []
+        delete: ["owner"]
