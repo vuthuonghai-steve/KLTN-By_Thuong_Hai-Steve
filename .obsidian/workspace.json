@@ -186,6 +186,12 @@
   },
   "active": "a1408c75faaf2a87",
   "lastOpenFiles": [
+    "Docs/life-2/diagrams/class-diagrams/m6-notifications-moderation",
+    "Docs/life-2/diagrams/class-diagrams/m5-bookmarking",
+    "Docs/life-2/diagrams/class-diagrams/m4-engagement",
+    "Docs/life-2/diagrams/class-diagrams/m3-discovery-feed",
+    "Docs/life-2/diagrams/class-diagrams/m2-content-engine",
+    "Docs/life-2/diagrams/class-diagrams/m1-auth-profile",
     "prompt.md",
     "Docs/life-2/diagrams/UseCase/use-case-diagram.md",
     "Docs/life-2/diagrams/flow/flow-user-follow.md",
@@ -215,12 +221,6 @@
     "task-planner/assets/templates",
     "task-planner/assets",
     "task-planner/SKILL.md",
-    "task-planner",
-    "skill-planner/loop/plan-checklist.md",
-    "skill-planner/loop",
-    "skill-planner/knowledge/skill-packaging.md",
-    "skill-planner/knowledge",
-    "skill-planner",
-    "skill-creator/scripts/__pycache__/quick_validate.cpython-312.pyc"
+    "skill-planner/loop/plan-checklist.md"
   ]
 }

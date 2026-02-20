@@ -57,7 +57,7 @@
 ### Phase 1: Foundation — Cấu trúc thư mục
 > **Điều kiện khởi động**: Phase 0 hoàn thành (resources/ đã được nạp đủ 3 files).
 
-- [ ] **Task 1.1**: Tạo cấu trúc thư mục đầy đủ theo design.md §3 và §4:
+- [x] **Task 1.1**: Tạo cấu trúc thư mục đầy đủ theo design.md §3 và §4:
   ```
   .agent/skills/class-diagram-analyst/
   ├── SKILL.md
@@ -70,7 +70,7 @@
   ```
   [TỪ DESIGN §3, §4]
 
-- [ ] **Task 1.2**: Tạo `data/module-map.yaml` — map đầy đủ 6 modules → entities, lấy từ Appendix A của design.md. Cấu trúc: `M1: {name: "Auth & Profile", entities: [users]}, M2: {entities: [posts, media, tags, post_tags, post_media]}, ...`.
+- [x] **Task 1.2**: Tạo `data/module-map.yaml` — map đầy đủ 6 modules → entities, lấy từ Appendix A của design.md. Cấu trúc: `M1: {name: "Auth & Profile", entities: [users]}, M2: {entities: [posts, media, tags, post_tags, post_media]}, ...`.
   - Ghi chú đặc biệt: **M3 = `FeedQuery` value object** (không phải Root, không có collection riêng — chắt theo Q4 Option B). Module-map phải có field `type: value_object` cho M3.
   - `post_tags` và `post_media`: **Embedded trong Post** (chắt theo Q5), ghi `embed_in: posts` trong module-map.
   - `shares`: provisional `[ASSUMPTION]`.
@@ -78,7 +78,7 @@
 
 - [x] **Task 1.3**: Tạo `data/default-types.json` — **built-in defaults bundled trong skill**, đảm bảo skill hoạt động độc lập khi không có `shared-types.json`. Nội dung: `allowed_field_types`, `mermaid_type_map`, `aggregate_root_patterns`, `access_control_actors`, `lifecycle_hooks`. ✅ Đã tạo tại `.agent/skills/class-diagram-analyst/data/default-types.json`. [GỢI Ý BỔ SUNG] [CHỐT Q6-SHARED]
 
-- [ ] **Task 1.4**: Tạo `scripts/type_resolver.py` — **Type Resolver với 3-layer fallback**: (độc lập với mọi project)
+- [x] **Task 1.4**: Tạo `scripts/type_resolver.py` — **Type Resolver với 3-layer fallback**: (độc lập với mọi project)
   ```
   Layer 1 (Project-override): {project_root}/data/project-types.json   ← do từng dự án tự định nghĩa
   Layer 2 (Shared-KLTN):      .skill-context/shared/shared-types.json  ← KLTN-specific
@@ -93,9 +93,9 @@
 ### Phase 2: Core — SKILL.md
 > **Điều kiện**: Phase 1 hoàn thành.
 
-- [ ] **Task 2.1**: Viết `SKILL.md` — Persona: **"Class Structure Analyst"** — Tôi là chuyên gia phân tích cấu trúc class diagram theo chuẩn dual-format (Mermaid + YAML Contract) cho PayloadCMS / MongoDB. Tôi KHÔNG bao giờ tự bịa field mà không có `source:` citation. [TỪ DESIGN §2.1 Persona, §2.3 Guardrails]
+- [x] **Task 2.1**: Viết `SKILL.md` — Persona: **"Class Structure Analyst"** — Tôi là chuyên gia phân tích cấu trúc class diagram theo chuẩn dual-format (Mermaid + YAML Contract) cho PayloadCMS / MongoDB. Tôi KHÔNG bao giờ tự bịa field mà không có `source:` citation. [TỪ DESIGN §2.1 Persona, §2.3 Guardrails]
 
-- [ ] **Task 2.2**: Viết **Mandatory Boot Sequence** vào SKILL.md — liệt kê 5 files bắt buộc đọc khi khởi động theo design.md §7 (Progressive Disclosure Tầng 1):
+- [x] **Task 2.2**: Viết **Mandatory Boot Sequence** vào SKILL.md — liệt kê 5 files bắt buộc đọc khi khởi động theo design.md §7 (Progressive Disclosure Tầng 1):
   1. `SKILL.md` — luôn đầu tiên
   2. `knowledge/payload-types.md` — field type whitelist
   3. `knowledge/mongodb-patterns.md` — Aggregate Root rules
@@ -103,37 +103,37 @@
   5. `loop/checklist.md` — validation rules
   [TỪ DESIGN §7 Tầng 1]
 
-- [ ] **Task 2.3**: Viết **Phase 0 — Input Resolution** vào SKILL.md — xử lý 5 loại input (§0.1), Input Resolution Flowchart (§0.2), File Context Rules (§0.3), và IP0 Gate (§0.4). Builder phải implement đầy đủ IP0 logic (phân loại input trước khi làm bất cứ điều gì khác). [TỪ DESIGN §0]
+- [x] **Task 2.3**: Viết **Phase 0 — Input Resolution** vào SKILL.md — xử lý 5 loại input (§0.1), Input Resolution Flowchart (§0.2), File Context Rules (§0.3), và IP0 Gate (§0.4). Builder phải implement đầy đủ IP0 logic (phân loại input trước khi làm bất cứ điều gì khác). [TỪ DESIGN §0]
 
-- [ ] **Task 2.4**: Viết **Phase A → Phase F** vào SKILL.md — 6 phases với đầy đủ trigger, action, và gate conditions. Mỗi phase phải có: (a) điều kiện đầu vào (input), (b) action tường minh, (c) điều kiện chuyển phase. Đặc biệt chú ý gating: IP1 sau Phase C, IP2 sau Phase D, IP3 sau Phase F. [TỪ DESIGN §2.2, §5.1, §5.2]
+- [x] **Task 2.4**: Viết **Phase A → Phase F** vào SKILL.md — 6 phases với đầy đủ trigger, action, và gate conditions. Mỗi phase phải có: (a) điều kiện đầu vào (input), (b) action tường minh, (c) điều kiện chuyển phase. Đặc biệt chú ý gating: IP1 sau Phase C, IP2 sau Phase D, IP3 sau Phase F. [TỪ DESIGN §2.2, §5.1, §5.2]
 
-- [ ] **Task 2.5**: Viết **7 Guardrails** vào SKILL.md — compile từ design.md §2.3, đảm bảo mỗi guardrail có: (a) rule rõ ràng, (b) hành động vi phạm, (c) consequence (BLOCK hoặc Alert). [TỪ DESIGN §2.3]
+- [x] **Task 2.5**: Viết **7 Guardrails** vào SKILL.md — compile từ design.md §2.3, đảm bảo mỗi guardrail có: (a) rule rõ ràng, (b) hành động vi phạm, (c) consequence (BLOCK hoặc Alert). [TỪ DESIGN §2.3]
 
-- [ ] **Task 2.6**: Viết **Interaction Points specification** vào SKILL.md — IP0, IP1, IP2, IP3 theo design.md §6. Mỗi IP phải ghi rõ: thời điểm kích hoạt, nội dung trình bày cho user, và hành động kế tiếp theo từng kết quả (confirm/adjust). Bổ sung rule bất biến: "Không bỏ qua Interaction Point". [TỪ DESIGN §6]
+- [x] **Task 2.6**: Viết **Interaction Points specification** vào SKILL.md — IP0, IP1, IP2, IP3 theo design.md §6. Mỗi IP phải ghi rõ: thời điểm kích hoạt, nội dung trình bày cho user, và hành động kế tiếp theo từng kết quả (confirm/adjust). Bổ sung rule bất biến: "Không bỏ qua Interaction Point". [TỪ DESIGN §6]
 
 ---
 
 ### Phase 3: Knowledge — Tầng tri thức
 > **Điều kiện**: Phase 2 hoàn thành. Resources/ đã được nạp ở Phase 0.
 
-- [ ] **Task 3.1**: Tạo `knowledge/payload-types.md` — **Transform 100%** nội dung từ `resources/payload-types.md`. File phải bao gồm: (a) bảng field types whitelist kèm ký hiệu Mermaid tương đương, (b) constraint rules (unique, indexed, required), (c) ví dụ YAML Contract snippet cho từng type. Không được tóm tắt hoặc lược bỏ. [TỪ DESIGN §3 knowledge/]
+- [x] **Task 3.1**: Tạo `knowledge/payload-types.md` — **Transform 100%** nội dung từ `resources/payload-types.md`. File phải bao gồm: (a) bảng field types whitelist kèm ký hiệu Mermaid tương đương, (b) constraint rules (unique, indexed, required), (c) ví dụ YAML Contract snippet cho từng type. Không được tóm tắt hoặc lược bỏ. [TỪ DESIGN §3 knowledge/]
 
-- [ ] **Task 3.2**: Tạo `knowledge/mermaid-rules.md` — **Transform 100%** nội dung từ `resources/mermaid-rules.md`. File phải bao gồm: (a) classDiagram declaration syntax, (b) visibility modifiers (`+`, `-`, `#`, `~`), (c) relationship arrows và ý nghĩa từng loại, (d) stereotype labels, (e) danh sách syntax PHẢI TRÁNH (unsupported). [TỪ DESIGN §3 knowledge/]
+- [x] **Task 3.2**: Tạo `knowledge/mermaid-rules.md` — **Transform 100%** nội dung từ `resources/mermaid-rules.md`. File phải bao gồm: (a) classDiagram declaration syntax, (b) visibility modifiers (`+`, `-`, `#`, `~`), (c) relationship arrows và ý nghĩa từng loại, (d) stereotype labels, (e) danh sách syntax PHẢI TRÁNH (unsupported). [TỪ DESIGN §3 knowledge/]
 
-- [ ] **Task 3.3**: Tạo `knowledge/mongodb-patterns.md` — **Transform 100%** nội dung từ `resources/mongodb-patterns.md`. File phải bao gồm: (a) Decision Tree đầy đủ 4 câu hỏi (y/n) để phân loại Root vs Embedded, (b) khi nào dùng Computed Pattern (counter denormalization), (c) Polymorphic Pattern với ví dụ từ `notifications` entity. [TỪ DESIGN §3 knowledge/]
+- [x] **Task 3.3**: Tạo `knowledge/mongodb-patterns.md` — **Transform 100%** nội dung từ `resources/mongodb-patterns.md`. File phải bao gồm: (a) Decision Tree đầy đủ 4 câu hỏi (y/n) để phân loại Root vs Embedded, (b) khi nào dùng Computed Pattern (counter denormalization), (c) Polymorphic Pattern với ví dụ từ `notifications` entity. [TỪ DESIGN §3 knowledge/]
 
 ---
 
 ### Phase 4: Scripts — Công cụ tự động
 > **Điều kiện**: Phase 3 hoàn thành.
 
-- [ ] **Task 4.1**: Tạo `scripts/extract_entities.py` — script nhận `--module M1` (hoặc tên module), đọc `data/module-map.yaml` để lấy entity list, sau đó parse `er-diagram.md` để extract đầy đủ: entity name, fields (name + type + constraints), relationships. **Dùng `re` module (built-in Python)** để parse Markdown — không cần install thư viện ngoài. **Import `type_resolver.resolve_types()`** để lấy allowed types. Output: JSON hoặc YAML stdout. [TỪ DESIGN §4 scripts/extract_entities.py] [CHỐT SCRIPT] [PORTABLE]
+- [x] **Task 4.1**: Tạo `scripts/extract_entities.py` — script nhận `--module M1` (hoặc tên module), đọc `data/module-map.yaml` để lấy entity list, sau đó parse `er-diagram.md` để extract đầy đủ: entity name, fields (name + type + constraints), relationships. **Dùng `re` module (built-in Python)** để parse Markdown — không cần install thư viện ngoài. **Import `type_resolver.resolve_types()`** để lấy allowed types. Output: JSON hoặc YAML stdout. [TỪ DESIGN §4 scripts/extract_entities.py] [CHỐT SCRIPT] [PORTABLE]
 
-- [ ] **Task 4.2**: Tạo `scripts/validate_contract.py` — script nhận đường dẫn YAML Contract + tùy chọn `--project-root`. **Import `type_resolver.resolve_types(project_root)`** để lấy whitelist — hoạt động ở mọi project. Kiểm tra 3 điều kiện: (a) mọi field có `source:` không rỗng, (b) field type nằm trong whitelist, (c) không có duplicate `slug`. **Dùng `PyYAML`**. Output: PASS/FAIL + violations. [TỪ DESIGN §4] [CHỐT SCRIPT] [PORTABLE]
+- [x] **Task 4.2**: Tạo `scripts/validate_contract.py` — script nhận đường dẫn YAML Contract + tùy chọn `--project-root`. **Import `type_resolver.resolve_types(project_root)`** để lấy whitelist — hoạt động ở mọi project. Kiểm tra 3 điều kiện: (a) mọi field có `source:` không rỗng, (b) field type nằm trong whitelist, (c) không có duplicate `slug`. **Dùng `PyYAML`**. Output: PASS/FAIL + violations. [TỪ DESIGN §4] [CHỐT SCRIPT] [PORTABLE]
 
-- [ ] **Task 4.3**: Tạo `scripts/generate_yaml.py` — script đọc `class-mX.md` (Mermaid + Traceability Table) và convert sang YAML Contract format theo `templates/contract.yaml.template`. **Dùng `PyYAML`** (`yaml.dump()`) để serialize output — đảm bảo `default_flow_style=False` để giữ block style. Ghi header comment `⚠️ LOCKED CONTRACT`. [TỪ DESIGN §4 scripts/generate_yaml.py, Appendix B] [CHỐT SCRIPT]
+- [x] **Task 4.3**: Tạo `scripts/generate_yaml.py` — script đọc `class-mX.md` (Mermaid + Traceability Table) và convert sang YAML Contract format theo `templates/contract.yaml.template`. **Dùng `PyYAML`** (`yaml.dump()`) để serialize output — đảm bảo `default_flow_style=False` để giữ block style. Ghi header comment `⚠️ LOCKED CONTRACT`. [TỪ DESIGN §4 scripts/generate_yaml.py, Appendix B] [CHỐT SCRIPT]
 
-- [ ] **Task 4.4**: Thêm `scripts/requirements.txt` — liệt kê dependency cần thiết:
+- [x] **Task 4.4**: Thêm `scripts/requirements.txt` — liệt kê dependency cần thiết:
   ```
   pyyaml>=6.0
   ```
@@ -144,31 +144,31 @@
 ### Phase 5: Templates — Khuôn mẫu output
 > **Điều kiện**: Phase 4 hoàn thành (scripts/ đã có).
 
-- [ ] **Task 5.1**: Tạo `templates/class-module.md.template` — template đầy đủ cho file Markdown output, gồm: (a) Mermaid `classDiagram` block với placeholder entities, (b) Traceability Table (field → source citation → assumption flag), (c) Assumption Register section. Template phải có placeholder markers rõ ràng (e.g., `{{MODULE_NAME}}`, `{{ENTITY_SLUG}}`). [TỪ DESIGN §4 templates/, Appendix B]
+- [x] **Task 5.1**: Tạo `templates/class-module.md.template` — template đầy đủ cho file Markdown output, gồm: (a) Mermaid `classDiagram` block với placeholder entities, (b) Traceability Table (field → source citation → assumption flag), (c) Assumption Register section. Template phải có placeholder markers rõ ràng (e.g., `{{MODULE_NAME}}`, `{{ENTITY_SLUG}}`). [TỪ DESIGN §4 templates/, Appendix B]
 
-- [ ] **Task 5.2**: Tạo `templates/contract.yaml.template` — template YAML Contract theo format chuẩn trong design.md Appendix B §YAML Contract Format. Bao gồm đầy đủ: `meta`, `entities`, `behaviors`, `access_control`, `validation_report`. [TỪ DESIGN §4 templates/, Appendix B]
+- [x] **Task 5.2**: Tạo `templates/contract.yaml.template` — template YAML Contract theo format chuẩn trong design.md Appendix B §YAML Contract Format. Bao gồm đầy đủ: `meta`, `entities`, `behaviors`, `access_control`, `validation_report`. [TỪ DESIGN §4 templates/, Appendix B]
 
 ---
 
 ### Phase 6: Loop — Kiểm soát chất lượng
 > **Điều kiện**: Phase 5 hoàn thành.
 
-- [ ] **Task 6.1**: Tạo `loop/checklist.md` — danh sách validation rule cho Builder tự kiểm tra sau mỗi entity. Gồm: (a) Per-field citation check, (b) Type validity check (đối chiếu allowed-types.json), (c) No duplicate slug, (d) Aggregate Root phân loại đúng decision tree, (e) YAML Contract header có "LOCKED" comment. [TỪ DESIGN §3 loop/, §2.3]
+- [x] **Task 6.1**: Tạo `loop/checklist.md` — danh sách validation rule cho Builder tự kiểm tra sau mỗi entity. Gồm: (a) Per-field citation check, (b) Type validity check (đối chiếu allowed-types.json), (c) No duplicate slug, (d) Aggregate Root phân loại đúng decision tree, (e) YAML Contract header có "LOCKED" comment. [TỪ DESIGN §3 loop/, §2.3]
 
-- [ ] **Task 6.2**: Tạo `loop/phase-verify.md` — checklist per-phase cho Builder verify sau mỗi trong 7 phases (Phase 0→F). Mỗi phase có checkbox riêng: "Phase A done? → entity list extracted", "IP1 confirmed? → user approved", v.v. [TỪ DESIGN §3 loop/, §4 loop/phase-verify.md]
+- [x] **Task 6.2**: Tạo `loop/phase-verify.md` — checklist per-phase cho Builder verify sau mỗi trong 7 phases (Phase 0→F). Mỗi phase có checkbox riêng: "Phase A done? → entity list extracted", "IP1 confirmed? → user approved", v.v. [TỪ DESIGN §3 loop/, §4 loop/phase-verify.md]
 
-- [ ] **Task 6.3**: Tạo `loop/test-cases/m1-test.md` — test case cụ thể cho Module M1 (Auth & Profile): (a) Input mẫu "Vẽ class diagram M1", (b) Expected entity list (users với các fields từ ER), (c) Expected YAML Contract snippet, (d) Expected Mermaid output snippet. [TỪ DESIGN §3 loop/test-cases/]
+- [x] **Task 6.3**: Tạo `loop/test-cases/m1-test.md` — test case cụ thể cho Module M1 (Auth & Profile): (a) Input mẫu "Vẽ class diagram M1", (b) Expected entity list (users với các fields từ ER), (c) Expected YAML Contract snippet, (d) Expected Mermaid output snippet. [TỪ DESIGN §3 loop/test-cases/]
 
-- [ ] **Task 6.4**: Tạo `loop/test-cases/validate-contract-test.md` — test case cho validate_contract.py: (a) YAML hợp lệ → expected PASS, (b) YAML có field thiếu source → expected FAIL with violation list, (c) YAML có type không hợp lệ → expected FAIL. [TỪ DESIGN §3 loop/test-cases/]
+- [x] **Task 6.4**: Tạo `loop/test-cases/validate-contract-test.md` — test case cho validate_contract.py: (a) YAML hợp lệ → expected PASS, (b) YAML có field thiếu source → expected FAIL with violation list, (c) YAML có type không hợp lệ → expected FAIL. [TỪ DESIGN §3 loop/test-cases/]
 
 ---
 
 ### Phase 7: Index & Output Setup — Chuẩn bị output directory
 > **Điều kiện**: Phase 6 hoàn thành.
 
-- [ ] **Task 7.1**: Tạo `Docs/life-2/diagrams/class-diagrams/index.md` theo format chuẩn Appendix B §index.md Routing Table. Tất cả modules (M1→M6) đều ở trạng thái `⏳ Pending`. [TỪ DESIGN Appendix B]
+- [x] **Task 7.1**: Tạo `Docs/life-2/diagrams/class-diagrams/index.md` theo format chuẩn Appendix B §index.md Routing Table. Tất cả modules (M1→M6) đều ở trạng thái `⏳ Pending`. [TỪ DESIGN Appendix B]
 
-- [ ] **Task 7.2**: Tạo thư mục output per-module: `m1-auth-profile/`, `m2-content-engine/`, `m3-discovery-feed/`, `m4-engagement/`, `m5-bookmarking/`, `m6-notifications-moderation/`. Mỗi thư mục có file placeholder `.gitkeep` hoặc README ngắn mô tả mục đích. [TỪ DESIGN Appendix B]
+- [x] **Task 7.2**: Tạo thư mục output per-module: `m1-auth-profile/`, `m2-content-engine/`, `m3-discovery-feed/`, `m4-engagement/`, `m5-bookmarking/`, `m6-notifications-moderation/`. Mỗi thư mục có file placeholder `.gitkeep` hoặc README ngắn mô tả mục đích. [TỪ DESIGN Appendix B]
 
 ---
 
