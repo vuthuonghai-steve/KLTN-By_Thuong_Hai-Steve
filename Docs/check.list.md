@@ -72,7 +72,7 @@ Mọi mục map với tài liệu trong `Docs/` theo `lifecycle-checklist-and-fo
 - [X] **2.1** Sơ đồ quan hệ thực thể (ER) → `Docs/life-2/diagrams/er-diagram.md`
 - [X] **2.2** Sơ đồ Use Case → `Docs/life-2/diagrams/use-case-diagram.md`
 - [X] **2.3** Sơ đồ tuần tự (Sequence) → `Docs/life-2/diagrams/sequence-diagram.md` (Đã có M1, M2, M3, M5)
-- [ ] **2.4** Sơ đồ luồng (Flow) → `Docs/life-2/diagrams/flow-diagram.md`
+- [X] **2.4** Sơ đồ luồng (Flow) → `Docs/life-2/diagrams/flow-diagram.md`
 - [ ] **2.5** Sơ đồ lớp (Class) → `Docs/life-2/diagrams/class-diagram.md` (Gộp trong database/schema-design.md)
 - [ ] **2.6** Thiết kế Database chi tiết → `Docs/life-2/database/schema-design.md`
 - [ ] **2.7** Thiết kế khung giao diện UI

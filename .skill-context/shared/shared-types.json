@@ -1,0 +1,99 @@
+{
+  "_comment": "SHARED TYPES — Dùng chung cho Skill 2.5 (class-diagram-analyst) và Skill 2.6 (schema-design-analyst). KHÔNG edit trực tiếp — update qua skill-planner hoặc thảo luận với Steve.",
+  "_version": "1.0.0",
+  "_last_updated": "2026-02-20",
+  "_portability_note": "Đây là Layer 2 (Shared-KLTN) trong chuỗi 3-layer fallback của type_resolver.py. Skill vẫn hoạt động độc lập nếu file này không tồn tại (fallback về data/default-types.json).",
+  "_consumers": [
+    "class-diagram-analyst (Skill 2.5) — validate_contract.py",
+    "schema-design-analyst (Skill 2.6) — validate_schema.py"
+  ],
+
+  "allowed_field_types": [
+    "text",
+    "email",
+    "number",
+    "boolean",
+    "date",
+    "select",
+    "json",
+    "richText",
+    "relationship",
+    "upload",
+    "array",
+    "group",
+    "point",
+    "blocks"
+  ],
+
+  "layout_only_types": {
+    "_comment": "Đây là layout fields — KHÔNG lưu data, KHÔNG dùng trong YAML Contract",
+    "types": ["tabs", "row", "collapsible"]
+  },
+
+  "mermaid_type_map": {
+    "_comment": "Map từ PayloadCMS field type sang ký hiệu trong Mermaid classDiagram",
+    "text": "String",
+    "email": "String",
+    "number": "Number",
+    "boolean": "Boolean",
+    "date": "DateTime",
+    "select": "String",
+    "json": "JSON",
+    "richText": "String",
+    "relationship": "ObjectId",
+    "upload": "ObjectId",
+    "array": "Array",
+    "group": "Object",
+    "point": "Float[]",
+    "blocks": "Array"
+  },
+
+  "aggregate_root_patterns": {
+    "_comment": "Các pattern MongoDB được dùng trong dự án KLTN",
+    "patterns": [
+      "aggregate_root",
+      "embedded_document",
+      "computed_counter",
+      "polymorphic",
+      "unique_compound",
+      "append_only",
+      "value_object"
+    ]
+  },
+
+  "access_control_actors": {
+    "_comment": "Danh sách actors hợp lệ cho access_control trong YAML Contract",
+    "actors": [
+      "anyone",
+      "authenticated",
+      "owner",
+      "admin",
+      "moderator",
+      "system",
+      "nobody"
+    ]
+  },
+
+  "lifecycle_hooks": {
+    "_comment": "Danh sách lifecycle hook hợp lệ trong PayloadCMS",
+    "hooks": [
+      "beforeValidate",
+      "beforeChange",
+      "afterChange",
+      "beforeRead",
+      "afterRead",
+      "beforeDelete",
+      "afterDelete"
+    ]
+  },
+
+  "module_registry": {
+    "_comment": "Registry các module trong dự án KLTN — dùng để validate slug prefix",
+    "M1": { "name": "Auth & Profile", "slug_prefix": "m1" },
+    "M2": { "name": "Content Engine", "slug_prefix": "m2" },
+    "M3": { "name": "Discovery Feed", "slug_prefix": "m3", "type": "value_object" },
+    "M4": { "name": "Engagement & Connections", "slug_prefix": "m4" },
+    "M5": { "name": "Bookmarking", "slug_prefix": "m5" },
+    "M6": { "name": "Notifications & Moderation", "slug_prefix": "m6" }
+  }
+}
