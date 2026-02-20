@@ -93,14 +93,14 @@ Bước 5: VALIDATE    — Kiểm tra: no dangling branch, all paths terminate,
 | Zone | Nội dung | Bắt buộc? |
 |------|----------|-----------|
 | **Core (SKILL.md)** | Persona: Senior BA Analyst, Boot Sequence, Workflow 6 bước (Detect→Discover→Extract→Structure→Generate→Validate), Interaction Gates, Guardrails G1–G6 | ✅ |
-| **knowledge/** | `mermaid-flowchart-guide.md` — Syntax đầy đủ: flowchart TD/LR, subgraph/swimlane, decision diamond, node shapes, styling | ✅ |
-| **knowledge/** | `business-flow-patterns.md` — 3 path patterns (Happy/Alternative/Exception) kèm ví dụ Mermaid đầy đủ | ✅ |
-| **knowledge/** | `actor-lane-taxonomy.md` — Định nghĩa 3 lanes, rules phân chia, ví dụ đúng/sai, liên kết với kiến trúc backend | ✅ |
-| **knowledge/** | `resource-discovery-guide.md` — Hướng dẫn phân tích intent mơ hồ, tìm kiếm tài nguyên trong Docs, keyword mapping strategy | ✅ |
-| **templates/** | `swimlane-flow.mmd` — Khung flowchart 3-lane chuẩn với placeholder `%%ACTION%%`, `%%CONDITION%%`, `%%UC-ID%%` | ✅ |
-| **data/** | `uc-id-registry.yaml` — Registry UC-ID + keyword aliases từ use case diagrams (`Docs/life-2/diagrams/UseCase/`) | ✅ |
-| **loop/** | `flow-checklist.md` — 6 điểm kiểm tra: Lane Discipline, Decision Completeness, Path Termination, Traceability, Assumptions, Mermaid Syntax | ✅ |
-| **scripts/** | `flow_lint.py` — Scan Mermaid code: phát hiện dangling node, missing label, unclosed bracket | 🟡 Optional |
+| **knowledge/** | `knowledge/mermaid-flowchart-guide.md` — Syntax đầy đủ: flowchart TD/LR, subgraph/swimlane, decision diamond, node shapes, styling | ✅ |
+| **knowledge/** | `knowledge/business-flow-patterns.md` — 3 path patterns (Happy/Alternative/Exception) kèm ví dụ Mermaid đầy đủ | ✅ |
+| **knowledge/** | `knowledge/actor-lane-taxonomy.md` — Định nghĩa 3 lanes, rules phân chia, ví dụ đúng/sai, liên kết với kiến trúc backend | ✅ |
+| **knowledge/** | `knowledge/resource-discovery-guide.md` — Hướng dẫn phân tích intent mơ hồ, tìm kiếm tài nguyên trong Docs, keyword mapping strategy | ✅ |
+| **templates/** | `templates/swimlane-flow.mmd` — Khung flowchart 3-lane chuẩn với placeholder `%%ACTION%%`, `%%CONDITION%%`, `%%UC-ID%%` | ✅ |
+| **data/** | `data/uc-id-registry.yaml` — Registry UC-ID + keyword aliases từ use case diagrams (`Docs/life-2/diagrams/UseCase/`) | ✅ |
+| **loop/** | `loop/flow-checklist.md` — 6 điểm kiểm tra: Lane Discipline, Decision Completeness, Path Termination, Traceability, Assumptions, Mermaid Syntax | ✅ |
+| **scripts/** | `scripts/flow_lint.py` — Scan Mermaid code: phát hiện dangling node, missing label, unclosed bracket | 🟡 Optional |
 
 ---
 

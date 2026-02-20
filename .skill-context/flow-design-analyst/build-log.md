@@ -1,68 +1,149 @@
-# flow-design-analyst — Build Log
+# Build Log — flow-design-analyst Skill
 
-> Date: 2026-02-20
-> Status: 🟡 PLANNING COMPLETE — Ready for Skill Builder
-
----
-
-## 1. Build Session Log
-
-| Thời gian | Hành động | Kết quả |
-|-----------|----------|---------|
-| 2026-02-20 00:16 | Skill Architect khởi động — đọc context ban đầu | Phát hiện design.md cũ có hướng sai (focus NoSQL data diagram) |
-| 2026-02-20 00:25 | Steve làm rõ: skill phục vụ sơ đồ luồng nghiệp vụ (Business Process Flow), không phải data diagram | Xác nhận lại scope |
-| 2026-02-20 00:34 | Phase 1: Collect — Xác định Pain Points (P1-P4), User Context, Expected Outcomes | ✅ Confirmed by Steve |
-| 2026-02-20 00:37 | Phase 2: Analyze — Mapping 3 Pillars, 7 Zones, Risks (R1-R6) | ✅ Confirmed by Steve |
-| 2026-02-20 00:37 | Phase 3: Design — Viết lại hoàn toàn design.md (10 sections, 3 diagrams) | ✅ Complete |
+> **Builder**: Skill Builder (Senior Implementation Engineer)
+> **Build Date**: 2026-02-20
+> **Design Source**: `.skill-context/flow-design-analyst/design.md` (v2026-02-20)
+> **Todo Source**: `.skill-context/flow-design-analyst/todo.md`
+> **Status**: ✅ BUILD COMPLETE
 
 ---
 
-## 2. Files Created / Updated
+## Resource Inventory
 
-| # | File | Mục đích | Status |
-|---|------|---------|--------|
-| 1 | `.skill-context/flow-design-analyst/design.md` | Architecture design hoàn chỉnh 10 sections | ✅ Done |
-| 2 | `.skill-context/flow-design-analyst/build-log.md` | Build session tracking | ✅ Done |
-
----
-
-## 3. Decisions Made During Design
-
-| # | Quyết định | Lý do | Ảnh hưởng |
-|---|-----------|-------|----------|
-| D1 | Scope: Business Process Flow **only**, không làm data/ER diagram | Steve xác nhận tập trung MVP, simplify | Loại bỏ hoàn toàn NoSQL ER/Schema diagram khỏi skill scope |
-| D2 | Swimlane **3 lanes bắt buộc**: User / System / DB | Giúp AI Agent biết chính xác layer nào xử lý logic → sinh code đúng kiến trúc | Templates và knowledge files phải reflect 3-lane structure |
-| D3 | Guardrail **Assumption Mode** thay vì từ chối khi spec thiếu | Spec đang được xây dựng → cần skill hoạt động được ngay cả khi input chưa đầy đủ | Gate 2 kích hoạt Assumption workflow, không block hoàn toàn |
-| D4 | UC-ID gắn vào node labels để đảm bảo traceability | Giúp verify checklist 2.4 và coverage khi chuyển sang Life-3 | `data/uc-id-registry.yaml` trở thành Zone bắt buộc |
-| D5 | Flow > 15 nodes → tách sub-flow | Tránh Mermaid render error với diagram phức tạp (M3 Feed Ranking) | Cần ghi rõ rule này trong SKILL.md |
+| File | Type | Size | Status |
+|------|------|------|--------|
+| `.skill-context/flow-design-analyst/design.md` | Critical | 15.7 KB | ✅ Read |
+| `.skill-context/flow-design-analyst/todo.md` | Critical | ~33 KB | ✅ Read |
+| `.skill-context/flow-design-analyst/resources/mermaid-flowchart-reference.md` | Critical | 8.4 KB | ✅ Read & Transformed |
+| `.skill-context/flow-design-analyst/resources/business-flow-patterns.md` | Critical | 8.1 KB | ✅ Read & Transformed |
+| `.skill-context/flow-design-analyst/resources/actor-lane-taxonomy.md` | Critical | 8.4 KB | ✅ Read & Transformed |
+| `.skill-context/flow-design-analyst/resources/spec-extraction-guide.md` | Critical | 9.3 KB | ✅ Read (Referenced) |
+| `.skill-context/flow-design-analyst/resources/resource-discovery-guide.md` | Critical | 10.4 KB | ✅ Read & Transformed |
+| `Docs/life-2/diagrams/UseCase/use-case-m*.md` (M1–M6) | Critical | ~6 files | ✅ Read for UC registry |
+| `activity-diagram-design-analyst/knowledge/activity-uml-rules.md` | Supportive | 8+ KB | ✅ Referenced for safe label convention |
 
 ---
 
-## 4. Issues Encountered
+## Resource Usage Matrix
 
-| # | Vấn đề | Nguyên nhân | Cách xử lý |
-|---|--------|-----------|-----------|
-| 1 | design.md phiên bản cũ focus sai hướng (NoSQL data diagram) | Context ban đầu từ `prompt.md` về NoSQL schema misleading | Reset hoàn toàn sau khi Steve làm rõ context thực sự |
-| 2 | todo.md phiên bản cũ cũng bị ảnh hưởng theo scope sai | Dependency vào design.md sai | Cần Skill Planner chạy lại sau khi design.md hoàn chỉnh |
-
----
-
-## 5. Final Status
-
-- [x] Design Phase hoàn thành (3/3 phases confirmed by Steve)
-- [x] `design.md` đạt chuẩn 10 sections + 3 Mermaid diagrams
-- [ ] `todo.md` — **cần chạy Skill Planner để điền lại** (phiên bản cũ dựa trên scope sai)
-- [ ] Skill package chưa tạo tại `.agent/skills/flow-design-analyst/`
-- [ ] Knowledge files chưa có
-- [ ] Templates chưa có
-- [ ] Loop checklist chưa có
-- [ ] Scripts chưa có
-- [ ] **Cần làm rõ Q2**: Output gộp hay tách file theo module?
+| Resource File | Priority | Used In Task | Output File(s) | Notes |
+|---|---|---|---|---|
+| `resources/mermaid-flowchart-reference.md` | Critical | Task 3.1 | `knowledge/mermaid-flowchart-guide.md` | Transform 100% — 6 sections, all node shapes, edge types, safe label rules, 3-lane example |
+| `resources/business-flow-patterns.md` | Critical | Task 3.2 | `knowledge/business-flow-patterns.md` | Transform 100% — Happy/Alternative/Exception + combined UC01 example |
+| `resources/actor-lane-taxonomy.md` | Critical | Task 3.3 | `knowledge/actor-lane-taxonomy.md` | Transform 100% — 3-lane defs, 25+ decision table, 3 đúng/sai pairs |
+| `resources/resource-discovery-guide.md` | Critical | Task 3.4 | `knowledge/resource-discovery-guide.md` | Transform 100% — 6 sections, keyword map M1–M6, 3 templates, worked example |
+| `resources/spec-extraction-guide.md` | Critical | Task 2.3, 4.2 | Referenced in SKILL.md Phase 2 description | Used as reference for Phase 2 EXTRACT workflow |
+| `Docs/life-2/diagrams/UseCase/*.md` | Critical | Task 4.2 | `data/uc-id-registry.yaml` | Tổng hợp UC01–UC24, mỗi entry có keywords VI + EN |
+| `activity-uml-rules.md §6` | Supportive | Task 3.1 | `knowledge/mermaid-flowchart-guide.md §4` | Đồng nhất safe label convention với activity skill |
 
 ---
 
-## 6. Next Steps
+## Build Execution Log
 
-1. 🔴 **Làm rõ Q2** (Open Question §9): Output `flow-diagram.md` gộp hay tách theo module?
-2. 🟡 **Chạy Skill Planner** (`skill-planner`) để sinh `todo.md` mới dựa trên `design.md` đã đúng
-3. 🟢 **Chạy Skill Builder** (`skill-builder`) để build skill package tại `.agent/skills/flow-design-analyst/`
+### Phase 2: Foundation ✅ DONE
+
+| Task | Status | Output | Notes |
+|------|--------|--------|-------|
+| Task 2.1 | ✅ Done | Dir structure created | `knowledge/`, `templates/`, `data/`, `loop/`, `scripts/` — 5 folders |
+| Task 2.2 | ✅ Done | `SKILL.md` — Persona + Boot Sequence | 3-file mandatory reads |
+| Task 2.3 | ✅ Done | `SKILL.md` — Workflow 6 Phases + 3 Gates | G6 implemented in Phase 0+1 |
+| Task 2.4 | ✅ Done | `SKILL.md` — Guardrails G1–G6 table | All 6 guardrails included |
+| Task 2.5 | ✅ Done | `SKILL.md` — Output naming + index management | `flow-{business-function}.md` pattern |
+
+### Phase 3: Knowledge Files ✅ DONE
+
+| Task | Status | Output | Fidelity Confirmation |
+|------|--------|--------|----------------------|
+| Task 3.1 | ✅ Done | `knowledge/mermaid-flowchart-guide.md` | **Parity Check**: Resource 5 sections → Knowledge 6 sections (expanded). All node shapes (10), all edge types (8), safe label table, 3-lane complete example |
+| Task 3.2 | ✅ Done | `knowledge/business-flow-patterns.md` | **Parity Check**: 3 patterns + combined. All definitions, keyword lists, Mermaid conventions preserved |
+| Task 3.3 | ✅ Done | `knowledge/actor-lane-taxonomy.md` | **Parity Check**: 3 lane defs, 25+ decision table (exceeded 20+ requirement), 3 đúng/sai pairs with explanations |
+| Task 3.4 | ✅ Done | `knowledge/resource-discovery-guide.md` | **Parity Check**: 7 sections (exceeded 6). Full M1–M6 keyword mapping (24 UC rows), 3 report templates, worked example, file path registry |
+
+### Phase 4: Templates & Data ✅ DONE
+
+| Task | Status | Output | Notes |
+|------|--------|--------|-------|
+| Task 4.1 | ✅ Done | `templates/swimlane-flow.mmd` | Valid Mermaid syntax, 18 named placeholders, detailed comments |
+| Task 4.2 | ✅ Done | `data/uc-id-registry.yaml` | UC01–UC24 (24 entries), keywords VI+EN, spec_file + uc_file absolute paths |
+
+### Phase 5: Loop & Validation ✅ DONE
+
+| Task | Status | Output | Notes |
+|------|--------|--------|-------|
+| Task 5.1 | ✅ Done | `loop/flow-checklist.md` | 6 điểm C1–C6, measurable criteria, fail action per check |
+| Task 5.2 | ✅ Done | `scripts/flow_lint.py` | 4 checks: orphan nodes, incomplete decision, \n in label, unquoted special chars. Exit 0/1 |
+
+---
+
+## Placeholder Density Report
+
+- **Total intentional placeholders**: 18 (in `templates/swimlane-flow.mmd` — intended for template use)
+- **Unresolved content placeholders**: **0** (zero hallucination gaps)
+- **Assessment**: ✅ PASS — Scale 0/10 (well below WARNING threshold of 5)
+
+---
+
+## Validation Result
+
+### Definition of Done
+
+- [x] `resources/` đủ 5 files ✅
+- [x] 7-Zone structure: `knowledge/`, `templates/`, `data/`, `loop/`, `scripts/` ✅
+- [x] `SKILL.md`: Persona, Boot Seq (3 files), 6-Phase Workflow, 3 Gates, G1–G6, Naming ✅
+- [x] `knowledge/mermaid-flowchart-guide.md` — 6 sections, 3-lane example ✅
+- [x] `knowledge/business-flow-patterns.md` — 3 paths + combined ✅
+- [x] `knowledge/actor-lane-taxonomy.md` — 25+ table, 3 pairs ✅
+- [x] `knowledge/resource-discovery-guide.md` — 7 sections, full keyword map, 3 templates, example ✅
+- [x] `templates/swimlane-flow.mmd` — 3-lane + placeholders ✅
+- [x] `data/uc-id-registry.yaml` — UC01–UC24 full ✅
+- [x] `loop/flow-checklist.md` — C1–C6 ✅
+- [x] `scripts/flow_lint.py` — 4 checks ✅
+
+**Status**: 🟢 BUILD COMPLETE — Sẵn sàng smoke test
+**Build completed**: 2026-02-20T01:45:00+07:00
+
+
+## Validation Result (2026-02-20 01:47:00)
+- **Final Status**: FAIL
+- **Errors**: 1
+- **Warnings**: 14
+### Issues Found:
+- [FAILED] [E04] ERROR: SKILL.md missing mandatory section keyword: 'Persona:'
+
+
+## Validation Result (2026-02-20 01:47:30)
+- **Final Status**: FAIL
+- **Errors**: 1
+- **Warnings**: 9
+### Issues Found:
+- [FAILED] [E04] ERROR: SKILL.md missing mandatory section keyword: 'Persona:'
+
+
+## Validation Result (2026-02-20 01:47:49)
+- **Final Status**: FAIL
+- **Errors**: 1
+- **Warnings**: 8
+### Issues Found:
+- [FAILED] [E04] ERROR: SKILL.md missing mandatory section keyword: 'Persona:'
+
+
+## Validation Result (2026-02-20 01:47:58)
+- **Final Status**: FAIL
+- **Errors**: 1
+- **Warnings**: 8
+### Issues Found:
+- [FAILED] [E04] ERROR: SKILL.md missing mandatory section keyword: 'Persona:'
+
+
+## Validation Result (2026-02-20 01:48:38)
+- **Final Status**: FAIL
+- **Errors**: 1
+- **Warnings**: 0
+### Issues Found:
+- [FAILED] [E04] ERROR: SKILL.md missing mandatory section keyword: 'Persona:'
+
+
+## Validation Result (2026-02-20 01:49:50)
+- **Final Status**: PASS
+- **Errors**: 0
+- **Warnings**: 0
