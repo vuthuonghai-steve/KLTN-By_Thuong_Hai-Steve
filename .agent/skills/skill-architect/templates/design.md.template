@@ -7,52 +7,69 @@
 
 ## 1. Problem Statement
 
-<!-- Skill nay giai quyet van de gi? Ai gap van de nay? Tai sao can skill? -->
+<!-- Trả lời 3 câu hỏi: (1) Vấn đề gì? (2) Ai gặp vấn đề này? (3) Tại sao cần skill? -->
+
+**Vấn đề**: ...
+
+**Người dùng**: ...
+
+**Lý do cần skill**: ...
+
+---
 
 ## 2. Capability Map
 
-### 2.1 Tri thuc (Knowledge)
-<!-- Skill can nhung kien thuc, tai lieu tham khao, chuan muc nao? -->
+### 2.1 Tri thức (Knowledge — Pillar 1)
+<!-- Skill cần tri thức gì? Dưới dạng tài liệu nào? -->
 
-### 2.2 Quy trinh (Process)
-<!-- Workflow logic: cac buoc, thu tu, dieu kien re nhanh -->
+### 2.2 Quy trình (Process — Pillar 2)
+<!-- Workflow logic: các bước, thứ tự, điều kiện rẽ nhánh -->
 
-### 2.3 Kiem soat (Guardrails)
-<!-- Can kiem soat gi? Checklist, verify rules, rollback? -->
+### 2.3 Kiểm soát (Guardrails — Pillar 3)
+<!-- AI thường sai ở đâu? Cần kiểm soát gì? Checklist, verify rules? -->
+
+---
 
 ## 3. Zone Mapping
 
-| Zone | Noi dung | Bat buoc? |
-|------|----------|----------|
-| Core (SKILL.md) | <!-- Persona, phases, rules --> | ✅ |
-| Knowledge | <!-- Reference docs, standards --> | |
-| Scripts | <!-- Python/Bash automation --> | |
-| Templates | <!-- Output format templates --> | |
-| Data | <!-- Static config, schema --> | |
-| Loop | <!-- Checklist, verify, tasks --> | |
-| Assets | <!-- Icons, images, fonts --> | |
+> ⚠️ Contract Section — Planner đọc §3 để decompose thành Tasks.
+> Mọi Zone PHẢI có giá trị trong cột "Files cần tạo". Zone không dùng → ghi "Không cần".
+
+| Zone | Files cần tạo | Nội dung | Bắt buộc? |
+|------|--------------|----------|-----------|
+| Core (SKILL.md) | `SKILL.md` | Persona, phases, guardrails | ✅ |
+| Knowledge | <!-- vd: `knowledge/xxx.md` --> | <!-- Mô tả nội dung tri thức --> | |
+| Scripts | <!-- vd: `scripts/xxx.py` hoặc "Không cần" --> | <!-- Mô tả chức năng --> | |
+| Templates | <!-- vd: `templates/output.template` hoặc "Không cần" --> | <!-- Mô tả format --> | |
+| Data | <!-- vd: `data/config.yaml` hoặc "Không cần" --> | <!-- Mô tả cấu hình --> | |
+| Loop | <!-- vd: `loop/checklist.md` hoặc "Không cần" --> | <!-- Checklist, verify rules --> | |
+| Assets | Không cần | N/A | ❌ |
+
+---
 
 ## 4. Folder Structure
 
-<!-- Mermaid Mindmap: cau truc thu muc cua skill -->
+<!-- Mermaid Mindmap: phản ánh CHÍNH XÁC các zones và files đã liệt kê trong §3 -->
 
 ```mermaid
 mindmap
   root(({skill_name}))
     SKILL.md
     knowledge
-      (files...)
+      (file-1.md)
     scripts
-      (files...)
+      (tool.py)
     templates
-      (files...)
+      (output.template)
     loop
-      (files...)
+      (checklist.md)
 ```
+
+---
 
 ## 5. Execution Flow
 
-<!-- Mermaid Sequence hoac Flowchart: luong xu ly cua skill -->
+<!-- Mermaid Sequence: luồng runtime của skill từ khi nhận input đến khi deliver output -->
 
 ```mermaid
 sequenceDiagram
@@ -61,46 +78,69 @@ sequenceDiagram
     participant K as Knowledge Zone
     participant L as Loop Zone
 
-    U->>A: Input
-    A->>A: Doc SKILL.md
-    A->>K: Tham khao knowledge
-    A->>A: Xu ly logic
-    A->>L: Kiem tra checklist
-    A->>U: Tra ket qua
+    U->>A: Input / Trigger
+    A->>A: Đọc SKILL.md (Boot Sequence)
+    A->>K: Tham chiếu knowledge/
+    Note over A,U: [Gate] Interaction Point — xác nhận với user
+    A->>A: Xử lý logic chính
+    A->>L: Self-verify với checklist
+    alt Pass
+        A->>U: Deliver output
+    else Fail
+        L-->>A: Quay lại bước tương ứng
+    end
 ```
+
+---
 
 ## 6. Interaction Points
 
-<!-- Khi nao AI phai dung lai hoi user? Liet ke cac diem tuong tac bat buoc -->
+<!-- Khi nào AI PHẢI dừng lại hỏi user? Liệt kê ít nhất 1 điểm. -->
 
-| # | Thoi diem | Ly do |
-|---|-----------|-------|
-| 1 | <!-- e.g. Sau khi phan tich --> | <!-- e.g. Can xac nhan truoc khi tiep tuc --> |
+| # | Thời điểm | Lý do dừng | Hành động của AI |
+|---|-----------|-----------|-----------------|
+| 1 | <!-- vd: Sau khi phân tích Phase 1 --> | <!-- vd: Cần xác nhận requirements --> | Trình bày summary + chờ confirm |
+| 2 | | | |
+
+---
 
 ## 7. Progressive Disclosure Plan
 
-### Tang 1: Bat buoc doc (Mandatory)
-<!-- Files AI PHAI doc khi skill duoc kich hoat -->
-- SKILL.md
-- <!-- other mandatory files -->
+### Tier 1: Bắt buộc đọc (Mandatory)
+<!-- Files AI PHẢI đọc mỗi khi skill được trigger. Giữ danh sách này ngắn. -->
 
-### Tang 2: Tu quyet dinh (Conditional)
-<!-- Files AI doc khi can, dua tren context -->
-- <!-- optional files -->
+- `SKILL.md`
+- `knowledge/xxx.md` — [lý do bắt buộc]
+
+### Tier 2: Đọc khi cần (Conditional)
+<!-- Files AI đọc dựa trên context cụ thể (khi nào cần thì đọc). -->
+
+- `knowledge/yyy.md` — khi [điều kiện cụ thể]
+- `templates/zzz.template` — khi [điều kiện cụ thể]
+
+---
 
 ## 8. Risks & Blind Spots
 
-<!-- AI thuong sai o dau voi loai cong viec nay? Co rui ro gi? -->
+<!-- AI thường sai ở đâu với loại công việc này? Liệt kê ít nhất 3 risks. -->
 
-| # | Risk | Mitigation |
-|---|------|------------|
-| 1 | <!-- e.g. AI bo qua detail --> | <!-- e.g. Checklist bat buoc --> |
+| # | Risk | Severity | Mitigation |
+|---|------|----------|-----------|
+| 1 | <!-- vd: AI bịa thông tin không có trong resources --> | P0 | <!-- vd: Bắt buộc trace mọi content về source --> |
+| 2 | | | |
+| 3 | | | |
+
+---
 
 ## 9. Open Questions
 
-| # | Cau hoi | Trang thai |
-|---|---------|-----------|
-| 1 | <!-- Cau hoi can tra loi --> | ❓ |
+<!-- Tổng hợp tất cả điểm chưa rõ từ 3 phases. Ghi "Không có" nếu đã giải quyết. -->
+
+| # | Câu hỏi | Nguồn (Phase) | Trạng thái |
+|---|---------|--------------|-----------|
+| 1 | <!-- Câu hỏi cụ thể --> | Phase ? | ❓ Chưa rõ / ✅ Đã giải quyết |
+
+---
 
 ## 10. Metadata
 
@@ -109,3 +149,6 @@ sequenceDiagram
 - **Author**: {author}
 - **Framework**: architect.md v2.0
 - **Status**: 🔵 IN PROGRESS
+- **Handoff Checklist**:
+  - [ ] design.md hoàn thiện (checklist pass)
+  - [ ] Sẵn sàng cho skill-planner

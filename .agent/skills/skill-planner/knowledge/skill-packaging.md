@@ -72,17 +72,18 @@ Cho MỖI Zone trong design.md §3, hỏi 5 câu hỏi sau:
 
 | # | Câu hỏi | Nếu CÓ → Sinh gì? | Ví dụ |
 |---|---------|---------------------|-------|
-| C1 | Kiến thức miền nào cần? | Audit `resources/`. Nếu thiếu sinh **Task soạn thảo**, nếu đủ sinh **Pre-req ✅** | "Soạn thảo tài liệu cấu trúc UML Sequence" |
+| C1 | Kiến thức miền nào cần? | Audit `resources/`. Nếu thiếu sinh **Task soạn thảo** Phase 0, nếu đủ sinh **Pre-req ✅** | "Soạn thảo tài liệu cấu trúc UML Sequence" |
 | C2 | Công cụ/kỹ thuật nào cần? | Pre-req: liệt kê tài liệu kỹ thuật | "Cần tham khảo Mermaid docs" |
-| C3 | Quy trình nào cần chuẩn hóa? | Task: tạo phase/step trong SKILL.md | "Tạo Phase 2: Vẽ diagram" |
-| C4 | Phán đoán nào cần guardrail? | Task: tạo checklist trong loop/ | "Tạo loop/diagram-quality-checklist.md" |
-| C5 | Output nào cần khuôn mẫu? | Task: tạo template trong templates/ | "Tạo templates/sequence.mmd" |
+| C3 | Quy trình nào cần chuẩn hóa? | Task: tạo file `SKILL.md` hoặc các file cụ thể từ §3 (Files cần tạo) Phase 1 / Phase 2 | "Tạo file `knowledge/domain-rules.md` [TỪ DESIGN §3]" |
+| C4 | Phán đoán nào cần guardrail? | Task: tạo checklist. Phải dùng tên file từ §3 (vd `loop/checklist.md`) | "Tạo `loop/diagram-quality-checklist.md` [TỪ DESIGN §3]" |
+| C5 | Output nào cần khuôn mẫu? | Task: tạo template. Phải dùng tên file từ §3 (vd `templates/output.md.template`) | "Tạo `templates/sequence.mmd` [TỪ DESIGN §3]" |
 
 **Quy tắc**:
-- Nếu câu trả lời là "Không cần" → bỏ qua, không sinh entry
-- Mọi entry sinh ra PHẢI có trace tag
-- C1, C2 sinh PRE-REQUISITES (user chuẩn bị)
-- C3, C4, C5 sinh TASKS (builder thực hiện)
+- Các Task được sinh ra cho C3, C4, C5 **PHẢI bám sát cột `Files cần tạo` của thiết kế (design.md §3)**. Nếu §3 ghi tên file gì, Task phải chỉ định rõ yêu cầu tạo file đó.
+- Nếu câu trả lời là "Không cần" trong §3 → bỏ qua, không sinh Task/entry.
+- Mọi entry sinh ra PHẢI có trace tag.
+- C1, C2 sinh PRE-REQUISITES (user chuẩn bị).
+- C3, C4, C5 sinh TASKS (builder thực hiện).
 
 ---
 

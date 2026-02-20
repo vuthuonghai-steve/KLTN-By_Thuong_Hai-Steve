@@ -40,82 +40,67 @@ Read all available input sources and audit current state:
 
 Apply the 3-tier knowledge model from `knowledge/skill-packaging.md`.
 
-For EACH Zone that has content in design.md §3 (Zone Mapping):
+For EACH Zone that has content in **design.md §3 Zone Mapping** (specifically reading the `Files cần tạo` column):
 
 1. **Tier 1 — Domain (THE AUDIT)**: What domain knowledge is needed?
    - **Audit Logic**: Đối chiếu kiến thức cần thiết với "Danh sách tài nguyên hiện có" (từ Step READ).
-   - **Case 1: Đã có đủ** → Ghi Status: `✅` trong Pre-requisites table.
-   - **Case 2: Chưa có hoặc Sơ sài** (ví dụ file rỗng, chỉ có heading) → Ghi Status: `⬜` trong Pre-requisites table **VÀ** sinh một **TASK** trong Phase 1: "Chuẩn bị/Soạn thảo tài liệu domain cho {Topic} tại resources/{topic}.md". [TỪ AUDIT TÀI NGUYÊN]
+   - **Case 1: Đã có đủ** → Ghi Status: `✅`, Tier: `Domain` trong Pre-requisites table.
+   - **Case 2: Chưa có hoặc Sơ sài** → Ghi Status: `⬜` trong Pre-requisites table **VÀ** sinh một **TASK** trong Phase 0: "Chuẩn bị/Soạn thảo tài liệu domain cho {Topic} tại resources/{topic}.md". [TỪ AUDIT TÀI NGUYÊN]
 
 2. **Tier 2 — Technical**: What tools, syntax, or technical skills are needed to implement this zone?
-   - Example: Mermaid syntax, Python scripting, YAML format.
-   - If documentation for these tools is missing → sinh pre-requisite entry.
+   - If documentation for these tools is missing → sinh pre-requisite entry (Tier: `Technical`).
 
-3. **Tier 3 — Packaging**: How to map this into the specific zone of the agent skill? What files to create, what format to follow?
-   - Example: Create `knowledge/uml-standards.md` following progressive disclosure principles.
+3. **Tier 3 — Packaging**: How to map this into the specific zone of the agent skill?
+   - Read `Files cần tạo` from §3. Generate explicit Tasks for Builder to create exactly these files.
 
-For each tier, generate:
-- **Pre-requisite entries**: Knowledge/Resource needed, Status (✅ Found / ⬜ Missing).
-- **Task entries**: Specific implementation steps WITH Resource Acquisition tasks if missing.
-
-Zones marked "Không cần" or empty → SKIP entirely.
-
-Apply the **Conversion Checklist** from skill-packaging.md for each Zone:
-- Domain knowledge needed? → pre-req entry
-- Tools/techniques needed? → pre-req entry
-- Process to standardize? → task for SKILL.md phases
-- Judgment to guard against? → task for loop/ checklist
-- Output format needed? → task for templates/
+Apply the **Conversion Checklist** for specific design sections:
+- **§6 Interaction Points**: Create Tasks to implement templates or prompts for user interaction points.
+- **§7 Progressive Disclosure Plan**: For files listed as Tier 1 (Mandatory) vs Tier 2 (Conditional), create a Task for Builder to document this boot sequence in `SKILL.md`.
+- **§8 Risks & Blind Spots**: Create a Task to build strict `loop/` checklists to mitigate these exact risks.
 
 ## Step WRITE — Ghi todo.md
 
 Write the analysis results to `.skill-context/{skill-name}/todo.md`.
 
-**If todo.md already exists with content**: Ask user — overwrite or append?
-
 The file MUST contain exactly 5 sections:
 
 ```
 ## 1. Pre-requisites
-  Table with columns: #, Knowledge/Resource, Tier (Domain/Technical/Packaging),
-  Purpose, Trace, Status
+  Table with columns: #, Tài liệu / Kiến thức, Tier (Domain/Technical/Packaging), Mục đích, Trace, Status
 
 ## 2. Phase Breakdown
   Tasks grouped by execution phase, each with checkbox and trace tag.
-  Order tasks by dependency (what must be done first).
-  Each task: - [ ] Task description [TỪ DESIGN §N] or [GỢI Ý BỔ SUNG]
-  **High-fidelity Constraint**: For tasks involving Zone Knowledge or Data, use active, high-fidelity verbs such as "Transform 100% of...", "Implement Exhaustively...", or "Generate with high-fidelity...". ALWAYS specify the source section or file from `resources/` (e.g., `From resources/research.md #3.2`).
+  MUST include `Phase 0: Resource Preparation` for missing domain documents.
+  Each task: - [ ] Task description [TỪ DESIGN §N] hoặc [TỪ AUDIT TÀI NGUYÊN]
+  **High-fidelity Constraint**: For tasks involving Zone Knowledge/Data, use active verbs like "Transform 100% of...", specifying source (e.g., `From resources/research.md`).
+  **Zone Contract Constraint**: Explicitly name the files to be created as defined in design.md §3 (Files cần tạo). 
 
 ## 3. Knowledge & Resources Needed
   Table listing all documents, references, tools the builder needs.
 
 ## 4. Definition of Done
-  Checklist of completion criteria.
+  Checklist of completion criteria. Must include checking that all files specified in §3 are created.
 
 ## 5. Notes
   Open questions, things to clarify, supplementary suggestions.
-  Items from design.md that were unclear → mark [CẦN LÀM RÕ]
+  Items from design.md §9 (Open Questions) → migrate here, mark [CẦN LÀM RÕ].
 ```
 
 ### Trace Tag Format
-
 Every item MUST end with a trace tag:
 - `[TỪ DESIGN §N]` — derived directly from design.md section N
 - `[GỢI Ý BỔ SUNG]` — suggested by Planner, not in design.md
-- `[TỪ AUDIT TÀI NGUYÊN]` — generated because a required resource was found missing during audit
-- `[CẦN LÀM RÕ]` — unclear in design.md, needs clarification
+- `[TỪ AUDIT TÀI NGUYÊN]` — generated because a required resource was missing
+- `[CẦN LÀM RÕ]` — needs user clarification
 
 ## Step VERIFY — Kiểm chứng & Đóng băng Kế hoạch
 
 Sau khi viết `todo.md`, Planner thực hiện bước tự kiểm tra cuối cùng:
 
 1. **Resource Integrity Check**: Đối chiếu bảng Pre-requisites với thực tế `resources/`.
-   - Nếu bất kỳ tài nguyên Sống còn (Crucial) nào ghi `Status: ⬜`, Planner PHẢI thông báo: "Kế hoạch chưa thể hoàn thành vì thiếu tài nguyên kiến thức."
-   - Planner hỗ trợ user soạn thảo bản nháp (draft) các resources thiếu trước khi xác nhận xong.
-
-2. **Standard Alignment**: Kiểm tra xem các task và pre-requisites có tuân thủ `architect.md` (7 Zones) và `DESIGN.md` (Master Suite workflow) không.
-
-3. **DoD Verification**: Đảm bảo bảng Definition of Done trong `todo.md` bao quát hết các zone trong thiết kế.
+   - Nếu bất kỳ tài nguyên Sống còn (Crucial) nào ghi `Status: ⬜`, Planner PHẢI thông báo: "Kế hoạch sẽ bắt đầu từ Phase 0 để chuẩn bị tài nguyên. Xin mời bổ sung."
+2. **Contract Traceability**: Kiểm tra xem tất cả các file trong §3 "Files cần tạo" đã được ánh xạ thành Task cụ thể chắp nối với `todo.md` chưa.
+3. **DoD Verification**: Đảm bảo bảng Definition of Done có bao hàm việc tạo tất cả các file thiết yếu.
 
 ## Confirm
 

@@ -36,11 +36,14 @@ Read all inputs and assess feasibility:
 
 ### Step 3: BUILD (Phase-Driven)
 Execute the plan from `todo.md` phase by phase.
-- **Phase Execution**: Create folders and files as specified in Zone Mapping.
+- **Zone Contract Enforcement**: ONLY create files explicitly listed in `todo.md` and `design.md §3` (Zone Mapping). DO NOT hallucinate new files or subdirectories not present in the design.
+- **Phase Execution**: Create folders and files as specified in the tasks.
+  - *When writing `SKILL.md` (Core)*: You MUST map `design.md §7` (Progressive Disclosure) into the 'Boot Sequence' section. Map `design.md §5` (Execution Flow) into Workflow Steps. Map `design.md §6` (Interaction Points) as explicit stops (Gates).
+  - *When writing `loop/`*: You MUST map `design.md §8` (Risks) into measurable checklist items.
 - **Zero-Summarization Enforcement**: When building `knowledge` or `data` zones, you MUST maintain a 1:1 conceptual mapping with source resources.
 - **Parity Mapping**: List the source sections and ensure each has a corresponding target section.
 - **Fidelity Rule**: For Knowledge/Data zones, transform 100% of technical definitions, diagrams, Rule IDs, and logic. DO NOT summarize. If the source has a list of 10 items, the target MUST have 10 items.
-- **Double-Pass Infusion**: After completing each phase, perform a refinement pass (Self-Reflect) specifically to check for information loss. Compare line counts and detail density. Re-read the source resources and "infuse" any missing technical details, examples, or identifiers into the target files to ensure high information density.
+- **Double-Pass Infusion**: After completing each phase, perform a refinement pass (Self-Reflect) specifically to check for information loss.
 - **Progress Tracking**: Mark tasks as done in [../../.skill-context/{skill-name}/todo.md](../../.skill-context/{skill-name}/todo.md) ONLY after files are verified.
 - **Usage Trace Mandatory**: For every completed task, append source trace in `.skill-context/{skill-name}/build-log.md` with format:
   - `Task -> Output file -> Source files used`.
@@ -76,11 +79,11 @@ Run automatic and manual quality gates:
 | G3 | **Log-Notify-Stop** | Lỗi hệ thống (Permission/Disk) -> Ghi log -> Thông báo -> **DỪNG NGAY**. |
 | G4 | **Placeholder Scale** | Cảnh báo mỗi 5 Placeholders. >10 Placeholders = FAIL. |
 | G5 | **Source Grounding** | Nội dung 100% từ design, todo, resources. Tuyệt đối không ảo giác. |
-| G6 | **PD Tiering** | Tuân thủ Progressive Disclosure (Tier 1 vs Tier 2). |
+| G6 | **PD Tiering** | Tuân thủ Progressive Disclosure (Tier 1 vs Tier 2) từ `design.md §7`. |
 | G7 | **Build-log Mandatory** | Ghi rõ mọi quyết định, phản biện, file tạo và issue vào build-log.md. |
 | G8 | **Context Coverage** | Không được bỏ sót file critical trong `.skill-context/{skill-name}`; phải có evidence sử dụng trong Resource Usage Matrix. |
-| G9 | **Knowledge Fidelity**: Tuyệt đối không tóm tắt (summarize) tài nguyên Tier-Critical của Zone Knowledge/Data. Phải chuyển hóa (Transform) 100% tri thức kỹ thuật. **Quy tắc Parity**: Nếu tài nguyên gốc có N mục, kết quả build phải có ít nhất N mục tương ứng.
- |
+| G9 | **Knowledge Fidelity** | Tuyệt đối không tóm tắt (summarize) tài nguyên Tier-Critical của Zone Knowledge/Data. Phải chuyển hóa (Transform) 100% tri thức kỹ thuật. **Quy tắc Parity**: Nếu tài nguyên gốc có N mục, kết quả build phải có ít nhất N mục tương ứng. |
+| G10| **Zone Contract Block** | CHỈ tạo các file được liệt kê rõ trong `design.md §3` (Files cần tạo). Tuyệt đối KHÔNG tự ý tạo file, thư mục mới nằm ngoài thiết kế. |
 
 ## Error Policy (Log-Notify-Stop)
 

@@ -1,40 +1,66 @@
 # Design Quality Checklist
 
-> Skill Architect sử dụng checklist này để kiểm tra chất lượng bản thiết kế
-> trước khi ghi vào `.skill-context/{skill-name}/design.md`.
+> Skill Architect PHẢI chạy qua checklist này trước khi thông báo hoàn thành.
+> Nếu bất kỳ item nào `[ ]` → sửa trước khi deliver.
 
 ---
 
-## Structure Check
+## ✅ Structure Check — 10 Sections
 
-- [ ] File design.md có đủ 10 sections (Problem Statement → Metadata)
-- [ ] Có ít nhất 2 sơ đồ Mermaid (Folder Structure + Execution Flow)
-- [ ] Mermaid syntax hợp lệ (không lỗi render)
+- [ ] §1 Problem Statement: rõ ràng (Pain Point + Người dùng + Lý do)
+- [ ] §2 Capability Map: đủ 3 Pillars (Knowledge / Process / Guardrails)
+- [ ] §3 Zone Mapping: đúng format chuẩn (có cột "Files cần tạo" với tên file thực)
+- [ ] §4 Folder Structure: có Mermaid mindmap, phản ánh đúng §3
+- [ ] §5 Execution Flow: có Mermaid sequence hoặc flowchart
+- [ ] §6 Interaction Points: ít nhất 1 điểm tương tác bắt buộc
+- [ ] §7 Progressive Disclosure Plan: phân biệt rõ Tier 1 (mandatory) và Tier 2 (conditional)
+- [ ] §8 Risks & Blind Spots: ít nhất 3 risks kèm mitigation cụ thể
+- [ ] §9 Open Questions: không để trống (ghi "Không có" nếu đã giải quyết hết)
+- [ ] §10 Metadata: có skill-name, date, status
 
-## Content Check
+---
 
-- [ ] Problem Statement rõ ràng: ai gặp vấn đề, vấn đề gì, tại sao cần skill
-- [ ] Capability Map phủ đủ 3 Trụ cột (Knowledge, Process, Guardrails)
-- [ ] Zone Mapping xác định rõ từng Zone cần gì (hoặc ghi "Không cần")
-- [ ] Folder Structure phản ánh đúng các Zone đã map
-- [ ] Execution Flow thể hiện đúng workflow logic với interaction points
-- [ ] Interaction Points liệt kê ít nhất 1 điểm dừng tương tác
+## ✅ Diagram Check — Tối thiểu 3 sơ đồ Mermaid
 
-## Framework Compliance
+- [ ] D1 — Folder Structure (mindmap): có
+- [ ] D2 — Execution Flow (sequenceDiagram): có
+- [ ] D3 — Workflow Phases (flowchart LR): có
+- [ ] Mermaid syntax hợp lệ (không lỗi render — kiểm tra bằng mắt)
+- [ ] Tất cả participant/node labels ngắn gọn, dễ đọc
+- [ ] Interaction points với user được đánh dấu rõ trong diagram
 
-- [ ] Thiết kế dựa trên architect.md (3 Trụ cột + 7 Zones)
-- [ ] Có Progressive Disclosure Plan (Tier 1 mandatory, Tier 2 conditional)
-- [ ] Risks & Blind Spots không để trống
-- [ ] Open Questions được liệt kê (hoặc ghi "Không có")
+---
 
-## Process Check
+## ✅ Zone Mapping Contract Check (§3)
 
-- [ ] Phase 1 (Collect) đã hoàn tất — user đã confirm requirements
-- [ ] Phase 2 (Analyze) đã hoàn tất — user đã confirm analysis
-- [ ] Phase 3 (Design) đã hoàn tất — user đã confirm design
-- [ ] init_context.py đã chạy thành công trước khi ghi file
+- [ ] Mọi Zone đều có giá trị trong cột "Files cần tạo" (không để trống, không placeholder)
+- [ ] Zone không dùng → ghi "Không cần" (không bỏ dòng)
+- [ ] Tên file cụ thể (ví dụ: `knowledge/uml-rules.md`, không phải `knowledge/...`)
+- [ ] Cột "Bắt buộc?" điền đúng ✅ hoặc ❌
 
-## Final
+---
 
-- [ ] User đã xác nhận bản thiết kế cuối cùng
-- [ ] File đã ghi vào `.skill-context/{skill-name}/design.md`
+## ✅ Handoff Readiness — Architect → Planner
+
+- [ ] §3 Zone Mapping đủ thông tin để Planner decompose thành Tasks
+- [ ] §7 Progressive Disclosure Plan đủ để Builder biết files Tier 1/2
+- [ ] §8 Risks đủ để Builder thiết lập Guardrails
+- [ ] §9 Open Questions: items `[CẦN LÀM RÕ]` đã được làm rõ hoặc ghi chú rõ ràng
+
+---
+
+## ✅ Process Gate Check
+
+- [ ] Phase 1 Gate: user đã xác nhận §1 Problem Statement
+- [ ] Phase 2 Gate: user đã xác nhận §2+§3+§8 Analysis
+- [ ] Phase 3 Gate: user đã xác nhận toàn bộ design
+- [ ] `init_context.py` đã chạy và tạo `.skill-context/{skill-name}/`
+- [ ] design.md đã được ghi đầy đủ (không còn comment placeholder `<!-- -->`)
+
+---
+
+## ✅ Final Deliver Check
+
+- [ ] Không có section nào còn HTML comment `<!-- -->` chưa được điền
+- [ ] Tất cả tên file trong §3 khớp với §4 Folder Structure
+- [ ] User đã nhận thông báo "Bước tiếp theo: skill-planner"

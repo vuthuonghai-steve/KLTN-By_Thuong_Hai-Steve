@@ -7,6 +7,8 @@
 
 ## 2. Source & Design Check (Đối chiếu Nguồn)
 - [ ] Nội dung bám sát 100% bản thiết kế `design.md`.
+- [ ] **Zone Contract Fidelity**: Tất cả files được tạo ĐỀU CÓ tên cụ thể trong `design.md §3` (Files cần tạo). Tuyệt đối KHÔNG tự ý tạo file/thư mục mới khác ngoài thiết kế.
+- [ ] **Core Alignment**: `SKILL.md` đã tích hợp `design.md §7` (vào Boot Sequence), `§5` (Workflow Steps), và `§6` (Interaction Gates).
 - [ ] Mọi mục `[CẦN LÀM RÕ]` trong `todo.md` đã được giải quyết hoặc trả lời tại `design.md §9`.
 - [ ] Mọi Task trong `todo.md` đồng bộ với thực tế file đã tạo.
 - [ ] Đã tạo `Resource Inventory` trong `.skill-context/{skill-name}/build-log.md`.
@@ -15,6 +17,7 @@
 
 ## 3. Progressive Disclosure Check (Phân tầng thông tin)
 - [ ] Mọi file Tier 2 đều được dẫn link từ `SKILL.md`.
+- [ ] File Tier 1 đã được đưa rõ vào 'Mandatory Boot Sequence' của `SKILL.md` dựa theo `design.md §7`.
 - [ ] Không có file mồ côi (Orphan files) không được sử dụng.
 - [ ] `SKILL.md` < 500 dòng.
 

@@ -57,7 +57,41 @@ Mọi bộ kỹ năng (Skill Package) PHẢI được tổ chức theo cấu tr�
 
 ---
 
-## 3. CHỐNG ẢO GIÁC (Anti-Hallucination)
+## 3. PIPELINE FLOW (Architect → Planner → Builder)
+
+```
+Skill Architect          Skill Planner           Skill Builder
+    │                        │                        │
+    ▼                        ▼                        ▼
+design.md §3     →   todo.md Phase tasks    →   .agent/skills/{name}/
+(Zone Mapping)       (files to create)           (skill package)
+    │                        │
+design.md §7     →   Pre-req table
+(PD Plan)            (resources audit)
+```
+
+**Architect Handoff Contract** — Những gì Builder CẦN từ design.md:
+- `§3 Zone Mapping` — danh sách files cần tạo trong mỗi Zone (cột "Files cần tạo")
+- `§7 Progressive Disclosure Plan` — Tier 1/2 để viết Boot Sequence trong SKILL.md
+- `§8 Risks & Blind Spots` — nguồn cho Guardrails trong SKILL.md
+- `§5 Execution Flow` — luồng runtime để viết Workflow Phases trong SKILL.md
+
+---
+
+## 4. ZONE MAPPING CONTRACT (§3 format chuẩn)
+
+Khi đọc `design.md §3`, Builder cần đọc bảng theo format sau:
+
+| Zone | Files cần tạo | Nội dung | Bắt buộc? |
+|------|--------------|----------|-----------|
+
+- **Files cần tạo**: Tên file cụ thể → đây là files Builder phải tạo. Nếu "Không cần" → skip Zone đó.
+- **Bắt buộc?**: ✅ = phải tạo, ❌ = skip.
+- Builder KHÔNG ĐƯỢC tự thêm files không có trong §3 (trừ khi có lý do kỹ thuật và ghi vào build-log.md).
+
+---
+
+## 5. CHỐNG ẢO GIÁC (Anti-Hallucination)
 
 - Không tự bịa domain knowledge.
 - Dùng `[MISSING_DOMAIN_DATA]` nếu thiếu resources.
