@@ -88,6 +88,15 @@ erDiagram
       datetime created_at
     }
 
+    SHARES {
+      objectId id PK
+      objectId post_id FK
+      objectId user_id FK
+      string share_type
+      objectId shared_post_id FK
+      datetime created_at
+    }
+
     CONNECTIONS {
       objectId id PK
       objectId follower_id FK
@@ -216,6 +225,19 @@ erDiagram
 | created_at | datetime | yes | - | - |
 
 Unique key de tranh like lap: `(post_id, user_id)`.
+
+### `shares`
+| Field | Type | Required | Constraint | Note |
+|---|---|---|---|---|
+| id | ObjectId | yes | PK | - |
+| post_id | ObjectId | yes | FK -> posts.id, index | bài viết gốc được share |
+| user_id | ObjectId | yes | FK -> users.id, index | người thực hiện share |
+| share_type | enum | yes | `copy_link / repost` | copy_link = chỉ copy URL; repost = tạo Post mới |
+| shared_post_id | ObjectId | no | FK -> posts.id | nullable — chỉ có giá trị khi share_type=repost |
+| created_at | datetime | yes | index | audit timestamp |
+
+> **Kiến trúc Share (UC16):** `copy_link` chỉ tăng counter + ghi audit. `repost` tạo Post mới + ghi audit. Collection `shares` đóng vai trò **audit trail**.
+> **Source:** `flow/flow-post-share.md (UC16)` + `life-1/FR/requirements-srs.md#FR-5` + `life-1/user-stories.md#US-6.3`
 
 ### `connections`
 | Field | Type | Required | Constraint | Note |

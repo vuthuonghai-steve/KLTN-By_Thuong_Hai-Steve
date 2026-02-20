@@ -56,6 +56,8 @@ classDiagram
             +ObjectId id
             +ObjectId postId
             +ObjectId userId
+            +String shareType
+            +ObjectId sharedPostId
             +DateTime createdAt
             +void afterChange_updateShareCount()
         }
