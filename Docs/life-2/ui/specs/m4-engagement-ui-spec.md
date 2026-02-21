@@ -24,9 +24,9 @@ Dựa trên **comments** collection
 
 | UI Element ID | Type | Source Field (Class) | Required | Validation/Constraint |
 |---|---|---|---|---|
-| `comment-input` | Text | `comments.content` | Yes | Max 500 char, Filter banned words |
+| `comment-input` | <Input type="text"> | `comments.content` | Yes | Max 500 char, Filter banned words |
 | `btn-post-comment` | Button | N/A | N/A | Trigger Flow Create Comment |
-| `list-comments` | List | `comments` | Yes | Threaded (parentCommentId) |
+| `list-comments` | List | `posts.comments` | Yes | Threaded (parentCommentId) |
 
 #### B. Interaction Flow
 - **Nesting**: Hiển thị phân cấp nếu có `parentCommentId`.

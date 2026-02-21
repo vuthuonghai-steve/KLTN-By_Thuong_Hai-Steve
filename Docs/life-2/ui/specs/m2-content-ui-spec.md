@@ -24,11 +24,11 @@ Dựa trên **Class Diagram**: `posts` collection
 
 | UI Element ID | Type | Source Field (Class) | Required | Validation/Constraint |
 |---|---|---|---|---|
-| `input-post-title` | Text | `posts.title` | No | Max 100 char |
-| `rich-editor-content`| RichText | `posts.content` | Yes | Lexical format, sanitize HTML |
-| `select-visibility` | Select | `posts.visibility` | Yes | public, friends, private |
+| `input-post-title` | <Input type="text"> | `posts.title` | No | Max 100 char |
+| `rich-editor-content` | RichTextEditor | `posts.content` | Yes | Lexical format, sanitize HTML |
+| `select-visibility` | <Select> | `posts.visibility` | Yes | public, friends, private |
 | `btn-upload-media` | Button | N/A | No | Open SC-M2-03 |
-| `tag-list-preview` | Chips | `posts.tags` | No | Auto-extract from content |
+| `tag-list-preview` | RelationPicker | `posts.tags` | No | Auto-extract from content |
 | `btn-publish` | Button | N/A | N/A | Trigger Flow M2-A1 |
 
 #### B. Interaction Flow (M2-A1)
@@ -45,11 +45,11 @@ Dựa trên **Class Diagram**: `posts` collection
 #### A. UI Components & Data Mapping
 | UI Element ID | Type | Source Field (Class) | Technical Binding |
 |---|---|---|---|
-| `display-author` | Link | `posts.authorId.username`| Nav to SC-M1-05 |
-| `display-content` | HTML/JSON | `posts.content` | Render Lexical JSON |
-| `media-gallery` | Carousel | `posts.mediaItems` | Render Image/Video |
+| `display-author` | RelationPicker | `posts.authorId` | Nav to SC-M1-05 |
+| `display-content` | RichTextEditor | `posts.content` | Render Lexical JSON |
+| `media-gallery` | RelationPicker | `posts.mediaItems` | Render Image/Video |
 | `btn-like` | IconBtn | N/A | Trigger M4 Interaction |
-| `display-stats` | Text | `likesCount`, `commentsCount`| Auto-update |
+| `display-stats` | Text | `posts.likesCount`, `posts.commentsCount`, `posts.sharesCount` | Auto-update |
 
 ---
 

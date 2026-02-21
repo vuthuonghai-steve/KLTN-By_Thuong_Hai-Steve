@@ -24,9 +24,9 @@ Dựa trên **bookmarkCollections** collection
 
 | UI Element ID | Type | Source Field (Class) | Required | Validation/Constraint |
 |---|---|---|---|---|
-| `list-collections` | Grid | `bookmarkCollections` | Yes | Filter by `ownerId` |
+| `list-collections` | Grid | `users.bookmarkCollections` | Yes | Filter by `ownerId` |
 | `btn-create-col` | Button | N/A | No | Mở form tạo mới |
-| `card-collection` | Card | `name`, `isDefault` | Yes | Hiển thị tag "Default" nếu có |
+| `card-collection` | Card | `users.bookmarkCollections` | Yes | Hiển thị tag "Default" nếu có |
 
 ---
 
@@ -37,7 +37,7 @@ Dựa trên **bookmarks** collection
 
 | UI Element ID | Type | Source Field (Class) | Required | Validation/Constraint |
 |---|---|---|---|---|
-| `select-collection` | Select | `collectionId` | Yes | List owner's collections |
+| `select-collection` | Select | `users.bookmarkCollections` | Yes | List owner's collections |
 | `btn-confirm-save` | Button | N/A | Yes | Trigger Flow Save |
 
 #### B. Interaction Flow (M5-A1)

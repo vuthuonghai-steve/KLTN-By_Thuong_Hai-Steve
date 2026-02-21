@@ -32,6 +32,18 @@ schema:
           type: "select"
           index: false
           required: true
+        - name: "displayName"
+          type: "text"
+          index: false
+          required: true
+        - name: "bio"
+          type: "text"
+          index: false
+          required: false
+        - name: "avatar"
+          type: "text"
+          index: false
+          required: false
         - name: "followerCount"
           type: "number"
           index: false

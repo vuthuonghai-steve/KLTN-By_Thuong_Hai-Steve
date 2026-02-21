@@ -24,9 +24,9 @@ Dựa trên **notifications** collection
 
 | UI Element ID | Type | Source Field (Class) | Technical Binding |
 |---|---|---|---|
-| `list-notifications`| List | `notifications` | Infinite scroll |
-| `notif-item` | Component | `type`, `entityId` | Điều hướng theo entityType |
-| `unread-badge` | Badge | count of `isRead: false` | Hiển thị số trên Header |
+| `list-notifications` | List | `users.notifications` | Infinite scroll |
+| `notif-item` | Component | `users.notifications` | Điều hướng theo entityType |
+| `unread-badge` | Badge | `users.unreadNotificationsCount` | Hiển thị số trên Header |
 
 #### B. Interaction Flow (M6-A1)
 - **SSE Stream**: Khi nhận event từ server, chèn Notification mới vào đầu danh sách mà không cần reload.

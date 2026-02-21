@@ -22,6 +22,7 @@ classDiagram
             +ObjectId parentCommentId
             +String content
             +String status
+            +Array replies
             +DateTime createdAt
             +DateTime updatedAt
             +void beforeChange_sanitizeContent()
@@ -94,6 +95,7 @@ classDiagram
 | `Comment` | `parentCommentId` | `er-diagram.md#COMMENTS.parent_comment_id` | ❌ |
 | `Comment` | `content` | `er-diagram.md#COMMENTS.content` | ❌ |
 | `Comment` | `status` | `er-diagram.md#COMMENTS.status` | ❌ |
+| `Comment` | `replies` | `ui-specs/m4-engagement-ui-spec.md` | `[FROM_CONTEXT]` |
 | `Comment` | `createdAt` | `er-diagram.md#COMMENTS.created_at` | ❌ |
 | `Comment` | `updatedAt` | `er-diagram.md#COMMENTS.updated_at` | ❌ |
 | `Comment` | `beforeChange_sanitizeContent()` | `activity-diagrams/m4-a2-engagement-logic.md (C5: Kiểm tra từ cấm)` | ❌ |

@@ -19,10 +19,11 @@
 | `content` | `richText` | `Object` | `true` | Lexical JSON content | |
 | `status` | `select` | `String` | `true` | draft, published, banned, archived | |
 | `visibility` | `select` | `String` | `true` | public, friends, private | |
-| `rankingScore` | `number` | `Number` | `true` | Điểm xếp hạng feed | Async updated |
-| `likesCount` | `number` | `Number` | `false` | Số like | Computed Pattern |
-| `commentsCount` | `number` | `Number` | `false` | Số bình luận | Computed Pattern |
-| `sharesCount` | `number` | `Number` | `false` | Số chia sẻ | Computed Pattern |
+| `rankingScore` | `number` | `Number` | `true` | Điểm xếp hạng | Index desc |
+| `likesCount` | `number` | `Number` | `false` | Lượt thích | Default 0 |
+| `commentsCount` | `number` | `Number` | `false` | Lượt bình luận | Default 0 |
+| `comments` | `join` | `Array` | `false` | Danh sách bình luận (M4) | Virtual Join Field |
+| `sharesCount` | `number` | `Number` | `false` | Lượt chia sẻ | Default 0 |Pattern |
 | `publishedAt` | `date` | `ISODate` | `true` | Ngày publish | |
 | `createdAt` | `date` | `ISODate` | `true` | Ngày tạo | |
 | `updatedAt` | `date` | `ISODate` | `false` | Lần cuối cập nhật | |

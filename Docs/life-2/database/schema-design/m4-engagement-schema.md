@@ -13,12 +13,13 @@
 - **Reason**: Một post có thể nhận 1 triệu comments, không thể Embed theo Array vì 100% gây sập giới hạn BSON 16MB document. Áp dụng cơ chế reference parentCommentId cho Threaded replies.
 - **Fields List**:
 | Field Name | Type | Index? | Mô tả / Range |
-|------------|------|--------|---------------|
+|------------|--------------|--------|-----------------------------------|
 | `postId` | `relationship` | `true` | Ref qua Posts |
 | `authorId` | `relationship` | `true` | Người bình luận |
 | `parentCommentId`| `relationship`| `true`| Tùy chọn, tạo comment đa tầng |
-| `content` | `text` | `false` | Text Nội dung |
-| `status` | `select` | `true` | visible, hidden, deleted |
+| `content` | `text` | `false` | Nội dung | Max 500 chars |
+| `replies` | `join` | `false` | Danh sách phản hồi | Virtual Join Field |
+| `status` | `select` | `true` | visible, hidden, deleted | Queue index |
 | `createdAt`| `date` | `true` | Phục vụ sorting |
 | `updatedAt`| `date` | `false` | Sẽ chạy Computed Hooks |
 

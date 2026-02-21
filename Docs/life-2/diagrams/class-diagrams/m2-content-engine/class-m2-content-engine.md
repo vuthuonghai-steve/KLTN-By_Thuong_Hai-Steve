@@ -25,6 +25,7 @@ classDiagram
             +Number rankingScore
             +Number likesCount
             +Number commentsCount
+            +Array comments
             +Number sharesCount
             +DateTime publishedAt
             +DateTime createdAt
@@ -84,6 +85,7 @@ classDiagram
 | `Post` | `rankingScore` | `er-diagram.md#POSTS.ranking_score` | ❌ |
 | `Post` | `likesCount` | `er-diagram.md#POSTS.likes_count` | ❌ |
 | `Post` | `commentsCount` | `er-diagram.md#POSTS.comments_count` | ❌ |
+| `Post` | `comments` | `ui-specs/m4-engagement-ui-spec.md` | `[FROM_CONTEXT]` |
 | `Post` | `sharesCount` | `er-diagram.md#POSTS.shares_count` | ❌ |
 | `Post` | `publishedAt` | `er-diagram.md#POSTS.published_at` | ❌ |
 | `Post` | `createdAt` | `er-diagram.md#POSTS.created_at` | ❌ |

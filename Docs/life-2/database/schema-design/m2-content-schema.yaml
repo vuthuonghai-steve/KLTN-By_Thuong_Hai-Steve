@@ -37,6 +37,10 @@ schema:
           type: "number"
           index: false
           required: true
+        - name: "comments"
+          type: "join"
+          index: false
+          required: false
         - name: "sharesCount"
           type: "number"
           index: false

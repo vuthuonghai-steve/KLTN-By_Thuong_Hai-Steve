@@ -23,6 +23,10 @@ schema:
           type: "text"
           index: false
           required: true
+        - name: "replies"
+          type: "join"
+          index: false
+          required: false
         - name: "status"
           type: "select"
           index: true

@@ -21,6 +21,12 @@
 | `role` | `select` | `String` | `false` | Role authorization | member, admin (default: member) |
 | `status` | `select` | `String` | `false` | Account status | active, inactive, banned (default: active)|
 | `profileVisibility` | `select` | `String` | `false` | Ai xem được profile | public, followers, private |
+| `displayName` | `text` | `String` | `false` | Tên hiển thị người dùng | Required |
+| `bio` | `text` | `String` | `false` | Tiểu sử ngắn | Optional, Max 160 chars |
+| `avatar` | `text` | `String` | `false` | Ảnh đại diện | Optional, URL hoặc Media ID |
+| `bookmarkCollections` | `join` | `Array` | `false` | Bộ sưu tập bookmark (M5) | Virtual Join Field |
+| `notifications` | `join` | `Array` | `false` | Danh sách thông báo (M6) | Virtual Join Field |
+| `unreadNotificationsCount` | `number` | `Number` | `false` | Số thông báo chưa đọc | Computed M6 |
 | `followerCount` | `number` | `Number` | `false` | Số người theo dõi | Computed Pattern (readOnly: true) |
 | `followingCount` | `number` | `Number` | `false` | Số người đang theo | Computed Pattern (readOnly: true) |
 | `createdAt` | `date` | `ISODate` | `true` | Ngày tạo | Tự sinh, indexed |

@@ -27,9 +27,9 @@ Dựa trên **Class Diagram**: `users` collection
 
 | UI Element ID | Type | Source Field (Class) | Required | Validation/Constraint |
 |---|---|---|---|---|
-| `input-email` | Email | `users.email` | Yes | Format email chuẩn |
-| `input-username` | Text | `users.username` | Yes | Min 3, Regex `^[a-zA-Z0-9_]+$` |
-| `input-password` | Password | `users.passwordHash` | Yes | Min 8 characters |
+| `input-email` | <Input type="email"> | `users.email` | Yes | Format email chuẩn |
+| `input-username` | <Input type="text"> | `users.username` | Yes | Min 3, Regex `^[a-zA-Z0-9_]+$` |
+| `input-password` | <Input type="text"> | `users.passwordHash` | Yes | Min 8 characters |
 | `input-confirm-pw` | Password | N/A | Yes | Phải khớp `input-password` |
 | `btn-register` | Button | N/A | N/A | Trigger Flow M1-A1 |
 
@@ -45,8 +45,8 @@ Dựa trên **Class Diagram**: `users` collection
 #### A. UI Components & Data Mapping
 | UI Element ID | Type | Source Field (Class) | Required | Validation/Constraint |
 |---|---|---|---|---|
-| `input-login-id` | Text/Email | `users.email` / `username` | Yes | |
-| `input-login-pw` | Password | `users.passwordHash` | Yes | |
+| `input-login-id` | <Input type="text"> | `users.email` | Yes |  |
+| `input-login-pw` | <Input type="text"> | `users.passwordHash` | Yes |  |
 | `btn-login` | Button | N/A | N/A | Trigger Flow M1-A2 |
 | `link-forgot-pw` | Link | N/A | N/A | Redirect to SC-M1-03 extension |
 
@@ -62,9 +62,9 @@ Dựa trên **Class Diagram**: `users` collection
 #### A. UI Components & Data Mapping
 | UI Element ID | Type | Source Field (Class) | Required | Validation/Constraint |
 |---|---|---|---|---|
-| `upload-avatar` | File | `users.profile.avatar` | No | Image only, max 2MB |
-| `textarea-bio` | Textarea | `users.profile.bio` | No | Max 160 characters |
-| `input-display-name`| Text | `users.profile.display_name` | Yes | |
+| `upload-avatar` | ImageUpload | `users.avatar` | No | Image only, max 2MB |
+| `textarea-bio` | <Textarea> | `users.bio` | No | Max 160 characters |
+| `input-display-name` | <Input type="text"> | `users.displayName` | Yes |  |
 | `btn-submit-setup` | Button | N/A | N/A | Trigger Flow M1-A5 |
 
 ---

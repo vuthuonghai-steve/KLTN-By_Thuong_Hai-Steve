@@ -24,6 +24,12 @@ classDiagram
             +String role
             +String status
             +String profileVisibility
+            +String displayName
+            +String bio
+            +String avatar
+            +Array bookmarkCollections
+            +Array notifications
+            +Number unreadNotificationsCount
             +Number followerCount
             +Number followingCount
             +DateTime createdAt
@@ -48,20 +54,26 @@ classDiagram
 
 | Entity | Field | Source | Assumption? |
 |--------|-------|--------|------------|
-| `User` | `id` | `er-diagram.md#USERS.id` | ❌ |
-| `User` | `email` | `er-diagram.md#USERS.email` | ❌ |
-| `User` | `username` | `er-diagram.md#USERS.username` | ❌ |
-| `User` | `passwordHash` | `er-diagram.md#USERS.password_hash` | ❌ |
-| `User` | `verified` | `er-diagram.md#USERS.verified` | ❌ |
-| `User` | `role` | `er-diagram.md#USERS.role` | ❌ |
-| `User` | `status` | `er-diagram.md#USERS.status` | ❌ |
-| `User` | `profileVisibility` | `er-diagram.md#USERS.profile_visibility` | ❌ |
-| `User` | `followerCount` | `er-diagram.md#USERS.follower_count` | ❌ |
-| `User` | `followingCount` | `er-diagram.md#USERS.following_count` | ❌ |
-| `User` | `createdAt` | `er-diagram.md#USERS.created_at` | ❌ |
-| `User` | `updatedAt` | `er-diagram.md#USERS.updated_at` | ❌ |
-| `User` | `beforeChange_sanitizeInput()` | `activity-diagrams/m1-a1-registration.md` (C2: Sanitize Input) | ❌ |
-| `User` | `afterChange_sendVerification()` | `activity-diagrams/m1-a1-registration.md` (C5: Tạo Activation Token) | ❌ |
+| `user` | `id` | `er-diagram.md#USERS.id` | ❌ |
+| `user` | `email` | `er-diagram.md#USERS.email` | ❌ |
+| `user` | `username` | `er-diagram.md#USERS.username` | ❌ |
+| `user` | `passwordHash` | `er-diagram.md#USERS.password_hash` | ❌ |
+| `user` | `verified` | `er-diagram.md#USERS.verified` | ❌ |
+| `user` | `role` | `er-diagram.md#USERS.role` | ❌ |
+| `user` | `status` | `er-diagram.md#USERS.status` | ❌ |
+| `user` | `profileVisibility` | `er-diagram.md#USERS.profile_visibility` | ❌ |
+| `user` | `followerCount` | `er-diagram.md#USERS.follower_count` | ❌ |
+| `user` | `followingCount` | `er-diagram.md#USERS.following_count` | ❌ |
+| `user` | `createdAt` | `er-diagram.md#USERS.created_at` | ❌ |
+| `user` | `updatedAt` | `er-diagram.md#USERS.updated_at` | ❌ |
+| `user` | `displayName` | `activity-diagrams/m1-a5-onboarding.md` | `[FROM_CONTEXT]` |
+| `user` | `bio` | `activity-diagrams/m1-a5-onboarding.md` | `[FROM_CONTEXT]` |
+| `user` | `avatar` | `activity-diagrams/m1-a5-onboarding.md` | `[FROM_CONTEXT]` |
+| `user` | `bookmarkCollections` | `ui-specs/m5-bookmarking-ui-spec.md` | `[FROM_CONTEXT]` |
+| `user` | `notifications` | `ui-specs/m6-notifications-ui-spec.md` | `[FROM_CONTEXT]` |
+| `user` | `unreadNotificationsCount` | `ui-specs/m6-notifications-ui-spec.md` | `[FROM_CONTEXT]` |
+| `user` | `beforeChange_sanitizeInput()` | `activity-diagrams/m1-a1-registration.md` (C2: Sanitize Input) | ❌ |
+| `user` | `afterChange_sendVerification()` | `activity-diagrams/m1-a1-registration.md` (C5: Tạo Activation Token) | ❌ |
 
 ---
 
@@ -75,7 +87,7 @@ classDiagram
 
 | Entity | Stereotype | Aggregate Root | Behaviors (summary) | Access (summary) |
 |--------|-----------|---------------|---------------------|-----------------|
-| `User` | `<<Collection>>` | ✅ | beforeChange: sanitize input; afterChange: send verification email | create: guest (UC01); read: member/public (UC07); update: owner (UC06); delete: admin |
+| `user` | `<<Collection>>` | ✅ | beforeChange: sanitize input; afterChange: send verification email | create: guest (UC01); read: member/public (UC07); update: owner (UC06); delete: admin |
 
 ---
 
