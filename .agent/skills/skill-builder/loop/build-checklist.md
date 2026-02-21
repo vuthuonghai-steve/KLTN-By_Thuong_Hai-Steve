@@ -31,3 +31,34 @@
 - [ ] Đã thực hiện phản biện bản thiết kế (nếu có phi logic).
 - [ ] Quy trình xử lý lỗi tuân thủ Log-Notify-Stop (Dừng ngay khi có lỗi hệ thống).
 - [ ] Không có kết luận nào không truy vết được về resource hoặc design/todo.
+
+## 6. Anthropic Skill Standards Compliance (BẮT BUỘC cho mọi SKILL.md)
+
+> Reference: `knowledge/anthropic-skill-standards.md`
+
+### 6.1 YAML Frontmatter
+- [ ] `SKILL.md` bắt đầu bằng YAML frontmatter (`---` block) tại dòng 1.
+- [ ] `name`: lowercase-kebab-case, ≤ 64 ký tự, không có reserved words.
+- [ ] `description`: ngôi thứ 3, bao gồm WHAT + WHEN trigger, ≤ 1024 ký tự.
+- [ ] `description` KHÔNG dùng "I can...", "You can use this to...".
+
+### 6.2 Progressive Disclosure
+- [ ] `SKILL.md` body ≤ 500 lines.
+- [ ] Knowledge/template/loop files được link từ **đúng phase cần**, không phải tất cả ở Boot Sequence.
+- [ ] Không có file được front-loaded mà không cần ngay từ đầu mọi invocation.
+- [ ] References one level deep (không có nested: A.md → B.md → content).
+
+### 6.3 Workflow Tracker Checklist
+- [ ] Nếu skill có 3+ phases hoặc Interaction Points → có Tracker Checklist trong SKILL.md.
+- [ ] Tracker Checklist yêu cầu Claude copy vào response ngay khi bắt đầu.
+
+### 6.4 Examples Pattern
+- [ ] Nếu skill có abstract mapping (schema→component, data→format, rule→output) → có examples file.
+- [ ] Examples file được reference từ phase cần dùng (không front-load).
+- [ ] Examples là concrete (real field names, real values) không phải trừu tượng.
+
+### 6.5 Content Quality
+- [ ] Không có time-sensitive information (ngày tháng, "before/after YYYY-MM").
+- [ ] Terminology nhất quán xuyên suốt tất cả files.
+- [ ] Scripts handle errors explicitly (không punt to Claude).
+- [ ] Mỗi knowledge file có header `> **Usage**: ...` mô tả khi nào load.

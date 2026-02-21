@@ -4,10 +4,27 @@
 
 ---
 
+## 0. CHUẨN ANTHROPIC — BẮT BUỘC ĐỌC KHI VIẾT SKILL.MD
+
+Trước khi viết `SKILL.md`, đọc [anthropic-skill-standards.md](anthropic-skill-standards.md).
+File này chứa các yêu cầu bắt buộc từ Anthropic về cấu trúc, discovery, và hiệu quả của skill.
+
+**Checklist nhanh (từ anthropic-skill-standards.md §9)**:
+- YAML frontmatter dòng đầu (name + description ngôi thứ 3)
+- name: lowercase-kebab-case, ≤ 64 chars, gerund form ưu tiên
+- description: WHAT + WHEN trigger, ≤ 1024 chars
+- Progressive Disclosure: files load đúng phase (không front-load)
+- Workflow Tracker Checklist nếu có 3+ phases hoặc Interaction Points
+- Examples file nếu có mapping trừu tượng
+- SKILL.md body ≤ 500 lines
+
+---
+
 ## 1. NGUYÊN TẮC VIẾT SKILL.MD (CORE)
 
 - **Ngôn ngữ**: Tuyệt đối dùng thể mệnh lệnh (Imperative).
-- **Phân tầng (PD)**: Mọi file trong `knowledge/`, `scripts/`, `loop/` phải có ít nhất 1 link tham chiếu từ `SKILL.md`.
+- **Anthropic Standards**: Tuân thủ 100% `anthropic-skill-standards.md` — YAML frontmatter, Progressive Disclosure, Checklist Tracker, Examples Pattern.
+- **Phân tầng (PD)**: Mọi file trong `knowledge/`, `scripts/`, `loop/` phải có ít nhất 1 link tham chiếu từ `SKILL.md` tại đúng phase cần dùng (không phải ở Boot Sequence nếu không cần ngay).
 - **Phases**: Chia workflow thành các Phase có thể đánh dấu hoàn thành.
 
 ## 2. NGUYÊN TẮC VIẾT KNOWLEDGE
