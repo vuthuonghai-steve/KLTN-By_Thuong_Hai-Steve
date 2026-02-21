@@ -6,6 +6,7 @@
 ---
 
 ## 1. Problem Statement
+> Self-score: [_/5] — [lý do nếu < 3]
 
 <!-- Trả lời 3 câu hỏi: (1) Vấn đề gì? (2) Ai gặp vấn đề này? (3) Tại sao cần skill? -->
 
@@ -18,6 +19,7 @@
 ---
 
 ## 2. Capability Map
+> Self-score: [_/5] — [lý do nếu < 3]
 
 ### 2.1 Tri thức (Knowledge — Pillar 1)
 <!-- Skill cần tri thức gì? Dưới dạng tài liệu nào? -->
@@ -31,6 +33,7 @@
 ---
 
 ## 3. Zone Mapping
+> Self-score: [_/5] — [lý do nếu < 3]
 
 > ⚠️ Contract Section — Planner đọc §3 để decompose thành Tasks.
 > Mọi Zone PHẢI có giá trị trong cột "Files cần tạo". Zone không dùng → ghi "Không cần".
@@ -48,6 +51,7 @@
 ---
 
 ## 4. Folder Structure
+> Self-score: [_/5] — [lý do nếu < 3]
 
 <!-- Mermaid Mindmap: phản ánh CHÍNH XÁC các zones và files đã liệt kê trong §3 -->
 
@@ -67,7 +71,19 @@ mindmap
 
 ---
 
+## ✅ Per-Phase Check Markers
+
+- [ ] **Cuối Phase COLLECT**: summary đủ 3 items (Pain Point + User + Output)?
+- [ ] **Cuối Phase ANALYZE**: §3 Zone Mapping có tên file cụ thể (regex `[a-z][a-z0-9_\-]+\.[a-z]+`)?
+- [ ] **Cuối Phase DESIGN**: self-score tất cả sections ≥ 3/5?
+- [ ] **Sim-test**: Planner có thể đọc §3 và liệt kê ≥ 5 tasks cụ thể không?
+
+---
+
+## ✅ Final Deliver Check
+
 ## 5. Execution Flow
+> Self-score: [_/5] — [lý do nếu < 3]
 
 <!-- Mermaid Sequence: luồng runtime của skill từ khi nhận input đến khi deliver output -->
 
@@ -94,6 +110,7 @@ sequenceDiagram
 ---
 
 ## 6. Interaction Points
+> Self-score: [_/5] — [lý do nếu < 3]
 
 <!-- Khi nào AI PHẢI dừng lại hỏi user? Liệt kê ít nhất 1 điểm. -->
 
@@ -105,6 +122,7 @@ sequenceDiagram
 ---
 
 ## 7. Progressive Disclosure Plan
+> Self-score: [_/5] — [lý do nếu < 3]
 
 ### Tier 1: Bắt buộc đọc (Mandatory)
 <!-- Files AI PHẢI đọc mỗi khi skill được trigger. Giữ danh sách này ngắn. -->
@@ -121,6 +139,7 @@ sequenceDiagram
 ---
 
 ## 8. Risks & Blind Spots
+> Self-score: [_/5] — [lý do nếu < 3]
 
 <!-- AI thường sai ở đâu với loại công việc này? Liệt kê ít nhất 3 risks. -->
 
@@ -133,6 +152,7 @@ sequenceDiagram
 ---
 
 ## 9. Open Questions
+> Self-score: [_/5] — [lý do nếu < 3]
 
 <!-- Tổng hợp tất cả điểm chưa rõ từ 3 phases. Ghi "Không có" nếu đã giải quyết. -->
 
@@ -143,12 +163,14 @@ sequenceDiagram
 ---
 
 ## 10. Metadata
+> Self-score: [_/5] — [lý do nếu < 3]
 
 - **Skill Name**: {skill_name}
 - **Created**: {date}
 - **Author**: {author}
 - **Framework**: architect.md v2.0
 - **Status**: 🔵 IN PROGRESS
+- **Phase Completed**: DETECT ✅ | COLLECT ⏳ | ANALYZE ⏳ | DESIGN ⏳
 - **Handoff Checklist**:
   - [ ] design.md hoàn thiện (checklist pass)
   - [ ] Sẵn sàng cho skill-planner

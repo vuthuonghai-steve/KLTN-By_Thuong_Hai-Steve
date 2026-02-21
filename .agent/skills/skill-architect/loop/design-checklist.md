@@ -59,6 +59,17 @@
 
 ---
 
+---
+
+## ✅ Per-Phase Check Markers
+
+- [ ] **Cuối Phase COLLECT**: summary đủ 3 items (Pain Point + User + Output)?
+- [ ] **Cuối Phase ANALYZE**: §3 Zone Mapping có tên file cụ thể (regex `[a-z][a-z0-9_\-]+\.[a-z]+`)?
+- [ ] **Cuối Phase DESIGN**: self-score tất cả sections ≥ 3/5?
+- [ ] **Sim-test**: Planner có thể đọc §3 và liệt kê ≥ 5 tasks cụ thể không?
+
+---
+
 ## ✅ Final Deliver Check
 
 - [ ] Không có section nào còn HTML comment `<!-- -->` chưa được điền
