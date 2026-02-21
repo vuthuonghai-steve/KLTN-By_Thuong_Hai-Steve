@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+
+  "model": "claude-sonnet-4-6",
+
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev)",
+      "Bash(npm run build)",
+      "Bash(npm run lint)",
+      "Bash(npm run lint:fix)",
+      "Bash(npm run test)",
+      "Bash(npm run test:*)",
+      "Bash(npx payload *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(ls *)",
+      "Bash(find * -name *)",
+      "Bash(diff -qr *)",
+      "Bash(python3 *)",
+      "Bash(node *)",
+      "Bash(cp -r *)",
+      "Bash(rsync -av *)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -f *)"
+    ]
+  },
+
+  "env": {
+    "NODE_ENV": "development"
+  },
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /home/steve/Documents/KLTN/.claude/hooks/pre-write-check.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /home/steve/Documents/KLTN/.claude/hooks/session-end.sh",
+            "timeout": 10,
+            "async": true
+          }
+        ]
+      }
+    ]
+  },
+
+  "enabledPlugins": {
+    "feature-dev@claude-plugins-official": true,
+    "code-review:code-review@claude-plugins-official": true
+  },
+
+  "includeCoAuthoredBy": true
+}

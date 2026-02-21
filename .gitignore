@@ -1,1 +1,25 @@
+# Custom tool directories
 .codex
+
+# ─── Claude Code (auto-managed) ───────────────────────────────────────────────
+.claude/settings.local.json
+CLAUDE.local.md
+.claude/agent-memory-local/
+.claude/agent-memory/.session-log.txt
+
+# ─── Node / Next.js ───────────────────────────────────────────────────────────
+node_modules/
+.next/
+.vercel/
+out/
+dist/
+
+# ─── Environment & secrets ────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ─── OS / Editor ──────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log

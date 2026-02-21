@@ -1,0 +1,744 @@
+# ==================================================
+# Path: /home/steve/Documents/KLTN/.agent/skills/skill-builder
+# Detected tech: python
+# ==================================================
+
+## DIRECTORY STRUCTURE
+```
+skill-builder/
+├── knowledge/
+│   ├── architect.md
+│   └── build-guidelines.md
+├── loop/
+│   ├── build-checklist.md
+│   └── build-log.md
+├── scripts/
+│   └── validate_skill.py
+└── SKILL.md
+```
+
+## FILE CONTENTS
+
+### SKILL.md
+```md
+---
+name: skill-builder
+description: Kỹ sư triển khai Agent Skill (Senior Implementation Engineer). Thực thi bản thiết kế (design.md) và kế hoạch (todo.md). Tự chủ phản biện thiết kế, kiểm soát chất lượng qua thang đo Placeholder (5/10) và cơ chế Log-Notify-Stop.
+---
+# Skill Builder (Senior Implementation Engineer)
+
+## Mission
+
+**Persona:** Senior Implementation Engineer. Transform architecture designs into production-ready Agent Skills. You are a thinking engineer: validate logic, challenge inconsistencies, and maintain high standards of code hygiene and progressive disclosure.
+
+## Mandatory Boot Sequence
+
+1. Read this `SKILL.md` file (Persona & Lifecycle).
+2. Read [knowledge/architect.md](knowledge/architect.md) (7-Zone framework - Usage: Framework standards).
+3. Read [knowledge/build-guidelines.md](knowledge/build-guidelines.md) (Content rules - Usage: Writing standards).
+4. Determine `{skill-name}`: Extract from path or `.skill-context/` directory name.
+
+## Step 1: PREPARE & Evaluate
+
+Read all inputs and assess feasibility:
+- Read [../../.skill-context/{skill-name}/design.md](../../.skill-context/{skill-name}/design.md) (Architecture).
+- Read [../../.skill-context/{skill-name}/todo.md](../../.skill-context/{skill-name}/todo.md) (Execution Plan).
+- Read [../../.skill-context/{skill-name}/resources/](../../.skill-context/{skill-name}/resources/) (Domain Data).
+- Read [../../.skill-context/{skill-name}/data/](../../.skill-context/{skill-name}/data/) (Rule configs, scoring, technical constraints) if present.
+- Read [../../.skill-context/{skill-name}/loop/](../../.skill-context/{skill-name}/loop/) (Existing verification assets) if present.
+- Build a context inventory (all files in sub-skill context) and classify:
+  - `Critical`: `design.md`, `todo.md`, all `resources/*`, all `data/*`.
+  - `Supportive`: `loop/*`, proofs, notes.
+- **The Stance**: Audit the design. Identify "phi logic" or missing bridges. Build an internal mental model of phases.
+
+## Step 2: CLARIFY (Closing the Loop)
+
+- Scan `todo.md` for `[CẦN LÀM RÕ]` or logic flaws found in Step 1.
+- Ask user for clarification (Max 5 items per session).
+- **Engineer's Audit**: Suggest corrections. Record answers into [../../.skill-context/{skill-name}/design.md](../../.skill-context/{skill-name}/design.md) §Clarifications (Section 9).
+
+### Step 3: BUILD (Phase-Driven)
+Execute the plan from `todo.md` phase by phase.
+- **Phase Execution**: Create folders and files as specified in Zone Mapping.
+- **Zero-Summarization Enforcement**: When building `knowledge` or `data` zones, you MUST maintain a 1:1 conceptual mapping with source resources.
+- **Parity Mapping**: List the source sections and ensure each has a corresponding target section.
+- **Fidelity Rule**: For Knowledge/Data zones, transform 100% of technical definitions, diagrams, Rule IDs, and logic. DO NOT summarize. If the source has a list of 10 items, the target MUST have 10 items.
+- **Double-Pass Infusion**: After completing each phase, perform a refinement pass (Self-Reflect) specifically to check for information loss. Compare line counts and detail density. Re-read the source resources and "infuse" any missing technical details, examples, or identifiers into the target files to ensure high information density.
+- **Progress Tracking**: Mark tasks as done in [../../.skill-context/{skill-name}/todo.md](../../.skill-context/{skill-name}/todo.md) ONLY after files are verified.
+- **Usage Trace Mandatory**: For every completed task, append source trace in `.skill-context/{skill-name}/build-log.md` with format:
+  - `Task -> Output file -> Source files used`.
+  - Include at least one explicit source path in backticks.
+  - Include a "Fidelity Confirmation" note for Knowledge/Data files.
+
+## Step 4: VERIFY (The Gatekeeper)
+
+Run automatic and manual quality gates:
+- Execute: `python scripts/validate_skill.py . --design ../../../.skill-context/{skill-name}/design.md --log`.
+- Execute: `python scripts/validate_skill.py . --design ../../../.skill-context/{skill-name}/design.md --log --strict-context`.
+- Apply [loop/build-checklist.md](loop/build-checklist.md).
+- **Placeholder Density**:
+  - < 5: PASS (Normal).
+  - 5-9: WARNING (Medium).
+  - 10+: **FAILURE** (Stop and report).
+
+## Step 5: DELIVER
+
+- Finalize [loop/build-log.md](loop/build-log.md). Ensure it matches reality (tick boxes, correct counts).
+- Present summarized results in [../../.skill-context/{skill-name}/build-log.md](../../.skill-context/{skill-name}/build-log.md). Exit build mode.
+- Ensure `.skill-context/{skill-name}/build-log.md` has these mandatory sections:
+  - `## Resource Inventory`
+  - `## Resource Usage Matrix`
+  - `## Validation Result`
+
+## Guardrails
+
+| ID | Rule | Description |
+|---|---|---|
+| G1 | **Kỹ sư Phản biện** | Thẩm định và phản biện design trước khi build. Có quyền sửa logic sai. |
+| G2 | **Phase-driven Build** | Chia nhỏ BUILD theo Phase của todo.md. Mark-as-done từng phase. |
+| G3 | **Log-Notify-Stop** | Lỗi hệ thống (Permission/Disk) -> Ghi log -> Thông báo -> **DỪNG NGAY**. |
+| G4 | **Placeholder Scale** | Cảnh báo mỗi 5 Placeholders. >10 Placeholders = FAIL. |
+| G5 | **Source Grounding** | Nội dung 100% từ design, todo, resources. Tuyệt đối không ảo giác. |
+| G6 | **PD Tiering** | Tuân thủ Progressive Disclosure (Tier 1 vs Tier 2). |
+| G7 | **Build-log Mandatory** | Ghi rõ mọi quyết định, phản biện, file tạo và issue vào build-log.md. |
+| G8 | **Context Coverage** | Không được bỏ sót file critical trong `.skill-context/{skill-name}`; phải có evidence sử dụng trong Resource Usage Matrix. |
+| G9 | **Knowledge Fidelity**: Tuyệt đối không tóm tắt (summarize) tài nguyên Tier-Critical của Zone Knowledge/Data. Phải chuyển hóa (Transform) 100% tri thức kỹ thuật. **Quy tắc Parity**: Nếu tài nguyên gốc có N mục, kết quả build phải có ít nhất N mục tương ứng.
+ |
+
+## Error Policy (Log-Notify-Stop)
+
+If any critical command fails (e.g., `write_to_file` error):
+1. Append error detail into [loop/build-log.md](loop/build-log.md).
+2. Use **AskUserQuestion** to notify about the blockage.
+3. **STOP** all subsequent tasks. Exit session to prevent data corruption.
+
+## Scripts & Tools
+- Validator: [scripts/validate_skill.py](scripts/validate_skill.py)
+
+```
+
+### loop/build-log.md
+```md
+# Build Log: skill-builder Refactor (P0 Fixes)
+
+## Project Metadata
+- Refactor Date: 2026-02-14
+- Skill Name: skill-builder
+- Persona: Senior Implementation Engineer
+
+## Execution History
+
+### Phase 1: Knowledge Base Optimization (P1)
+- Status: ✅ COMPLETE
+- Notes: Thêm Usage headers, tinh gọn architect.md runtime, chuẩn hóa naming rules.
+
+### Phase 2: Script Logic Enhancement (P0)
+- Status: ✅ COMPLETE
+- Notes: Nâng cấp `validate_skill.py` với check_file_mapping, PD recursive walk, và --log flag.
+
+### Phase 3: Core Implementation Sync (P0)
+- Status: ✅ COMPLETE
+- Notes: Đồng bộ 7 Guardrails, đóng vòng Clarifications vào design §9, tinh gọn Mission.
+
+## Decisions & Refinements
+- [B-R1]: Tích hợp cơ chế Stop-on-Error nghiêm ngặt.
+- [B-R2]: Áp dụng thang đo 5/10 cho Placeholder.
+- [B-R3]: Phân tách rõ rệt Resources (Design) và Knowledge (Runtime).
+
+## Validation Results (Self-Audit)
+- [x] Structure Check: PASS
+- [x] SKILL.md Constraints: PASS
+- [x] PD Check (Recursive): PASS
+- [x] File Mapping (vs Design): PASS
+- [x] Placeholder Density: 3 (Normal)
+- FINAL STATUS: **READY FOR DEPLOYMENT**
+
+```
+
+### loop/build-checklist.md
+```md
+# Build Checklist: Skill Builder Self-Verification
+
+## 1. Structure Check (Vùng Kiến trúc)
+- [ ] Sự hiện diện của 4 Zone bắt buộc (Core, Knowledge, Scripts, Loop).
+- [ ] Tuân thủ quy tắc đặt tên file: kebab-case cho resources/knowledge/scripts.
+- [ ] File `SKILL.md` nằm đúng vị trí tại root của skill.
+
+## 2. Source & Design Check (Đối chiếu Nguồn)
+- [ ] Nội dung bám sát 100% bản thiết kế `design.md`.
+- [ ] Mọi mục `[CẦN LÀM RÕ]` trong `todo.md` đã được giải quyết hoặc trả lời tại `design.md §9`.
+- [ ] Mọi Task trong `todo.md` đồng bộ với thực tế file đã tạo.
+- [ ] Đã tạo `Resource Inventory` trong `.skill-context/{skill-name}/build-log.md`.
+- [ ] Đã tạo `Resource Usage Matrix` trong `.skill-context/{skill-name}/build-log.md`.
+- [ ] 100% file `Critical` (`design.md`, `todo.md`, `resources/*`, `data/*`) có evidence được dùng.
+
+## 3. Progressive Disclosure Check (Phân tầng thông tin)
+- [ ] Mọi file Tier 2 đều được dẫn link từ `SKILL.md`.
+- [ ] Không có file mồ côi (Orphan files) không được sử dụng.
+- [ ] `SKILL.md` < 500 dòng.
+
+## 4. Completeness & Performance (Hoàn thiện & Chất lượng)
+- [ ] Mật độ Placeholder `[MISSING_DOMAIN_DATA]` < 5 (Normal).
+- [ ] **Zero-Summarization Verification**: Đã đối soát 1:1 với resources; không có hiện tượng tóm tắt hay lược bỏ chi tiết kỹ thuật.
+- [ ] Script `validate_skill.py` trả về Exit Code 0 (PASS).
+- [ ] Nhật ký `build-log.md` phản ánh trung thực trạng thái validation.
+
+## 5. Engineer Stance (Thẩm định Kỹ sư)
+- [ ] Đã thực hiện phản biện bản thiết kế (nếu có phi logic).
+- [ ] Quy trình xử lý lỗi tuân thủ Log-Notify-Stop (Dừng ngay khi có lỗi hệ thống).
+- [ ] Không có kết luận nào không truy vết được về resource hoặc design/todo.
+
+```
+
+### knowledge/build-guidelines.md
+```md
+# **BUILD GUIDELINES (Usage: Quy chuẩn viết nội dung)**
+
+> **Usage**: Hướng dẫn Kỹ sư cách viết và tổ chức nội dung cho từng Zone. Dùng trong Step BUILD.
+
+---
+
+## 1. NGUYÊN TẮC VIẾT SKILL.MD (CORE)
+
+- **Ngôn ngữ**: Tuyệt đối dùng thể mệnh lệnh (Imperative).
+- **Phân tầng (PD)**: Mọi file trong `knowledge/`, `scripts/`, `loop/` phải có ít nhất 1 link tham chiếu từ `SKILL.md`.
+- **Phases**: Chia workflow thành các Phase có thể đánh dấu hoàn thành.
+
+## 2. NGUYÊN TẮC VIẾT KNOWLEDGE
+ 
+ - Mỗi file phải có header **Usage** mô tả mục đích và thời điểm sử dụng.
+ - Ưu tiên bảng và sơ đồ Mermaid.
+ - Nội dung domain phải dẫn nguồn từ `resources/`.
+ - **Fidelity Standard**: Tuyệt đối không tóm tắt tài nguyên `Critical`. Mọi định nghĩa, mã định danh (Rule IDs, Error codes) phải được chuyển hóa chính xác. Nếu resource có danh sách chi tiết, kết quả build phải có danh sách tương ứng.
+ - **Kỹ thuật Parity Check**: Trước khi lưu file knowledge, hãy đếm số lượng mục/đoạn (headers) trong resource và đảm bảo file knowledge có số lượng tương đương. Nếu file knowledge ngắn hơn >30% so với tài liệu gốc dày đặc thông tin, hãy thực hiện lượt truyền dẫn thứ hai (Second Pass) để bổ sung chi tiết.
+
+## 3. NGUYÊN TẮC VIẾT LOOP (CHECKLIST & LOG)
+
+- **Checklist**: Phải ghi rõ tiêu chí có thể đo lường (measurable).
+- **Build-log**: Phải phản ánh trung thực thực tế:
+  * Số lượng Placeholder thực tế.
+  * Tick checkbox `[x]` chỉ khi task ĐÃ hoàn thành thực sự.
+  * Ghi rõ lý do nếu dừng build (Error Policy).
+
+## 4. QUY TẮC ĐẶT TÊN (Naming)
+
+- **Skill Name**: kebab-case (ví dụ: `skill-builder`).
+- **Files trong Knowledge**: kebab-case.
+- **Scripts**: snake_case hoặc kebab-case.
+- **Checklist/Log**: kebab-case.
+
+## 5. CONTEXT DIRECTORY COVERAGE (BAT BUOC)
+
+Muc tieu: Dam bao Builder khong bo sot tai nguyen trong `.skill-context/{skill-name}/`.
+
+### 5.1 Cau truc sub-skill context can hieu ro
+
+```
+.skill-context/{skill-name}/
+├── design.md        # Architecture source of truth
+├── todo.md          # Execution plan source of truth
+├── build-log.md     # Evidence + usage matrix + validation log
+├── resources/       # Domain references (business/uml/analysis docs)
+├── data/            # Rule configs (yaml/json), scoring matrix
+└── loop/            # Prior checks, proofs, phase logs (supportive)
+```
+
+### 5.2 Phan loai muc do uu tien tai nguyen
+
+- `Critical`:
+  - `design.md`
+  - `todo.md`
+  - Tat ca file trong `resources/`
+  - Tat ca file trong `data/`
+- `Supportive`:
+  - Tat ca file trong `loop/`
+  - Tai lieu proof/snapshot
+
+### 5.3 Resource Usage Matrix (bat buoc trong build-log.md)
+
+Builder phai co bang sau trong `.skill-context/{skill-name}/build-log.md`:
+
+| Resource File | Priority | Used In Task | Output File(s) | Notes |
+|---|---|---|---|---|
+| `resources/...` | Critical | `Task x.y` | `knowledge/...` | rationale |
+
+Quy tac:
+- Moi file `Critical` phai xuat hien it nhat 1 dong.
+- Moi dong phai co duong dan resource trong backticks.
+- Khong duoc danh dau task done neu chua co dong trace tuong ung.
+
+```
+
+### knowledge/architect.md
+```md
+# **MASTER ARCHITECTURE FRAMEWORK (Runtime Version)**
+
+> **Usage**: Dùng làm tiêu chuẩn gốc cho cấu trúc 7 Zones và quy tắc viết SKILL.md. Cần đọc ngay khi boot skill.
+
+---
+
+## 1. MÔ HÌNH 7 ZONES (7 Vùng chức năng)
+
+Mọi bộ kỹ năng (Skill Package) PHẢI được tổ chức theo cấu trúc sau:
+
+1. **Zone 1: Core (Cốt lõi)**  
+   - File: `SKILL.md`  
+   - Chức năng: Điều phối, persona, workflow, guardrails.
+   
+2. **Zone 2: Knowledge (Tri thức)**  
+   - Thư mục: `knowledge/`  
+   - Chức năng: Tài liệu tham chiếu, quy chuẩn, guidelines.
+   
+3. **Zone 3: Scripts (Kịch bản)**  
+   - Thư mục: `scripts/`  
+   - Chức năng: Mã thực thi, automation (Python, Bash ).
+   
+4. **Zone 4: Templates (Biểu mẫu)**  
+   - Thư mục: `templates/`  
+   - Chức năng: Các mẫu đầu ra chuẩn.
+   
+5. **Zone 5: Data (Dữ liệu)**  
+   - Thư mục: `data/`  
+   - Chức năng: Config, static data, schemas.
+   
+6. **Zone 6: Loop (Vòng lặp)**  
+   - Thư mục: `loop/`  
+   - Chức năng: Checklist, build-log, test-cases.
+   
+7. **Zone 7: Assets (Tài sản)**  
+   - Thư mục: `assets/`  
+   - Chức năng: Hình ảnh, icons, static assets.
+
+---
+
+## 2. QUY TẮC VIẾT SKILL.MD (§9.1)
+
+1. **Thể Mệnh Lệnh (Imperative Form)**:  
+   - Dùng "Đọc file X", "Chạy lệnh Y" thay vì "Bạn nên làm X".
+2. **Giới hạn Độ dài**:  
+   - Không quá 500 dòng.
+3. **Progressive Disclosure (§6)**:  
+   - SKILL.md (Tier 1) chỉ chứa luồng điều phối.  
+   - Chi tiết kỹ thuật đưa vào Knowledge/Scripts (Tier 2) và dẫn link.
+4. **Cấu trúc Bắt buộc**:  
+   - Frontmatter (name, description)  
+   - Mission/Persona  
+   - Boot Sequence  
+   - Workflow Steps (Phase-driven)  
+   - Guardrails  
+   - Error Policy
+
+---
+
+## 3. CHỐNG ẢO GIÁC (Anti-Hallucination)
+
+- Không tự bịa domain knowledge.
+- Dùng `[MISSING_DOMAIN_DATA]` nếu thiếu resources.
+- Luôn báo cáo mật độ Placeholder tại Step VERIFY.
+
+```
+
+### scripts/validate_skill.py
+```py
+import os
+import sys
+import re
+import json
+from datetime import datetime
+
+class SkillValidator:
+    """
+    Kỹ sư thẩm định chất lượng Agent Skill.
+    Đảm bảo tính chính trực giữa thiết kế (design) và thực thi (build).
+    """
+    def __init__(self, skill_path: str, design_path: str | None = None, log_mode: bool = False, strict_context: bool = False):
+        self.skill_path: str = os.path.abspath(skill_path)
+        self.skill_name: str = os.path.basename(self.skill_path.rstrip('/'))
+        self.design_path: str | None = os.path.abspath(design_path) if design_path else None
+        self.log_mode: bool = log_mode
+        self.strict_context: bool = strict_context
+        self.workspace_root: str = self.find_workspace_root()
+        self.errors: list[str] = []
+        self.warnings: list[str] = []
+        self.reports: list[str] = []
+
+    def find_workspace_root(self) -> str:
+        """Find nearest parent containing .skill-context to anchor workflow paths."""
+        current = self.skill_path
+        for _ in range(12):
+            marker = os.path.join(current, ".skill-context")
+            if os.path.isdir(marker):
+                return current
+            parent = os.path.dirname(current)
+            if parent == current:
+                break
+            current = parent
+        return os.path.dirname(os.path.dirname(os.path.dirname(self.skill_path)))
+
+    def log(self, message, level="INFO"):
+        prefix = f"[{level}] " if level != "INFO" else ""
+        formatted_message = f"{prefix}{message}"
+        self.reports.append(formatted_message)
+        print(formatted_message)
+
+    def check_structure(self):
+        self.log("1. Checking 4 Zones Structural Integrity...")
+        mandatory_zones = ["SKILL.md", "knowledge", "scripts", "loop"]
+        passed = True
+        for zone in mandatory_zones:
+            path = os.path.join(self.skill_path, zone)
+            if not os.path.exists(path):
+                self.errors.append(f"[E01] CRITICAL: Missing mandatory zone: {zone}")
+                passed = False
+        return passed
+
+    def check_skill_md_constraints(self):
+        skill_md_path = os.path.join(self.skill_path, "SKILL.md")
+        if not os.path.exists(skill_md_path): return False
+        
+        with open(skill_md_path, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            content = "".join(lines)
+        
+        self.log(f"2. Analyzing SKILL.md (Lines: {len(lines)})")
+        
+        if len(lines) > 500:
+            self.errors.append(f"[E03] ERROR: SKILL.md exceeds 500 lines limit ({len(lines)})")
+
+        mandatory_keywords = ["Persona:", "Workflow", "Guardrails"]
+        for kw in mandatory_keywords:
+            if kw not in content:
+                self.errors.append(f"[E04] ERROR: SKILL.md missing mandatory section keyword: '{kw}'")
+        
+        return len(self.errors) == 0
+
+    def check_pd_links(self):
+        self.log("3. Progressive Disclosure (PD) Integrity Check...")
+        skill_md_path = os.path.join(self.skill_path, "SKILL.md")
+        if not os.path.exists(skill_md_path): return False
+        
+        with open(skill_md_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        tier2_files = []
+        for root, _, files in os.walk(self.skill_path):
+            rel_root = os.path.relpath(root, self.skill_path)
+            if any(rel_root.startswith(z) for z in ["knowledge", "scripts", "loop"]):
+                for file in files:
+                    if not file.startswith('.'):
+                        rel_path = os.path.normpath(os.path.join(rel_root, file))
+                        tier2_files.append(rel_path)
+
+        orphan_count = 0
+        for f_path in tier2_files:
+            # Pattern: [Label](path) - must use markdown link as per User's request
+            regex_path = re.escape(f_path)
+            pattern = rf"\[.*\]\(.*{regex_path}.*\)"
+            if not re.search(pattern, content):
+                self.warnings.append(f"WARNING: Orphan file detected: '{f_path}' is not linked in SKILL.md via Markdown link.")
+                self.log(f"   -> Orphan (Missing MD Link): {f_path}", "WARN")
+                orphan_count += 1
+        
+        return orphan_count == 0
+
+    def check_file_mapping(self):
+        design_file = self.design_path
+        if not design_file:
+            # Policy High: Design path is required if provided in arguments
+            return True
+            
+        if not os.path.exists(design_file):
+            self.errors.append(f"[E06] CRITICAL: Design file not found at {design_file}")
+            self.log(f"   -> Design not found: {design_file}", "FAIL")
+            return False
+
+        self.log(f"4. File Mapping (Actual vs Design §3) Check...")
+        with open(design_file, 'r', encoding='utf-8') as f:
+            design_content = f.read()
+
+        expected_files: set[str] = set()
+        # Parse from Zone Mapping table
+        lines = design_content.split('\n')
+        in_zone_mapping = False
+        for line in lines:
+            if '## 3. Zone Mapping' in line:
+                in_zone_mapping = True
+            elif in_zone_mapping and line.startswith('##'):
+                if '## 3.' not in line: # Another section started
+                    in_zone_mapping = False
+            
+            if in_zone_mapping:
+                # Find file paths in backticks like `knowledge/architect.md`
+                matches = re.findall(r"`([a-zA-Z0-9_\-\./]+\.[a-z]{2,4})`", line)
+                for m in matches:
+                    if "/" in m or m == "SKILL.md":
+                        expected_files.add(os.path.normpath(m))
+        
+        # Ensure SKILL.md is expected
+        expected_files.add("SKILL.md")
+
+        actual_files: set[str] = set()
+        for root, _, files in os.walk(self.skill_path):
+            rel_root = os.path.relpath(root, self.skill_path)
+            for file in files:
+                if not file.startswith('.'):
+                    rel_path = os.path.normpath(os.path.join(rel_root, file)) if rel_root != "." else file
+                    actual_files.add(rel_path)
+
+        missing = expected_files - actual_files
+        # Exclude loop/build-log.md if it's dynamic
+        ignore_extra = {"scripts/validate_skill.py", "loop/build-log.md", "loop/build-checklist.md"}
+        extra = actual_files - expected_files - ignore_extra
+
+        if missing:
+            for f in missing:
+                self.errors.append(f"[E02] ERROR: Missing file from design: {f}")
+                self.log(f"   -> Missing: {f}", "FAIL")
+        
+        if extra:
+            for f in extra:
+                self.warnings.append(f"WARNING: Extra file not in design: {f}")
+                self.log(f"   -> Extra: {f}", "WARN")
+
+        return len(missing) == 0
+
+    def check_placeholder_density(self):
+        self.log("5. Placeholder Density Check...")
+        total_placeholders = 0
+        for root, _, files in os.walk(self.skill_path):
+            for file in files:
+                if file.endswith('.md'):
+                    path = os.path.join(root, file)
+                    with open(path, 'r', encoding='utf-8') as f:
+                        total_placeholders += f.read().count("[MISSING_DOMAIN_DATA]")
+        
+        self.log(f"   -> Total Placeholders: {total_placeholders}")
+        if total_placeholders >= 10:
+            self.errors.append(f"[E05] FAIL: High Placeholder Density ({total_placeholders}). >10 is unacceptable.")
+        elif total_placeholders >= 5:
+            self.warnings.append(f"WARNING: Medium Placeholder Density ({total_placeholders}). Progressing to failure.")
+        
+        return total_placeholders < 10
+
+    def check_error_handling(self):
+        """Logic P0: Kiểm tra tính tuân thủ Error STOP policy"""
+        # Look for build-log.md in loop/
+        log_path = os.path.join(self.skill_path, "loop", "build-log.md")
+        if not os.path.exists(log_path):
+            return True
+            
+        self.log("6. Error Handling Policy Check...")
+        with open(log_path, 'r', encoding='utf-8') as f:
+            log_content = f.read()
+
+        # If system error occurred but build didn't stop (no final status or more files added)
+        # This is a simplified check
+        if "ERROR" in log_content.upper() and "Log-Notify-Stop" in log_content:
+            self.log("   -> System Error detected in log. Verifying STOP stance.", "INFO")
+        return True
+
+    def get_context_dir(self):
+        return os.path.join(self.workspace_root, ".skill-context", self.skill_name)
+
+    def collect_context_critical_files(self):
+        """
+        Critical coverage contract:
+        - design.md, todo.md
+        - all files under resources/
+        - all files under data/
+        """
+        context_dir = self.get_context_dir()
+        critical: list[str] = []
+        if not os.path.isdir(context_dir):
+            return critical
+
+        for fixed in ("design.md", "todo.md"):
+            fixed_path = os.path.join(context_dir, fixed)
+            if os.path.isfile(fixed_path):
+                critical.append(fixed)
+
+        for rel_root in ("resources", "data"):
+            root_dir = os.path.join(context_dir, rel_root)
+            if not os.path.isdir(root_dir):
+                continue
+            for root, _, files in os.walk(root_dir):
+                for name in files:
+                    if name.startswith("."):
+                        continue
+                    full = os.path.join(root, name)
+                    rel = os.path.relpath(full, context_dir)
+                    critical.append(rel.replace("\\", "/"))
+
+        # Stable ordering for deterministic validation output
+        return sorted(set(critical))
+
+    def check_context_resource_coverage(self):
+        """
+        Verify builder actually captured context usage in .skill-context/{skill-name}/build-log.md.
+        """
+        self.log("7. Context Resource Coverage Check...")
+        context_dir = self.get_context_dir()
+        if not os.path.isdir(context_dir):
+            self.warnings.append(f"WARNING: Context directory not found for coverage check: {context_dir}")
+            self.log(f"   -> Missing context dir: {context_dir}", "WARN")
+            return True
+
+        build_log = os.path.join(context_dir, "build-log.md")
+        if not os.path.isfile(build_log):
+            code = "[E07]" if self.strict_context else "[W07]"
+            msg = f"{code} {'ERROR' if self.strict_context else 'WARNING'}: Missing context build log required for coverage: {build_log}"
+            (self.errors if self.strict_context else self.warnings).append(msg)
+            self.log(f"   -> Missing build-log: {build_log}", "FAIL")
+            return not self.strict_context
+
+        with open(build_log, "r", encoding="utf-8") as f:
+            build_log_content = f.read()
+
+        for section in ("## Resource Inventory", "## Resource Usage Matrix"):
+            if section not in build_log_content:
+                code = "[E08]" if self.strict_context else "[W08]"
+                msg = f"{code} {'ERROR' if self.strict_context else 'WARNING'}: build-log.md missing mandatory section '{section}'"
+                (self.errors if self.strict_context else self.warnings).append(msg)
+                self.log(f"   -> Missing section: {section}", "FAIL")
+
+        critical_files = self.collect_context_critical_files()
+        if not critical_files:
+            self.warnings.append(
+                "WARNING: No critical context files detected (design/todo/resources/data)."
+            )
+            self.log("   -> No critical context files detected.", "WARN")
+            return len(self.errors) == 0
+
+        uncovered = []
+        for rel in critical_files:
+            rel_norm = rel.replace("\\", "/")
+            full_norm = os.path.join(context_dir, rel).replace("\\", "/")
+            if rel_norm not in build_log_content and full_norm not in build_log_content:
+                uncovered.append(rel_norm)
+
+        if uncovered:
+            for rel in uncovered:
+                code = "[E09]" if self.strict_context else "[W09]"
+                msg = f"{code} {'ERROR' if self.strict_context else 'WARNING'}: Critical context resource has no usage evidence in build-log.md: {rel}"
+                (self.errors if self.strict_context else self.warnings).append(msg)
+                self.log(f"   -> Uncovered critical resource: {rel}", "FAIL")
+        else:
+            self.log(
+                f"   -> Coverage OK: {len(critical_files)}/{len(critical_files)} critical resources traced.",
+                "INFO",
+            )
+
+        return len(uncovered) == 0 if self.strict_context else True
+
+    def check_fidelity_heuristics(self):
+        """
+        Check for potential summarization by comparing line counts between sources and targets.
+        """
+        self.log("8. Fidelity Heuristics Check...")
+        context_dir = self.get_context_dir()
+        build_log_path = os.path.join(context_dir, "build-log.md")
+        if not os.path.isfile(build_log_path):
+            return True
+
+        with open(build_log_path, 'r', encoding='utf-8') as f:
+            log_content = f.read()
+
+        # Extract Resource Usage Matrix rows
+        # Format: | `resources/...` | Priority | Used In Task | `knowledge/...` | Notes |
+        matrix_rows = re.findall(r'\|\s*`([^`]+)`\s*\|\s*Critical\s*\|\s*[^\|]+\|(?:\s*`([^`]+)`\s*\|)?', log_content)
+        
+        for source_rel, target_rel in matrix_rows:
+            if not target_rel: continue
+            
+            source_path = os.path.join(context_dir, source_rel)
+            target_path = os.path.join(self.skill_path, target_rel)
+            
+            if os.path.isfile(source_path) and os.path.isfile(target_path):
+                with open(source_path, 'r', encoding='utf-8') as fs:
+                    source_lines = len(fs.readlines())
+                with open(target_path, 'r', encoding='utf-8') as ft:
+                    target_lines = len(ft.readlines())
+                
+                # If target is less than 60% of source and source is significant (> 50 lines)
+                if source_lines > 50 and target_lines < source_lines * 0.6:
+                    self.warnings.append(f"FIDELITY WARNING: '{target_rel}' is significantly shorter than its source '{source_rel}' ({target_lines} vs {source_lines} lines). Potential summarization detected.")
+                    self.log(f"   -> Potential summarization: {target_rel} ({target_lines} lines) vs {source_rel} ({source_lines} lines)", "WARN")
+                else:
+                    self.log(f"   -> Fidelity OK: {target_rel} maintains healthy ratio to {source_rel}.", "INFO")
+        
+        return True
+
+    def report(self):
+        print("\n" + "="*50)
+        print("   AGENT SKILL VALIDATION REPORT")
+        print(f"   Target: {self.skill_name}")
+        print(f"   Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print("="*50)
+        
+        self.check_structure()
+        self.check_skill_md_constraints()
+        self.check_pd_links()
+        self.check_file_mapping()
+        self.check_placeholder_density()
+        self.check_error_handling() # Fix Medium: Call checking error handling
+        self.check_context_resource_coverage()
+        self.check_fidelity_heuristics()
+        
+        print("="*50)
+        final_status = "PASS" if not self.errors else "FAIL"
+        if self.warnings and final_status == "PASS":
+            final_status = "PASS (With Warnings)"
+            
+        print(f"FINAL STATUS: {final_status}")
+        
+        if self.log_mode:
+            self.write_log(final_status)
+            
+        if self.errors:
+            sys.exit(1)
+        sys.exit(0)
+
+    def write_log(self, status):
+        """High Fix: Resolve correct path for build-log.md in .skill-context"""
+        # Search for build-log.md in .skill-context/{skill-name}/
+        target_log_path = os.path.join(
+            self.workspace_root, ".skill-context", self.skill_name, "build-log.md"
+        )
+        
+        if not os.path.exists(target_log_path):
+            self.log(f"Warning: Build log not found at {target_log_path}", "WARN")
+            return
+
+        with open(target_log_path, 'a', encoding='utf-8') as f:
+            f.write(f"\n\n## Validation Result ({datetime.now().strftime('%Y-%m-%d %H:%M:%S')})\n")
+            f.write(f"- **Final Status**: {status}\n")
+            f.write(f"- **Errors**: {len(self.errors)}\n")
+            f.write(f"- **Warnings**: {len(self.warnings)}\n")
+            if self.errors:
+                f.write("### Issues Found:\n")
+                for err in self.errors:
+                    f.write(f"- [FAILED] {err}\n")
+            self.log(f"Results appended to {target_log_path}")
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", help="Path to the skill directory")
+    parser.add_argument("--design", help="Path to design.md")
+    parser.add_argument("--log", action="store_true", help="Append results to build-log.md")
+    parser.add_argument(
+        "--strict-context",
+        action="store_true",
+        help="Fail validation if context resource coverage in .skill-context/{skill-name}/build-log.md is incomplete",
+    )
+    args = parser.parse_args()
+    
+    validator = SkillValidator(
+        args.path,
+        design_path=args.design,
+        log_mode=args.log,
+        strict_context=args.strict_context,
+    )
+    validator.report()
+
+```
