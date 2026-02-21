@@ -69,20 +69,20 @@ Mọi mục map với tài liệu trong `Docs/` theo `lifecycle-checklist-and-fo
 
 *Thư mục: `Docs/life-2/` — **Chỉ [x] khi tài liệu có nội dung đầy đủ, không chỉ khung/placeholder.***
 
-- [X] **2.1** Sơ đồ quan hệ thực thể (ER) → `Docs/life-2/diagrams/er-diagram.md`
-- [X] **2.2** Sơ đồ Use Case → `Docs/life-2/diagrams/use-case-diagram.md`
-- [X] **2.3** Sơ đồ tuần tự (Sequence) → `Docs/life-2/diagrams/sequence-diagram.md` (Đã có M1, M2, M3, M5)
-- [X] **2.4** Sơ đồ luồng (Flow) → `Docs/life-2/diagrams/flow-diagram.md`
-- [X] **2.5** Sơ đồ lớp (Class) → `Docs/life-2/diagrams/class-diagram.md` (Gộp trong database/schema-design.md)
-- [ ] **2.6** Thiết kế Database chi tiết → `Docs/life-2/database/schema-design.md`
-- [ ] **2.7** Thiết kế khung giao diện UI
-  - [ ] Wireframe từng màn hình (M1, M2, M3, M5) → `Docs/life-2/ui/wireframes/`
-  - [ ] Tổng hợp frame layout → `Docs/life-2/ui/ui-frame-design.md`
-- [ ] **2.8** Thiết kế API
-  - [ ] REST/GraphQL endpoints → `Docs/life-2/api/api-spec.md`
-  - [ ] Request/Response, auth → `Docs/life-2/api/api-design.md`
-- [ ] **2.9** Spec chi tiết phục vụ AI code generation → `Docs/life-2/specs/`
-  - [ ] m1-auth-profile-spec.md, m2-content-engine-spec.md, m3-discovery-feed-spec.md, m5-bookmarking-spec.md
+-  **2.1** Sơ đồ quan hệ thực thể (ER) → `Docs/life-2/diagrams/er-diagram.md`
+-  **2.2** Sơ đồ Use Case → `Docs/life-2/diagrams/use-case-diagram.md`
+-  **2.3** Sơ đồ tuần tự (Sequence) → `Docs/life-2/diagrams/sequence-diagram.md` (Đã có M1, M2, M3, M5)
+-  **2.4** Sơ đồ luồng (Flow) → `Docs/life-2/diagrams/flow-diagram.md`
+-  **2.5** Sơ đồ lớp (Class) → `Docs/life-2/diagrams/class-diagram.md` (Gộp trong database/schema-design.md)
+-  **2.6** Thiết kế Database chi tiết → `Docs/life-2/database/schema-design.md`
+-  **2.7** Thiết kế khung giao diện UI
+  -  Wireframe từng màn hình (M1, M2, M3, M5) → `Docs/life-2/ui/wireframes/`
+  -  Tổng hợp frame layout → `Docs/life-2/ui/ui-frame-design.md`
+-  **2.8** Thiết kế API
+  -  REST/GraphQL endpoints → `Docs/life-2/api/api-spec.md`
+  -  Request/Response, auth → `Docs/life-2/api/api-design.md`
+-  **2.9** Spec chi tiết phục vụ AI code generation → `Docs/life-2/specs/`
+  -  m1-auth-profile-spec.md, m2-content-engine-spec.md, m3-discovery-feed-spec.md, m5-bookmarking-spec.md
 
 ---
 

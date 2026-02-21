@@ -12,7 +12,7 @@
 | Chuẩn hóa domain model (entity, quan hệ, cardinality) | `01-vision/FR/requirements-srs.md`, `artkitacture.md`, `arhitacture-V2.md` | `diagrams/er-diagram.md`, `database/schema-design.md` |
 | Thiết kế luồng xử lý nghiệp vụ | `01-vision/user-stories.md`, `01-vision/FR/feature-map-and-priority.md` | `diagrams/flow-diagram.md`, `diagrams/sequence-diagram.md` |
 | Chốt contract API và luồng auth | `02-decisions/technical-decisions.md`, `01-vision/FR/requirements-srs.md` | `api/api-spec.md`, `api/api-design.md` |
-| Thiết kế wireframe theo module ưu tiên | `01-vision/FR/feature-map-and-priority.md`, `lifecycle-checklist-and-folder-structure.md` | `ui/ui-frame-design.md`, `ui/wireframes/*` |
+| Thiết kế wireframe theo module ưu tiên | `01-vision/FR/feature-map-and-priority.md`, `lifecycle-checklist-and-folder-structure.md` | `ui/specs/*`, `ui/ui-frame-design.md`, `ui/wireframes/*` |
 | Xác định ràng buộc kỹ thuật hệ thống | `02-decisions/technical-decisions.md`, `arhitacture-V2.md` | Tất cả artifacts có section "Constraints/Assumptions" |
 
 ---
