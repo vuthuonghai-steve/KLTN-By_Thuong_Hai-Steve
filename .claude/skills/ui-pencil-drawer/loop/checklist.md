@@ -28,15 +28,17 @@ Run after completing all Phase 0 actions. Required before Phase 1.
 
 ## §P1 — Phase 1: Spec Analyzer Checklist
 
-Run after parsing spec file. Required before Phase 2.
+Run after parsing spec file + activity diagrams. Required before Phase 2.
 
 ```
 □ P1.1  screens[] is non-empty (at least 1 screen extracted)?
 □ P1.2  Each screen in screens[] has: name, layout direction, width?
 □ P1.3  Each screen has at least 1 component mapping entry?
 □ P1.4  Every component mapping entry has a corresponding name in component_map (or marked MISSING_)?
-□ P1.5  No field names were invented — all entries traceable to spec sections?
+□ P1.5  No field names were invented — all entries traceable to spec or activity diagram sections?
 □ P1.6  Spec file was readable and existed at provided path?
+□ P1.7  Activity diagrams for the module were found and read (or absence was logged)?
+□ P1.8  states[] for each screen contains more than just "default" (error/loading/success extracted from diagrams)?
 ```
 
 **Threshold**:
@@ -45,7 +47,9 @@ Run after parsing spec file. Required before Phase 2.
 - P1.1 fail → ⚠️ ESCALATE: "Could not extract any screens from spec. Format may be unrecognized."
 - P1.2 or P1.3 fail → Self-fix: re-parse spec with wider pattern matching. Max 1 retry.
 - P1.4 fail (MISSING_ entries exist) → Log missing components. Continue. Note in Phase 3 as `zone: blocked`.
-- P1.5 fail → Self-correct: remove invented entries, re-extract from spec only.
+- P1.5 fail → Self-correct: remove invented entries, re-extract from spec or diagrams only.
+- P1.7 fail (diagrams not found) → Log "activity diagrams not found for M{N}". Continue with spec states only. Do NOT escalate.
+- P1.8 fail (only default state) → Self-fix: re-read activity diagrams with wider pattern scan. If still only default → log warning, continue.
 
 ---
 
@@ -139,6 +143,7 @@ Checklist items map to design.md §8 Risks:
 | R1 — AI bịa component IDs (P0) | P0.3, P0.4, P3.3 | batch_get first; no hardcoding |
 | R2 — Vẽ đè canvas (P0) | P3.2 | find_empty_space + snapshot_layout |
 | R3 — Thêm elements không có trong spec (P1) | P1.5, P2.3, P2.5 | spec-cite required; hallucination check |
+| R7 — Bỏ sót error/loading states (chỉ vẽ default) | P1.7, P1.8 | Đọc activity diagrams M{N}; states[] phải > default |
 | R4 — batch_design quá nhiều ops (P1) | (data/layout-rules.yaml limits.batch_ops_max) | 25-op hard cap per call |
 | R5 — G-Fail-Fast: accumulate errors (P1) | P3 consecutive failure rule | Escalate after 2 consecutive |
 | R6 — Wireframe phức tạp, AI lost (P2) | P2.1, max_components_per_screen | 1 file = 1 screen; max 20 components |

@@ -83,7 +83,47 @@ Examples:
 | DB schema | `Docs/life-2/database/schema-design.md` |
 | API spec | `Docs/life-2/api/api-spec.md` |
 | Main spec (code source) | `Docs/life-2/specs/m{N}-*-spec.md` |
+| Activity diagrams | `Docs/life-2/diagrams/activity-diagrams/m{N}-a*.md` |
+| Flow diagrams | `Docs/life-2/diagrams/flow/flow-*.md` |
+| Sequence diagrams | `Docs/life-2/diagrams/sequence-diagrams/detailed-m{N}-*.md` |
 | STi.pen file | Ask user or use `get_editor_state()` to detect |
+
+---
+
+## 7. Diagram Paths — Module-to-Activity Mapping
+
+**Mục đích**: Phase 1 đọc activity diagrams để extract đầy đủ states (error, loading, success, empty) cho mỗi màn hình. Spec file thường chỉ mô tả `default` state — activity diagrams chứa toàn bộ error branches và UI state transitions.
+
+### Activity Diagrams (Primary source for states extraction)
+
+| Module | Files | Extract gì |
+|--------|-------|-----------|
+| M1 | `m1-a1-registration.md`, `m1-a2-login.md`, `m1-a3-verification.md`, `m1-a4-recovery.md`, `m1-a5-onboarding.md` | Error validation, duplicate email, token expired, success redirect |
+| M2 | `m2-a1-editor-pipeline.md`, `m2-a2-media-handler.md`, `m2-a3-post-integrity.md`, `m2-a4-visibility.md` | Draft state, upload error, content violation, publish success |
+| M3 | `m3-a1-feed-assembler.md`, `m3-a2-search-engine.md`, `m3-a3-discovery-recommendation.md` | Empty feed, search no results, loading skeleton |
+| M4 | `m4-a1-friendship-handshake.md`, `m4-a2-engagement-logic.md`, `m4-a3-connection-privacy.md` | Pending state, blocked state, reaction feedback |
+| M5 | `m5-a1-bookmark-persistence.md`, `m5-a2-collection-orchestrator.md` | Empty collection, save success, conflict error |
+| M6 | `m6-a1-sse-dispatcher.md`, `m6-a2-report-pipeline.md`, `m6-a3-enforcement-action.md` | Real-time badge, report pending, enforcement result |
+
+### Pattern nhận dạng states từ activity diagram
+
+Khi đọc activity diagram, tìm các node types sau:
+
+| Node Pattern | State Type | Ví dụ |
+|---|---|---|
+| "Hiển thị lỗi...", "Trả về lỗi..." | `error` | `B3: Hiển thị lỗi Validation` |
+| "Đang xử lý...", spinner, `activate` block | `loading` | `C1: Nhận yêu cầu` (processing) |
+| "Điều hướng sang...", "Chuyển hướng", redirect | `success` | `B12: Điều hướng sang trang Chờ xác nhận` |
+| "Danh sách trống", "Không có kết quả" | `empty` | `S2: Không có kết quả tìm kiếm` |
+
+### State citation format (dùng trong wireframe blueprint)
+
+```
+state: error    | source: activity m1-a1 §B3
+state: loading  | source: activity m1-a1 §C1
+state: success  | source: spec §2.3
+state: default  | source: spec §2.1
+```
 
 ---
 

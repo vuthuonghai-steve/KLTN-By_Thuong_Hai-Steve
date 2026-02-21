@@ -6,14 +6,20 @@
 ---
 
 ## Table of Contents
-- [1. Overview](#1-overview)
-- [2. DOM Tree Hierarchy — 4 Levels](#2-dom-tree-hierarchy--4-levels)
-- [3. Source Citation Format](#3-source-citation-format)
-- [4. States](#4-states)
-- [5. Strict Zone vs Fluid Zone](#5-strict-zone-vs-fluid-zone)
-- [6. Notation Summary Table](#6-notation-summary-table)
-- [7. Complete Example — Login Screen (M1)](#7-complete-example--login-screen-m1)
-- [8. Blueprint Validation Rules](#8-blueprint-validation-rules)
+- [Wireframe Blueprint Format Standard](#wireframe-blueprint-format-standard)
+  - [Table of Contents](#table-of-contents)
+  - [1. Overview](#1-overview)
+  - [2. DOM Tree Hierarchy — 4 Levels](#2-dom-tree-hierarchy--4-levels)
+    - [Level 0 — Screen Root Frame](#level-0--screen-root-frame)
+    - [Level 1 — Composition Pattern](#level-1--composition-pattern)
+    - [Level 2 — Component Slot](#level-2--component-slot)
+    - [Level 3 — Text Override Notation](#level-3--text-override-notation)
+  - [3. Source Citation Format](#3-source-citation-format)
+  - [4. States](#4-states)
+  - [5. Design Freedom \& Tagging Injection](#5-design-freedom--tagging-injection)
+  - [6. Notation Summary Table](#6-notation-summary-table)
+  - [7. Complete Example — Login Screen (M1)](#7-complete-example--login-screen-m1)
+  - [8. Blueprint Validation Rules](#8-blueprint-validation-rules)
 
 ---
 
@@ -33,8 +39,8 @@ A Wireframe Blueprint is a markdown file describing the **DOM structure of 1 scr
 
 ```
 Level 0 — Screen Root Frame
-  └── Level 1 — Layout Section (partitions screen into functional areas)
-        └── Level 2 — Component Slot (instance from Lib-Component)
+  └── Level 1 — Composition Pattern (defines semantic grouping & high-level visual pattern)
+        └── Level 2 — Component Slot (data binding with tag injection)
               └── Level 3 — Text/Override (specific content values)
 ```
 
@@ -52,19 +58,20 @@ Outermost frame for the entire screen. Maps to: `I(document, {type: "frame", nam
 > state: default | loading | error | empty
 ```
 
-### Level 1 — Layout Section
+### Level 1 — Composition Pattern
 
-Child frames dividing the screen into functional areas (header, body, footer, sidebar...).
-Maps to: `I(screenFrame, {type: "frame", layout: "...", ...})`
+Defines the creative visual structure. The AI is free to implement this pattern logically (e.g., using Grid/Flexbox with large paddings, Neo-brutalism borders, Background AI Images).
+Maps to: `I(screenFrame, {type: "frame", layout: "...", fill: "...", ...})` + `G()` for immersive backgrounds.
 
 ```
 ## Section: {section-name}
+> composition: split-screen | immersive-card | sidebar-layout | stacked
+> styling: neo-brutalism | glassmorphism | minimal
 > layout: vertical | horizontal
 > width: fill_container | {px} | fit_content
 > height: fit_content | fill_container
 > gap: {number}          (default from layout-rules.yaml if omitted)
 > padding: {number}      (or: {top} {right} {bottom} {left})
-> background: $--background | $--surface | transparent
 ```
 
 ### Level 2 — Component Slot
@@ -137,25 +144,18 @@ The `?` suffix = optional/conditional (depends on spec mention).
 
 ---
 
-## 5. Strict Zone vs Fluid Zone
+## 5. Design Freedom & Tagging Injection
 
-```
-zone: strict
-  → Use case: Forms, Tables, Navigation, Data Cards
-  → Rules:
-    - 100% components sourced from Lib-Component
-    - No invented UI elements beyond spec
-    - No layout/color overrides (only text content overrides allowed)
-    - Every field in spec must appear; nothing extra
+**1. Creative Presentation Contract (The Freedom)**
+The AI is encouraged to use bold Composition Patterns (e.g., dividing screen 50/50, applying full-bleed AI images `G()`, adding thick borders, hard shadows). The visual presentation boundaries are wide open as long as it aligns with the project's Neo-brutalism or modern aesthetic.
 
-zone: fluid
-  → Use case: Hero banners, Empty states, Onboarding, Marketing sections
-  → Rules:
-    - Free to define Flexbox sizing (gap, padding, width, height)
-    - May use G() for AI-generated images
-    - May write persuasive copywriting based on project Persona
-    - May adjust whitespace for visual breathing room
-```
+**2. Semantic Data Contract (The Restriction)**
+While layout and styling are fluid, **the data logic is 100% strict**.
+Every Component Slot defined in the UI Spec MUST be drawn, and NO extra functional fields may be invented.
+
+**3. Tagging Injection (The Verification Anchor)**
+When drawing nodes in Phase 3, you **MUST** inject the `spec-cite` into the drawn node's properties (e.g., in the `name` field or `context.cite`) to allow Reverse Verification later. 
+Example: `I(form, {type: "frame", name: "input-email [spec §2.1]"})`
 
 ---
 
@@ -185,87 +185,43 @@ zone: fluid
 # Screen: m1/login
 > module: M1
 > spec: Docs/life-2/ui/specs/m1-auth-ui-spec.md §3
-> layout: vertical
-> width: 375
-> height: fit_content
 > state: default
 
-## Section: top-bar
-> layout: horizontal
-> width: fill_container
-> height: 56
-> padding: 0 16
-
-- comp: logo-mark
-  ref: LOGO_ID
-  width: fit_content
-  spec-cite: [spec §3.1 — App header logo]
-  zone: strict
-
 ## Section: hero-area
-> layout: vertical
-> width: fill_container
-> height: fit_content
-> gap: 8
-> padding: 32 24
+> composition: split-screen
+> styling: neo-brutalism
 
 - comp: heading-text
   ref: TEXT_H1_ID
   width: fill_container
   spec-cite: [spec §3.2 — Login heading]
-  zone: fluid
   text@content: "Chào mừng trở lại"
 
-- comp: subheading-text
-  ref: TEXT_BODY_ID
-  width: fill_container
-  spec-cite: [spec §3.2 — Login subheading]
-  zone: fluid
-  text@content: "Đăng nhập để tiếp tục chia sẻ kiến thức"
-
 ## Section: form-area
-> layout: vertical
-> width: fill_container
-> height: fit_content
-> gap: 16
-> padding: 0 24
+> composition: stacked
+> styling: neo-brutalism
 
 - comp: input-email
   ref: INPUT_TEXT_ID
   width: fill_container
   spec-cite: [spec §3.3 — Email field]
-  zone: strict
   text@label: "Email"
-  text@placeholder: "ten@example.com"
 
 - comp: input-password
   ref: INPUT_PASSWORD_ID
   width: fill_container
   spec-cite: [spec §3.3 — Password field]
-  zone: strict
   text@label: "Mật khẩu"
-  text@placeholder: "Nhập mật khẩu"
 
 ## Section: cta-area
-> layout: vertical
-> width: fill_container
-> height: fit_content
-> gap: 12
-> padding: 0 24 32
+> composition: stacked
+> styling: neo-brutalism
 
 - comp: button-primary
   ref: BTN_PRIMARY_ID
   width: fill_container
   spec-cite: [spec §3.4 — Login CTA button]
-  zone: strict
   text@label: "Đăng nhập"
-
-- comp: link-forgot-password
-  ref: LINK_TEXT_ID
-  width: fit_content
-  spec-cite: [spec §3.4 — Forgot password link]
-  zone: strict
-  text@label: "Quên mật khẩu?"
 
 ## States
 - default: Empty form, button enabled, no error messages

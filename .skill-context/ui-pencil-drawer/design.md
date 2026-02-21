@@ -38,10 +38,11 @@
 
 **Phase 1 — Spec Analyzer (autonomous):**
 
-- Input: Spec file path (ví dụ: `Docs/life-2/ui/specs/m1-auth-ui-spec.md`)
-- Hành động: Parse → extract danh sách Screens, States, và Component Mapping
-- Output nội bộ: screens[], component_map — AI tự tiến sang Phase 2 ngay
-- Escalate only if: spec file không tồn tại hoặc format không nhận dạng được
+- Input: Spec file path + activity diagrams cùng module (`Docs/life-2/diagrams/activity-diagrams/m{N}-a*.md`)
+- Hành động: Parse spec → extract screens, component map; đọc activity diagrams → extract full states[] (default + error + loading + success + empty)
+- Output nội bộ: screens[].states[] đầy đủ, component_map — AI tự tiến sang Phase 2 ngay
+- State citation: mỗi state entry có source citation (spec §N hoặc activity m{N}-a{K} §node)
+- Escalate only if: spec file không tồn tại. Activity diagrams không tìm thấy → log + continue.
 
 **Phase 2 — Wireframe Blueprint (autonomous):**
 

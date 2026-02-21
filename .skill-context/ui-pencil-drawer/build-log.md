@@ -27,6 +27,11 @@
 | 2026-02-21 23:10 | Tạo knowledge/animation-tokens.md (6 sections, 7 tokens, parity 5:6 — added §IV mapping table) | ✅ OK |
 | 2026-02-21 23:10 | Re-add animation-tokens.md row vào design.md §3 Zone Mapping | ✅ OK |
 | 2026-02-21 23:10 | Update SKILL.md Phase 3: add conditional read for animation-tokens.md | ✅ OK |
+| 2026-02-22 | **ENHANCEMENT**: Phase 1 nâng cấp — đọc activity diagrams để extract full states[] | ✅ OK |
+| 2026-02-22 | SKILL.md Phase 1: thêm step đọc `Docs/life-2/diagrams/activity-diagrams/m{N}-a*.md` | ✅ OK |
+| 2026-02-22 | knowledge/project-context.md §7: bổ sung Diagram Paths + module-to-activity mapping table | ✅ OK |
+| 2026-02-22 | loop/checklist.md §P1: thêm P1.7 (diagrams read?) + P1.8 (states > default?) + R7 risk | ✅ OK |
+| 2026-02-22 | design.md §2.2 Phase 1: cập nhật input/output mô tả phản ánh activity diagram integration | ✅ OK |
 
 ---
 

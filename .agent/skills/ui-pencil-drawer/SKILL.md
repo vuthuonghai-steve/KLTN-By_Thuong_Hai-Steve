@@ -59,19 +59,31 @@ Copy this into your response at start and mark off progress:
 
 ## Phase 1: Spec Analyzer
 
-**Goal**: Parse spec file → extract screens[], states, component mapping. Autonomous.
+**Goal**: Parse spec file + activity diagrams → extract screens[], full states[], component mapping. Autonomous.
 
 **Actions**:
 
 1. Read spec file at provided path (e.g., `Docs/life-2/ui/specs/m1-auth-ui-spec.md`)
-2. Extract:
-   - `screens[]`: list of screen names with their layout direction and width
+2. **Read activity diagrams** for the same module (see [`knowledge/project-context.md`](knowledge/project-context.md) §7 for paths):
+   - Pattern: `Docs/life-2/diagrams/activity-diagrams/m{N}-a*.md` (read all files for the module)
+   - If module is M1 → read `m1-a1-registration.md`, `m1-a2-login.md`, ... etc.
+   - If diagrams not found at path → continue with spec only, log "activity diagrams not found" in blueprint notes
+3. Extract from **both** sources:
+   - `screens[]`: list of screen names with layout direction and width (from spec)
    - `component_map`: spec elements → Lib-Component names (match against Phase 0 component_map)
-   - `states[]`: per screen — which states to draw (default always; others only if spec mentions)
-3. For ambiguous spec entries: infer from `project_context` (module patterns, design aesthetic). Log inference in blueprint notes. Do NOT escalate.
+   - `states[]`: **full states per screen** — merge spec states + activity diagram states:
+     - `default` — always included
+     - `error` — from activity diagram error branches (e.g., "Hiển thị lỗi Validation", "Email đã tồn tại")
+     - `loading` — from activity diagram processing nodes
+     - `success` — from activity diagram success/redirect nodes
+     - `empty` — from activity diagram "danh sách trống" or equivalent nodes
+4. For ambiguous entries: infer from `project_context`. Log inference in blueprint notes. Do NOT escalate.
+
+**State source citation rule**: Every state entry must cite its source:
+- `state: error | source: spec §3.2` or `state: error | source: activity m1-a1 B3`
 
 **Self-verify ([loop/checklist.md](loop/checklist.md) §P1)**:
-- `screens[]` non-empty? Every component has spec citation? No invented fields?
+- `screens[]` non-empty? Activity diagrams read? states[] includes error/loading from diagrams? No invented fields?
 
 **Auto-proceed** → Phase 2. Escalate only if: spec file does not exist at path.
 
@@ -103,21 +115,24 @@ Copy this into your response at start and mark off progress:
 
 ## Phase 3: Pencil Drawer
 
-**Goal**: Draw each screen in STi.pen. Self-correcting loop. Autonomous.
+**Goal**: Draw each screen in STi.pen balancing Creative Composition with Semantic Strictness. Self-correcting loop. Autonomous.
 
-**Read before this phase** (if screen has Fluid Zones or animated components):
+**Read before this phase**:
 - [`knowledge/animation-tokens.md`](knowledge/animation-tokens.md) — Token dict (fade-up, hover-lift, etc.) + how to set `context.animation` on nodes
 
 **Actions per screen** (repeat for each screen in screens[]):
 
 1. `find_empty_space_on_canvas(width, height, padding: 80, direction: "right")` → get safe position
 2. `snapshot_layout()` → confirm no overlap with existing content
-3. `batch_design` — draw 1 screen (max 25 ops/call). Use binding pattern for all child references. For large screens (>25 ops), split into multiple batches: frame structure → sections → content.
+3. `batch_design` — draw 1 screen (max 25 ops/call). Use binding pattern for all child references. Split into multiple batches if needed.
+   * **Immersive Creativity**: Apply background images `G()`, adjust contrast, and build bold layouts based on the `composition` pattern (e.g., 50/50 split screen, Neo-brutalism cards floating on images).
+   * **Tagging Injection (CRITICAL)**: You MUST inject the `spec-cite` reference into the drawn component's `name` or `context` metadata to ensure traceability. Example: `name: "input_email [spec §2.1]"`
 4. `get_screenshot(nodeId: screenFrameId)` → visual verify
-5. Run **[loop/checklist.md](loop/checklist.md) §P3** self-verify
+5. **Reverse Verification**: Use `batch_get` or inspect the output to compare the drawn node tree against the Blueprint. Verify EVERY `spec-cite` from the blueprint is successfully tagged in the logical nodes.
+6. Run **[loop/checklist.md](loop/checklist.md) §P3** self-verify
 
-**Pass** (≥ 6/7 checks green): auto-proceed to next screen.
-**Fail fixable** (overlap, wrong node, layout break): fix and retry (max 2 retries).
+**Pass** (All spec-cites exist + No layout overlapping): auto-proceed to next screen.
+**Fail fixable** (Missing tag, hallucinated field, layout break): fix and retry (max 2 retries).
 **Fail blocked** (component missing, no fallback found in component_map): → ESCALATE.
 
 **Escalation format** (only when blocked):
@@ -142,8 +157,9 @@ Wireframes saved: Docs/life-2/ui/wireframes/
 
 | ID | Rule | Enforcement |
 |----|------|------------|
-| G-Lib-Strict | 100% components must be `ref` type from Lib-Component | Never use raw rectangle/text if Lib has equivalent. All `ref:` from Phase 0 component_map. |
-| G-Spec-Strict | No UI elements without spec citation | Every comp slot in blueprint has `spec-cite: [spec §N.M]`. Fail if missing. |
+| G-Determinism | Dual-Layer Contract Verification | Every semantic field (spec-cite) from Level 1 MUST be injected into the Level 2 visual composition (Tagging Injection). AI must verify presence of all spec-cites after drawing. |
+| G-Visual-Freedom | Component Assembly over Rigid Components | If standard Lib-Component doesn't fit the composition, you may build inline (frames with borders/shadows) but must maintain mapping to the Spec via Tagging Injection. |
+| G-Spec-Strict | No UI elements without spec citation | Every comp slot in blueprint has `spec-cite: [spec §N.M]`. Extraneous form fields or buttons are forbidden. |
 | G-Canvas-Space | Mandatory space check before every draw | Call `find_empty_space_on_canvas` + `snapshot_layout` before each `batch_design`. |
 | G-One-Screen-Per-Call | Max 1 screen logical unit per `batch_design` | Split large screens into structure/content batches but keep within 25-op limit. |
 | G-Fail-Fast | Fail 2 consecutive screens → escalate | Track consecutive failures. If 2 in a row fail all retries → escalate instead of continuing. |
