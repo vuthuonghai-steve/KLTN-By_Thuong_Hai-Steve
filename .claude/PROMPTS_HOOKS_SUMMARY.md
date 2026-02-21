@@ -1,118 +1,95 @@
-# Custom Prompts & Hooks Summary for KLTN
+# Custom Prompts, Hooks & SubAgents — Tóm Tắt Nhanh
 
-> Quick navigation guide for understanding Claude Code's custom prompts and hooks
-
-**Full Reference:** See `CLAUDE_ADVANCED_GUIDE.md` (comprehensive)
-
----
-
-## 🎯 Custom Prompts — What & Why
-
-**Custom prompts** = persistent instructions that Claude reads at every session start. They guide Claude's behavior across all conversations.
-
-### Three Key Concepts
-
-| Concept | What | Where | Shareable |
-|---------|------|-------|-----------|
-| **CLAUDE.md** | Team instructions | `./CLAUDE.md` | ✅ Yes (repo) |
-| **CLAUDE.local.md** | Personal preferences | `./CLAUDE.local.md` | ❌ No (gitignored) |
-| **Auto Memory** | AI learns patterns | `~/.claude/projects/<>/memory/` | ❌ No (personal) |
-
-### What to Put in CLAUDE.md
-
-✅ **Include:**
-- Bash commands specific to YOUR project (`npm run test`, build steps)
-- Code style rules that differ from normal (`2 spaces, no semicolons`)
-- How to run tests, how to deploy
-- Common gotchas ("if tests timeout, increase jest timeout")
-- Architecture notes ("API in src/app/api, collections in src/collections")
-
-❌ **Exclude:**
-- Generic advice Claude already knows
-- Documentation links (just link to docs)
-- Info that changes frequently
-- Self-evident practices
-
-### Rule of Thumb
-
-**Keep CLAUDE.md under 500 lines.** The shorter and more specific, the better Claude follows it.
+> Hướng dẫn tham khảo nhanh cho KLTN Project
+>
+> **Tài liệu đầy đủ:** Xem `CLAUDE_ADVANCED_GUIDE.md`
 
 ---
 
-## 🪝 Hooks — What & Why
+## Custom Prompts — Tổng quan
 
-**Hooks** = deterministic scripts that ALWAYS execute at specific points (no exceptions).
+**Custom prompts** = Hướng dẫn bền vững mà Claude đọc ở mỗi lần bắt đầu session. Định hướng hành vi của Claude xuyên suốt mọi cuộc trò chuyện.
 
-### When Hooks Fire
+### Ba khái niệm cốt lõi
 
-| When | Name | Can Block? | Example |
-|------|------|-----------|---------|
-| Before tool runs | `PreToolUse` | ✅ Yes | Block destructive Bash commands |
-| After tool succeeds | `PostToolUse` | ❌ No | Auto-format code |
-| Before Claude stops | `Stop` | ✅ Yes | Verify tests pass |
-| When session starts | `SessionStart` | ❌ No | Inject project status |
-| When config changes | `ConfigChange` | ✅ Yes | Audit changes |
+| Khái niệm | Là gì | Vị trí | Chia sẻ |
+|-----------|-------|--------|---------|
+| **CLAUDE.md** | Hướng dẫn team | `./CLAUDE.md` | ✅ Có (repo) |
+| **CLAUDE.local.md** | Preferences cá nhân | `./CLAUDE.local.md` | ❌ Không (gitignored) |
+| **Auto Memory** | AI tự học patterns | `~/.claude/projects/<>/memory/` | ❌ Không (personal) |
 
-### Key Difference: Hooks vs CLAUDE.md
+### Thứ tự ưu tiên (cao → thấp)
 
 ```
-CLAUDE.md:      "You should probably use TypeScript"     ← Claude considers it
-Hooks:          "Auto-format after EVERY edit"           ← Always happens, no exceptions
+1. Managed Policy (IT admin)
+2. .claude/rules/*.md  (team, theo path)
+3. ./CLAUDE.md          (team, mọi file)
+4. ~/.claude/rules/*.md (cá nhân)
+5. ~/.claude/CLAUDE.md  (cá nhân, mọi project)
+6. ./CLAUDE.local.md    (cá nhân, gitignored)
+7. Auto Memory          (AI tự ghi)
 ```
 
-### Blocking Hooks (Exit Code 2)
+### Nên/Không nên đưa vào CLAUDE.md
 
-Hooks that can block actions must return:
-- `exit 0` — allow action
-- `exit 2` — block action (print reason to stderr)
+✅ **Nên:**
+- Build/test commands đặc thù cho project (`npm run dev`, build steps)
+- Code style rules khác với mặc định (2 spaces, semicolons, v.v.)
+- Quy ước đặt tên, PR format, branch naming
+- Architecture decisions quan trọng
+- Biến môi trường bắt buộc, debug tips
 
-Example: Block `rm -rf` commands
-```bash
-if echo "$COMMAND" | grep -q 'rm -rf'; then
-  echo "Destructive command blocked" >&2
-  exit 2
-fi
-exit 0
-```
+❌ **Không nên:**
+- Thứ Claude có thể tự suy ra từ code
+- Convention chuẩn Claude đã biết
+- API docs dài dòng (link ra ngoài thay vì paste vào)
+- Thông tin thay đổi thường xuyên
+- "Viết code sạch", "dùng TypeScript" — hiển nhiên
+
+**Giữ CLAUDE.md dưới 500 dòng.** Càng ngắn càng được follow đúng hơn.
 
 ---
 
-## 📋 How KLTN Uses Custom Prompts
+## Hooks — Tổng quan
 
-**Current Setup:**
+**Hooks** = Scripts tất định chạy **luôn luôn** tại điểm lifecycle cụ thể (không có ngoại lệ).
 
-1. **Team CLAUDE.md** — `./CLAUDE.md` (main project instructions)
-2. **Project Rules** — `./.claude/rules/*.md` (modular by topic)
-   - `ui-stack.md` — Tailwind v4 + Radix UI only
-   - `spec-first.md` — Read specs before coding
-   - `payload-conventions.md` — Payload CMS patterns
-   - `lifecycle.md` — 4-Life phase rules
-3. **Project CLAUDE.md** — `./.claude/CLAUDE.md` (alternative, also loads)
-4. **Advanced Guide** — `./.claude/CLAUDE_ADVANCED_GUIDE.md` (reference)
+### Sự khác biệt then chốt
 
-**To Add Custom Instructions:**
-
-Edit either:
-- `./CLAUDE.md` — for team-wide rules
-- `./.claude/CLAUDE.md` — alternative (same effect)
-- `./.claude/rules/new-topic.md` — for specific code paths
-
-**To Add Personal Preferences:**
-
-Create `./CLAUDE.local.md` (won't commit to repo):
-```markdown
-# My Personal Preferences
-
-- I prefer seeing verbose output
-- Use my test data in /tmp/test-data/
-- My Vercel sandbox URL: ...
+```
+CLAUDE.md: "Bạn nên dùng TypeScript"   → Claude cân nhắc, có thể bỏ
+Hooks:     "Auto-format sau mỗi lần edit" → Luôn xảy ra, không ngoại lệ
 ```
 
----
+### Tất cả 15 Hook Events
 
-## 🔧 How KLTN Uses Hooks
+| Khi nào | Tên Event | Chặn được? | Ví dụ dùng |
+|---------|-----------|-----------|------------|
+| Session bắt đầu | `SessionStart` | ❌ | Inject project status |
+| Trước khi Claude xử lý prompt | `UserPromptSubmit` | ✅ | Inject thêm context |
+| Trước khi tool chạy | `PreToolUse` | ✅ | Chặn lệnh nguy hiểm |
+| Trước dialog cấp quyền | `PermissionRequest` | ✅ | Tự động từ chối quyền |
+| Trước khi nén context | `PreCompact` | ❌ | Log trước compact |
+| Sau khi Claude hoàn thành | `Stop` | ✅ | Verify tests pass |
+| Subagent hoàn thành | `SubagentStop` | ✅ | Kiểm tra kết quả |
+| Teammate sắp idle | `TeammateIdle` | ✅ | Giữ teammate hoạt động |
+| Task được đánh dấu xong | `TaskCompleted` | ✅ | Verify trước khi done |
+| Config file thay đổi | `ConfigChange` | ✅ | Audit thay đổi |
+| Sau khi tool thành công | `PostToolUse` | ❌ | Auto-format code |
+| Sau khi tool thất bại | `PostToolUseFailure` | ❌ | Log lỗi |
+| Subagent được tạo | `SubagentStart` | ❌ | Inject context |
+| Thông báo được gửi | `Notification` | ❌ | Log notifications |
+| Session kết thúc | `SessionEnd` | ❌ | Log timestamp |
 
-**Current Setup in `.claude/settings.json`:**
+### Exit Codes Hook
+
+| Code | Ý nghĩa |
+|------|---------|
+| `0` | ✅ Thành công — parse stdout JSON nếu có |
+| `2` | 🛑 **Chặn hành động** — stderr hiển thị làm feedback |
+| `1`, `3+` | ⚠️ Lỗi không chặn — hiển thị trong verbose mode |
+
+### Cấu hình cơ bản trong settings.json
 
 ```json
 {
@@ -121,14 +98,22 @@ Create `./CLAUDE.local.md` (won't commit to repo):
       {
         "matcher": "Bash",
         "hooks": [
-          { "command": ".claude/hooks/block-destructive.sh" }
+          { "type": "command", "command": ".claude/hooks/block-destructive.sh" }
         ]
       }
     ],
     "Stop": [
       {
         "hooks": [
-          { "command": ".claude/hooks/verify-tests.sh" }
+          { "type": "command", "command": ".claude/hooks/verify-tests.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          { "type": "command", "command": ".claude/hooks/auto-format.sh", "async": true }
         ]
       }
     ]
@@ -136,227 +121,293 @@ Create `./CLAUDE.local.md` (won't commit to repo):
 }
 ```
 
-**Current Hooks:**
+### 3 Loại Hook Handler
 
-1. **block-destructive.sh** (PreToolUse)
-   - Prevents: `rm -rf`, `DROP TABLE`, `git reset --hard`
-   - Triggered: Before every Bash command
+| Loại | Timeout mặc định | Mô tả |
+|------|-----------------|-------|
+| `command` | 600 giây | Shell script, nhận JSON qua stdin |
+| `prompt` | 30 giây | LLM một lượt, không có tools |
+| `agent` | 60 giây | Subagent với Read/Grep/Glob/Bash |
 
-2. **verify-tests.sh** (Stop)
-   - Prevents: Claude from stopping if tests fail
-   - Triggered: When Claude finishes (before stopping)
+### Matchers (Bộ lọc)
 
-3. **session-end.sh** (Stop, async)
-   - Logs: Session end timestamp
-   - Triggered: When session ends
+| Event | Giá trị matcher |
+|-------|----------------|
+| Tool events | `Bash`, `Edit\|Write`, `mcp__.*`, `mcp__github__.*` |
+| SessionStart | `startup`, `resume`, `clear`, `compact` |
+| ConfigChange | `user_settings`, `project_settings`, `skills` |
+| Notification | `permission_prompt`, `idle_prompt`, `auth_success` |
 
-### Adding New Hooks
+### Cách viết Hook Script (pattern chuẩn)
 
-**Step 1:** Create script in `.claude/hooks/my-hook.sh`
 ```bash
 #!/bin/bash
-INPUT=$(cat)
-# Your logic here
-exit 0  # or exit 2 to block
+INPUT=$(cat)                                          # Đọc JSON từ stdin
+
+# Trích xuất field cần thiết
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command')
+
+# Logic kiểm tra
+if echo "$COMMAND" | grep -q 'rm -rf'; then
+  # Cách 1: exit 2 để chặn (kèm stderr)
+  echo "Lệnh nguy hiểm bị chặn" >&2
+  exit 2
+
+  # Cách 2: JSON output để chặn (với lý do cho Claude)
+  # jq -n '{"decision": "block", "reason": "Lý do"}'
+  # exit 0
+fi
+
+exit 0  # Cho phép tiếp tục
 ```
 
-**Step 2:** Make executable
-```bash
-chmod +x .claude/hooks/my-hook.sh
+---
+
+## SubAgents — Tổng quan
+
+**SubAgents** = AI assistant chuyên biệt với context, tools và quyền hạn riêng.
+
+### Cấu trúc File Agent
+
+```markdown
+---
+name: ten-agent
+description: Mô tả khi nào dùng agent này. Claude đọc field này để quyết định.
+tools: Read, Grep, Glob, Bash
+disallowedTools: Write, Edit
+model: sonnet
+permissionMode: default
+maxTurns: 50
+memory: project
+---
+
+# System Prompt
+
+Bạn là...
+Khi được gọi:
+1. Bước 1
+2. Bước 2
 ```
 
-**Step 3:** Add to `settings.json`
+### Frontmatter Fields quan trọng
+
+| Field | Ý nghĩa |
+|-------|---------|
+| `name` | Tên agent, lowercase, dùng gạch ngang |
+| `description` | ⭐ **Quan trọng nhất** — Claude đọc để decide có delegate không |
+| `tools` | Danh sách tools được phép (kế thừa tất cả nếu omit) |
+| `disallowedTools` | Loại tool ra khỏi danh sách được phép |
+| `model` | `sonnet`/`opus`/`haiku`/`inherit` |
+| `permissionMode` | `default`/`acceptEdits`/`plan`/`bypassPermissions` |
+| `memory` | `user`/`project`/`local` — lưu learning qua sessions |
+
+### Kiểm soát Tool Access
+
+```yaml
+# Chỉ được phép đọc
+tools: Read, Grep, Glob
+
+# Không cho sửa file
+tools: Read, Grep, Bash
+disallowedTools: Write, Edit
+
+# Chỉ được spawn agent worker và researcher
+tools: Task(worker, researcher), Read, Bash
+
+# Không được spawn subagent nào (không có Task)
+tools: Read, Bash
+```
+
+### Vị trí Agent Files
+
+| Vị trí | Phạm vi | Ưu tiên |
+|--------|---------|---------|
+| `.claude/agents/` | Project (commit vào repo) | Cao hơn |
+| `~/.claude/agents/` | User (mọi project) | Thấp hơn |
+
+### Kích hoạt Agent
+
+**Tự động** — Claude tự quyết dựa trên `description`:
+```
+Kiểm tra xem code này có đúng spec không
+```
+
+**Tường minh:**
+```
+Dùng spec-reviewer agent để kiểm tra file src/collections/Posts.ts
+Cho payload-expert agent review hooks trong bài này
+```
+
+---
+
+## KLTN Project — Setup hiện tại
+
+### Custom Prompts Structure
+
+```
+./CLAUDE.md                    ← Main project instructions (team)
+./.claude/CLAUDE.md            ← Giống CLAUDE.md (cùng tác dụng)
+./.claude/rules/
+  ├── ui-stack.md              ← Tailwind v4 + Radix UI only
+  ├── spec-first.md            ← Đọc specs trước khi code
+  ├── payload-conventions.md  ← Payload CMS patterns
+  └── lifecycle.md             ← 4-Life phase rules
+./CLAUDE.local.md              ← Cá nhân (gitignored, tạo nếu cần)
+```
+
+### Hooks hiện tại
+
 ```json
 {
   "hooks": {
-    "EventName": [
+    "PreToolUse": [
       {
-        "matcher": "pattern",
-        "hooks": [
-          { "command": ".claude/hooks/my-hook.sh" }
-        ]
+        "matcher": "Bash",
+        "hooks": [{ "command": ".claude/hooks/block-destructive.sh" }]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [{ "command": ".claude/hooks/protect-env.sh" }]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [{ "command": ".claude/hooks/verify-tests.sh" }]
       }
     ]
   }
 }
 ```
 
----
+### Agents hiện tại
 
-## 📚 Reference Files in This Project
-
-| File | Purpose |
-|------|---------|
-| `./CLAUDE.md` | Main project memory (team-shared) |
-| `./.claude/CLAUDE.md` | Alternative project memory |
-| `./.claude/CLAUDE_ADVANCED_GUIDE.md` | Complete reference (this guide) |
-| `./.claude/PROMPTS_HOOKS_SUMMARY.md` | Quick navigation (you are here) |
-| `./.claude/settings.json` | Permissions, plugins, hooks config |
-| `./.claude/settings.local.json` | Your personal overrides (gitignored) |
-| `./.claude/rules/*.md` | Modular, path-specific rules |
-| `./.claude/hooks/*.sh` | Hook scripts |
-| `./.claude/agents/*.md` | Project-specific agents |
-| `./.claude/skills/` | 28 skills copied from `.agent/skills/` |
+| Agent | Vị trí | Chức năng |
+|-------|--------|----------|
+| `spec-reviewer` | `.claude/agents/spec-reviewer/` | Verify code vs Life-2 specs |
+| `payload-expert` | `.claude/agents/payload-expert/` | Payload CMS patterns |
+| `ui-architect` | `.claude/agents/ui-architect/` | React + Tailwind v4 + Radix UI |
 
 ---
 
-## ⚡ Quick Recipes for Common Tasks
+## Thêm mới
 
-### Recipe 1: Add a Team Rule
+### Thêm quy tắc cho team
 
-**Scenario:** "All API routes must validate input"
-
-1. Create `./.claude/rules/api.md`:
+1. Tạo `.claude/rules/ten-topic.md`:
 ```yaml
 ---
 paths:
   - "src/app/api/**/*.ts"
 ---
 
-# API Development Rules
+# Quy tắc API
 
-- All endpoints must validate request body
-- Use errorHandler from src/utils/
-- Log all errors with req context
-- Include OpenAPI documentation
+- Mọi endpoint phải validate input
+- Dùng error-response-system
 ```
 
-2. Done — Claude auto-loads when editing API files
+2. Claude tự động load khi edit file trong path đó.
 
-### Recipe 2: Add a Personal Preference
+### Thêm preferences cá nhân
 
-**Scenario:** "I prefer using pnpm instead of npm"
-
-1. Create `./.claude/CLAUDE.local.md`:
+1. Tạo `./CLAUDE.local.md`:
 ```markdown
-# My Personal Preferences
+# Preferences Cá Nhân
 
-- Use `pnpm` instead of `npm` for all commands
-- My sandbox URL: https://my-sandbox.local
-- Test data location: ~/test-data/
+- Dùng `pnpm` thay vì `npm`
+- Dev URL: http://localhost:3001
+- Test data: ~/test-data/
 ```
 
-2. Done — Won't commit to repo
+2. Không commit vào repo.
 
-### Recipe 3: Protect a File from Edits
+### Thêm Hook mới
 
-**Scenario:** "Don't let Claude edit .env files"
-
-1. Create `./.claude/hooks/protect-env.sh`:
 ```bash
+# Bước 1: Tạo script
+cat > .claude/hooks/my-hook.sh << 'EOF'
 #!/bin/bash
 INPUT=$(cat)
-FILE=$(echo "$INPUT" | jq -r '.tool_input.file_path')
-
-if [[ "$FILE" == *".env"* ]]; then
-  echo ".env files cannot be edited" >&2
-  exit 2
-fi
+# Logic của bạn
 exit 0
+EOF
+
+# Bước 2: Cấp quyền thực thi
+chmod +x .claude/hooks/my-hook.sh
+
+# Bước 3: Thêm vào settings.json
 ```
 
-2. Add to `settings.json`:
 ```json
 {
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Edit|Write",
-        "hooks": [
-          { "command": ".claude/hooks/protect-env.sh" }
-        ]
+        "matcher": "Bash",
+        "hooks": [{ "command": ".claude/hooks/my-hook.sh" }]
       }
     ]
   }
 }
 ```
 
-3. Done — Hook fires on every Edit/Write to Bash
+### Thêm Agent mới
 
-### Recipe 4: Auto-Test After Edits
+1. Tạo `.claude/agents/ten-agent.md`:
+```markdown
+---
+name: ten-agent
+description: Khi nào Claude nên dùng agent này
+tools: Read, Grep, Glob
+model: haiku
+---
 
-**Scenario:** "Run tests automatically after I save code"
-
-```json
-{
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "command": "npm test -- $(jq -r '.tool_input.file_path | sub(\\.ts(?:x)?$; .test.ts)')",
-            "async": true
-          }
-        ]
-      }
-    ]
-  }
-}
+# System Prompt
+...
 ```
 
-Note: `async: true` means test runs without blocking Claude.
+2. Gọi tường minh: "Dùng ten-agent để..."
 
 ---
 
-## 🎓 Learning Path
+## Khi nào dùng gì
 
-1. **Start:** Read this file (you are here)
-2. **Understand:** Look at current `./CLAUDE.md` and `./.claude/rules/`
-3. **Reference:** See `CLAUDE_ADVANCED_GUIDE.md` for detailed explanations
-4. **Experiment:** Add a small rule or hook to the project
-5. **Master:** Build specialized agents in `./.claude/agents/`
+| Tình huống | Công cụ | File |
+|-----------|---------|------|
+| Thêm quy tắc cho team | CLAUDE.md | `./CLAUDE.md` |
+| Preferences cá nhân | CLAUDE.local.md | `./CLAUDE.local.md` |
+| Quy tắc theo đường dẫn | Rules file | `.claude/rules/*.md` |
+| Việc PHẢI xảy ra mọi lần | Hook | `.claude/hooks/*.sh` |
+| Chặn hành động xấu | PreToolUse hook | `.claude/settings.json` |
+| Validate kết quả | PostToolUse hook | `.claude/settings.json` |
+| Ngăn Claude dừng sớm | Stop hook | `.claude/settings.json` |
+| Chuyên gia đặc biệt | Custom Agent | `.claude/agents/*.md` |
 
 ---
 
-## ❓ Common Questions
+## Câu hỏi thường gặp
 
-**Q: Should I edit `./CLAUDE.md` or `./.claude/CLAUDE.md`?**
-A: Either works (they load the same). Convention: use `./CLAUDE.md` in root.
+**Q: `./CLAUDE.md` hay `./.claude/CLAUDE.md`?**
+A: Cả hai đều được load. Convention: dùng `./CLAUDE.md` ở root.
 
-**Q: Do I commit `./.claude/settings.local.json`?**
-A: No, it's auto-gitignored. It's for your personal settings.
+**Q: Hook không hoạt động?**
+A: Kiểm tra: (1) `chmod +x script.sh`, (2) exit code đúng (0 hoặc 2), (3) JSON output hợp lệ.
 
-**Q: Why don't hooks work when I test them?**
-A: Hooks need proper exit code (0 or 2) and valid JSON output. Test with:
+**Q: Test hook thủ công?**
 ```bash
-echo '{"tool_name":"Bash","tool_input":{"command":"ls"}}' | ./your-hook.sh
-echo $?
+echo '{"tool_name":"Bash","tool_input":{"command":"rm -rf /"}}' | .claude/hooks/block-destructive.sh
+echo $?  # Phải là 2 để chặn
 ```
 
-**Q: Can hooks modify what Claude does?**
-A: Yes, for PreToolUse you can modify the input (`updatedInput`) or block it entirely.
+**Q: Debug hooks?**
+A: Bật verbose mode: `Ctrl+O` trong Claude Code.
 
-**Q: Is there a length limit for CLAUDE.md?**
-A: No hard limit, but keep it under 500 lines. Longer = Claude ignores it more.
+**Q: CLAUDE.md dài quá Claude bỏ qua?**
+A: Đúng. Giữ dưới 500 dòng, dùng @imports cho nội dung lớn, thêm **IMPORTANT** cho quy tắc critical.
 
-**Q: How do I debug hooks?**
-A: Turn on verbose mode: `Ctrl+O` in Claude Code, then see hook output.
-
----
-
-## 📞 When to Use What
-
-| Task | Tool | File |
-|------|------|------|
-| Add team convention | CLAUDE.md | `./CLAUDE.md` |
-| Add personal preference | CLAUDE.local.md | `./CLAUDE.local.md` |
-| Add path-specific rule | Rules file | `./.claude/rules/*.md` |
-| Auto-run action | Hook | `./.claude/hooks/*.sh` |
-| Block bad behavior | PreToolUse hook | `.claude/settings.json` |
-| Validate result | PostToolUse hook | `.claude/settings.json` |
-| Prevent early stop | Stop hook | `.claude/settings.json` |
-| Custom agent | Agent skill | `./.claude/agents/*.md` |
+**Q: Agent có thể sửa file không?**
+A: Phụ thuộc `tools` và `permissionMode`. Thêm `disallowedTools: Write, Edit` để ngăn.
 
 ---
 
-## 📖 Where's the Full Docs?
-
-**This Project:**
-- Complete guide: `./.claude/CLAUDE_ADVANCED_GUIDE.md`
-- Project rules: `./.claude/rules/*.md`
-- Hooks config: `./.claude/settings.json`
-
-**Official Claude Code:**
-- Check `claude.ai/code` for official documentation
-- `/help` command in Claude Code for built-in help
+**Tài liệu đầy đủ:** `.claude/CLAUDE_ADVANCED_GUIDE.md`
