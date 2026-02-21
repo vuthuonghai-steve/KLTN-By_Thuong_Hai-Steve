@@ -1,0 +1,106 @@
+# Screen: {SCREEN_NAME}
+> module: {MODULE_CODE}
+> spec: {SPEC_FILE_PATH} §{SECTION_NUMBER}
+> layout: vertical
+> width: {375|768|1440}
+> height: fit_content
+> state: default
+
+<!--
+  INSTRUCTIONS (remove before saving):
+  - {SCREEN_NAME}: kebab-case screen name, prefixed with module (e.g., m1/login)
+  - {MODULE_CODE}: M1 | M2 | M3 | M4 | M5 | M6
+  - {SPEC_FILE_PATH}: full path from project root
+  - {SECTION_NUMBER}: specific section number in spec file
+  - width: 375 (mobile) | 768 (tablet) | 1440 (desktop)
+  - Replace all {PLACEHOLDER} values before using in Phase 3
+  - All ref: values must come from Phase 0 component_map (no hardcoding)
+  - All comp entries must have spec-cite
+-->
+
+---
+
+## Section: {SECTION_1_NAME}
+> layout: vertical | horizontal
+> width: fill_container
+> height: fit_content
+> gap: 24
+> padding: 16
+
+<!--
+  One Section block per functional area (header, hero, form, footer, etc.)
+  Duplicate this block for each section needed.
+  gap and padding default to layout-rules.yaml values if omitted.
+-->
+
+- comp: {COMPONENT_NAME}
+  ref: {NODE_ID_FROM_COMPONENT_MAP}
+  width: fill_container | fit_content | {px}
+  height: fit_content | {px}
+  spec-cite: [spec §{N}.{M} — {short description}]
+  zone: strict | fluid
+  text@{FIELD_ID}: "{Display Text}"
+  overrides:
+    {CHILD_FIELD_ID}: {value}
+
+<!--
+  Duplicate the `- comp:` block for each component in this section.
+  - ref: must be a real node ID from Phase 0 component_map
+  - CAPS_UNDERSCORE IDs (e.g., BTN_PRIMARY_ID) = placeholders to resolve
+  - Real IDs look like: FEkTl, Njux9, Pq3mR
+  - overrides: only needed when using C() copy with descendants
+  - text@field-id: for simple text content overrides via U()
+-->
+
+---
+
+## Section: {SECTION_2_NAME}
+> layout: vertical
+> width: fill_container
+> height: fit_content
+> gap: 16
+> padding: 0 24
+
+- comp: {COMPONENT_NAME}
+  ref: {NODE_ID_FROM_COMPONENT_MAP}
+  width: fill_container
+  spec-cite: [spec §{N}.{M}]
+  zone: strict
+
+---
+
+<!--
+  Add more ## Section: blocks as needed.
+  Recommended section names based on common UI patterns:
+    top-bar         → app header / navigation bar
+    hero-area       → title + subtitle / illustration
+    form-area       → input fields
+    cta-area        → primary action buttons
+    content-area    → main content (posts, cards, lists)
+    sidebar         → secondary navigation / filters
+    footer-bar      → bottom navigation / pagination
+    empty-state     → shown when no data
+    error-state     → shown when error occurs
+-->
+
+---
+
+## States
+
+- default: {Describe the default visible state}
+- loading?: {Describe loading state if spec mentions it — spec §{N}}
+- error?: {Describe error state if spec mentions it — spec §{N}}
+- empty?: {Describe empty state if spec mentions it — spec §{N}}
+
+<!--
+  Remove states with ? that are not mentioned in spec.
+  Always keep `default` state.
+  States marked with ? are drawn only when spec explicitly covers them.
+-->
+
+---
+
+## Notes
+
+- {Any spec gaps, inferences made, or open items for this screen}
+- Inference: {If AI inferred something from project_context not explicit in spec, document it here}
