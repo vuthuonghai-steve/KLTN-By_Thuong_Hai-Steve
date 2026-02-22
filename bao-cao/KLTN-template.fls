@@ -264,6 +264,16 @@ INPUT ./figures/skills/ui-pencil-drawer/02.png
 INPUT ./figures/skills/ui-pencil-drawer/02.png
 INPUT ./figures/full-pipeline.png
 INPUT ./figures/full-pipeline.png
+INPUT ./figures/results/usecase-overview.png
+INPUT ./figures/results/usecase-overview.png
+INPUT ./figures/results/seq-registration.png
+INPUT ./figures/results/seq-registration.png
+INPUT ./figures/results/flow-registration.png
+INPUT ./figures/results/flow-registration.png
+INPUT ./figures/results/class-m1-user.png
+INPUT ./figures/results/class-m1-user.png
+INPUT ./figures/results/er-overview.png
+INPUT ./figures/results/er-overview.png
 INPUT KLTN-template.aux
 INPUT ./KLTN-template.out
 INPUT ./KLTN-template.out

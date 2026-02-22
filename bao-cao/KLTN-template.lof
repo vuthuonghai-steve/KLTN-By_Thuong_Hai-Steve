@@ -39,3 +39,8 @@
 \contentsline {figure}{\numberline {2.36}{\ignorespaces Luồng thực thi end-to-end (Sequence Diagram) của UI Pencil Drawer}}{65}{figure.2.36}%
 \contentsline {figure}{\numberline {2.37}{\ignorespaces Pipeline tổng thể của hệ thống Agent Skills}}{66}{figure.2.37}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Sơ đồ Use Case tổng quan hệ thống Steve Void}}{73}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Sơ đồ tuần tự: Đăng ký tài khoản (M1-A1)}}{76}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Sơ đồ luồng nghiệp vụ: Đăng ký tài khoản (UC01)}}{78}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Class Diagram: Collection User (M1 — Auth \& Profile)}}{80}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Sơ đồ quan hệ thực thể (ER Diagram) tổng quan hệ thống Steve Void}}{82}{figure.3.5}%

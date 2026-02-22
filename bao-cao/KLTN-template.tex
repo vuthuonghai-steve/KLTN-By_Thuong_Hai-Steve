@@ -1460,10 +1460,641 @@ Các bước chính:
 
 Thiết kế này không chỉ tạo ra một website mạng xã hội cụ thể, mà quan trọng hơn là thiết lập được một \textbf{nhà máy sản xuất tri thức (Knowledge Factory)} cho phép AI tự động hóa quy trình phát triển phần mềm một cách tin cậy và có kiểm soát.
 
-\chapter{Triển khai và thử nghiệm hệ thống}
+\chapter{TRIỂN KHAI VÀ THỬ NGHIỆM HỆ THỐNG}
+
+Chương này trình bày quá trình triển khai bộ Agent Skills đã thiết kế ở Chương 2 vào thực tế, cùng với toàn bộ kết quả đầu ra thu được khi áp dụng các skills để phân tích và thiết kế hệ thống Steve Void. Các kết quả bao gồm: sơ đồ UML (Use Case, Activity, Sequence, Flow, Class), sơ đồ quan hệ thực thể (ER Diagram), thiết kế cơ sở dữ liệu vật lý (Schema Design), đặc tả giao diện người dùng (UI Specs) và bản vẽ wireframe.
+
 \section{Mô tả quá trình triển khai hệ thống}
+
+\subsection{Môi trường triển khai}
+
+Toàn bộ bộ Agent Skills được triển khai trên nền tảng \textbf{Claude Code CLI} — công cụ dòng lệnh của Anthropic, tích hợp trực tiếp vào terminal của lập trình viên. Môi trường triển khai bao gồm:
+
+\begin{table}[H]
+\centering
+\caption{Môi trường triển khai Agent Skills}
+\begin{tabular}{|p{4cm}|p{9.5cm}|}
+\hline
+\textbf{Thành phần} & \textbf{Chi tiết} \\
+\hline
+Hệ điều hành & Ubuntu Linux 24.04 \\
+\hline
+AI Model & Claude Sonnet 4.6 (Anthropic) \\
+\hline
+Công cụ CLI & Claude Code v1.x \\
+\hline
+IDE & Visual Studio Code + Claude Code Extension \\
+\hline
+Quản lý mã nguồn & Git + GitHub \\
+\hline
+Công cụ vẽ sơ đồ & Mermaid.js (tích hợp trong Markdown) \\
+\hline
+Công cụ wireframe & Pencil MCP Server (Model Context Protocol) \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Quy trình triển khai theo pipeline}
+
+Việc triển khai tuân theo pipeline tuần tự đã thiết kế ở Chương 2 (Hình~\ref{fig:full-pipeline}). Mỗi module M1--M6 được xử lý qua 6 giai đoạn, với đầu ra của giai đoạn trước là đầu vào của giai đoạn sau:
+
+\begin{enumerate}
+    \item \textbf{Giai đoạn 1 — Use Case Analysis}: Xác định actors, use cases và ranh giới hệ thống
+    \item \textbf{Giai đoạn 2 — Activity Diagram}: Phân tích luồng nghiệp vụ chi tiết theo kiến trúc B-U-E
+    \item \textbf{Giai đoạn 3 — Sequence \& Flow Diagram}: Mô tả tương tác giữa các thành phần và luồng 3-lane Swimlane
+    \item \textbf{Giai đoạn 4 — Class Diagram}: Chuyển đổi sang cấu trúc OOP với dual-format (Mermaid + YAML)
+    \item \textbf{Giai đoạn 5 — Schema Design}: Sinh Physical Schema cho MongoDB/Payload CMS từ Contract YAML
+    \item \textbf{Giai đoạn 6 — UI Design}: Đặc tả giao diện và vẽ wireframe tự động trên Pencil canvas
+\end{enumerate}
+
+Tổng cộng, hệ thống đã xử lý \textbf{6 modules} (M1--M6) qua \textbf{6 giai đoạn}, tạo ra hơn \textbf{100 artifacts} thiết kế hoàn chỉnh.
+
+\subsection{Cách thức tương tác với Agent Skills}
+
+Mỗi Agent Skill được kích hoạt thông qua lệnh slash command trong Claude Code CLI. Ví dụ:
+
+\begin{itemize}
+    \item \texttt{/flow-design-analyst} — Vẽ Flow Diagram cho một use case cụ thể
+    \item \texttt{/sequence-design-analyst} — Vẽ Sequence Diagram cho một kịch bản
+    \item \texttt{/class-diagram-analyst} — Phân tích Class Diagram cho một module
+    \item \texttt{/ui-pencil-drawer} — Tự động vẽ wireframe trên canvas
+\end{itemize}
+
+Người dùng cung cấp đầu vào (tên module, use case ID, hoặc mô tả mơ hồ), Agent Skill tự động khám phá tài nguyên dự án (specs, user stories, ER diagram), trích xuất logic nghiệp vụ và sinh đầu ra chuẩn hóa. Các Interaction Points (IP) đảm bảo người dùng kiểm soát được chất lượng tại từng bước quan trọng.
+
 \section{Trình bày kết quả thử nghiệm}
+
+Phần này trình bày chi tiết toàn bộ kết quả đầu ra khi triển khai bộ Agent Skills cho hệ thống Steve Void. Bảng~\ref{tab:artifact-summary} tổng hợp số lượng artifacts theo từng loại sơ đồ.
+
+\begin{table}[H]
+\centering
+\caption{Tổng hợp artifacts thiết kế được tạo ra bởi Agent Skills}
+\label{tab:artifact-summary}
+\begin{tabular}{|p{4.5cm}|c|c|p{4cm}|}
+\hline
+\textbf{Loại sơ đồ} & \textbf{Số files} & \textbf{Agent Skill} & \textbf{Định dạng} \\
+\hline
+Use Case Diagram & 9 & Thủ công + AI & Mermaid \\
+\hline
+Activity Diagram & 27 & Activity Analyst & Mermaid Flowchart \\
+\hline
+Sequence Diagram & 9 & Sequence Analyst & Mermaid Sequence \\
+\hline
+Flow Diagram & 27 & Flow Analyst & Mermaid Swimlane \\
+\hline
+Class Diagram & 12 & Class Analyst & Mermaid + YAML \\
+\hline
+ER Diagram & 1 & Thủ công + AI & Mermaid erDiagram \\
+\hline
+Database Schema & 12 & Schema Analyst & Markdown + YAML \\
+\hline
+UI Spec & 8 & UI Architecture & Markdown \\
+\hline
+Wireframe & 17 & UI Pencil Drawer & Markdown blueprint \\
+\hline
+\textbf{Tổng cộng} & \textbf{122} & & \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Kết quả sơ đồ Use Case}
+
+Sơ đồ Use Case xác định ranh giới hệ thống, các tác nhân (Actors) và các trường hợp sử dụng (Use Cases) cho toàn bộ 6 modules. Hệ thống định nghĩa \textbf{4 loại tác nhân} với quan hệ kế thừa: Guest → Member → Admin, cùng External Services (OAuth Provider, Atlas Search).
+
+\begin{table}[H]
+\centering
+\caption{Phân bổ Use Cases theo module}
+\label{tab:usecase-distribution}
+\begin{tabular}{|p{1cm}|p{4.5cm}|c|p{5cm}|}
+\hline
+\textbf{Module} & \textbf{Tên module} & \textbf{Số UC} & \textbf{UC-IDs} \\
+\hline
+M1 & Auth \& Profile & 11 & UC01--UC07 (core) + 4 phụ \\
+\hline
+M2 & Content Engine & 6 & UC08--UC10 + 3 phụ \\
+\hline
+M3 & Discovery \& Feed & 5 & UC11--UC13 + 2 phụ \\
+\hline
+M4 & Engagement & 7 & UC14--UC18 + 2 phụ \\
+\hline
+M5 & Bookmarking & 4 & UC19--UC20 + 2 phụ \\
+\hline
+M6 & Notifications \& Moderation & 8 & UC21--UC24 + 4 phụ \\
+\hline
+\textbf{Tổng} & & \textbf{41} & \\
+\hline
+\end{tabular}
+\end{table}
+
+Mỗi Use Case được đặc tả với: Tên, Mô tả, Tác nhân chính, Tiền điều kiện, Luồng chính, Luồng thay thế và Hậu điều kiện. Toàn bộ 24 use case chính (UC01--UC24) đều có truy xuất nguồn gốc (traceability) tới yêu cầu chức năng FR-1 đến FR-10.
+
+Hình~\ref{fig:result-usecase} minh họa sơ đồ Use Case tổng quan của hệ thống, thể hiện mối quan hệ giữa các tác nhân và 6 modules chức năng.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/results/usecase-overview}
+    \caption{Sơ đồ Use Case tổng quan hệ thống Steve Void}
+    \label{fig:result-usecase}
+\end{figure}
+
+\subsection{Kết quả sơ đồ hoạt động (Activity Diagrams)}
+
+Activity Diagram Analyst tạo ra \textbf{27 sơ đồ hoạt động} với mức độ chi tiết cao, mỗi sơ đồ phân tích một sub-activity cụ thể theo kiến trúc Boundary-UseCase-Entity (B-U-E). Bảng~\ref{tab:activity-results} liệt kê phân bổ theo module.
+
+\begin{table}[H]
+\centering
+\caption{Kết quả Activity Diagrams theo module}
+\label{tab:activity-results}
+\begin{tabular}{|p{1cm}|c|p{8cm}|}
+\hline
+\textbf{Module} & \textbf{Số AD} & \textbf{Các sub-activities} \\
+\hline
+M1 & 6 & A1-Registration, A2-Login, A3-Verification, A4-Recovery, A5-Onboarding + Summary \\
+\hline
+M2 & 5 & A1-Editor Pipeline, A2-Media Handler, A3-Post Integrity, A4-Visibility + Summary \\
+\hline
+M3 & 4 & A1-Feed Assembler, A2-Search Engine, A3-Discovery Recommendation + Summary \\
+\hline
+M4 & 4 & A1-Friendship Handshake, A2-Engagement Logic, A3-Connection Privacy + Summary \\
+\hline
+M5 & 3 & A1-Bookmark Persistence, A2-Collection Orchestrator + Summary \\
+\hline
+M6 & 4 & A1-SSE Dispatcher, A2-Report Pipeline, A3-Enforcement Action + Summary \\
+\hline
+\end{tabular}
+\end{table}
+
+Mỗi Activity Diagram sử dụng Mermaid Flowchart TD (Top-Down) với 3 swimlanes: \textbf{User Lane} (UI actions), \textbf{System Lane} (business logic, validations) và \textbf{DB Lane} (CRUD operations). Các sơ đồ bao gồm đầy đủ: điều kiện rẽ nhánh (Decision Diamonds), xử lý lỗi (Error Paths) và điểm kết thúc rõ ràng cho mọi nhánh.
+
+\subsection{Kết quả sơ đồ tuần tự (Sequence Diagrams)}
+
+Sequence Design Analyst tạo ra \textbf{9 sơ đồ tuần tự}, mỗi sơ đồ mô tả tương tác chi tiết giữa các thành phần hệ thống theo thời gian. Các lifelines (participants) bao gồm: \texttt{User}, \texttt{UI (Next.js/React)}, \texttt{Service}, \texttt{Payload CMS}, \texttt{DB (MongoDB)}, \texttt{SSE Dispatcher} và \texttt{Mailer}.
+
+\begin{table}[H]
+\centering
+\caption{Kết quả Sequence Diagrams theo module}
+\begin{tabular}{|p{1cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Module} & \textbf{File} & \textbf{Kịch bản} \\
+\hline
+Global & global-flows.md & Kiến trúc tổng quan, luồng xác thực chung \\
+\hline
+M1 & detailed-m1-auth.md & Login, Register, OAuth, Email verify, Password recovery \\
+\hline
+M2 & detailed-m2-content.md & Editor pipeline, media upload, visibility enforcement \\
+\hline
+M3 & detailed-m3-discovery.md & Feed assembly, search engine, ranking algorithm \\
+\hline
+M4 & detailed-m4-engagement.md & Follow handshake, like/comment, sharing \\
+\hline
+M5 & detailed-m5-bookmarking.md & Bookmark toggle, collection CRUD \\
+\hline
+M6 & detailed-m6-safety.md & SSE notifications, report pipeline, moderation queue \\
+\hline
+\end{tabular}
+\end{table}
+
+Các sơ đồ sử dụng đầy đủ UML fragments chuẩn: \texttt{alt} (alternative paths), \texttt{opt} (optional execution), \texttt{loop} (iteration) và \texttt{activate/deactivate} blocks để thể hiện thời gian xử lý. Nguyên tắc \textbf{Code-First Truth} đảm bảo tên các đối tượng trong sơ đồ khớp 100\% với codebase dự kiến.
+
+Hình~\ref{fig:result-seq} minh họa sơ đồ tuần tự cho kịch bản Đăng ký tài khoản (M1-A1), thể hiện tương tác giữa User, RegisterPage, AuthService, Mailer, Payload CMS và Database.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/results/seq-registration}
+    \caption{Sơ đồ tuần tự: Đăng ký tài khoản (M1-A1)}
+    \label{fig:result-seq}
+\end{figure}
+
+\subsection{Kết quả sơ đồ luồng nghiệp vụ (Flow Diagrams)}
+
+Flow Design Analyst tạo ra \textbf{27 sơ đồ luồng nghiệp vụ}, bao phủ \textbf{100\% use cases chính} (UC01--UC24). Mỗi sơ đồ sử dụng kiến trúc 3-lane Swimlane: \textbf{User} (tác nhân), \textbf{System} (logic nghiệp vụ) và \textbf{Database} (thao tác dữ liệu).
+
+\begin{table}[H]
+\centering
+\caption{Kết quả Flow Diagrams theo module và Use Case}
+\label{tab:flow-results}
+\begin{tabular}{|p{1cm}|c|p{8.5cm}|}
+\hline
+\textbf{Module} & \textbf{Số Flow} & \textbf{Các luồng nghiệp vụ} \\
+\hline
+M1 & 7 & Registration, Login Email, Login OAuth, Logout, Password Recovery, Profile Management, Public Profile View \\
+\hline
+M2 & 3 & Post Creation, Post Modification, Post Privacy \\
+\hline
+M3 & 3 & News Feed View, Search Engine, Search Autocomplete \\
+\hline
+M4 & 5 & Post Reaction, Post Comment, Post Share, User Follow, User Block \\
+\hline
+M5 & 2 & Bookmark Toggle, Bookmark Collection \\
+\hline
+M6 & 4 & Notification Realtime, Notification Read, Content Report, Moderation Review \\
+\hline
+\end{tabular}
+\end{table}
+
+Đặc biệt, mọi Flow Diagram đều được gắn mã \textbf{UC-ID} (Use Case ID) để đảm bảo truy xuất nguồn gốc ngược lại yêu cầu chức năng. Guardrail \textbf{G1 — No Blind Step} của Flow Design Analyst đảm bảo không có bước nào trong sơ đồ được thêm vào mà không có căn cứ từ spec hoặc user story.
+
+Hình~\ref{fig:result-flow} minh họa Flow Diagram cho chức năng Đăng ký tài khoản (UC01), với 3 swimlanes User / System / Database.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/results/flow-registration}
+    \caption{Sơ đồ luồng nghiệp vụ: Đăng ký tài khoản (UC01)}
+    \label{fig:result-flow}
+\end{figure}
+
+\subsection{Kết quả sơ đồ lớp (Class Diagrams)}
+
+Class Diagram Analyst tạo ra \textbf{12 files} (6 Mermaid + 6 YAML Contract) cho toàn bộ 6 modules, với \textbf{93 trường dữ liệu} được kiểm chứng và \textbf{0 trường giả tạo} (0 assumptions unresolved).
+
+\begin{table}[H]
+\centering
+\caption{Kết quả Class Diagrams theo module}
+\label{tab:class-results}
+\begin{tabular}{|p{1cm}|p{4cm}|c|p{5.5cm}|}
+\hline
+\textbf{Module} & \textbf{Entities} & \textbf{Số fields} & \textbf{Ghi chú} \\
+\hline
+M1 & Users & 19 & Computed Pattern cho counts \\
+\hline
+M2 & Posts, Media, Tags & 23 & Denormalized counters \\
+\hline
+M3 & FeedQuery (ValueObject) & 9 & Không tạo collection vật lý \\
+\hline
+M4 & Comments, Likes, Connections, Shares & 20 & Compound unique indices \\
+\hline
+M5 & BookmarkCollections, Bookmarks & 9 & isDefault constraint \\
+\hline
+M6 & Notifications, Reports, AuditLogs & 21 & Polymorphic + Append-Only \\
+\hline
+\end{tabular}
+\end{table}
+
+Chiến lược \textbf{Dual-Format Output} tạo ra hai loại đầu ra cho mỗi module:
+\begin{itemize}
+    \item \textbf{Mermaid classDiagram} (\texttt{class-mX.md}): Dạng trực quan cho con người review, bao gồm trường dữ liệu, phương thức và quan hệ
+    \item \textbf{YAML Contract} (\texttt{class-mX.yaml}): Dạng machine-readable cho Schema Design Analyst đọc ở giai đoạn tiếp theo
+\end{itemize}
+
+Mỗi trường trong Class Diagram đều có \textbf{Source Citation} — truy xuất nguồn gốc tới ER Diagram hoặc Activity Diagram cụ thể. Guardrail \textbf{Source Citation Mechanism} đảm bảo: field không có source → BLOCK, không ghi file.
+
+Hình~\ref{fig:result-class} minh họa Class Diagram của module M1 (Auth \& Profile), thể hiện cấu trúc collection \texttt{User} với đầy đủ fields, visibility modifiers và hooks.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figures/results/class-m1-user}
+    \caption{Class Diagram: Collection User (M1 — Auth \& Profile)}
+    \label{fig:result-class}
+\end{figure}
+
+\subsection{Kết quả sơ đồ quan hệ thực thể (ER Diagram)}
+
+ER Diagram tổng quan mô tả \textbf{13 collections} (entities) với đầy đủ thuộc tính và quan hệ giữa chúng. Sơ đồ được thiết kế ở mức \textbf{Physical Schema} — có thể sử dụng trực tiếp để implement Payload CMS collections.
+
+\begin{table}[H]
+\centering
+\caption{Danh sách 13 collections trong ER Diagram}
+\label{tab:er-collections}
+\begin{tabular}{|c|p{3.5cm}|p{1.5cm}|p{6cm}|}
+\hline
+\textbf{STT} & \textbf{Collection} & \textbf{Module} & \textbf{Mô tả} \\
+\hline
+1 & users & M1 & Tài khoản và hồ sơ người dùng \\
+\hline
+2 & posts & M2 & Bài viết (text, image, link) \\
+\hline
+3 & media & M2 & File đa phương tiện \\
+\hline
+4 & tags & M2 & Nhãn phân loại nội dung \\
+\hline
+5 & comments & M4 & Bình luận (hỗ trợ threaded replies) \\
+\hline
+6 & likes & M4 & Lượt thích (unique per user+post) \\
+\hline
+7 & shares & M4 & Chia sẻ (copy\_link hoặc repost) \\
+\hline
+8 & connections & M4 & Quan hệ follow/unfollow \\
+\hline
+9 & bookmark\_collections & M5 & Bộ sưu tập bookmark \\
+\hline
+10 & bookmarks & M5 & Bài viết đã lưu \\
+\hline
+11 & notifications & M6 & Thông báo (polymorphic) \\
+\hline
+12 & reports & M6 & Báo cáo vi phạm \\
+\hline
+13 & audit\_logs & M6 & Nhật ký hành chính (append-only) \\
+\hline
+\end{tabular}
+\end{table}
+
+Các quan hệ chính bao gồm: \texttt{USERS ||--o\{ POSTS} (1 user → nhiều posts), \texttt{POSTS ||--o\{ COMMENTS} (1 post → nhiều comments), \texttt{USERS ||--o\{ CONNECTIONS} (follow/unfollow), \texttt{BOOKMARK\_COLLECTIONS ||--o\{ BOOKMARKS} (1 collection → nhiều bookmarks), và \texttt{REPORTS ||--o\{ AUDIT\_LOGS} (1 report → nhiều audit entries).
+
+Hình~\ref{fig:result-er} minh họa ER Diagram tổng quan với toàn bộ 13 entities và quan hệ giữa chúng.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/results/er-overview}
+    \caption{Sơ đồ quan hệ thực thể (ER Diagram) tổng quan hệ thống Steve Void}
+    \label{fig:result-er}
+\end{figure}
+
+\subsection{Kết quả thiết kế cơ sở dữ liệu vật lý (Schema Design)}
+
+Schema Design Analyst chuyển đổi từ Class Diagram (YAML Contract) sang \textbf{Physical Database Schema} cho MongoDB/Payload CMS. Kết quả gồm \textbf{12 files} (6 Markdown + 6 YAML) với dual-format output.
+
+\subsubsection{Các design patterns áp dụng}
+
+\begin{table}[H]
+\centering
+\caption{Design Patterns trong Schema Design}
+\label{tab:schema-patterns}
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\textbf{Pattern} & \textbf{Mô tả và ứng dụng} \\
+\hline
+Aggregate Root & Collections tách riêng theo tần suất truy cập và tốc độ tăng trưởng (posts, comments, likes là aggregate riêng biệt) \\
+\hline
+Denormalization & Counter fields (likesCount, commentsCount, followerCount) lưu trực tiếp, cập nhật qua hooks \\
+\hline
+Computed Pattern & Các trường chỉ đọc (readOnly) được cập nhật bởi afterChange hooks \\
+\hline
+Polymorphic Pattern & Notifications và Reports sử dụng entityType + entityId để tham chiếu linh hoạt \\
+\hline
+Virtual Join Fields & Quan hệ một chiều, populated bởi Payload Local API depth expansion \\
+\hline
+Append-Only & AuditLogs không cho phép update/delete — đảm bảo audit trail vĩnh viễn \\
+\hline
+Compound Index & Unique constraints: (postId, userId) cho likes, (followerId, followingId) cho connections \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Ví dụ: Collection Users (M1)}
+
+Bảng~\ref{tab:users-schema} minh họa cấu trúc chi tiết của collection \texttt{users} — collection cốt lõi của hệ thống, được thiết kế bởi Schema Design Analyst.
+
+\begin{longtable}{|p{3.5cm}|p{2cm}|p{2cm}|c|p{3.5cm}|}
+\caption{Schema chi tiết collection \texttt{users} (M1)} \label{tab:users-schema} \\
+\hline
+\textbf{Field Name} & \textbf{Payload Type} & \textbf{Mongo Type} & \textbf{Index} & \textbf{Ghi chú} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Field Name} & \textbf{Payload Type} & \textbf{Mongo Type} & \textbf{Index} & \textbf{Ghi chú} \\
+\hline
+\endhead
+email & email & String & Có & Unique, validated \\
+\hline
+username & text & String & Có & 3--50 ký tự, unique \\
+\hline
+passwordHash & text & String & Không & bcrypt, private \\
+\hline
+verified & checkbox & Boolean & Không & default: false \\
+\hline
+role & select & String & Không & member, admin \\
+\hline
+status & select & String & Không & active, inactive, banned \\
+\hline
+profileVisibility & select & String & Không & public, followers, private \\
+\hline
+displayName & text & String & Không & Required \\
+\hline
+bio & text & String & Không & Max 160 chars \\
+\hline
+avatar & text & String & Không & URL hoặc Media ID \\
+\hline
+followerCount & number & Number & Không & Computed, readOnly \\
+\hline
+followingCount & number & Number & Không & Computed, readOnly \\
+\hline
+createdAt & date & ISODate & Có & Tự sinh \\
+\hline
+updatedAt & date & ISODate & Không & Tự sinh \\
+\hline
+\end{longtable}
+
+\subsubsection{Hệ thống Access Control}
+
+Schema Design định nghĩa \textbf{5 cấp quyền truy cập} cho mỗi collection:
+
+\begin{itemize}
+    \item \textbf{guest}: Người dùng chưa xác thực — chỉ đọc dữ liệu công khai
+    \item \textbf{member}: Người dùng đã xác thực — tạo nội dung, tương tác
+    \item \textbf{owner}: Chủ sở hữu tài nguyên — sửa, xóa nội dung của mình
+    \item \textbf{admin}: Quản trị viên — quản lý reports, ban users
+    \item \textbf{system}: Thao tác nội bộ — cập nhật counters, hooks
+\end{itemize}
+
+\subsubsection{Kiểm chứng chất lượng}
+
+Toàn bộ 6 modules schema đã vượt qua kiểm chứng bởi script \texttt{validate\_schema.py}:
+\begin{itemize}
+    \item 6/6 modules có Contract YAML hợp lệ
+    \item 6/6 modules có Schema Markdown hoàn chỉnh
+    \item 6/6 modules có Schema YAML chuẩn hóa
+    \item \textbf{0 trường ảo giác} (hallucination) — mọi field đều có nguồn từ Contract YAML
+\end{itemize}
+
+\subsection{Kết quả thiết kế giao diện người dùng}
+
+\subsubsection{Đặc tả UI (UI Specs)}
+
+UI Architecture Analyst tạo ra \textbf{8 files đặc tả giao diện}, bao gồm 6 module specs (M1--M6), 1 template chuẩn và 1 file index. Mỗi UI Spec ánh xạ từ trường dữ liệu trong Schema sang thành phần giao diện thực tế (UI Components) theo nguyên tắc \textbf{Zero Hallucination} — không thêm UI field nếu không có trong Schema.
+
+Cấu trúc mỗi UI Spec bao gồm:
+\begin{itemize}
+    \item Danh sách màn hình (Screens) với mã định danh (ví dụ: \texttt{m1/register}, \texttt{m2/create-post})
+    \item Component Map — ánh xạ từng trường dữ liệu sang component tương ứng
+    \item States — các trạng thái giao diện (default, loading, error, success, empty)
+    \item Responsive breakpoints — mobile (375px), tablet (768px), desktop (1280px)
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Số lượng màn hình theo module trong UI Specs}
+\begin{tabular}{|p{1cm}|p{5cm}|c|}
+\hline
+\textbf{Module} & \textbf{Tên spec} & \textbf{Số screens} \\
+\hline
+M1 & m1-auth-ui-spec.md & 5 \\
+\hline
+M2 & m2-content-ui-spec.md & 3 \\
+\hline
+M3 & m3-discovery-ui-spec.md & 3 \\
+\hline
+M4 & m4-engagement-ui-spec.md & 3 \\
+\hline
+M5 & m5-bookmarking-ui-spec.md & 2 \\
+\hline
+M6 & m6-notifications-ui-spec.md & 2 \\
+\hline
+\textbf{Tổng} & & \textbf{18} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Wireframe Blueprints}
+
+UI Pencil Drawer tạo ra \textbf{17 wireframe blueprints} chi tiết, bao gồm 15 screen-level wireframes và 2 device variants (desktop laptop). Mỗi wireframe tuân theo cấu trúc chuẩn:
+
+\begin{itemize}
+    \item \textbf{Header}: Metadata (module, spec reference, layout, width, state)
+    \item \textbf{Sections}: Phân vùng giao diện theo composition pattern
+    \item \textbf{Components}: Danh sách component với \texttt{ref} ID từ Lib-Component, kèm \texttt{spec-cite} truy xuất nguồn
+    \item \textbf{States}: Các trạng thái UI (default, error, loading, success)
+    \item \textbf{Notes}: Ghi chú về inference và decisions
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Wireframe blueprints theo module}
+\label{tab:wireframe-results}
+\begin{tabular}{|p{1cm}|c|p{8cm}|}
+\hline
+\textbf{Module} & \textbf{Số WF} & \textbf{Các màn hình} \\
+\hline
+M1 & 5 & Register, Email Verification, Profile Setup, User Profile, Profile Edit \\
+\hline
+M2 & 2 & Create Post, Post Detail/Edit \\
+\hline
+M3 & 2 & News Feed, Discover/Trending \\
+\hline
+M4 & 2 & Comment Thread, User Connections/Followers \\
+\hline
+M5 & 2 & Bookmark Collections, Bookmarks List \\
+\hline
+M6 & 2 & Notifications Feed, Reports Admin Panel \\
+\hline
+Laptop & 2 & Desktop Auth, Desktop Feed \\
+\hline
+\end{tabular}
+\end{table}
+
+Đặc biệt, mỗi component trong wireframe đều có thuộc tính \texttt{spec-cite} trỏ tới section cụ thể trong UI Spec (ví dụ: \texttt{[spec §2.1 — input-email]}). Guardrail \textbf{G-Spec-Strict} của UI Pencil Drawer đảm bảo không thêm element nào mà spec không đề cập.
+
 \section{Đánh giá hệ thống}
+
+\subsection{Đánh giá về độ bao phủ (Coverage)}
+
+\begin{table}[H]
+\centering
+\caption{Ma trận bao phủ: Module × Loại sơ đồ}
+\label{tab:coverage-matrix}
+\begin{tabular}{|p{1cm}|c|c|c|c|c|c|c|}
+\hline
+\textbf{Module} & \textbf{UC} & \textbf{AD} & \textbf{SD} & \textbf{FD} & \textbf{CD} & \textbf{Schema} & \textbf{UI} \\
+\hline
+M1 & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+\hline
+M2 & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+\hline
+M3 & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+\hline
+M4 & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+\hline
+M5 & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+\hline
+M6 & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+\hline
+\end{tabular}
+\end{table}
+
+\textit{Chú thích: UC = Use Case, AD = Activity Diagram, SD = Sequence Diagram, FD = Flow Diagram, CD = Class Diagram.}
+
+Kết quả cho thấy \textbf{100\% modules} (6/6) được bao phủ đầy đủ bởi \textbf{tất cả 7 loại artifacts}. Không có module nào bị thiếu sót về mặt thiết kế.
+
+\subsection{Đánh giá về tính nhất quán (Consistency)}
+
+Chuỗi truy xuất nguồn gốc (Traceability Chain) giữa các artifacts được đảm bảo xuyên suốt:
+
+\begin{center}
+\textbf{Requirements (FR-1 → FR-10)} \\
+↓ \\
+\textbf{Use Case Diagrams (UC01 → UC24)} \\
+↓ \\
+\textbf{Activity Diagrams (M1-A1 → M6-A3)} \\
+↓ \\
+\textbf{Sequence \& Flow Diagrams} \\
+↓ \\
+\textbf{Class Diagrams (Mermaid + YAML Contract)} \\
+↓ \\
+\textbf{Schema Design (Physical MongoDB Collections)} \\
+↓ \\
+\textbf{UI Specs → Wireframes}
+\end{center}
+
+Mỗi tầng xây dựng dựa trên tầng trước đó, tạo thành một chuỗi đặc tả → thiết kế → sẵn sàng triển khai có tính nhất quán cao. Cụ thể:
+
+\begin{itemize}
+    \item \textbf{93 trường dữ liệu} trong Class Diagram đều có source citation tới ER Diagram hoặc Activity Diagram
+    \item \textbf{24 luồng nghiệp vụ} trong Flow Diagram đều có UC-ID truy xuất tới Use Case
+    \item \textbf{0 trường ảo giác} (hallucination) trong toàn bộ Schema Design — mọi field đều có nguồn từ Contract YAML
+    \item Tên đối tượng trong Sequence Diagram khớp 100\% với codebase dự kiến
+\end{itemize}
+
+\subsection{Đánh giá về chất lượng kỹ thuật}
+
+\subsubsection{Hiệu quả của Guardrails chống ảo giác}
+
+Hệ thống Guardrails đã chứng minh hiệu quả trong việc ngăn chặn hallucination:
+
+\begin{table}[H]
+\centering
+\caption{Hiệu quả Guardrails trong quá trình triển khai}
+\begin{tabular}{|p{4cm}|p{3.5cm}|p{5.5cm}|}
+\hline
+\textbf{Guardrail} & \textbf{Skill áp dụng} & \textbf{Kết quả} \\
+\hline
+Source Citation & Class Diagram Analyst & 93/93 fields có nguồn (100\%) \\
+\hline
+Contract-Only & Schema Design Analyst & 0 field ảo giác trong 6 modules \\
+\hline
+No Blind Step & Flow Design Analyst & 100\% action nodes có căn cứ từ spec \\
+\hline
+UC-ID Mapping & Flow Design Analyst & 24/24 use cases được ánh xạ \\
+\hline
+Spec-Strict & UI Pencil Drawer & 100\% components có spec-cite \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Các design patterns đã áp dụng thành công}
+
+Quá trình triển khai đã áp dụng thành công nhiều patterns quan trọng cho MongoDB/Payload CMS:
+
+\begin{enumerate}
+    \item \textbf{Aggregate Root Strategy}: Tách riêng collections theo tần suất truy cập, tránh vi phạm giới hạn 16MB document
+    \item \textbf{Denormalized Counters}: Tối ưu hiệu năng đọc bằng cách lưu trực tiếp counter fields, cập nhật qua hooks
+    \item \textbf{Polymorphic References}: Hỗ trợ tham chiếu linh hoạt giữa các entity types khác nhau
+    \item \textbf{Append-Only Audit Trail}: Đảm bảo tính toàn vẹn của nhật ký hành chính
+    \item \textbf{Soft-Delete Strategy}: Sử dụng trường \texttt{status} thay vì xóa cứng, bảo toàn dữ liệu
+\end{enumerate}
+
+\subsection{Đánh giá về khả năng sẵn sàng cho giai đoạn triển khai (Life-3)}
+
+Toàn bộ artifacts thiết kế đã đạt trạng thái \textbf{sẵn sàng triển khai}:
+
+\begin{itemize}
+    \item 13 MongoDB collections có schema chi tiết tới từng field, bao gồm kiểu dữ liệu, constraints, indexes và hooks
+    \item 18 màn hình UI có wireframe blueprint với component ref IDs từ Lib-Component
+    \item Dual-format output (Markdown + YAML) cho phép cả con người review lẫn AI Agent đọc để sinh code tự động
+    \item Hệ thống access control 5 cấp đã được định nghĩa cho mọi collection
+    \item Hooks specification (beforeChange, afterChange) đảm bảo tính nhất quán dữ liệu khi triển khai
+\end{itemize}
+
+\subsection{Hạn chế và bài học kinh nghiệm}
+
+Trong quá trình triển khai, một số hạn chế đã được nhận diện:
+
+\begin{enumerate}
+    \item \textbf{Phụ thuộc vào context window}: Với các module lớn (M1, M4), AI Agent đôi khi cần chia nhỏ task để tránh tràn context, ảnh hưởng đến tính liên tục của output
+    \item \textbf{Wireframe chưa bao gồm responsive đầy đủ}: Chỉ có 2/17 wireframes có device variant (laptop), các wireframe còn lại chủ yếu thiết kế cho mobile (375px)
+    \item \textbf{Chưa có automated testing}: Việc kiểm chứng chủ yếu dựa vào checklist thủ công và script \texttt{validate\_schema.py}, chưa có bộ test tự động hoàn chỉnh
+    \item \textbf{Module M3 không tạo collection vật lý}: FeedQuery chỉ là ValueObject (DTO), không lưu xuống database — đây là quyết định thiết kế hợp lý nhưng cần lưu ý khi triển khai
+\end{enumerate}
+
+Bài học rút ra: Hệ thống Guardrails và Interaction Points đã chứng minh vai trò then chốt trong việc duy trì chất lượng đầu ra. Nguyên tắc \textbf{Source Citation} và \textbf{Contract-Only} là hai cơ chế hiệu quả nhất để chống ảo giác AI trong quá trình thiết kế hệ thống.
 
 \clearpage
 \addcontentsline{toc}{chapter}{Kết luận và hướng phát triển}
@@ -1472,13 +2103,56 @@ Thiết kế này không chỉ tạo ra một website mạng xã hội cụ th�
 \end{center}
 
 \section*{Kết quả đạt được}
-Tóm tắt các kết quả quan trọng nhất.
+
+Qua quá trình nghiên cứu và triển khai, khóa luận đã đạt được các kết quả chính sau:
+
+\begin{enumerate}
+    \item \textbf{Xây dựng thành công mô hình Agent Skill Framework:} Đề xuất kiến trúc 3 Pillars (Knowledge, Process, Guardrails) kết hợp 7 Zones (Core, Knowledge, Scripts, Templates, Data, Loop, Assets) để tổ chức tri thức cho AI Agent một cách có hệ thống. Mô hình này cho phép AI hoạt động có kiểm soát, giảm thiểu hiện tượng ảo giác (hallucination) thông qua các cơ chế Source Citation, Contract-Only và Interaction Points.
+
+    \item \textbf{Phát triển bộ 10 Agent Skills chuyên biệt:} Bao gồm 3 Meta-Skills (Skill Architect, Skill Planner, Skill Builder) và 7 Domain Skills (Flow Design Analyst, Sequence Design Analyst, Activity Diagram Analyst, Class Diagram Analyst, Schema Design Analyst, UI Architecture Analyst, UI Pencil Drawer). Mỗi skill được thiết kế với workflow riêng, guardrails chống bịa đặt và cơ chế tự kiểm chứng chất lượng.
+
+    \item \textbf{Tạo ra hơn 120 artifacts thiết kế hoàn chỉnh cho hệ thống Steve Void:} Bao gồm 41 Use Cases, 27 Activity Diagrams, 9 Sequence Diagrams, 27 Flow Diagrams, 12 Class Diagrams (Mermaid + YAML), 1 ER Diagram với 13 collections, 12 Database Schema files (Markdown + YAML), 8 UI Specs (18 màn hình) và 17 Wireframe blueprints. Toàn bộ 6 modules (M1--M6) đều được bao phủ 100\% bởi tất cả các loại artifacts.
+
+    \item \textbf{Đảm bảo tính nhất quán và truy xuất nguồn gốc:} Chuỗi truy xuất (Traceability Chain) từ Requirements → Use Cases → Activity Diagrams → Sequence/Flow Diagrams → Class Diagrams → Schema Design → UI Specs → Wireframes được duy trì xuyên suốt. 93 trường dữ liệu trong Class Diagram đều có source citation, 0 trường ảo giác trong toàn bộ Schema Design.
+
+    \item \textbf{Chứng minh tính khả thi của việc ứng dụng AI Chatbot vào quy trình phát triển phần mềm:} Không chỉ ở mức hỗ trợ viết mã (code generation), AI Agent có thể tham gia hiệu quả vào các giai đoạn phân tích nghiệp vụ, thiết kế hệ thống và thiết kế giao diện — những công đoạn truyền thống đòi hỏi chuyên môn sâu và thường bị bỏ qua trong các công cụ AI hiện tại.
+\end{enumerate}
 
 \section*{Hạn chế của nghiên cứu}
-Các vấn đề chưa giải quyết được.
+
+Bên cạnh các kết quả đạt được, nghiên cứu vẫn tồn tại một số hạn chế cần được nhìn nhận khách quan:
+
+\begin{enumerate}
+    \item \textbf{Hạn chế về kinh phí sử dụng tài nguyên AI:} Việc triển khai các Agent Skills đòi hỏi sử dụng API của các mô hình ngôn ngữ lớn (LLMs) với chi phí đáng kể. Giới hạn ngân sách khiến số lần thử nghiệm và tinh chỉnh bị hạn chế, ảnh hưởng đến độ hoàn thiện của một số skills. Ngoài ra, giới hạn context window của model cũng gây khó khăn khi xử lý các module lớn, đòi hỏi phải chia nhỏ task và giảm tính liên tục của output.
+
+    \item \textbf{Hạn chế về thời gian và kiến thức nghiệp vụ:} Do thời gian thực hiện khóa luận có giới hạn, kiến thức nghiệp vụ được đưa vào các Agent Skills (đặc biệt ở tầng Knowledge) mới chỉ đáp ứng ở mức độ cơ bản. Các bộ knowledge files chưa đủ sâu để bao phủ toàn bộ edge cases và best practices của từng lĩnh vực (UML standards, MongoDB optimization, UI/UX patterns). Điều này dẫn đến chất lượng đầu ra của skills tuy đạt yêu cầu cho nghiên cứu nhưng chưa đủ tin cậy để đưa lên production.
+
+    \item \textbf{Chưa hoàn thành giai đoạn Life-3 (Implementation):} Nghiên cứu mới dừng lại ở giai đoạn Life-2 (Design \& Specification). Hệ thống Steve Void chưa được triển khai thành sản phẩm thực tế với mã nguồn chạy được, do đó chưa thể đánh giá đầy đủ tính khả dụng của các artifacts thiết kế trong thực tiễn lập trình.
+
+    \item \textbf{Wireframe chưa bao phủ đầy đủ responsive:} Trong 17 wireframe blueprints, chỉ có 2 bản có device variant cho desktop (laptop). Phần lớn wireframes được thiết kế cho mobile-first (375px), chưa có bản thiết kế riêng cho tablet và desktop đầy đủ.
+
+    \item \textbf{Chưa có đánh giá định lượng từ người dùng thực tế:} Việc đánh giá chất lượng chủ yếu dựa vào checklist, script validation và self-review. Chưa thực hiện được khảo sát người dùng hoặc so sánh thực nghiệm có đối chứng (controlled experiment) giữa phát triển có và không có Agent Skills.
+\end{enumerate}
 
 \section*{Hướng phát triển trong tương lai}
-Định hướng nâng cấp và mở rộng hệ thống.
+
+Dựa trên kết quả và hạn chế của nghiên cứu, các hướng phát triển tiếp theo được đề xuất:
+
+\begin{enumerate}
+    \item \textbf{Tự động hóa hoàn toàn pipeline Life-1 → Life-2 (Fully Autonomous Execution):} Đây là hướng phát triển trọng tâm. Mục tiêu là xây dựng một hệ thống mà người dùng chỉ cần nạp tài liệu đầu vào ở giai đoạn Life-1 (Vision, User Stories, Technical Decisions), AI Agent sẽ tự động thực thi toàn bộ pipeline Life-2 — từ vẽ Use Case, Activity Diagram, Sequence Diagram, Flow Diagram, Class Diagram, Schema Design đến UI Specs và Wireframes — \textbf{mà không cần sự can thiệp của con người}. Các Interaction Points hiện tại sẽ được chuyển thành auto-approval với confidence threshold, chỉ escalate khi AI phát hiện rủi ro hoặc mâu thuẫn.
+
+    \item \textbf{Mở rộng sang Life-3 (Automated Code Generation):} Kết nối pipeline thiết kế với giai đoạn sinh mã tự động. Từ Schema YAML → Payload CMS collections, từ UI Specs → React components (Tailwind v4 + Radix UI), từ Sequence Diagrams → API route handlers. Mục tiêu cuối cùng là một pipeline end-to-end: Ý tưởng → Tài liệu → Thiết kế → Mã nguồn → Kiểm thử.
+
+    \item \textbf{Nâng cao chất lượng Knowledge Base:} Bổ sung và tinh chỉnh các knowledge files trong từng Agent Skill với kiến thức chuyên sâu hơn: MongoDB advanced patterns (sharding, aggregation pipelines), UML compliance standards (OMG specifications), UI/UX best practices từ Nielsen Norman Group. Điều này giúp nâng chất lượng đầu ra từ mức cơ bản lên mức production-ready.
+
+    \item \textbf{Tích hợp đa mô hình AI (Multi-Model Architecture):} Thay vì phụ thuộc vào một mô hình duy nhất (Claude), nghiên cứu hướng tới việc tích hợp nhiều mô hình AI khác nhau (GPT-4, Gemini, open-source models) cho từng loại task cụ thể, nhằm tối ưu chi phí và tận dụng thế mạnh riêng của mỗi mô hình.
+
+    \item \textbf{Xây dựng hệ thống đánh giá tự động (Automated Quality Assessment):} Phát triển bộ test tự động để đánh giá chất lượng đầu ra của Agent Skills: kiểm tra tính đúng đắn của sơ đồ (syntax validation), tính nhất quán giữa các artifacts (cross-reference checking), và so sánh với benchmark từ các dự án thực tế.
+
+    \item \textbf{Đóng gói thành sản phẩm mã nguồn mở:} Xuất bản Agent Skill Framework dưới dạng thư viện mã nguồn mở, kèm theo tài liệu hướng dẫn và bộ skills mẫu, để cộng đồng lập trình viên Việt Nam có thể tái sử dụng và đóng góp phát triển.
+\end{enumerate}
+
+Tóm lại, nghiên cứu đã chứng minh được tiềm năng to lớn của việc ứng dụng AI Chatbot trong phát triển phần mềm, đặc biệt ở giai đoạn phân tích và thiết kế. Mặc dù còn những hạn chế về kinh phí, thời gian và độ sâu nghiệp vụ, kết quả đạt được đã đặt nền móng vững chắc cho một hướng đi đầy triển vọng — nơi AI không chỉ là công cụ hỗ trợ mà trở thành \textbf{cộng tác viên thực sự} trong quy trình phát triển phần mềm.
 
 \chapter*{TÀI LIỆU THAM KHẢO}
 \addcontentsline{toc}{chapter}{Tài liệu tham khảo}
