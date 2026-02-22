@@ -1,13 +1,14 @@
-
 ghi nhớ nguyên tắc nầy thành rule viết báo cáo và update cho tài liệu báo cáo cho mình . 1. Bố cục tổng thể (Structure)
 
 Tài liệu tuân thủ thứ tự chuẩn của một khóa luận tại HUNRE:
 
-Trang bìa chính: Cứng, in nhũ (thường là vậy).
+Trang bìa chính: Cứng, in nhũ. KHÔNG ghi chi tiết Sinh viên (MSV, Lớp, Ngành, GVHD) mà chỉ để Họ tên sinh viên ở giữa trang, hoặc theo yêu cầu cụ thể mới nhất. Tuyệt đối không dùng environment `figure` ở trang bìa để tránh bị float sang trang 2.
 
-Trang bìa phụ: Giống bìa chính nhưng có thêm thông tin chi tiết (Ngành, Giảng viên hướng dẫn).
+Trang bìa phụ: Giống bìa chính nhưng bắt buộc có thêm thông tin chi tiết (Ngành, Lớp, MSV). Chữ "NGƯỜI HƯỚNG DẪN" phải được in hoa toàn bộ. Thông tin liệt kê dùng tabular/bảng ẩn viền để căn lề đều, tránh vỡ dòng.
 
-Lời cam đoan: Có quốc hiệu, tiêu ngữ.
+Viền bìa (Borders): Khi vẽ viền trang bìa (bằng TikZ), các đoạn text ở lề dưới cùng như "Hà Nội -- Năm 2026" phải được canh lên trên (`\vspace*{1.5cm}` ở cuối trang) để KHÔNG ĐÈ lên đường viền.
+
+Lời cam đoan: Bắt buộc phải có quốc hiệu bên trên tiêu đề: "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM" và bên dưới là "Độc lập – Tự do – Hạnh phúc" (có gạch chân).
 
 Lời cảm ơn.
 

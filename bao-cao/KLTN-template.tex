@@ -20,90 +20,122 @@
 \usepackage{amsmath,amssymb}
 \usepackage[hidelinks]{hyperref}
 \usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{calc}
 
 % Cấu hình căn lề justified toàn bộ văn bản
 \renewcommand{\baselinestretch}{1.5}
 \sloppy % Tránh tràn lề với văn bản dài
 
-\begin{document}
+% --- CẤU HÌNH ĐỊNH DẠNG TIÊU ĐỀ (HEADINGS) ---
+\usepackage{titlesec}
+\usepackage{titletoc}
 
+% Chương: CHƯƠNG X: ..., in hoa, Đậm, Căn giữa, 14pt-16pt
+\titleformat{\chapter}[display]
+  {\bfseries\Large\centering}
+  {\MakeUppercase{\chaptertitlename} \thechapter}
+  {1ex}
+  {\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt}
+
+% Mục cấp 1: 1.1, Chữ thường, Đậm, Căn trái, 14pt
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+
+% Mục cấp 2: 1.1.1, Chữ thường, Đậm, Nghiêng, 14pt
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\itshape}
+  {\thesubsection}
+  {1em}
+  {}
+
+% Cấu hình Tên Bảng/Hình: Đậm, 13pt-14pt
+\usepackage[font={small,bf}, labelfont=bf]{caption}
+\captionsetup[table]{position=top, skip=10pt} % Bảng trên
+\begin{document}
 
 % ==================== PHẦN ĐẦU (KHÔNG ĐÁNH SỐ TRANG) ====================
 \pagenumbering{gobble}
 
-% Trang bìa (theo mẫu trường)
+% ==================== TRANG BÌA CHÍNH ====================
 \begin{titlepage}
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw [line width=3pt] ($ (current page.north west) + (3.5cm,-2.0cm) $) rectangle ($ (current page.south east) + (-2.0cm,2.0cm) $);
+    \draw [line width=1pt] ($ (current page.north west) + (3.6cm,-2.1cm) $) rectangle ($ (current page.south east) + (-2.1cm,2.1cm) $);
+  \end{tikzpicture}
+
   \centering
-  {\Large \textbf{TRƯỜNG ĐẠI HỌC TÀI NGUYÊN VÀ MÔI TRƯỜNG HÀ NỘI}}\\[0.5em]
-  {\large \textbf{KHOA CÔNG NGHỆ THÔNG TIN}}\\[3em]
-  
-  \begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.3\textwidth]{"logo-hunre"} % Đã cập nhật logo thực tế
-  \end{figure}
-  \vspace{1em}
+  {\fontsize{14pt}{18pt}\selectfont TRƯỜNG ĐẠI HỌC TÀI NGUYÊN VÀ MÔI TRƯỜNG HÀ NỘI}\\[0.3em]
+  {\fontsize{14pt}{18pt}\selectfont \textbf{\underline{KHOA CÔNG NGHỆ THÔNG TIN}}}\\[2em]
 
-  {\Large \textbf{BÁO CÁO KHÓA LUẬN TỐT NGHIỆP}}\\[1.5em]
-  {\LARGE \textbf{TÊN ĐỀ TÀI}}\\[4em]
+  \includegraphics[width=0.3\textwidth]{logo-hunre}\\[3em]
 
-  \begin{flushleft}
-    \hspace{5cm} Họ và tên sinh viên: \dotfill\\[0.8em]
-    \hspace{5cm} Mã sinh viên: \dotfill\\[0.8em]
-    \hspace{5cm} Lớp: \dotfill\\[0.8em]
-    \hspace{5cm} Ngành: Công Nghệ Thông Tin\\[0.8em]
-    \hspace{5cm} Giảng viên hướng dẫn: \dotfill
-  \end{flushleft}
+  {\fontsize{22pt}{28pt}\selectfont \textbf{NGHIÊN CỨU VÀ ỨNG DỤNG\\[0.3em] CHATBOT AI TRONG PHÁT TRIỂN\\[0.3em] WEBSITE MẠNG XÃ HỘI}}\\[4em]
+
+  {\fontsize{16pt}{20pt}\selectfont \textbf{VŨ THƯỢNG HẢI}}
 
   \vfill
-  Hà Nội, 2026
+  {\fontsize{14pt}{18pt}\selectfont \textbf{Hà Nội -- Năm 2026}}
+  \vspace*{1.5cm} % Tránh đè viền trang
 \end{titlepage}
 
-\clearpage
-\begin{center}
-  {\Large \textbf{TRƯỜNG ĐẠI HỌC TÀI NGUYÊN VÀ MÔI TRƯỜNG HÀ NỘI}}\\[0.5em]
-  {\large \textbf{KHOA CÔNG NGHỆ THÔNG TIN}}\\[3em]
-  
-  \begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.3\textwidth]{logo-hunre}
-  \end{figure}
-  \vspace{1em}
+% ==================== TRANG BÌA PHỤ ====================
+\begin{titlepage}
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw [line width=3pt] ($ (current page.north west) + (3.5cm,-2.0cm) $) rectangle ($ (current page.south east) + (-2.0cm,2.0cm) $);
+    \draw [line width=1pt] ($ (current page.north west) + (3.6cm,-2.1cm) $) rectangle ($ (current page.south east) + (-2.1cm,2.1cm) $);
+  \end{tikzpicture}
 
-  {\Large \textbf{BÁO CÁO KHÓA LUẬN TỐT NGHIỆP}}\\[1.5em]
-  {\LARGE \textbf{TÊN ĐỀ TÀI}}\\[4em]
+  \centering
+  {\fontsize{14pt}{18pt}\selectfont TRƯỜNG ĐẠI HỌC TÀI NGUYÊN VÀ MÔI TRƯỜNG HÀ NỘI}\\[0.3em]
+  {\fontsize{14pt}{18pt}\selectfont \textbf{\underline{KHOA CÔNG NGHỆ THÔNG TIN}}}\\[2em]
+
+  \includegraphics[width=0.3\textwidth]{logo-hunre}\\[3em]
+
+  {\fontsize{22pt}{28pt}\selectfont \textbf{NGHIÊN CỨU VÀ ỨNG DỤNG\\[0.3em] CHATBOT AI TRONG PHÁT TRIỂN\\[0.3em] WEBSITE MẠNG XÃ HỘI}}\\[3.5em]
 
   \begin{flushleft}
-    \hspace{4cm} Họ tên sinh viên: \dotfill\\[0.8em]
-    \hspace{4cm} Ngành đào tạo: Công Nghệ Thông Tin\\[4em]
-    \hspace{4cm} \textbf{NGƯỜI HƯỚNG DẪN: \dotfill}
+    \hspace{2.5cm} 
+    \begin{tabular}{ll}
+      Họ và tên sinh viên: & \textbf{Vũ Thượng Hải} \\
+      Mã sinh viên: & \textbf{22111060108} \\
+      Lớp: & \textbf{ĐH12C1} \\
+      Ngành đào tạo: & \textbf{Công Nghệ Thông Tin} \\[0.5em]
+      \textbf{NGƯỜI HƯỚNG DẪN:} & \textbf{ThS. TRƯƠNG MẠNH ĐẠT}
+    \end{tabular}
   \end{flushleft}
 
   \vfill
-  Hà Nội, 2026
-\end{center}
-\clearpage
+  \centering
+  {\fontsize{14pt}{18pt}\selectfont \textbf{Hà Nội -- Năm 2026}}
+  \vspace*{1.5cm} % Tránh đè viền trang
+\end{titlepage}
 
 % --- TRANG BẢN CAM ĐOAN ---
 \clearpage
-\addcontentsline{toc}{chapter}{Bản cam đoan}
 \pagenumbering{roman}
 \setcounter{page}{1}
 
 \begin{center}
-  \textbf{CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM}\\[0.5em]
-  \textbf{Độc lập -- Tự do -- Hạnh phúc}\\[2em]
-  
-  {\Large \textbf{BẢN CAM ĐOAN}}\\[2em]
+  {\large \textbf{CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM}}\\[0.2em]
+  {\large \textbf{\underline{Độc lập -- Tự do -- Hạnh phúc}}}\\[3em]
+  {\Large \textbf{BẢN CAM ĐOAN}}
 \end{center}
+\addcontentsline{toc}{chapter}{Bản cam đoan}
+\vspace{1.5em}
 
 \begin{flushleft}
-  Tên tôi là: \dotfill\\[0.8em]
-  Mã sinh viên: \dotfill \hspace{2cm} Lớp: \dotfill\\[0.8em]
-  Ngành: Công Nghệ Thông Tin\\[0.8em]
-  Tôi đã thực hiện khóa luận tốt nghiệp với đề tài: \textbf{\dotfill}
+  Tên tôi là: \textbf{Vũ Thượng Hải}\\[0.8em]
+  Mã sinh viên: \textbf{22111060108} \hspace{2cm} Lớp: \textbf{ĐH12C1}\\[0.8em]
+  Ngành: \textbf{Công Nghệ Thông Tin}\\[0.8em]
+  Tôi đã thực hiện khóa luận tốt nghiệp với đề tài: \textbf{Nghiên cứu và ứng dụng Chatbot AI trong phát triển website mạng xã hội}
 \end{flushleft}
 
-Tôi xin cam đoan đây là đề tài nghiên cứu của riêng tôi và được sự hướng dẫn của \dotfill. Các nội dung nghiên cứu, kết quả trong đề tài này là trung thực và chưa được công bố dưới bất kỳ hình thức nào. Nếu phát hiện có bất kỳ hình thức gian lận nào tôi xin hoàn toàn chịu trách nhiệm trước pháp luật.\\[1em]
+Tôi xin cam đoan đây là đề tài nghiên cứu của riêng tôi và được sự hướng dẫn của \textbf{ThS. Trương Mạnh Đạt}. Các nội dung nghiên cứu, kết quả trong đề tài này là trung thực và chưa được công bố dưới bất kỳ hình thức nào. Nếu phát hiện có bất kỳ hình thức gian lận nào tôi xin hoàn toàn chịu trách nhiệm trước pháp luật.\\[1em]
 
 \begin{flushright}
   \textit{Hà Nội, ngày \dots\dots tháng \dots\dots năm 2026}
@@ -117,20 +149,18 @@ Tôi xin cam đoan đây là đề tài nghiên cứu của riêng tôi và đư
     & \\
     & \\
     & \\
-    \textbf{\hspace{1cm}\dotfill} & \textbf{\dotfill}
+    \textbf{\hspace{1cm}ThS. Trương Mạnh Đạt} & \textbf{Vũ Thượng Hải}
   \end{tabular}
 \end{table}
 
 % --- TRANG LỜI CẢM ƠN ---
 \clearpage
+\chapter*{LỜI CẢM ƠN}
 \addcontentsline{toc}{chapter}{Lời cảm ơn}
-\begin{center}
-  {\Large \textbf{LỜI CẢM ƠN}}\\[2em]
-\end{center}
 
-Trong quá trình nghiên cứu đề tài “\dotfill”, em xin cảm ơn tới các thầy cô giảng viên khoa Công nghệ thông tin trường Đại học Tài nguyên và Môi trường Hà Nội đã luôn hướng dẫn em để có thể hoàn thành bài khóa luận một cách tốt nhất.
+Trong quá trình nghiên cứu đề tài “\textbf{Nghiên cứu và ứng dụng Chatbot AI trong phát triển website mạng xã hội}”, em xin cảm ơn tới các thầy cô giảng viên khoa Công nghệ thông tin trường Đại học Tài nguyên và Môi trường Hà Nội đã luôn hướng dẫn em để có thể hoàn thành bài khóa luận một cách tốt nhất.
 
-Đặc biệt, em xin gửi lời cảm ơn sâu sắc tới \dotfill, người đã hướng dẫn trực tiếp cho em trong khóa luận lần này. Nhờ có sự hướng dẫn chi tiết, tận tình của thầy/cô mà em đã khắc phục được nhiều sai sót trong khóa luận lần này.
+Đặc biệt, em xin gửi lời cảm ơn sâu sắc tới \textbf{ThS. Trương Mạnh Đạt}, người đã hướng dẫn trực tiếp cho em trong khóa luận lần này. Nhờ có sự hướng dẫn chi tiết, tận tình của thầy mà em đã khắc phục được nhiều sai sót trong khóa luận lần này.
 
 Tuy nhiên với những hạn chế về kiến thức và thời gian nên không thể tránh khỏi sai sót, em rất mong nhận được những nhận xét góp ý chỉ bảo của thầy cô để chương trình được hoàn thiện hơn, có tính thực tiễn để có thể áp dụng trong tương lai.
 
@@ -141,10 +171,8 @@ Tuy nhiên với những hạn chế về kiến thức và thời gian nên kh�
 
 % --- TRANG TÓM TẮT ---
 \clearpage
+\chapter*{TÓM TẮT}
 \addcontentsline{toc}{chapter}{Tóm tắt}
-\begin{center}
-  {\Large \textbf{TÓM TẮT}}\\[2em]
-\end{center}
 Nội dung tóm tắt khóa luận tốt nghiệp.
 
 \tableofcontents
@@ -158,44 +186,26 @@ Nội dung tóm tắt khóa luận tốt nghiệp.
 \listoffigures
 
 \clearpage
+\chapter*{DANH MỤC KÝ HIỆU, CHỮ VIẾT TẮT}
 \addcontentsline{toc}{chapter}{Danh mục ký hiệu, chữ viết tắt}
-\begin{center}
-  {\Large \textbf{DANH MỤC KÝ HIỆU, CHỮ VIẾT TẮT}}\\[2em]
-\end{center}
 \begin{table}[h!]
   \centering
-  \begin{tabular}{|p{0.25\textwidth}|p{0.65\textwidth}|}
-    \hline
-    \textbf{Ký hiệu} & \textbf{Diễn giải} \\
-    \hline
+  \begin{tabular}{p{0.25\textwidth} p{0.65\textwidth}}
+    \textbf{Ký hiệu} & \textbf{Diễn giải} \\[0.5em]
     UC & Use Case (Ca sử dụng) \\
-    \hline
     US & User Story (Câu chuyện người dùng) \\
-    \hline
     MD & Module Design (Thiết kế module) \\
-    \hline
     AI & Artificial Intelligence (Trí tuệ nhân tạo) \\
-    \hline
     API & Application Programming Interface \\
-    \hline
     CSDL & Cơ sở dữ liệu \\
-    \hline
     CMS & Content Management System \\
-    \hline
     YAML & YAML Ain't Markup Language \\
-    \hline
     JSON & JavaScript Object Notation \\
-    \hline
     DTO & Data Transfer Object \\
-    \hline
     UML & Unified Modeling Language \\
-    \hline
     ERD & Entity Relationship Diagram \\
-    \hline
     SSD & Solid State Drive (for local storage) \\
-    \hline
     SSE & Server-Sent Events \\
-    \hline
   \end{tabular}
 \end{table}
 
@@ -204,13 +214,10 @@ Nội dung tóm tắt khóa luận tốt nghiệp.
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-\begin{center}
-  {\Large \textbf{MỞ ĐẦU}}\\[2em]
-\end{center}
+\chapter*{MỞ ĐẦU}
 \addcontentsline{toc}{chapter}{Mở đầu}
 
-\section*{1. Giới thiệu đơn vị thực tập}
-\addcontentsline{toc}{section}{1. Giới thiệu đơn vị thực tập}
+\section{Giới thiệu đơn vị thực tập}
 Công ty Cổ phần Innotech (INNOTECH J.S.C) là một trong những đơn vị hàng đầu trong lĩnh vực cung cấp các giải pháp công nghệ thông tin và chuyển đổi số toàn diện cho doanh nghiệp tại Việt Nam.
 
 \begin{itemize}
@@ -232,8 +239,7 @@ Các lĩnh vực hoạt động và dịch vụ chính của Innotech bao gồm:
 
 Trong hơn 10 năm hoạt động, Innotech đã triển khai thành công hơn 100 dự án cho các doanh nghiệp và tập đoàn lớn như Kiến Tạo Xanh Group, ITM Group, OVAN Group, HANOTEX,... Với đội ngũ hơn 50 chuyên gia giàu kinh nghiệm, công ty luôn đảm bảo các giá trị cốt lõi về sự chuyên nghiệp, tính linh hoạt, bảo mật và hiệu quả kinh tế cho đối tác.
 
-\section*{2. Lý do chọn đề tài}
-\addcontentsline{toc}{section}{2. Lý do chọn đề tài}
+\section{Lý do chọn đề tài}
 
 Trong bối cảnh công nghệ số và trí tuệ nhân tạo phát triển mạnh mẽ như hiện nay, với sự ra đời của các công cụ AI thế hệ mới như ChatGPT, GitHub Copilot, và Claude, ngành công nghệ thông tin đang trải qua một cuộc cách mạng về cách tiếp cận phát triển phần mềm. Theo báo cáo của GitHub năm 2024, hơn 92\% các nhà phát triển chuyên nghiệp đã sử dụng công cụ AI trong công việc, và năng suất code tăng trung bình 55\% khi có sự hỗ trợ của AI. Tuy nhiên, khoảng cách về kỹ năng giữa các cấp độ lập trình viên---từ người mới bắt đầu, sinh viên đến các lập trình viên có kinh nghiệm---vẫn là một thách thức lớn trong giáo dục và đào tạo công nghệ thông tin.
 
@@ -245,8 +251,7 @@ Xuất phát từ nhận định này, đề tài \textbf{"Nghiên cứu và ứ
 
 Tính cấp thiết của đề tài còn được thể hiện qua nhu cầu thực tế tại Công ty Innotech---nơi triển khai thực tập và thực hiện đề tài---khi công ty đang trong quá trình mở rộng dự án chuyển đổi số và cần xây dựng quy trình làm việc tối ưu hóa bởi AI để nâng cao năng suất và chất lượng sản phẩm. Hơn nữa, việc nghiên cứu và triển khai hệ thống này trên nền tảng mạng xã hội chia sẻ kiến thức (Steve Void) còn tạo ra giá trị cộng đồng, giúp sinh viên và lập trình viên Việt Nam có thể tiếp cận và chia sẻ kiến thức một cách có hệ thống và hiệu quả hơn.
 
-\section*{3. Mục tiêu nghiên cứu}
-\addcontentsline{toc}{section}{3. Mục tiêu nghiên cứu}
+\section{Mục tiêu nghiên cứu}
 
 Đề tài hướng đến các mục tiêu nghiên cứu cụ thể sau:
 
@@ -287,10 +292,9 @@ Tính cấp thiết của đề tài còn được thể hiện qua nhu cầu th
     \end{itemize}
 \end{enumerate}
 
-\section*{4. Đối tượng và phạm vi nghiên cứu}
-\addcontentsline{toc}{section}{4. Đối tượng và phạm vi nghiên cứu}
+\section{Đối tượng và phạm vi nghiên cứu}
 
-\subsection*{4.1 Phạm vi nghiên cứu}
+\subsection{Phạm vi nghiên cứu}
 
 Đề tài tập trung vào các phạm vi nghiên cứu cụ thể sau:
 
@@ -322,9 +326,7 @@ Tính cấp thiết của đề tài còn được thể hiện qua nhu cầu th
     \item Tập trung vào giai đoạn Life-2; các giai đoạn Life-3 (Implementation) và Life-4 (Verification) được nghiên cứu ở mức độ tổng quan
 \end{itemize}
 
-\subsection*{4.2 Đối tượng nghiên cứu}
-
-Đối tượng nghiên cứu chính của đề tài bao gồm:
+\subsection{Đối tượng nghiên cứu}
 
 \begin{enumerate}
     \item \textbf{Hệ thống Agent Skill Framework:}
@@ -360,8 +362,7 @@ Tính cấp thiết của đề tài còn được thể hiện qua nhu cầu th
     \end{itemize}
 \end{enumerate}
 
-\section*{5. Phương pháp nghiên cứu}
-\addcontentsline{toc}{section}{5. Phương pháp nghiên cứu}
+\section{Phương pháp nghiên cứu}
 
 Đề tài áp dụng các phương pháp nghiên cứu kết hợp giữa lý thuyết và thực nghiệm như sau:
 
@@ -410,12 +411,11 @@ Tính cấp thiết của đề tài còn được thể hiện qua nhu cầu th
 
 Các phương pháp trên được áp dụng tuần tự và song song, tạo thành một quy trình nghiên cứu khoa học chặt chẽ từ lý thuyết đến thực tiễn, từ thiết kế đến triển khai và đánh giá.
 
-\section*{6. Dự kiến kết quả nghiên cứu đạt được}
-\addcontentsline{toc}{section}{6. Dự kiến kết quả nghiên cứu đạt được}
+\section{Dự kiến kết quả nghiên cứu đạt được}
 
 Sau khi hoàn thành nghiên cứu, đề tài dự kiến đạt được các kết quả cụ thể sau:
 
-\subsection*{6.1 Sản phẩm phần mềm}
+\subsection{Sản phẩm phần mềm}
 
 \begin{enumerate}
     \item \textbf{Hệ thống Agent Skill Framework hoàn chỉnh:}
@@ -443,7 +443,7 @@ Sau khi hoàn thành nghiên cứu, đề tài dự kiến đạt được các 
     \end{itemize}
 \end{enumerate}
 
-\subsection*{6.2 Tài liệu nghiên cứu và thiết kế}
+\subsection{Tài liệu nghiên cứu và thiết kế}
 
 \begin{enumerate}
     \item \textbf{Tài liệu Life-1 (Vision \& Research):}
@@ -472,7 +472,7 @@ Sau khi hoàn thành nghiên cứu, đề tài dự kiến đạt được các 
     \end{itemize}
 \end{enumerate}
 
-\subsection*{6.3 Kiến thức và đóng góp học thuật}
+\subsection{Kiến thức và đóng góp học thuật}
 
 \begin{enumerate}
     \item \textbf{Mô hình Agent Skill Framework:}
@@ -499,7 +499,7 @@ Sau khi hoàn thành nghiên cứu, đề tài dự kiến đạt được các 
     \end{itemize}
 \end{enumerate}
 
-\subsection*{6.4 Sản phẩm bổ trợ}
+\subsection{Sản phẩm bổ trợ}
 
 \begin{itemize}
     \item Source code hoàn chỉnh trên GitHub repository (MIT License)
@@ -508,10 +508,9 @@ Sau khi hoàn thành nghiên cứu, đề tài dự kiến đạt được các 
     \item Workshop materials cho sinh viên về cách sử dụng AI trong phát triển phần mềm
 \end{itemize}
 
-\section*{7. Ý nghĩa khoa học và ý nghĩa thực tiễn của nghiên cứu}
-\addcontentsline{toc}{section}{7. Ý nghĩa khoa học và ý nghĩa thực tiễn của nghiên cứu}
+\section{Ý nghĩa khoa học và ý nghĩa thực tiễn của nghiên cứu}
 
-\subsection*{7.1 Ý nghĩa khoa học}
+\subsection{Ý nghĩa khoa học}
 
 \begin{enumerate}
     \item \textbf{Đóng góp vào lĩnh vực AI Agent Research:}
@@ -536,7 +535,7 @@ Sau khi hoàn thành nghiên cứu, đề tài dự kiến đạt được các 
     \end{itemize}
 \end{enumerate}
 
-\subsection*{7.2 Ý nghĩa thực tiễn}
+\subsection{Ý nghĩa thực tiễn}
 
 \begin{enumerate}
     \item \textbf{Đối với sinh viên và người mới học lập trình:}
@@ -582,8 +581,7 @@ Sau khi hoàn thành nghiên cứu, đề tài dự kiến đạt được các 
 
 Tóm lại, đề tài không chỉ có giá trị về mặt học thuật (đóng góp vào nghiên cứu AI Agent) mà còn có tác động thực tiễn sâu rộng, từ cá nhân sinh viên, doanh nghiệp, đến toàn ngành CNTT Việt Nam.
 
-\section*{8. Bố cục của báo cáo}
-\addcontentsline{toc}{section}{8. Bố cục của báo cáo}
+\section{Bố cục của báo cáo}
 
 Báo cáo khóa luận được tổ chức thành các phần chính như sau:
 
@@ -632,41 +630,241 @@ Báo cáo khóa luận được tổ chức thành các phần chính như sau:
 
 \chapter{CƠ SỞ LÝ THUYẾT}
 
-\section{Tổng quan về trí tuệ nhân tạo và AI Chatbot}
+Chương này trình bày cơ sở lý thuyết nền tảng cho toàn bộ nghiên cứu, bao gồm: tổng quan về trí tuệ nhân tạo và mô hình ngôn ngữ lớn, quy trình làm việc dựa trên Agent, các công nghệ sử dụng trong phát triển website, phương pháp mô hình hóa UML, và phân tích bài toán mạng xã hội chia sẻ kiến thức.
 
-Trí tuệ nhân tạo (AI) đã trải qua những bước tiến vượt bậc với sự ra đời của các mô hình ngôn ngữ lớn (Large Language Models - LLMs) như GPT-4 hay Gemini. Trong bối cảnh phát triển phần mềm, AI không chỉ dừng lại ở mức hỗ trợ viết mã (Code Completion) mà đã tiến hóa thành các \textit{AI Agents} có khả năng lập kế hoạch, suy luận và thực thi các tác vụ phức tạp một cách tự chủ.
+\section{Tổng quan về trí tuệ nhân tạo và mô hình ngôn ngữ lớn}
 
-AI Chatbot trong dự án này không chỉ là giao diện tương tác văn bản, mà đóng vai trò là một cộng tác viên lập trình (AI Coding Assistant). Thông qua khả năng hiểu ngữ cảnh (Context-awareness) và phân tích tài liệu, các Chatbot này giúp rút ngắn đáng kể thời gian từ ý tưởng đến sản phẩm thực tế.
+\subsection{Khái niệm trí tuệ nhân tạo}
+
+Trí tuệ nhân tạo (Artificial Intelligence — AI) là lĩnh vực khoa học máy tính nghiên cứu và phát triển các hệ thống có khả năng thực hiện các tác vụ đòi hỏi trí thông minh của con người, bao gồm: nhận dạng ngôn ngữ tự nhiên, lập kế hoạch, suy luận logic và ra quyết định \cite{ref-russell}. Trong thập kỷ gần đây, AI đã trải qua bước tiến vượt bậc nhờ sự phát triển của Deep Learning và đặc biệt là kiến trúc Transformer \cite{ref-transformer}, tạo nền tảng cho các mô hình ngôn ngữ lớn (Large Language Models — LLMs).
+
+\subsection{Mô hình ngôn ngữ lớn (LLMs)}
+
+Mô hình ngôn ngữ lớn là các mạng nơ-ron được huấn luyện trên lượng dữ liệu văn bản khổng lồ, có khả năng hiểu và sinh ngôn ngữ tự nhiên ở mức độ gần với con người. Các đặc điểm chính của LLMs bao gồm:
+
+\begin{itemize}
+    \item \textbf{Khả năng hiểu ngữ cảnh (Context-awareness):} LLMs có thể xử lý hàng chục nghìn tokens trong một lượt, cho phép hiểu được ngữ cảnh phức tạp của một dự án phần mềm
+    \item \textbf{Khả năng sinh nội dung (Generation):} Từ prompt đầu vào, LLMs có thể sinh ra mã nguồn, tài liệu thiết kế, sơ đồ UML và các artifacts kỹ thuật khác
+    \item \textbf{Khả năng suy luận (Reasoning):} Các mô hình thế hệ mới (GPT-4, Claude, Gemini) có khả năng suy luận logic nhiều bước, phù hợp cho các tác vụ phân tích và thiết kế hệ thống
+    \item \textbf{Khả năng sử dụng công cụ (Tool Use):} LLMs có thể gọi các hàm, API và công cụ bên ngoài để thực thi hành động thực tế, không chỉ dừng ở mức tạo văn bản
+\end{itemize}
+
+Trong nghiên cứu này, mô hình Claude (Anthropic) được sử dụng làm nền tảng cho toàn bộ hệ thống Agent Skills, nhờ khả năng xử lý context window lớn (200K+ tokens) và hỗ trợ tool use nguyên bản \cite{ref-anthropic}.
+
+\subsection{AI Chatbot trong phát triển phần mềm}
+
+AI Chatbot trong dự án này không chỉ là giao diện tương tác văn bản, mà đóng vai trò là một \textbf{cộng tác viên lập trình} (AI Coding Assistant). Thông qua công cụ Claude Code CLI \cite{ref-claude-code}, AI có khả năng:
+
+\begin{itemize}
+    \item Đọc và phân tích cấu trúc dự án (file system, git history)
+    \item Thực thi lệnh terminal và chạy scripts
+    \item Đọc/ghi file trực tiếp trên hệ thống
+    \item Tương tác với các MCP servers (Model Context Protocol) để mở rộng khả năng
+\end{itemize}
+
+Sự khác biệt giữa AI Chatbot thông thường và AI Coding Assistant nằm ở \textbf{khả năng hành động} (agency) — không chỉ tư vấn mà còn trực tiếp thực thi các tác vụ kỹ thuật trong môi trường phát triển.
 
 \section{Quy trình làm việc dựa trên Agent (Agentic Workflow)}
 
-Theo định nghĩa của Andrew Ng, \textit{Agentic Workflow} là một quy trình mà AI Agent hoạt động lặp đi lặp lại qua các bước: Suy nghĩ (Thought), Thực thi (Action) và Quan sát (Observation). Dự án này áp dụng quy trình này vào việc thiết kế hệ thống thông qua các bộ kỹ năng (Skills). Mỗi kỹ năng đại diện cho một vai trò chuyên biệt (Persona), cho phép chia nhỏ bài toán phát triển website mạng xã hội thành các module độc lập và dễ kiểm soát.
+\subsection{Định nghĩa Agentic Workflow}
 
-\section{Các công nghệ nền tảng trong phát triển Website}
+Theo Andrew Ng \cite{ref-agent}, \textit{Agentic Workflow} là một quy trình mà AI Agent hoạt động lặp đi lặp lại qua chu kỳ: \textbf{Suy nghĩ (Thought)} → \textbf{Thực thi (Action)} → \textbf{Quan sát (Observation)}. Khác với cách tiếp cận zero-shot (cho prompt, nhận kết quả ngay), Agentic Workflow cho phép AI tự điều chỉnh và cải thiện output qua nhiều vòng lặp.
 
-Để xây dựng hệ thống mạng xã hội hiện đại, dự án lựa chọn các công nghệ tối ưu về hiệu năng và khả năng mở rộng:
-\begin{itemize}
-    \item \textbf{Next.js 15:} Framework React mạnh mẽ nhất cho phép tối ưu hóa SEO và Server-side Rendering (SSR).
-    \item \textbf{Payload CMS 3.x:} Một hệ quản trị nội dung mã nguồn mở (Headless CMS) cho phép định nghĩa dữ liệu bằng mã nguồn (Code-first), rất phù hợp để AI Agent phân tích và thao tác.
-    \item \textbf{MongoDB Atlas:} Cơ sở dữ liệu NoSQL đám mây linh hoạt, phù hợp với cấu trúc dữ liệu không đồng nhất và thay đổi nhanh của một mạng xã hội.
-    \item \textbf{Tailwind CSS v4:} Thư viện CSS Utility-first giúp xây dựng giao diện nhanh chóng và đồng bộ với hệ thống thiết kế (Design System).
-\end{itemize}
-
-\section{Phân tích hệ thống mạng xã hội và bài toán chia sẻ kiến thức}
-
-Mạng xã hội chia sẻ kiến thức (Social Knowledge Sharing Network) không chỉ đơn thuần là nơi kết nối con người mà còn là một "nhà máy tri thức" (Knowledge Factory), nơi thông tin được tạo ra, sàng lọc và tái sử dụng. Qua quá trình khảo sát và phân tích bối cảnh thực tại, bài toán này đối mặt với các thách thức và đặc thù sau:
+Bốn design pattern cốt lõi của Agentic Workflow \cite{ref-agent}:
 
 \begin{enumerate}
-    \item \textbf{Thách thức về tổ chức và tìm kiếm tri thức:} Trong các mạng xã hội truyền thống, nội dung thường bị trôi đi rất nhanh và thiếu tính phân loại. Đối với bài toán chia sẻ kiến thức, hệ thống cần giải quyết bài toán \textit{Social Bookmarking} chuyên sâu, cho phép người dùng không chỉ lưu trữ (Save) mà còn tổ chức tri thức thành các bộ sưu tập (Collections) hoặc thư mục (Folders) có hệ thống. Điều này giúp tri thức được số hóa và dễ dàng truy xuất lại trong tương lai.
-    
-    \item \textbf{Bài toán xếp hạng nội dung chất lượng (Ranking):} Để tránh hiện tượng nhiễu thông tin (Information Overload), hệ thống cần các thuật toán xếp hạng (Ranking Algorithm) có khả năng ưu tiên các nội dung có giá trị thực tiễn cao. Nghiên cứu đề xuất ứng dụng thuật toán \textit{Time-decay + Engagement Score}, kết hợp giữa yếu tố thời gian (đảm bảo tính cập nhật) và mức độ tương tác (likes, comments, shares) để đưa những bài viết chất lượng nhất đến với cộng đồng.
-    
-    \item \textbf{Khoảng cách tri thức và tính tương tác thời gian thực:} Khoảng cách giữa các chuyên gia (Mentors/Seniors) và người mới bắt đầu (Juniors/Students) là rất lớn. Hệ thống cần các cơ chế tương tác linh hoạt như tìm kiếm ngữ nghĩa (\textit{Semantic Search}) bằng MongoDB Atlas Search để giúp người học tìm đúng nội dung cần thiết, cùng với hệ thống thông báo thời gian thực (\textit{Real-time Notifications}) qua công nghệ Server-Sent Events (SSE) để thúc đẩy quá trình trao đổi kiến thức diễn ra liên tục.
-    
-    \item \textbf{Đặc thù cộng đồng Tech Việt Nam:} Hiện nay, các nền tảng chia sẻ kiến thức tech chuyên sâu cho người Việt vẫn còn tản mát. Việc xây dựng một hệ thống tập trung (Single Portal) giúp kết nối các cá nhân có cùng đam mê, tạo điều kiện cho việc hình thành một văn hóa Documentation và Sharing lành mạnh, từ đó nâng cao chất lượng nguồn nhân lực công nghệ thông tin.
+    \item \textbf{Reflection:} AI tự đánh giá output của mình, phát hiện lỗi và tự sửa
+    \item \textbf{Tool Use:} AI sử dụng công cụ bên ngoài (search, code execution, file I/O) để thu thập thông tin và thực thi hành động
+    \item \textbf{Planning:} AI phân rã tác vụ phức tạp thành các bước nhỏ hơn, lập kế hoạch trước khi thực hiện
+    \item \textbf{Multi-agent Collaboration:} Nhiều AI agents với vai trò khác nhau cộng tác để giải quyết bài toán lớn
 \end{enumerate}
 
-Việc kết hợp AI vào quy trình phân tích và thiết kế giúp chuyển đổi các yêu cầu nghiệp vụ phức tạp này thành các Agent Skills chuyên biệt, đảm bảo hệ thống được xây dựng trên một nền tảng kiến trúc vững chắc, tối ưu hóa cả về mặt trải nghiệm người dùng lẫn hiệu năng xử lý dữ liệu.
+\subsection{Ứng dụng Agentic Workflow vào phát triển phần mềm}
+
+Dự án này áp dụng cả 4 patterns trên vào quy trình thiết kế hệ thống:
+
+\begin{itemize}
+    \item \textbf{Reflection}: Mỗi Agent Skill có cơ chế Self-Scoring và Self-Verification trước khi bàn giao output
+    \item \textbf{Tool Use}: Agents sử dụng file I/O để đọc specs/schemas, Mermaid.js để vẽ sơ đồ, Pencil MCP để vẽ wireframe
+    \item \textbf{Planning}: Skill Planner phân rã thiết kế thành các task có truy xuất nguồn gốc rõ ràng
+    \item \textbf{Multi-agent}: Pipeline Architect → Planner → Builder, cùng với các Domain Skills (Flow, Sequence, Class, Schema, UI) phối hợp tuần tự
+\end{itemize}
+
+\subsection{Khái niệm Agent Skill}
+
+Trong ngữ cảnh nghiên cứu này, \textbf{Agent Skill} là một đơn vị tri thức có cấu trúc, được thiết kế để hướng dẫn AI Agent thực hiện một tác vụ chuyên biệt với chất lượng có kiểm soát. Mỗi Skill bao gồm:
+
+\begin{itemize}
+    \item \textbf{Persona}: Vai trò và chuyên môn mà AI đảm nhận (ví dụ: "Senior System Architect")
+    \item \textbf{Workflow}: Quy trình thực thi có cấu trúc, với các bước rõ ràng
+    \item \textbf{Guardrails}: Các hàng rào bảo vệ chống lại hallucination và sai sót
+    \item \textbf{Knowledge Base}: Tập hợp kiến thức chuyên ngành cần thiết cho tác vụ
+\end{itemize}
+
+Khái niệm này mở rộng từ "System Prompt" truyền thống, bổ sung thêm cấu trúc tri thức, cơ chế kiểm soát chất lượng và khả năng tương tác có điểm dừng (Interaction Points) với con người.
+
+\section{Các công nghệ nền tảng}
+
+\subsection{Next.js 15 và React 19}
+
+Next.js là framework React phổ biến nhất cho phát triển web hiện đại, cung cấp các tính năng quan trọng \cite{ref-next}:
+
+\begin{itemize}
+    \item \textbf{App Router}: Hệ thống routing mới dựa trên file system, hỗ trợ layouts lồng nhau và loading states
+    \item \textbf{React Server Components (RSC)}: Cho phép render component phía server, giảm JavaScript bundle gửi về client
+    \item \textbf{Server Actions}: Gọi hàm server trực tiếp từ client component, đơn giản hóa API layer
+    \item \textbf{SEO Optimization}: Metadata API và Server-side Rendering đảm bảo nội dung được index tốt bởi công cụ tìm kiếm
+\end{itemize}
+
+Đối với hệ thống mạng xã hội chia sẻ kiến thức, Next.js đặc biệt phù hợp nhờ khả năng kết hợp SSR (cho trang công khai, tối ưu SEO) với CSR (cho trang tương tác, tối ưu trải nghiệm).
+
+\subsection{Payload CMS 3.x}
+
+Payload CMS là hệ quản trị nội dung mã nguồn mở (Headless CMS) thế hệ mới, nổi bật với triết lý \textbf{Code-first} — toàn bộ cấu trúc dữ liệu được định nghĩa bằng TypeScript thay vì giao diện kéo thả \cite{ref-payload}. Các đặc điểm quan trọng:
+
+\begin{itemize}
+    \item \textbf{Local API}: Truy cập dữ liệu trực tiếp qua hàm TypeScript (\texttt{payload.find()}, \texttt{payload.create()}) mà không cần qua HTTP, giảm latency đáng kể
+    \item \textbf{Access Control}: Hệ thống phân quyền linh hoạt, định nghĩa bằng hàm JavaScript cho mỗi collection
+    \item \textbf{Hooks System}: Lifecycle hooks (beforeChange, afterChange, beforeDelete...) cho phép can thiệp vào mọi thao tác CRUD
+    \item \textbf{Tích hợp Next.js}: Payload 3.x chạy trực tiếp bên trong ứng dụng Next.js, chia sẻ chung codebase
+\end{itemize}
+
+Triết lý Code-first của Payload CMS đặc biệt phù hợp với AI Agent — toàn bộ cấu trúc dữ liệu có thể được phân tích và sinh tự động bởi AI từ tài liệu thiết kế.
+
+\subsection{MongoDB Atlas}
+
+MongoDB là cơ sở dữ liệu NoSQL document-oriented, lưu trữ dữ liệu dưới dạng BSON (Binary JSON) \cite{ref-atlas}. MongoDB Atlas là dịch vụ đám mây của MongoDB, cung cấp:
+
+\begin{itemize}
+    \item \textbf{Flexible Schema}: Cấu trúc document linh hoạt, phù hợp với dữ liệu đa dạng của mạng xã hội (bài viết, bình luận, thông báo...)
+    \item \textbf{Atlas Search}: Tích hợp full-text search và autocomplete trực tiếp, không cần Elasticsearch riêng
+    \item \textbf{Aggregation Pipeline}: Xử lý dữ liệu phức tạp (ranking, thống kê, báo cáo) ngay tại tầng database
+    \item \textbf{Change Streams}: Theo dõi thay đổi dữ liệu real-time, hỗ trợ tính năng thông báo SSE
+\end{itemize}
+
+Quyết định chọn MongoDB thay vì SQL databases dựa trên phân tích: cấu trúc dữ liệu mạng xã hội thường xuyên thay đổi, cần lưu trữ nested documents (comments trong posts, media trong posts), và cần horizontal scaling khi lượng người dùng tăng.
+
+\subsection{Tailwind CSS v4 và Radix UI}
+
+Giao diện người dùng được xây dựng trên bộ đôi \textbf{Tailwind CSS v4} (styling) và \textbf{Radix UI} (primitives) \cite{ref-radix}:
+
+\begin{itemize}
+    \item \textbf{Tailwind CSS v4}: Thư viện CSS Utility-first, cho phép xây dựng giao diện nhanh chóng mà không cần viết CSS tùy chỉnh. Version 4 cải tiến đáng kể với CSS-native engine và hỗ trợ CSS variables
+    \item \textbf{Radix UI}: Bộ UI primitives không kèm styling, cung cấp các component có sẵn accessibility (ARIA attributes, keyboard navigation, screen reader support). Kết hợp với Tailwind CSS cho phép kiểm soát hoàn toàn visual design
+\end{itemize}
+
+Quy tắc thiết kế theo phong cách \textbf{Neobrutalism}: đường viền đậm (bold borders), bóng đổ lệch (offset shadows), tông màu tương phản cao với primary color là Pink.
+
+\section{Phương pháp mô hình hóa UML}
+
+\subsection{Tổng quan về UML}
+
+Unified Modeling Language (UML) là ngôn ngữ mô hình hóa chuẩn được sử dụng rộng rãi trong phân tích và thiết kế hệ thống phần mềm \cite{ref-uml}. Nghiên cứu này sử dụng 5 loại sơ đồ UML chính:
+
+\begin{table}[H]
+\centering
+\caption{Các loại sơ đồ UML sử dụng trong nghiên cứu}
+\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{6cm}|}
+\hline
+\textbf{Loại sơ đồ} & \textbf{Phân loại} & \textbf{Mục đích} \\
+\hline
+Use Case Diagram & Structure & Xác định actors và chức năng hệ thống \\
+\hline
+Activity Diagram & Behavior & Mô tả luồng nghiệp vụ chi tiết \\
+\hline
+Sequence Diagram & Interaction & Mô tả tương tác giữa các đối tượng theo thời gian \\
+\hline
+Class Diagram & Structure & Định nghĩa cấu trúc dữ liệu và quan hệ \\
+\hline
+ER Diagram & Structure & Mô tả quan hệ giữa các entities trong database \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Công cụ vẽ sơ đồ: Mermaid.js}
+
+Thay vì sử dụng các công cụ đồ họa truyền thống (Visio, draw.io), nghiên cứu sử dụng \textbf{Mermaid.js} — thư viện JavaScript cho phép vẽ sơ đồ bằng cú pháp text-based \cite{ref-mermaid}. Ưu điểm chính:
+
+\begin{itemize}
+    \item \textbf{Code-as-Diagram}: Sơ đồ được lưu dưới dạng text (Markdown), dễ dàng version control bằng Git
+    \item \textbf{AI-friendly}: AI Agent có thể đọc, phân tích và sinh sơ đồ Mermaid trực tiếp, không cần GUI
+    \item \textbf{Đa dạng loại sơ đồ}: Hỗ trợ flowchart, sequence, class, ER, gantt, pie chart...
+    \item \textbf{Tích hợp rộng}: Render trực tiếp trong GitHub, GitLab, Notion, VS Code
+\end{itemize}
+
+\section{Quy trình phát triển phần mềm và mô hình 4-Life}
+
+\subsection{Mô hình phát triển truyền thống}
+
+Quy trình phát triển phần mềm (Software Development Life Cycle — SDLC) truyền thống bao gồm các giai đoạn: Phân tích yêu cầu → Thiết kế → Triển khai → Kiểm thử → Bảo trì. Các mô hình phổ biến bao gồm Waterfall (tuần tự), Agile (lặp lại) và DevOps (tích hợp liên tục) \cite{ref-pressman}.
+
+\subsection{Mô hình 4-Life cho phát triển tích hợp AI}
+
+Nghiên cứu đề xuất mô hình \textbf{4-Life Lifecycle} — một biến thể của SDLC được thiết kế đặc biệt cho phát triển phần mềm tích hợp AI Agent:
+
+\begin{table}[H]
+\centering
+\caption{Mô hình 4-Life Lifecycle}
+\begin{tabular}{|c|p{3cm}|p{8.5cm}|}
+\hline
+\textbf{Phase} & \textbf{Tên giai đoạn} & \textbf{Mô tả} \\
+\hline
+Life-1 & Vision \& Research & Xác định tầm nhìn, personas, user stories, quyết định kỹ thuật \\
+\hline
+Life-2 & Design \& Specification & Vẽ sơ đồ UML, thiết kế database, API spec, UI wireframes \\
+\hline
+Life-3 & Implementation & Sinh mã nguồn từ specifications, triển khai hệ thống \\
+\hline
+Life-4 & Verification & Kiểm thử, đánh giá, release \\
+\hline
+\end{tabular}
+\end{table}
+
+Điểm khác biệt so với SDLC truyền thống: mỗi giai đoạn có \textbf{Phase Gate} bắt buộc — một checklist các artifacts phải hoàn thành trước khi chuyển sang giai đoạn tiếp theo. AI Agent tham gia chủ yếu vào Life-2 (phân tích, thiết kế) và Life-3 (sinh mã), trong khi Life-1 (tầm nhìn) và Life-4 (đánh giá) cần sự chủ đạo của con người.
+
+\section{Phân tích bài toán mạng xã hội chia sẻ kiến thức}
+
+\subsection{Đặc thù của mạng xã hội chia sẻ kiến thức}
+
+Mạng xã hội chia sẻ kiến thức (Social Knowledge Sharing Network) không chỉ đơn thuần là nơi kết nối con người mà còn là một "nhà máy tri thức" (Knowledge Factory), nơi thông tin được tạo ra, sàng lọc và tái sử dụng. Qua quá trình khảo sát và phân tích bối cảnh thực tại, bài toán này đối mặt với các thách thức sau:
+
+\begin{enumerate}
+    \item \textbf{Tổ chức và tìm kiếm tri thức:} Nội dung trên các mạng xã hội truyền thống thường bị trôi nhanh và thiếu phân loại. Hệ thống cần giải quyết bài toán \textit{Social Bookmarking}, cho phép người dùng không chỉ lưu trữ mà còn tổ chức tri thức thành các bộ sưu tập (Collections) có hệ thống
+
+    \item \textbf{Xếp hạng nội dung chất lượng:} Để tránh nhiễu thông tin (Information Overload), hệ thống áp dụng thuật toán \textit{Time-decay + Engagement Score} — kết hợp yếu tố thời gian (tính cập nhật) và mức độ tương tác (likes, comments, shares) để ưu tiên nội dung chất lượng
+
+    \item \textbf{Tương tác thời gian thực:} Tìm kiếm ngữ nghĩa bằng MongoDB Atlas Search và thông báo real-time qua Server-Sent Events (SSE) thúc đẩy quá trình trao đổi kiến thức liên tục
+
+    \item \textbf{Đặc thù cộng đồng Tech Việt Nam:} Các nền tảng chia sẻ kiến thức tech chuyên sâu cho người Việt còn tản mát. Việc xây dựng hệ thống tập trung giúp hình thành văn hóa Documentation và Sharing lành mạnh
+\end{enumerate}
+
+\subsection{Khảo sát các hệ thống tương tự}
+
+\begin{table}[H]
+\centering
+\caption{So sánh các nền tảng chia sẻ kiến thức hiện có}
+\begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+\textbf{Tiêu chí} & \textbf{Stack Overflow} & \textbf{Dev.to} & \textbf{Viblo} & \textbf{Steve Void} \\
+\hline
+Mô hình & Q\&A & Blog/Social & Blog & Knowledge Social \\
+\hline
+Ranking & Vote-based & Reaction & View-based & Time-decay + Engagement \\
+\hline
+Bookmarking & Favorites & Reading list & Bookmark đơn & Collections có phân loại \\
+\hline
+Real-time & Không & Limited & Không & SSE notifications \\
+\hline
+AI-assisted & Không & Không & Không & Agent Skills pipeline \\
+\hline
+Tiếng Việt & Hạn chế & Không & Có & Có (native) \\
+\hline
+\end{tabular}
+\end{table}
+
+Steve Void khác biệt ở hai điểm chính: (1) quy trình phát triển được hỗ trợ bởi bộ Agent Skills tự động hóa, và (2) tích hợp hệ thống bookmark có tổ chức (Collections) thay vì chỉ lưu đơn thuần.
+
+Việc kết hợp AI vào quy trình phân tích và thiết kế giúp chuyển đổi các yêu cầu nghiệp vụ phức tạp thành các Agent Skills chuyên biệt, đảm bảo hệ thống được xây dựng trên nền tảng kiến trúc vững chắc.
 
 \chapter{PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG AGENT SKILLS}
 
@@ -2096,13 +2294,10 @@ Trong quá trình triển khai, một số hạn chế đã được nhận di�
 
 Bài học rút ra: Hệ thống Guardrails và Interaction Points đã chứng minh vai trò then chốt trong việc duy trì chất lượng đầu ra. Nguyên tắc \textbf{Source Citation} và \textbf{Contract-Only} là hai cơ chế hiệu quả nhất để chống ảo giác AI trong quá trình thiết kế hệ thống.
 
-\clearpage
+\chapter*{KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}
 \addcontentsline{toc}{chapter}{Kết luận và hướng phát triển}
-\begin{center}
-  {\Large \textbf{KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}}\\[2em]
-\end{center}
 
-\section*{Kết quả đạt được}
+\section{Kết quả đạt được}
 
 Qua quá trình nghiên cứu và triển khai, khóa luận đã đạt được các kết quả chính sau:
 
@@ -2118,7 +2313,7 @@ Qua quá trình nghiên cứu và triển khai, khóa luận đã đạt đượ
     \item \textbf{Chứng minh tính khả thi của việc ứng dụng AI Chatbot vào quy trình phát triển phần mềm:} Không chỉ ở mức hỗ trợ viết mã (code generation), AI Agent có thể tham gia hiệu quả vào các giai đoạn phân tích nghiệp vụ, thiết kế hệ thống và thiết kế giao diện — những công đoạn truyền thống đòi hỏi chuyên môn sâu và thường bị bỏ qua trong các công cụ AI hiện tại.
 \end{enumerate}
 
-\section*{Hạn chế của nghiên cứu}
+\section{Hạn chế của nghiên cứu}
 
 Bên cạnh các kết quả đạt được, nghiên cứu vẫn tồn tại một số hạn chế cần được nhìn nhận khách quan:
 
@@ -2134,7 +2329,7 @@ Bên cạnh các kết quả đạt được, nghiên cứu vẫn tồn tại m�
     \item \textbf{Chưa có đánh giá định lượng từ người dùng thực tế:} Việc đánh giá chất lượng chủ yếu dựa vào checklist, script validation và self-review. Chưa thực hiện được khảo sát người dùng hoặc so sánh thực nghiệm có đối chứng (controlled experiment) giữa phát triển có và không có Agent Skills.
 \end{enumerate}
 
-\section*{Hướng phát triển trong tương lai}
+\section{Hướng phát triển trong tương lai}
 
 Dựa trên kết quả và hạn chế của nghiên cứu, các hướng phát triển tiếp theo được đề xuất:
 
@@ -2163,12 +2358,283 @@ Tóm lại, nghiên cứu đã chứng minh được tiềm năng to lớn của
   \bibitem{ref-atlas} MongoDB Atlas Documentation, URL: \url{https://www.mongodb.com/docs/atlas}, truy cập tháng 02/2026.
   \bibitem{ref-radix} Radix UI Documentation, URL: \url{https://www.radix-ui.com/docs}, truy cập tháng 02/2026.
   \bibitem{ref-anthropic} Anthropic, "Building effective agents", URL: \url{https://www.anthropic.com/research/building-effective-agents}, truy cập tháng 02/2026.
+  \bibitem{ref-russell} Stuart Russell, Peter Norvig, \textit{Artificial Intelligence: A Modern Approach}, 4th Edition, Pearson, 2021.
+  \bibitem{ref-transformer} Ashish Vaswani et al., "Attention Is All You Need", \textit{Advances in Neural Information Processing Systems (NeurIPS)}, 2017.
+  \bibitem{ref-claude-code} Anthropic, "Claude Code — CLI for Claude", URL: \url{https://docs.anthropic.com/en/docs/claude-code}, truy cập tháng 02/2026.
+  \bibitem{ref-uml} Object Management Group (OMG), "Unified Modeling Language Specification, Version 2.5.1", URL: \url{https://www.omg.org/spec/UML}, 2017.
+  \bibitem{ref-mermaid} Mermaid.js Documentation, URL: \url{https://mermaid.js.org/intro/}, truy cập tháng 02/2026.
+  \bibitem{ref-pressman} Roger S. Pressman, Bruce R. Maxim, \textit{Software Engineering: A Practitioner's Approach}, 9th Edition, McGraw-Hill Education, 2020.
 \end{thebibliography}
 
 \appendix
 \chapter*{Phụ lục}
 \addcontentsline{toc}{chapter}{Phụ lục}
-Nội dung phụ lục (nếu có).
+
+\section{Phụ lục A: Cấu trúc thư mục Agent Skill}
+
+Mỗi Agent Skill được tổ chức theo cấu trúc 7 Zone thống nhất. Dưới đây là ví dụ minh họa với skill \texttt{sequence-design-analyst}:
+
+\begin{verbatim}
+sequence-design-analyst/
+|-- SKILL.md                     # Zone 1: Core Persona
+|                                # (Persona, Workflow, Guardrails)
+|-- knowledge/                   # Zone 2: Domain Knowledge
+|   |-- uml-rules.md            # Chuan UML & cu phap Mermaid
+|   |-- project-patterns.md     # Kien truc du an PayloadCMS
+|   +-- sequence-preparation.md # Huong dan phan tich kich ban
+|-- templates/                   # Zone 3: Output Templates
+|   |-- auth-flow.mmd           # Mau luong xac thuc
+|   |-- crud-flow.mmd           # Mau luong CRUD
+|   +-- logic-flow.mmd          # Mau luong logic nghiep vu
+|-- loop/                        # Zone 4: Quality Control
+|   |-- checklist.md            # Danh sach kiem tra chat luong
+|   +-- verify-script.py        # Script tu dong xac minh
++-- scripts/                     # Zone 5: Automation Scripts
+\end{verbatim}
+
+Cấu trúc này đảm bảo mỗi skill hoạt động như một đơn vị độc lập, tự chứa đầy đủ kiến thức miền, quy trình làm việc và cơ chế kiểm soát chất lượng.
+
+\section*{Phụ lục B: Trích mẫu SKILL.md — Sequence Design Analyst}
+\addcontentsline{toc}{section}{Phụ lục B: Trích mẫu SKILL.md}
+
+Dưới đây là phần trích dẫn đầu file \texttt{SKILL.md} của skill phân tích Sequence Diagram, minh họa cách định nghĩa Persona, Boot Sequence và Workflow:
+
+\begin{verbatim}
+---
+name: sequence-design-analyst
+description: Chuyên gia phân tích và thiết kế Sequence Diagram
+  (UML) chuẩn Mermaid. Tự động nghiên cứu codebase để
+  đảm bảo tính thực tế.
+---
+# Sequence Design Analyst
+
+- **Persona:** Senior UML Architect. Thiết kế Sequence
+  Diagram phản ánh 100% logic triển khai thực tế.
+
+## Mandatory Boot Sequence
+1. Read knowledge/uml-rules.md
+2. Read knowledge/project-patterns.md
+3. Read knowledge/sequence-preparation.md
+4. Read loop/checklist.md
+
+## Workflow: Execution Phases
+
+### Phase 1: Scenario Discovery
+- Identify Main Scenario, Actors, Lifelines
+- [INTERACTION POINT] — Chờ xác nhận kịch bản
+
+### Phase 2: Codebase Research
+- Search relevant methods in Services/Collections
+- Build call chain using Project Patterns
+- [INTERACTION POINT] — Xác nhận method flow
+
+### Phase 3: Message Flow Design
+- Structure findings into logical sequence
+- Plan fragments: alt, loop, opt
+- Use actual method names (e.g., payload.find)
+
+### Phase 4: Generation
+- Render Mermaid code theo chuẩn templates/
+- Verify against loop/checklist.md
+\end{verbatim}
+
+\section*{Phụ lục C: Cấu trúc sản phẩm đầu ra Life-2}
+\addcontentsline{toc}{section}{Phụ lục C: Cấu trúc sản phẩm đầu ra Life-2}
+
+Toàn bộ sản phẩm đầu ra của giai đoạn Life-2 (Thiết kế) được tổ chức theo cấu trúc sau:
+
+\begin{verbatim}
+Docs/life-2/
+|-- api/
+|   +-- api-spec.md              # Dac ta API (42 endpoints)
+|-- database/
+|   +-- schema-design/           # Thiet ke CSDL
+|       |-- schema-m1.md + .yaml # M1: Auth & Profile
+|       |-- schema-m2.md + .yaml # M2: Content Engine
+|       |-- schema-m3.md + .yaml # M3: Discovery & Feed
+|       |-- schema-m4.md + .yaml # M4: Engagement
+|       |-- schema-m5.md + .yaml # M5: Bookmarking
+|       +-- schema-m6.md + .yaml # M6: Notifications
+|-- diagrams/
+|   |-- activity-diagrams/       # 24 Activity Diagrams
+|   |-- class-diagrams/          # 7 Class Diagrams
+|   |-- flow/                    # 11 Flow Diagrams
+|   |-- sequence-diagrams/       # 24 Sequence Diagrams
+|   +-- UseCase/                 # 6 Use Case Diagrams
+|-- specs/
+|   |-- m1-auth-profile-spec.md  # Spec module M1
+|   |-- m2-content-engine-spec.md # Spec module M2
+|   |-- m3-discovery-feed-spec.md # Spec module M3
+|   |-- m4-engagement-spec.md    # Spec module M4
+|   |-- m5-bookmarking-spec.md   # Spec module M5
+|   +-- m6-notifications-spec.md # Spec module M6
++-- ui/
+    |-- specs/                   # 8 UI Spec files
+    +-- wireframes/              # 27 Wireframe files
+\end{verbatim}
+
+Tổng cộng 122 tệp sản phẩm được sinh tự động bởi hệ thống Agent Skill, bao gồm cả định dạng Markdown (cho con người) và YAML (cho máy đọc).
+
+\section*{Phụ lục D: Mã nguồn Mermaid mẫu}
+\addcontentsline{toc}{section}{Phụ lục D: Mã nguồn Mermaid mẫu}
+
+\subsection*{D.1. Class Diagram — Collection User (M1)}
+
+\begin{verbatim}
+classDiagram
+    namespace AuthProfile {
+        class User {
+            <<Collection>>
+            +ObjectId id
+            +String email
+            +String username
+            -String passwordHash
+            +Boolean verified
+            +String role
+            +String status
+            +String profileVisibility
+            +String displayName
+            +String bio
+            +String avatar
+            +Number followerCount
+            +Number followingCount
+            +DateTime createdAt
+            +DateTime updatedAt
+            +void beforeChange_sanitizeInput()
+            +void afterChange_sendVerification()
+        }
+    }
+\end{verbatim}
+
+\subsection*{D.2. Sequence Diagram — Luồng Đăng ký tài khoản}
+
+\begin{verbatim}
+sequenceDiagram
+    actor User
+    participant RegisterPage
+    participant AuthService
+    participant Mailer
+    participant Payload
+    participant DB
+
+    User->>RegisterPage: Điền Form (Email, Password)
+    RegisterPage->>AuthService: register(data)
+    activate AuthService
+    AuthService->>Payload: payload.find({
+        collection: 'users', email })
+    Payload-->>AuthService: { docs: [] }
+
+    alt Email đã tồn tại
+        AuthService-->>RegisterPage: { error }
+        RegisterPage-->>User: Hiển thị lỗi
+    else Email chưa tồn tại
+        AuthService->>Payload: payload.create({
+            collection: 'users', data })
+        activate Payload
+        Payload->>DB: insertUser
+        DB-->>Payload: userObj
+        Payload-->>AuthService: userObj
+        deactivate Payload
+        AuthService->>Mailer: sendVerificationEmail()
+        AuthService-->>RegisterPage: { success: true }
+        deactivate AuthService
+        RegisterPage-->>User: Yêu cầu kiểm tra email
+    end
+\end{verbatim}
+
+\section*{Phụ lục E: Danh sách đầy đủ Agent Skill}
+\addcontentsline{toc}{section}{Phụ lục E: Danh sách Agent Skill}
+
+Bảng dưới đây liệt kê toàn bộ 31 Agent Skill được xây dựng trong nghiên cứu:
+
+\begin{longtable}{|c|l|l|}
+\hline
+\textbf{STT} & \textbf{Tên Skill} & \textbf{Chức năng} \\
+\hline
+\endfirsthead
+\hline
+\textbf{STT} & \textbf{Tên Skill} & \textbf{Chức năng} \\
+\hline
+\endhead
+\hline
+\endfoot
+\multicolumn{3}{l}{\textit{Nhóm Meta-Skill (Quản lý vòng đời skill)}} \\
+\hline
+1 & skill-architect & Thiết kế kiến trúc skill mới \\
+\hline
+2 & skill-planner & Lập kế hoạch triển khai skill \\
+\hline
+3 & skill-builder & Triển khai skill từ thiết kế \\
+\hline
+4 & skill-creator & Hướng dẫn tạo skill hiệu quả \\
+\hline
+5 & master-skill & Điều phối toàn bộ quy trình skill \\
+\hline
+\multicolumn{3}{l}{\textit{Nhóm UML \& Diagram}} \\
+\hline
+6 & sequence-design-analyst & Thiết kế Sequence Diagram \\
+\hline
+7 & activity-diagram-design-analyst & Thiết kế Activity Diagram \\
+\hline
+8 & flow-design-analyst & Thiết kế Flow Diagram \\
+\hline
+9 & class-diagram-analyst & Thiết kế Class Diagram \\
+\hline
+\multicolumn{3}{l}{\textit{Nhóm Schema \& Database}} \\
+\hline
+10 & schema-design-analyst & Thiết kế Database Schema \\
+\hline
+\multicolumn{3}{l}{\textit{Nhóm UI/UX}} \\
+\hline
+11 & ui-architecture-analyst & Phân tích UI Spec từ Schema \\
+\hline
+12 & ui-pencil-drawer & Vẽ wireframe trên Pencil canvas \\
+\hline
+\multicolumn{3}{l}{\textit{Nhóm OpenSpec (Quản lý thay đổi)}} \\
+\hline
+13 & openspec-new-change & Tạo change request mới \\
+\hline
+14 & openspec-continue-change & Tiếp tục artifact tiếp theo \\
+\hline
+15 & openspec-ff-change & Fast-forward tạo artifacts \\
+\hline
+16 & openspec-apply-change & Triển khai tasks từ change \\
+\hline
+17 & openspec-verify-change & Xác minh implementation \\
+\hline
+18 & openspec-sync-specs & Đồng bộ delta specs \\
+\hline
+19 & openspec-archive-change & Lưu trữ change hoàn thành \\
+\hline
+20 & openspec-bulk-archive-change & Lưu trữ hàng loạt \\
+\hline
+21 & openspec-explore & Khám phá ý tưởng \\
+\hline
+22 & openspec-onboard & Hướng dẫn onboarding \\
+\hline
+\multicolumn{3}{l}{\textit{Nhóm Implementation}} \\
+\hline
+23 & build-crud-admin-page & Xây dựng trang CRUD admin \\
+\hline
+24 & api-from-ui & Tạo API endpoint từ UI \\
+\hline
+25 & api-integration & Tích hợp API vào frontend \\
+\hline
+26 & error-response-system & Chuẩn hóa Error Response \\
+\hline
+27 & screen-structure-checker & Kiểm tra cấu trúc screen \\
+\hline
+\multicolumn{3}{l}{\textit{Nhóm Tiện ích}} \\
+\hline
+28 & task-planner & Phân tách yêu cầu thành tasks \\
+\hline
+29 & prompt-improver & Tối ưu hóa prompt \\
+\hline
+30 & typescript-error-explainer & Giải thích lỗi TypeScript \\
+\hline
+31 & latex-report-specialist & Viết báo cáo LaTeX \\
+\hline
+\end{longtable}
 
 
 \end{document}
