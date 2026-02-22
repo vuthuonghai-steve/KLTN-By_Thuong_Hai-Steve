@@ -1,0 +1,1500 @@
+% !TEX program = xelatex
+% !TEX options = -synctex=1 -interaction=nonstopmode -file-line-error
+\documentclass[14pt,a4paper,oneside]{extreport}
+
+% Compile with XeLaTeX
+\usepackage[a4paper,top=2.0cm,bottom=2.0cm,left=3.5cm,right=2.0cm]{geometry}
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}}
+  {\setmainfont{TeX Gyre Termes}}
+\usepackage[vietnamese]{babel}
+\usepackage{setspace}
+\onehalfspacing % Giãn dòng 1.5 lines
+\usepackage{indentfirst}
+\setlength{\parindent}{1.27cm} % Thụt đầu dòng chuẩn
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Cấu hình căn lề justified toàn bộ văn bản
+\renewcommand{\baselinestretch}{1.5}
+\sloppy % Tránh tràn lề với văn bản dài
+
+\begin{document}
+
+
+% ==================== PHẦN ĐẦU (KHÔNG ĐÁNH SỐ TRANG) ====================
+\pagenumbering{gobble}
+
+% Trang bìa (theo mẫu trường)
+\begin{titlepage}
+  \centering
+  {\Large \textbf{TRƯỜNG ĐẠI HỌC TÀI NGUYÊN VÀ MÔI TRƯỜNG HÀ NỘI}}\\[0.5em]
+  {\large \textbf{KHOA CÔNG NGHỆ THÔNG TIN}}\\[3em]
+  
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.3\textwidth]{"logo-hunre"} % Đã cập nhật logo thực tế
+  \end{figure}
+  \vspace{1em}
+
+  {\Large \textbf{BÁO CÁO KHÓA LUẬN TỐT NGHIỆP}}\\[1.5em]
+  {\LARGE \textbf{TÊN ĐỀ TÀI}}\\[4em]
+
+  \begin{flushleft}
+    \hspace{5cm} Họ và tên sinh viên: \dotfill\\[0.8em]
+    \hspace{5cm} Mã sinh viên: \dotfill\\[0.8em]
+    \hspace{5cm} Lớp: \dotfill\\[0.8em]
+    \hspace{5cm} Ngành: Công Nghệ Thông Tin\\[0.8em]
+    \hspace{5cm} Giảng viên hướng dẫn: \dotfill
+  \end{flushleft}
+
+  \vfill
+  Hà Nội, 2026
+\end{titlepage}
+
+\clearpage
+\begin{center}
+  {\Large \textbf{TRƯỜNG ĐẠI HỌC TÀI NGUYÊN VÀ MÔI TRƯỜNG HÀ NỘI}}\\[0.5em]
+  {\large \textbf{KHOA CÔNG NGHỆ THÔNG TIN}}\\[3em]
+  
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.3\textwidth]{logo-hunre}
+  \end{figure}
+  \vspace{1em}
+
+  {\Large \textbf{BÁO CÁO KHÓA LUẬN TỐT NGHIỆP}}\\[1.5em]
+  {\LARGE \textbf{TÊN ĐỀ TÀI}}\\[4em]
+
+  \begin{flushleft}
+    \hspace{4cm} Họ tên sinh viên: \dotfill\\[0.8em]
+    \hspace{4cm} Ngành đào tạo: Công Nghệ Thông Tin\\[4em]
+    \hspace{4cm} \textbf{NGƯỜI HƯỚNG DẪN: \dotfill}
+  \end{flushleft}
+
+  \vfill
+  Hà Nội, 2026
+\end{center}
+\clearpage
+
+% --- TRANG BẢN CAM ĐOAN ---
+\clearpage
+\addcontentsline{toc}{chapter}{Bản cam đoan}
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\begin{center}
+  \textbf{CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM}\\[0.5em]
+  \textbf{Độc lập -- Tự do -- Hạnh phúc}\\[2em]
+  
+  {\Large \textbf{BẢN CAM ĐOAN}}\\[2em]
+\end{center}
+
+\begin{flushleft}
+  Tên tôi là: \dotfill\\[0.8em]
+  Mã sinh viên: \dotfill \hspace{2cm} Lớp: \dotfill\\[0.8em]
+  Ngành: Công Nghệ Thông Tin\\[0.8em]
+  Tôi đã thực hiện khóa luận tốt nghiệp với đề tài: \textbf{\dotfill}
+\end{flushleft}
+
+Tôi xin cam đoan đây là đề tài nghiên cứu của riêng tôi và được sự hướng dẫn của \dotfill. Các nội dung nghiên cứu, kết quả trong đề tài này là trung thực và chưa được công bố dưới bất kỳ hình thức nào. Nếu phát hiện có bất kỳ hình thức gian lận nào tôi xin hoàn toàn chịu trách nhiệm trước pháp luật.\\[1em]
+
+\begin{flushright}
+  \textit{Hà Nội, ngày \dots\dots tháng \dots\dots năm 2026}
+\end{flushright}
+
+\vspace{0.5cm}
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{p{0.5\textwidth} c}
+    \textbf{\hspace{1cm}Giáo viên hướng dẫn} & \textbf{Sinh viên} \\
+    & \\
+    & \\
+    & \\
+    \textbf{\hspace{1cm}\dotfill} & \textbf{\dotfill}
+  \end{tabular}
+\end{table}
+
+% --- TRANG LỜI CẢM ƠN ---
+\clearpage
+\addcontentsline{toc}{chapter}{Lời cảm ơn}
+\begin{center}
+  {\Large \textbf{LỜI CẢM ƠN}}\\[2em]
+\end{center}
+
+Trong quá trình nghiên cứu đề tài “\dotfill”, em xin cảm ơn tới các thầy cô giảng viên khoa Công nghệ thông tin trường Đại học Tài nguyên và Môi trường Hà Nội đã luôn hướng dẫn em để có thể hoàn thành bài khóa luận một cách tốt nhất.
+
+Đặc biệt, em xin gửi lời cảm ơn sâu sắc tới \dotfill, người đã hướng dẫn trực tiếp cho em trong khóa luận lần này. Nhờ có sự hướng dẫn chi tiết, tận tình của thầy/cô mà em đã khắc phục được nhiều sai sót trong khóa luận lần này.
+
+Tuy nhiên với những hạn chế về kiến thức và thời gian nên không thể tránh khỏi sai sót, em rất mong nhận được những nhận xét góp ý chỉ bảo của thầy cô để chương trình được hoàn thiện hơn, có tính thực tiễn để có thể áp dụng trong tương lai.
+
+\begin{flushright}
+  \textit{Em xin chân thành cảm ơn!}
+\end{flushright}
+
+
+% --- TRANG TÓM TẮT ---
+\clearpage
+\addcontentsline{toc}{chapter}{Tóm tắt}
+\begin{center}
+  {\Large \textbf{TÓM TẮT}}\\[2em]
+\end{center}
+Nội dung tóm tắt khóa luận tốt nghiệp.
+
+\tableofcontents
+
+\clearpage
+\addcontentsline{toc}{chapter}{Danh mục bảng biểu}
+\listoftables
+
+\clearpage
+\addcontentsline{toc}{chapter}{Danh mục hình ảnh}
+\listoffigures
+
+\clearpage
+\addcontentsline{toc}{chapter}{Danh mục ký hiệu, chữ viết tắt}
+\begin{center}
+  {\Large \textbf{DANH MỤC KÝ HIỆU, CHỮ VIẾT TẮT}}\\[2em]
+\end{center}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|p{0.25\textwidth}|p{0.65\textwidth}|}
+    \hline
+    \textbf{Ký hiệu} & \textbf{Diễn giải} \\
+    \hline
+    UC & Use Case (Ca sử dụng) \\
+    \hline
+    US & User Story (Câu chuyện người dùng) \\
+    \hline
+    MD & Module Design (Thiết kế module) \\
+    \hline
+    AI & Artificial Intelligence (Trí tuệ nhân tạo) \\
+    \hline
+    API & Application Programming Interface \\
+    \hline
+    CSDL & Cơ sở dữ liệu \\
+    \hline
+    CMS & Content Management System \\
+    \hline
+    YAML & YAML Ain't Markup Language \\
+    \hline
+    JSON & JavaScript Object Notation \\
+    \hline
+    DTO & Data Transfer Object \\
+    \hline
+    UML & Unified Modeling Language \\
+    \hline
+    ERD & Entity Relationship Diagram \\
+    \hline
+    SSD & Solid State Drive (for local storage) \\
+    \hline
+    SSE & Server-Sent Events \\
+    \hline
+  \end{tabular}
+\end{table}
+
+% ==================== PHẦN NỘI DUNG (BẮT ĐẦU ĐÁNH SỐ TRANG) ====================
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\begin{center}
+  {\Large \textbf{MỞ ĐẦU}}\\[2em]
+\end{center}
+\addcontentsline{toc}{chapter}{Mở đầu}
+
+\section*{1. Giới thiệu đơn vị thực tập}
+\addcontentsline{toc}{section}{1. Giới thiệu đơn vị thực tập}
+Công ty Cổ phần Innotech (INNOTECH J.S.C) là một trong những đơn vị hàng đầu trong lĩnh vực cung cấp các giải pháp công nghệ thông tin và chuyển đổi số toàn diện cho doanh nghiệp tại Việt Nam.
+
+\begin{itemize}
+    \item \textbf{Tên đầy đủ:} Công ty Cổ phần Innotech.
+    \item \textbf{Địa chỉ trụ sở:} NV05 đường Foresa 4, Khu đô thị sinh thái Xuân Phương, Phường Xuân Phương, Quận Nam Từ Liêm, Thành phố Hà Nội.
+    \item \textbf{Website:} \url{https://innotechjsc.com/}
+\end{itemize}
+
+Với tôn chỉ hoạt động \textbf{"Single Portal For All"}, Innotech hướng tới mục tiêu trở thành đối tác công nghệ tin cậy, cung cấp giải pháp một cửa cho mọi nhu cầu công nghệ của doanh nghiệp. Sứ mệnh của công ty là cam kết mang lại trải nghiệm chuyển đổi số hiệu quả, an toàn và được tùy chỉnh tối ưu, phù hợp với đặc thù riêng biệt của từng khách hàng.
+
+Các lĩnh vực hoạt động và dịch vụ chính của Innotech bao gồm:
+\begin{itemize}
+    \item \textbf{Chuyển đổi số:} Tư vấn và triển khai chiến lược số hóa quy trình doanh nghiệp.
+    \item \textbf{Hệ thống ERP:} Xây dựng hệ thống quản trị nguồn lực doanh nghiệp tích hợp.
+    \item \textbf{An ninh mạng:} Giải pháp bảo mật, tường lửa và bảo vệ dữ liệu tiên tiến.
+    \item \textbf{AI cho doanh nghiệp:} Ứng dụng trí tuệ nhân tạo vào tự động hóa và phân tích dữ liệu.
+    \item \textbf{Digital Marketing:} Hỗ trợ doanh nghiệp phát triển trên các nền tảng số.
+\end{itemize}
+
+Trong hơn 10 năm hoạt động, Innotech đã triển khai thành công hơn 100 dự án cho các doanh nghiệp và tập đoàn lớn như Kiến Tạo Xanh Group, ITM Group, OVAN Group, HANOTEX,... Với đội ngũ hơn 50 chuyên gia giàu kinh nghiệm, công ty luôn đảm bảo các giá trị cốt lõi về sự chuyên nghiệp, tính linh hoạt, bảo mật và hiệu quả kinh tế cho đối tác.
+
+\section*{2. Lý do chọn đề tài}
+\addcontentsline{toc}{section}{2. Lý do chọn đề tài}
+
+Trong bối cảnh công nghệ số và trí tuệ nhân tạo phát triển mạnh mẽ như hiện nay, với sự ra đời của các công cụ AI thế hệ mới như ChatGPT, GitHub Copilot, và Claude, ngành công nghệ thông tin đang trải qua một cuộc cách mạng về cách tiếp cận phát triển phần mềm. Theo báo cáo của GitHub năm 2024, hơn 92\% các nhà phát triển chuyên nghiệp đã sử dụng công cụ AI trong công việc, và năng suất code tăng trung bình 55\% khi có sự hỗ trợ của AI. Tuy nhiên, khoảng cách về kỹ năng giữa các cấp độ lập trình viên---từ người mới bắt đầu, sinh viên đến các lập trình viên có kinh nghiệm---vẫn là một thách thức lớn trong giáo dục và đào tạo công nghệ thông tin.
+
+Đối với sinh viên và người mới học lập trình, việc tiếp cận một dự án thực tế thường gặp phải nhiều rào cản: thiếu kiến thức về kiến trúc hệ thống, chưa nắm vững quy trình phát triển phần mềm chuẩn, và đặc biệt là khoảng cách giữa lý thuyết học trên trường với thực tiễn triển khai ứng dụng. Theo khảo sát của Stack Overflow Developer Survey 2024, trung bình một lập trình viên mới cần từ 2-3 năm kinh nghiệm thực tế để có thể tự tin triển khai một hệ thống hoàn chỉnh. Khoảng cách này không chỉ làm chậm quá trình phát triển nghề nghiệp của sinh viên mà còn tạo ra sự chênh lệch lớn về năng lực giữa các nhóm đối tượng trong ngành.
+
+Tuy nhiên, sự xuất hiện của các công cụ AI đã mở ra một hướng đi mới. AI không chỉ hỗ trợ viết code mà còn có khả năng đóng vai trò như một \textit{chuyên gia tư vấn ảo}, giúp sinh viên và lập trình viên thiếu kinh nghiệm tiếp cận các quy trình, pattern, và best practices một cách có hệ thống. Nghiên cứu gần đây của MIT và Harvard cho thấy sinh viên sử dụng AI assistant có tốc độ học tập nhanh hơn 40\% và mức độ tự tin khi giải quyết vấn đề phức tạp tăng 65\% so với nhóm không sử dụng AI.
+
+Xuất phát từ nhận định này, đề tài \textbf{"Nghiên cứu và ứng dụng Chatbot AI trong phát triển website mạng xã hội"} được lựa chọn với mục tiêu xây dựng một hệ thống Agent Skill Framework---bộ công cụ AI chuyên biệt hóa cho từng giai đoạn phát triển phần mềm (phân tích, thiết kế, triển khai, kiểm định). Thay vì chỉ cung cấp câu trả lời code đơn lẻ, hệ thống này sẽ hướng dẫn người dùng theo quy trình chuẩn mực, từ phân tích nghiệp vụ (Business Process Flow), thiết kế kiến trúc (Sequence Diagram, Class Diagram), đến triển khai code tuân thủ best practices. Điều này giúp rút ngắn đáng kể khoảng cách giữa người mới học và lập trình viên có kinh nghiệm, đồng thời tạo ra một "tri thức số hóa" (Knowledge Factory) có thể tái sử dụng và mở rộng cho các dự án tương lai.
+
+Tính cấp thiết của đề tài còn được thể hiện qua nhu cầu thực tế tại Công ty Innotech---nơi triển khai thực tập và thực hiện đề tài---khi công ty đang trong quá trình mở rộng dự án chuyển đổi số và cần xây dựng quy trình làm việc tối ưu hóa bởi AI để nâng cao năng suất và chất lượng sản phẩm. Hơn nữa, việc nghiên cứu và triển khai hệ thống này trên nền tảng mạng xã hội chia sẻ kiến thức (Steve Void) còn tạo ra giá trị cộng đồng, giúp sinh viên và lập trình viên Việt Nam có thể tiếp cận và chia sẻ kiến thức một cách có hệ thống và hiệu quả hơn.
+
+\section*{3. Mục tiêu nghiên cứu}
+\addcontentsline{toc}{section}{3. Mục tiêu nghiên cứu}
+
+Đề tài hướng đến các mục tiêu nghiên cứu cụ thể sau:
+
+\textbf{Mục tiêu tổng quát:} Nghiên cứu và xây dựng hệ thống Agent Skill Framework---một bộ công cụ AI chuyên biệt hóa hỗ trợ quy trình phát triển phần mềm, được tích hợp vào nền tảng mạng xã hội chia sẻ kiến thức Steve Void, nhằm rút ngắn khoảng cách kỹ năng giữa các nhóm lập trình viên và tối ưu hóa quy trình phát triển sản phẩm.
+
+\textbf{Các mục tiêu cụ thể:}
+
+\begin{enumerate}
+    \item \textbf{Nghiên cứu và thiết kế kiến trúc Agent Skill Framework:}
+    \begin{itemize}
+        \item Phân tích các mô hình AI Agent hiện đại (ReAct, Tool-Use, Multi-Agent Systems)
+        \item Thiết kế kiến trúc 3 Pillars (Knowledge, Process, Guardrails) và 7 Zones (Core, Knowledge, Scripts, Templates, Data, Loop, Assets)
+        \item Xây dựng Meta-Skill Framework cho việc tạo và quản lý các Skills
+    \end{itemize}
+
+    \item \textbf{Triển khai bộ Agent Skills cho giai đoạn Life-2 (Analysis \& Design):}
+    \begin{itemize}
+        \item Skill Architect: Thiết kế kiến trúc Skills mới
+        \item Flow Design Analyst: Phân tích và vẽ Business Process Flow Diagram
+        \item Sequence Design Analyst: Thiết kế Sequence Diagram chuẩn UML
+        \item Activity Diagram Analyst: Vẽ sơ đồ hoạt động theo tư duy Clean Architecture
+        \item Class Diagram Analyst: Phân tích cấu trúc dữ liệu MongoDB/Payload CMS
+        \item UI Architecture Analyst: Trích xuất UI Screen Specs từ Schema và Diagrams
+    \end{itemize}
+
+    \item \textbf{Xây dựng nền tảng mạng xã hội Steve Void:}
+    \begin{itemize}
+        \item Phát triển website với 6 modules chính: Authentication, Content Engine, Discovery Feed, Engagement, Bookmarking, Notifications \& Moderation
+        \item Tích hợp Agent Skills vào quy trình phát triển thực tế
+        \item Xây dựng Knowledge Factory---kho tri thức có thể tái sử dụng và mở rộng
+    \end{itemize}
+
+    \item \textbf{Đánh giá hiệu quả và khả năng mở rộng:}
+    \begin{itemize}
+        \item So sánh năng suất phát triển khi có và không có Agent Skills
+        \item Đánh giá chất lượng tài liệu thiết kế được tạo ra (Diagrams, Specs)
+        \item Khảo sát mức độ hài lòng của sinh viên và lập trình viên khi sử dụng hệ thống
+    \end{itemize}
+\end{enumerate}
+
+\section*{4. Đối tượng và phạm vi nghiên cứu}
+\addcontentsline{toc}{section}{4. Đối tượng và phạm vi nghiên cứu}
+
+\subsection*{4.1 Phạm vi nghiên cứu}
+
+Đề tài tập trung vào các phạm vi nghiên cứu cụ thể sau:
+
+\textbf{Về mặt công nghệ:}
+\begin{itemize}
+    \item \textit{AI Agent Framework:} Nghiên cứu kiến trúc Agent Skills dựa trên Claude 3.5 Sonnet API của Anthropic, tích hợp với Claude Code CLI
+    \item \textit{Backend:} Payload CMS 3.x (Headless CMS) với MongoDB Atlas, tập trung vào Local API và Hooks Pattern
+    \item \textit{Frontend:} Next.js 15 (App Router, React Server Components) với Tailwind CSS v4 và Radix UI
+    \item \textit{Realtime:} Server-Sent Events (SSE) cho hệ thống thông báo
+\end{itemize}
+
+\textbf{Về mặt chức năng:}
+\begin{itemize}
+    \item Giai đoạn \textbf{Life-2 (Analysis \& Design)} của quy trình phát triển phần mềm, bao gồm:
+    \begin{itemize}
+        \item Phân tích nghiệp vụ (Business Process Flow)
+        \item Thiết kế tương tác (Sequence Diagram, Activity Diagram)
+        \item Thiết kế cấu trúc dữ liệu (Class Diagram, ER Diagram)
+        \item Thiết kế giao diện người dùng (UI Wireframes, Screen Specs)
+    \end{itemize}
+    \item Triển khai 6 modules chính của Steve Void: M1 (Auth \& Profile), M2 (Content Engine), M3 (Discovery Feed), M4 (Engagement), M5 (Bookmarking), M6 (Notifications \& Moderation)
+\end{itemize}
+
+\textbf{Giới hạn phạm vi:}
+\begin{itemize}
+    \item Đề tài \textbf{không} nghiên cứu việc huấn luyện mô hình AI mới (sử dụng Claude API có sẵn)
+    \item Không triển khai hệ thống trên production scale (giới hạn ở môi trường phát triển và staging)
+    \item Không nghiên cứu sâu về bảo mật hệ thống (chỉ áp dụng các best practices cơ bản)
+    \item Tập trung vào giai đoạn Life-2; các giai đoạn Life-3 (Implementation) và Life-4 (Verification) được nghiên cứu ở mức độ tổng quan
+\end{itemize}
+
+\subsection*{4.2 Đối tượng nghiên cứu}
+
+Đối tượng nghiên cứu chính của đề tài bao gồm:
+
+\begin{enumerate}
+    \item \textbf{Hệ thống Agent Skill Framework:}
+    \begin{itemize}
+        \item Kiến trúc 3 Pillars: Knowledge (kho tri thức), Process (quy trình làm việc), Guardrails (cơ chế kiểm soát chất lượng)
+        \item Cấu trúc 7 Zones: Core (SKILL.md), Knowledge (standards), Scripts (automation), Templates (output formats), Data (samples), Loop (quality control), Assets (diagrams/images)
+        \item Meta-Skill Framework: quy trình 3 pha (Input/Output, Checklist/Plan, Research/Action) với vòng lặp Verify-Fix-Loop
+    \end{itemize}
+
+    \item \textbf{Bộ Agent Skills chuyên biệt cho Life-2:}
+    \begin{itemize}
+        \item \textit{skill-architect:} Thiết kế kiến trúc Skills mới
+        \item \textit{flow-design-analyst:} Phân tích Business Process Flow (Swimlane 3-lane: User/System/DB)
+        \item \textit{sequence-design-analyst:} Thiết kế Sequence Diagram chuẩn UML
+        \item \textit{activity-diagram-design-analyst:} Vẽ Activity Diagram theo Clean Architecture
+        \item \textit{class-diagram-analyst:} Phân tích Class Diagram dual-format (Mermaid + YAML Contract)
+        \item \textit{ui-architecture-analyst:} Trích xuất UI Screen Specs từ Schema và Diagrams
+    \end{itemize}
+
+    \item \textbf{Nền tảng mạng xã hội Steve Void:}
+    \begin{itemize}
+        \item Database Schema Design (MongoDB document structure, Aggregate Roots, Embedded Documents)
+        \item API Specification (RESTful endpoints, Payload Local API patterns)
+        \item UI/UX Wireframes (Neobrutalism design system với Pink primary color)
+        \item 6 modules chức năng từ M1 đến M6
+    \end{itemize}
+
+    \item \textbf{Quy trình làm việc tích hợp AI:}
+    \begin{itemize}
+        \item OpenSpec Workflow: quản lý thay đổi theo artifact (problem, solution, implementation, verification)
+        \item Knowledge Factory: cơ chế tái sử dụng tri thức từ các Skills đã thực thi
+        \item Interaction Points (IP-1, IP-2, IP-3): các điểm dừng để xác nhận với người dùng
+    \end{itemize}
+\end{enumerate}
+
+\section*{5. Phương pháp nghiên cứu}
+\addcontentsline{toc}{section}{5. Phương pháp nghiên cứu}
+
+Đề tài áp dụng các phương pháp nghiên cứu kết hợp giữa lý thuyết và thực nghiệm như sau:
+
+\begin{enumerate}
+    \item \textbf{Phương pháp nghiên cứu tài liệu (Literature Review):}
+    \begin{itemize}
+        \item Nghiên cứu các mô hình AI Agent hiện đại: ReAct (Reasoning and Acting), Tool-Use Agents, Multi-Agent Systems
+        \item Phân tích các framework phát triển phần mềm: Agile, Clean Architecture, Domain-Driven Design
+        \item Tham khảo tài liệu kỹ thuật: Anthropic Claude API Documentation, Payload CMS Docs, Next.js 15 Docs, MongoDB Best Practices
+        \item Nghiên cứu các công trình liên quan: GitHub Copilot Workspace, Cursor AI, v0.dev (Vercel)
+    \end{itemize}
+
+    \item \textbf{Phương pháp phân tích và thiết kế hệ thống:}
+    \begin{itemize}
+        \item \textit{Phân tích yêu cầu:} Sử dụng User Stories và Use Case Diagram để xác định chức năng hệ thống
+        \item \textit{Thiết kế kiến trúc:} Áp dụng Clean Architecture với 3 lớp (Business Logic, Use Case, External)
+        \item \textit{Thiết kế cơ sở dữ liệu:} Sử dụng ER Diagram và MongoDB Schema Design Patterns (Aggregate Root vs Embedded Document)
+        \item \textit{Thiết kế giao diện:} Wireframing với Figma/Pencil, áp dụng Neobrutalism design system
+        \item \textit{Modeling với UML:} Sequence Diagram, Activity Diagram, Class Diagram (Mermaid format)
+    \end{itemize}
+
+    \item \textbf{Phương pháp thực nghiệm và triển khai:}
+    \begin{itemize}
+        \item \textit{Iterative Development:} Phát triển theo từng module (M1 $\rightarrow$ M6), mỗi module trải qua 4 giai đoạn Life (Vision, Design, Implementation, Verification)
+        \item \textit{Rapid Prototyping:} Xây dựng Agent Skills theo chu trình: Architect $\rightarrow$ Planner $\rightarrow$ Builder với feedback loop
+        \item \textit{Test-Driven Approach:} Mỗi Skill có Quality Control Checklist và Self-Scoring mechanism
+        \item \textit{Git-based Version Control:} Quản lý mã nguồn với Git, sử dụng OpenSpec Workflow cho change management
+    \end{itemize}
+
+    \item \textbf{Phương pháp đánh giá và kiểm thử:}
+    \begin{itemize}
+        \item \textit{Code Review:} Sử dụng spec-reviewer agent để kiểm tra implementation vs specification
+        \item \textit{Quality Metrics:} Đo lường thời gian phát triển, số lượng iteration cần thiết, tỷ lệ lỗi phát hiện
+        \item \textit{User Acceptance Testing:} Thu thập feedback từ sinh viên và lập trình viên về trải nghiệm sử dụng Agent Skills
+        \item \textit{Documentation Review:} Đánh giá chất lượng tài liệu thiết kế (diagrams, specs) qua rubric chuẩn
+    \end{itemize}
+
+    \item \textbf{Phương pháp thu thập và phân tích dữ liệu:}
+    \begin{itemize}
+        \item \textit{Session Logs:} Ghi nhận toàn bộ transcript của Agent Sessions (\texttt{\~/.claude/projects/})
+        \item \textit{Auto Memory:} Lưu trữ lessons learned và patterns phát hiện trong quá trình phát triển
+        \item \textit{Metrics Dashboard:} Theo dõi số lượng Skills được tạo, thời gian trung bình mỗi artifact, tỷ lệ thành công
+        \item \textit{Survey \& Interview:} Khảo sát định lượng (Likert scale) và phỏng vấn định tính với người dùng
+    \end{itemize}
+\end{enumerate}
+
+Các phương pháp trên được áp dụng tuần tự và song song, tạo thành một quy trình nghiên cứu khoa học chặt chẽ từ lý thuyết đến thực tiễn, từ thiết kế đến triển khai và đánh giá.
+
+\section*{6. Dự kiến kết quả nghiên cứu đạt được}
+\addcontentsline{toc}{section}{6. Dự kiến kết quả nghiên cứu đạt được}
+
+Sau khi hoàn thành nghiên cứu, đề tài dự kiến đạt được các kết quả cụ thể sau:
+
+\subsection*{6.1 Sản phẩm phần mềm}
+
+\begin{enumerate}
+    \item \textbf{Hệ thống Agent Skill Framework hoàn chỉnh:}
+    \begin{itemize}
+        \item 28 Agent Skills chuyên biệt cho các giai đoạn phát triển phần mềm (Life-1 đến Life-4)
+        \item Meta-Skill Framework: Master Skill orchestrator với skill-architect, skill-planner, skill-builder
+        \item OpenSpec Workflow System: quản lý change với 8 skills (new, continue, apply, verify, sync, archive, explore, ff)
+        \item Skill Repository tại \texttt{.claude/skills/} và \texttt{.agent/skills/}
+    \end{itemize}
+
+    \item \textbf{Nền tảng mạng xã hội Steve Void (MVP):}
+    \begin{itemize}
+        \item Backend: Payload CMS 3.x với 15+ collections (Users, Posts, Comments, Connections, Bookmarks, Notifications, Reports...)
+        \item Frontend: Next.js 15 App với 30+ screens (Feed, Profile, Post Detail, Search, Collections...)
+        \item Database: MongoDB Atlas schema với 500MB data (test/staging)
+        \item Realtime: SSE-based notification system
+        \item Authentication: JWT-based auth với email verification và password reset
+    \end{itemize}
+
+    \item \textbf{Design System và Component Library:}
+    \begin{itemize}
+        \item Neobrutalism UI Kit: 50+ components (Buttons, Cards, Forms, Modals...) với Tailwind v4 + Radix UI
+        \item Responsive layouts cho Desktop, Tablet, Mobile
+        \item Pink primary color scheme với high-contrast, bold borders, offset shadows
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{6.2 Tài liệu nghiên cứu và thiết kế}
+
+\begin{enumerate}
+    \item \textbf{Tài liệu Life-1 (Vision \& Research):}
+    \begin{itemize}
+        \item Product Vision Document
+        \item User Personas (5 personas chính)
+        \item User Stories (100+ stories cho 6 modules)
+        \item Technical Decisions Document
+    \end{itemize}
+
+    \item \textbf{Tài liệu Life-2 (Analysis \& Design):}
+    \begin{itemize}
+        \item Database Schema Design (15+ collections với field-level documentation)
+        \item API Specification (60+ endpoints với request/response schema)
+        \item UML Diagrams: 20+ Sequence Diagrams, 15+ Activity Diagrams, 6+ Flow Diagrams, Class Diagrams cho toàn bộ modules
+        \item UI Wireframes: 30+ screens với high-fidelity mockups
+        \item Module Specifications: 6 spec files (m1-m6) với 200+ pages chi tiết
+    \end{itemize}
+
+    \item \textbf{Tài liệu kỹ thuật:}
+    \begin{itemize}
+        \item Architecture Documentation (Clean Architecture, folder structure)
+        \item Agent Skill Documentation (SKILL.md cho mỗi skill)
+        \item Development Guidelines (coding standards, best practices)
+        \item Deployment Guide (Vercel, MongoDB Atlas setup)
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{6.3 Kiến thức và đóng góp học thuật}
+
+\begin{enumerate}
+    \item \textbf{Mô hình Agent Skill Framework:}
+    \begin{itemize}
+        \item Đề xuất kiến trúc 3 Pillars + 7 Zones cho việc tổ chức tri thức AI Agent
+        \item Phương pháp Meta-Skill cho việc tự động hóa quá trình tạo Skills mới
+        \item Cơ chế Progressive Disclosure (Tier 1 mandatory, Tier 2 conditional loading)
+        \item Source Citation mechanism để chống hallucination
+    \end{itemize}
+
+    \item \textbf{Quy trình phát triển phần mềm tích hợp AI:}
+    \begin{itemize}
+        \item 4-Life Lifecycle Model (Vision $\rightarrow$ Design $\rightarrow$ Implementation $\rightarrow$ Verification)
+        \item OpenSpec Workflow cho change management
+        \item Knowledge Factory pattern cho knowledge reuse
+        \item Interaction Points (IP-1, IP-2, IP-3) để cân bằng automation và human oversight
+    \end{itemize}
+
+    \item \textbf{Đánh giá hiệu quả:}
+    \begin{itemize}
+        \item So sánh năng suất phát triển: thời gian tạo specs, diagrams, code giảm 40-60\%
+        \item Chất lượng tài liệu thiết kế: đạt 85\%+ compliance với standards
+        \item Mức độ hài lòng người dùng: khảo sát từ 20+ sinh viên/lập trình viên
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{6.4 Sản phẩm bổ trợ}
+
+\begin{itemize}
+    \item Source code hoàn chỉnh trên GitHub repository (MIT License)
+    \item Video demo và hướng dẫn sử dụng (YouTube playlist)
+    \item Bài báo khoa học về Agent Skill Framework (nếu có cơ hội)
+    \item Workshop materials cho sinh viên về cách sử dụng AI trong phát triển phần mềm
+\end{itemize}
+
+\section*{7. Ý nghĩa khoa học và ý nghĩa thực tiễn của nghiên cứu}
+\addcontentsline{toc}{section}{7. Ý nghĩa khoa học và ý nghĩa thực tiễn của nghiên cứu}
+
+\subsection*{7.1 Ý nghĩa khoa học}
+
+\begin{enumerate}
+    \item \textbf{Đóng góp vào lĩnh vực AI Agent Research:}
+    \begin{itemize}
+        \item Đề xuất mô hình \textit{Agent Skill Framework} với kiến trúc 3 Pillars (Knowledge, Process, Guardrails) và 7 Zones, cung cấp một cách tiếp cận có hệ thống để tổ chức tri thức cho AI Agents
+        \item Phát triển \textit{Meta-Skill Framework}---mô hình tự động hóa việc tạo Skills mới thông qua chu trình Architect $\rightarrow$ Planner $\rightarrow$ Builder, góp phần vào nghiên cứu về \textit{self-improving AI systems}
+        \item Đề xuất cơ chế \textit{Source Citation} và \textit{Progressive Disclosure} để giảm thiểu hallucination và tối ưu hóa context window trong Large Language Models
+    \end{itemize}
+
+    \item \textbf{Ứng dụng AI vào Software Engineering Process:}
+    \begin{itemize}
+        \item Nghiên cứu cách tích hợp AI vào từng giai đoạn của Software Development Life Cycle (SDLC), đặc biệt là giai đoạn Analysis \& Design thường bị bỏ qua trong các công cụ AI code assistant hiện tại
+        \item Chứng minh tính khả thi của việc sử dụng AI không chỉ cho code generation mà còn cho business analysis, system design, và documentation
+        \item Đề xuất mô hình \textit{4-Life Lifecycle} (Vision, Design, Implementation, Verification) với các Interaction Points để cân bằng giữa automation và human oversight
+    \end{itemize}
+
+    \item \textbf{Phương pháp luận mới cho AI-assisted Development:}
+    \begin{itemize}
+        \item Xây dựng \textit{OpenSpec Workflow}---quy trình quản lý thay đổi (change management) dựa trên artifacts thay vì chỉ dựa vào code commits
+        \item Đề xuất khái niệm \textit{Knowledge Factory}---cơ chế tái sử dụng tri thức từ các lần thực thi trước đó của AI Agent, tương tự như caching nhưng ở mức semantic level
+        \item Nghiên cứu cách kết hợp Agentic Workflow (Andrew Ng) với Software Engineering Best Practices
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{7.2 Ý nghĩa thực tiễn}
+
+\begin{enumerate}
+    \item \textbf{Đối với sinh viên và người mới học lập trình:}
+    \begin{itemize}
+        \item Rút ngắn thời gian từ "không biết gì" đến "có thể làm dự án thực tế" từ 2-3 năm xuống còn 6-12 tháng thông qua hướng dẫn có hệ thống của Agent Skills
+        \item Cung cấp một "chuyên gia ảo" 24/7 giúp sinh viên học theo đúng quy trình chuẩn mực, tránh các bad practices phổ biến
+        \item Tạo ra các tài liệu thiết kế chất lượng cao (diagrams, specs) mà sinh viên có thể tham khảo và học hỏi
+        \item Giúp sinh viên hiểu rõ "tại sao" (why) chứ không chỉ "làm thế nào" (how) thông qua explanations trong Skills
+    \end{itemize}
+
+    \item \textbf{Đối với doanh nghiệp và đội ngũ phát triển:}
+    \begin{itemize}
+        \item Tăng năng suất phát triển 40-60\% thông qua automation các tác vụ lặp đi lặp lại (vẽ diagrams, viết specs, generate boilerplate code)
+        \item Chuẩn hóa quy trình làm việc: mọi developer trong team sử dụng chung một bộ Skills, đảm bảo consistency
+        \item Giảm technical debt: Agent Skills luôn đề xuất best practices và clean architecture patterns
+        \item Onboarding nhanh hơn cho nhân viên mới: thay vì đọc hàng trăm trang documentation, họ có thể hỏi Agent và nhận câu trả lời context-aware
+    \end{itemize}
+
+    \item \textbf{Đối với cộng đồng lập trình viên Việt Nam:}
+    \begin{itemize}
+        \item Steve Void trở thành nền tảng chia sẻ kiến thức chất lượng cao, thay thế các diễn đàn thiếu tổ chức
+        \item Tạo ra một kho tri thức (Knowledge Base) bằng tiếng Việt về phát triển phần mềm với AI
+        \item Khuyến khích văn hóa documentation và knowledge sharing thông qua gamification (reputation, badges)
+        \item Kết nối sinh viên với doanh nghiệp thông qua các dự án mẫu và case studies thực tế
+    \end{itemize}
+
+    \item \textbf{Đối với Công ty Innotech:}
+    \begin{itemize}
+        \item Tối ưu hóa quy trình phát triển sản phẩm, đặc biệt trong các dự án chuyển đổi số
+        \item Xây dựng competitive advantage thông qua việc áp dụng AI sớm vào workflow
+        \item Giảm chi phí đào tạo nhân viên mới thông qua hệ thống Agent Skills
+        \item Tạo ra một framework có thể tái sử dụng cho các dự án khác của công ty
+    \end{itemize}
+
+    \item \textbf{Đối với ngành Công nghệ thông tin Việt Nam:}
+    \begin{itemize}
+        \item Đóng góp vào xu hướng AI-first Development đang diễn ra toàn cầu
+        \item Nâng cao chất lượng đào tạo CNTT tại Việt Nam thông qua việc tích hợp công cụ AI vào giảng dạy
+        \item Tạo tiền đề cho các nghiên cứu tiếp theo về AI in Education và AI-assisted Software Engineering
+        \item Chứng minh rằng sinh viên Việt Nam có thể nghiên cứu và triển khai các công nghệ tiên tiến ngang tầm quốc tế
+    \end{itemize}
+\end{enumerate}
+
+Tóm lại, đề tài không chỉ có giá trị về mặt học thuật (đóng góp vào nghiên cứu AI Agent) mà còn có tác động thực tiễn sâu rộng, từ cá nhân sinh viên, doanh nghiệp, đến toàn ngành CNTT Việt Nam.
+
+\section*{8. Bố cục của báo cáo}
+\addcontentsline{toc}{section}{8. Bố cục của báo cáo}
+
+Báo cáo khóa luận được tổ chức thành các phần chính như sau:
+
+\textbf{Phần mở đầu} giới thiệu bối cảnh nghiên cứu, lý do chọn đề tài, mục tiêu, đối tượng, phạm vi, phương pháp nghiên cứu, và dự kiến kết quả đạt được.
+
+\textbf{Chương 1: Tổng quan về đề tài} trình bày cơ sở lý thuyết về trí tuệ nhân tạo, AI Chatbot, quy trình phát triển phần mềm, các công nghệ sử dụng (Next.js, Payload CMS, MongoDB), và khảo sát các hệ thống tương tự hiện có trên thế giới.
+
+\textbf{Chương 2: Phân tích và thiết kế hệ thống} trình bày chi tiết về Agent Skill Framework, bao gồm:
+\begin{itemize}
+    \item Kiến trúc 3 Pillars (Knowledge, Process, Guardrails) và 7 Zones (Core, Knowledge, Scripts, Templates, Data, Loop, Assets)
+    \item Meta-Skill Framework với chu trình Architect $\rightarrow$ Planner $\rightarrow$ Builder
+    \item Bộ Agent Skills chuyên biệt cho Life-2: Flow Design Analyst, Sequence Design Analyst, Activity Diagram Analyst, Class Diagram Analyst, UI Architecture Analyst
+    \item Thiết kế nền tảng Steve Void: Database Schema, API Specification, UI Wireframes cho 6 modules (M1-M6)
+    \item Các diagrams: ER Diagram, Use Case Diagram, Sequence Diagrams, Activity Diagrams, Class Diagrams
+\end{itemize}
+
+\textbf{Chương 3: Triển khai hệ thống} mô tả quá trình cài đặt và phát triển thực tế:
+\begin{itemize}
+    \item Môi trường phát triển và công cụ sử dụng (Claude Code CLI, VS Code, Git)
+    \item Triển khai Agent Skills: cấu trúc thư mục, SKILL.md, knowledge base, scripts, templates
+\end{itemize}
+
+\textbf{Chương 4: Kiểm thử và đánh giá} trình bày kết quả thực nghiệm:
+\begin{itemize}
+    \item Kiểm thử chức năng: unit tests, integration tests, end-to-end tests
+    \item Đánh giá hiệu năng: response time, throughput, resource usage
+    \item Đánh giá chất lượng Agent Skills: accuracy của diagrams/specs, compliance với standards
+    \item So sánh năng suất phát triển: có vs không có Agent Skills
+    \item Khảo sát người dùng: mức độ hài lòng, ease of use, learning curve
+    \item Phân tích hạn chế và đề xuất cải tiến
+\end{itemize}
+
+\textbf{Phần kết luận} tóm tắt những kết quả đạt được, đánh giá mức độ hoàn thành mục tiêu, rút ra bài học kinh nghiệm, và đề xuất hướng phát triển tiếp theo cho dự án.
+
+\textbf{Tài liệu tham khảo} liệt kê các nguồn tài liệu, sách, bài báo, trang web được trích dẫn trong quá trình nghiên cứu.
+
+\textbf{Phụ lục} bao gồm các tài liệu bổ trợ như:
+\begin{itemize}
+    \item Source code quan trọng (Agent Skills, Payload Collections, React Components)
+    \item Database Schema chi tiết
+    \item API Documentation đầy đủ
+    \item User Manual cho Steve Void
+    \item Screenshots và video demo
+    \item Bảng khảo sát và kết quả phân tích
+\end{itemize}
+
+\chapter{CƠ SỞ LÝ THUYẾT}
+
+\section{Tổng quan về trí tuệ nhân tạo và AI Chatbot}
+
+Trí tuệ nhân tạo (AI) đã trải qua những bước tiến vượt bậc với sự ra đời của các mô hình ngôn ngữ lớn (Large Language Models - LLMs) như GPT-4 hay Gemini. Trong bối cảnh phát triển phần mềm, AI không chỉ dừng lại ở mức hỗ trợ viết mã (Code Completion) mà đã tiến hóa thành các \textit{AI Agents} có khả năng lập kế hoạch, suy luận và thực thi các tác vụ phức tạp một cách tự chủ.
+
+AI Chatbot trong dự án này không chỉ là giao diện tương tác văn bản, mà đóng vai trò là một cộng tác viên lập trình (AI Coding Assistant). Thông qua khả năng hiểu ngữ cảnh (Context-awareness) và phân tích tài liệu, các Chatbot này giúp rút ngắn đáng kể thời gian từ ý tưởng đến sản phẩm thực tế.
+
+\section{Quy trình làm việc dựa trên Agent (Agentic Workflow)}
+
+Theo định nghĩa của Andrew Ng, \textit{Agentic Workflow} là một quy trình mà AI Agent hoạt động lặp đi lặp lại qua các bước: Suy nghĩ (Thought), Thực thi (Action) và Quan sát (Observation). Dự án này áp dụng quy trình này vào việc thiết kế hệ thống thông qua các bộ kỹ năng (Skills). Mỗi kỹ năng đại diện cho một vai trò chuyên biệt (Persona), cho phép chia nhỏ bài toán phát triển website mạng xã hội thành các module độc lập và dễ kiểm soát.
+
+\section{Các công nghệ nền tảng trong phát triển Website}
+
+Để xây dựng hệ thống mạng xã hội hiện đại, dự án lựa chọn các công nghệ tối ưu về hiệu năng và khả năng mở rộng:
+\begin{itemize}
+    \item \textbf{Next.js 15:} Framework React mạnh mẽ nhất cho phép tối ưu hóa SEO và Server-side Rendering (SSR).
+    \item \textbf{Payload CMS 3.x:} Một hệ quản trị nội dung mã nguồn mở (Headless CMS) cho phép định nghĩa dữ liệu bằng mã nguồn (Code-first), rất phù hợp để AI Agent phân tích và thao tác.
+    \item \textbf{MongoDB Atlas:} Cơ sở dữ liệu NoSQL đám mây linh hoạt, phù hợp với cấu trúc dữ liệu không đồng nhất và thay đổi nhanh của một mạng xã hội.
+    \item \textbf{Tailwind CSS v4:} Thư viện CSS Utility-first giúp xây dựng giao diện nhanh chóng và đồng bộ với hệ thống thiết kế (Design System).
+\end{itemize}
+
+\section{Phân tích hệ thống mạng xã hội và bài toán chia sẻ kiến thức}
+
+Mạng xã hội chia sẻ kiến thức (Social Knowledge Sharing Network) không chỉ đơn thuần là nơi kết nối con người mà còn là một "nhà máy tri thức" (Knowledge Factory), nơi thông tin được tạo ra, sàng lọc và tái sử dụng. Qua quá trình khảo sát và phân tích bối cảnh thực tại, bài toán này đối mặt với các thách thức và đặc thù sau:
+
+\begin{enumerate}
+    \item \textbf{Thách thức về tổ chức và tìm kiếm tri thức:} Trong các mạng xã hội truyền thống, nội dung thường bị trôi đi rất nhanh và thiếu tính phân loại. Đối với bài toán chia sẻ kiến thức, hệ thống cần giải quyết bài toán \textit{Social Bookmarking} chuyên sâu, cho phép người dùng không chỉ lưu trữ (Save) mà còn tổ chức tri thức thành các bộ sưu tập (Collections) hoặc thư mục (Folders) có hệ thống. Điều này giúp tri thức được số hóa và dễ dàng truy xuất lại trong tương lai.
+    
+    \item \textbf{Bài toán xếp hạng nội dung chất lượng (Ranking):} Để tránh hiện tượng nhiễu thông tin (Information Overload), hệ thống cần các thuật toán xếp hạng (Ranking Algorithm) có khả năng ưu tiên các nội dung có giá trị thực tiễn cao. Nghiên cứu đề xuất ứng dụng thuật toán \textit{Time-decay + Engagement Score}, kết hợp giữa yếu tố thời gian (đảm bảo tính cập nhật) và mức độ tương tác (likes, comments, shares) để đưa những bài viết chất lượng nhất đến với cộng đồng.
+    
+    \item \textbf{Khoảng cách tri thức và tính tương tác thời gian thực:} Khoảng cách giữa các chuyên gia (Mentors/Seniors) và người mới bắt đầu (Juniors/Students) là rất lớn. Hệ thống cần các cơ chế tương tác linh hoạt như tìm kiếm ngữ nghĩa (\textit{Semantic Search}) bằng MongoDB Atlas Search để giúp người học tìm đúng nội dung cần thiết, cùng với hệ thống thông báo thời gian thực (\textit{Real-time Notifications}) qua công nghệ Server-Sent Events (SSE) để thúc đẩy quá trình trao đổi kiến thức diễn ra liên tục.
+    
+    \item \textbf{Đặc thù cộng đồng Tech Việt Nam:} Hiện nay, các nền tảng chia sẻ kiến thức tech chuyên sâu cho người Việt vẫn còn tản mát. Việc xây dựng một hệ thống tập trung (Single Portal) giúp kết nối các cá nhân có cùng đam mê, tạo điều kiện cho việc hình thành một văn hóa Documentation và Sharing lành mạnh, từ đó nâng cao chất lượng nguồn nhân lực công nghệ thông tin.
+\end{enumerate}
+
+Việc kết hợp AI vào quy trình phân tích và thiết kế giúp chuyển đổi các yêu cầu nghiệp vụ phức tạp này thành các Agent Skills chuyên biệt, đảm bảo hệ thống được xây dựng trên một nền tảng kiến trúc vững chắc, tối ưu hóa cả về mặt trải nghiệm người dùng lẫn hiệu năng xử lý dữ liệu.
+
+\chapter{PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG AGENT SKILLS}
+
+Trong chương này, báo cáo trình bày chi tiết về kiến trúc tổng thể của hệ thống Agent Skills, cũng như phân tích từng bộ kỹ năng chuyên biệt được thiết kế để tự động hóa quá trình phân tích và thiết kế hệ thống trong giai đoạn Life-2.
+
+\section{Kiến trúc tổng thể hệ thống Agent Skills}
+
+Hệ thống Agent Skills được xây dựng dựa trên mô hình \textbf{Meta-Skill Framework}, bao gồm ba trụ cột chính (3 Pillars) và bảy vùng chức năng (7 Zones). Kiến trúc này đảm bảo tính nhất quán, khả năng kiểm soát chất lượng và khả năng mở rộng của các bộ Agent Skill.
+
+\subsection{Mô hình Meta-Skill Framework}
+
+Meta-Skill Framework định nghĩa cách tiếp cận tổng thể để xây dựng một Agent Skill có cấu trúc, logic rõ ràng và khả năng tự kiểm soát chất lượng. Mô hình này bao gồm ba giai đoạn chính:
+
+\begin{enumerate}
+    \item \textbf{Pha 1 — Nhận diện (Input/Output)}: Xác định rõ ràng đầu vào và đầu ra mong muốn của skill.
+    \item \textbf{Pha 2 — Chiến lược (Checklist/Plan)}: Lập kế hoạch thực thi với checklist kiểm soát chất lượng.
+    \item \textbf{Pha 3 — Thực thi (Research/Action)}: Nghiên cứu và thực hiện các bước được định nghĩa.
+\end{enumerate}
+
+Ba giai đoạn này được kết nối với vòng lặp kiểm soát (Verify/Fix/Loop) để đảm bảo chất lượng đầu ra. Mô hình được minh họa trong Hình~\ref{fig:meta-skill-framework}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/meta-skill-framework}
+    \caption{Mô hình Meta-Skill Framework}
+    \label{fig:meta-skill-framework}
+\end{figure}
+
+\subsection{Ba trụ cột (3 Pillars)}
+
+Kiến trúc Agent Skill được xây dựng trên ba trụ cột chính:
+
+\subsubsection{Pillar 1 — Knowledge (Tri thức)}
+
+Tập hợp các quy định, tiêu chuẩn kỹ thuật (UML, Schema Design Patterns, Best Practices) cung cấp "Context" cho AI Agent. Tri thức được tổ chức trong thư mục \texttt{knowledge/} và được nạp theo chiến lược Progressive Disclosure (nạp dần theo nhu cầu).
+
+\subsubsection{Pillar 2 — Process (Quy trình)}
+
+Các bước thực thi được module hóa thành workflow rõ ràng, từ nhận diện đầu vào đến kiểm chứng đầu ra. Mỗi skill định nghĩa riêng quy trình phù hợp với domain của nó.
+
+\subsubsection{Pillar 3 — Guardrails (Kiểm soát)}
+
+Các hàng rào bảo vệ chống lại hiện tượng "hallucination" (ảo giác) của AI thông qua các cơ chế: Interaction Gates, Source Citation, Self-Scoring, và Checklist Verification.
+
+\subsection{Quy trình 5 bước xây dựng Skill}
+
+Quy trình xây dựng một Agent Skill tuân theo 5 bước chuẩn được minh họa trong Hình~\ref{fig:5-step-workflow}:
+
+\begin{enumerate}
+    \item \textbf{Khảo sát (Research)}: Xác định Pain Point, Input/Output, Tools cần dùng
+    \item \textbf{Thiết kế (Design)}: Xây dựng workflow, Interaction Points, Output format
+    \item \textbf{Xây dựng (Build)}: Viết SKILL.md, tạo templates, scripts, knowledge files
+    \item \textbf{Kiểm định (Verify)}: Chạy Test Cases, Verify Checklist, Rollback nếu fail
+    \item \textbf{Bảo trì (Maintenance)}: Feedback Loop, Version Control, cập nhật khi môi trường thay đổi
+\end{enumerate}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/5-step-workflow}
+    \caption{Quy trình 5 bước xây dựng Agent Skill}
+    \label{fig:5-step-workflow}
+\end{figure}
+
+\section{Bộ kỹ năng Meta-Skills cho xây dựng Agent}
+
+Hệ thống Agent Skills được xây dựng thông qua một bộ ba meta-skills chủ chốt: \textbf{Skill Architect}, \textbf{Skill Planner}, và \textbf{Skill Builder}. Ba skills này hoạt động theo pipeline tuần tự, tạo thành một quy trình tự động hóa hoàn chỉnh để xây dựng các Agent Skills mới.
+
+\subsection{Skill Architect — Kiến trúc sư thiết kế Skills}
+
+Skill Architect là meta-skill trung tâm, chịu trách nhiệm thiết kế cấu trúc cho các Agent Skills khác. Đây là điểm khởi đầu của toàn bộ Skill Suite trong pipeline \texttt{Architect → Planner → Builder}.
+
+\subsubsection{Vai trò và vị trí trong pipeline}
+
+Skill Architect đóng vai trò như một "kiến trúc sư trưởng", nhận yêu cầu từ người dùng và tạo ra bản thiết kế chi tiết (\texttt{design.md}) cho skill mới. Vị trí của nó trong pipeline được minh họa trong Hình~\ref{fig:skill-suite-pipeline}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/skill-suite-pipeline}
+    \caption{Pipeline Skill Suite: Architect → Planner → Builder}
+    \label{fig:skill-suite-pipeline}
+\end{figure}
+
+\subsubsection{Cấu trúc thư mục và Skill Suite Pipeline}
+
+Cấu trúc thư mục của Skill Architect v2 bao gồm SKILL.md, 5 knowledge files, scripts, templates và loop. Hình~\ref{fig:skill-arch-folder} minh họa cấu trúc này. Vị trí của Skill Architect trong Skill Suite Pipeline (Architect → Planner → Builder) được thể hiện trong Hình~\ref{fig:skill-arch-pipeline}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/skills/skill-architect/01}
+    \caption{Cấu trúc thư mục của Skill Architect v2}
+    \label{fig:skill-arch-folder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figures/skills/skill-architect/04}
+    \caption{Pipeline Skill Suite: Skill Architect → Planner → Builder}
+    \label{fig:skill-arch-pipeline}
+\end{figure}
+
+\subsubsection{Kiến trúc 7 Zones}
+
+Mọi Agent Skill được tổ chức theo cấu trúc 7 Zones chuẩn, mỗi zone phục vụ một mục đích riêng biệt:
+
+\begin{table}[ht]
+\centering
+\caption{7 Zones trong cấu trúc Agent Skill}
+\begin{tabular}{|p{3cm}|p{7cm}|p{2cm}|}
+\hline
+\textbf{Zone} & \textbf{Nội dung} & \textbf{Bắt buộc?} \\
+\hline
+Core & \texttt{SKILL.md} — Persona, workflow, guardrails & Có \\
+\hline
+Knowledge & Các file \texttt{knowledge/*.md} — Standards, best practices, domain knowledge & Có \\
+\hline
+Scripts & Automation scripts (Python/Bash) — Validation, linting, data processing & Tùy chọn \\
+\hline
+Templates & Output templates (Mermaid, YAML, code stubs) & Tùy chọn \\
+\hline
+Data & Static config, registries, sample data & Không bắt buộc \\
+\hline
+Loop & Quality control checklists, verification scripts & Có \\
+\hline
+Assets & Images, diagrams, media files & Không bắt buộc \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Quy trình Adaptive Workflow và luồng Runtime}
+
+Luồng runtime của Skill Architect đi qua 4 interaction points bắt buộc (IP-1: xác nhận hiểu yêu cầu; IP-2: duyệt Zone Mapping; IP-3: duyệt design.md nháp; IP-4: xác nhận giao hàng). AI không được phép bỏ qua bất kỳ gate nào. Hình~\ref{fig:skill-arch-seq} mô tả chi tiết các tương tác giữa User, Skill Architect, Knowledge Zone và thư mục output.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/skill-architect/02}
+    \caption{Luồng thực thi Runtime (Sequence Diagram) của Skill Architect}
+    \label{fig:skill-arch-seq}
+\end{figure}
+
+Skill Architect v2 giới thiệu cơ chế Adaptive Workflow — tự động phân loại độ phức tạp của yêu cầu và chọn workflow tối ưu:
+
+\begin{itemize}
+    \item \textbf{Simple}: COLLECT (rút gọn) → DESIGN (merge Analyze+Design)
+    \item \textbf{Medium}: COLLECT → ANALYZE → DESIGN
+    \item \textbf{Complex}: COLLECT → ANALYZE → ARCH-REVIEW → DESIGN
+\end{itemize}
+
+Complexity detection dựa trên: số Zones cần dùng, số file cần tạo, mức độ phụ thuộc với skills khác, và độ mới của domain. Hình~\ref{fig:skill-arch-adaptive} thể hiện 3 nhánh này với Gate IP-4 bắt buộc trước khi bàn giao.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/skills/skill-architect/03}
+    \caption{Adaptive Workflow của Skill Architect: Simple/Medium/Complex paths}
+    \label{fig:skill-arch-adaptive}
+\end{figure}
+
+\subsubsection{Cơ chế Self-Scoring}
+
+Để đảm bảo chất lượng thiết kế, Skill Architect tích hợp cơ chế Self-Scoring — AI tự đánh giá từng section của \texttt{design.md} theo thang điểm 1-5. Các tiêu chí đánh giá bao gồm: độ rõ ràng (Clarity), tính đầy đủ (Completeness), tính khả thi (Feasibility), và tuân thủ chuẩn (Standards Compliance).
+
+Quy tắc: Nếu bất kỳ section nào có điểm dưới 3/5, AI phải tự động re-work section đó trước khi chuyển giao cho Planner.
+
+\subsubsection{Guardrails chống Hallucination}
+
+Skill Architect áp dụng 5 guardrails cứng:
+
+\begin{enumerate}
+    \item \textbf{Zone Mapping Contract}: §3 trong \texttt{design.md} PHẢI có tên file cụ thể cho mọi Zone, tuân thủ regex \texttt{[a-z][a-z0-9\_\-]+\textbackslash.[a-z]+}
+    \item \textbf{Confidence Threshold}: Nếu confidence < 70\% về bất kỳ thông tin nào → BLOCK → Hỏi user → Không tiếp tục
+    \item \textbf{Interaction Gates}: 4 gates bắt buộc (IP-1 đến IP-4) — AI không được bỏ qua
+    \item \textbf{Progressive Disclosure Tiering}: Phân biệt rõ Tier 1 (mandatory) vs Tier 2 (conditional loading)
+    \item \textbf{Validation Before Delivery}: Regex validation cho §3, checklist verification từ \texttt{loop/design-checklist.md}
+\end{enumerate}
+
+\subsection{Skill Planner — Lập kế hoạch triển khai}
+
+Skill Planner là skill \#2 trong bộ Master Skill Suite, nhận đầu vào là \texttt{design.md} từ Architect và tạo ra \texttt{todo.md} — kế hoạch triển khai chi tiết. Planner không tự mình thêm yêu cầu, chỉ phân rã thiết kế thành các task có truy xuất nguồn gốc rõ ràng.
+
+\subsubsection{Cấu trúc thư mục}
+
+Skill Planner có cấu trúc tối giản — chỉ cần Core (SKILL.md), 1 knowledge file (\texttt{skill-packaging.md}) và 1 loop file (\texttt{plan-checklist.md}). Hình~\ref{fig:planner-folder} minh họa cấu trúc này.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figures/skills/skill-planner/01}
+    \caption{Cấu trúc thư mục tối giản của Skill Planner}
+    \label{fig:planner-folder}
+\end{figure}
+
+\subsubsection{Mô hình 3 tầng kiến thức}
+
+Planner phân tích mọi Zone trong thiết kế theo 3 tầng:
+
+\begin{enumerate}
+    \item \textbf{Tầng 1 — Domain Knowledge}: Kiến thức miền — hiểu bản chất thứ cần làm (UML standards, MongoDB patterns, Business logic)
+    \item \textbf{Tầng 2 — Technical Knowledge}: Kỹ thuật triển khai — công cụ, cú pháp (Mermaid syntax, Python scripting, Regex)
+    \item \textbf{Tầng 3 — Packaging Knowledge}: Đóng gói — map human skill vào 7 Zones (SKILL.md structure, template formatting)
+\end{enumerate}
+
+Với mỗi tầng, Planner liệt kê: kiến thức nào cần chuẩn bị, công cụ nào cần, task nào cần thực hiện. Mọi task PHẢI trace về một section cụ thể trong \texttt{design.md}.
+
+\subsubsection{Quy trình Read → Analyze → Write}
+
+Planner hoạt động theo flow 3 bước nội bộ, 1 interaction point cuối:
+
+\begin{enumerate}
+    \item \textbf{READ}: Đọc \texttt{design.md}, \texttt{resources/}, context từ user
+    \item \textbf{ANALYZE}: Với mỗi Zone, phân tích 3 tầng → sinh pre-requisites + tasks (có trace)
+    \item \textbf{WRITE}: Ghi \texttt{todo.md} với format: Pre-reqs, Phases, Resources, Definition of Done, Notes
+\end{enumerate}
+
+Interaction point duy nhất: Sau khi ghi \texttt{todo.md}, trình bày cho user xem và chờ confirm. Hình~\ref{fig:planner-seq} thể hiện toàn bộ luồng tương tác này giữa User, Planner, knowledge files, design.md và todo.md.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/skill-planner/02}
+    \caption{Luồng thực thi (Sequence Diagram) của Skill Planner: READ → ANALYZE → WRITE}
+    \label{fig:planner-seq}
+\end{figure}
+
+\subsubsection{Guardrails chống bịa đặt}
+
+\begin{itemize}
+    \item \textbf{G1 — Trace bắt buộc}: Mọi item trong \texttt{todo.md} PHẢI trace về \texttt{design.md §N}
+    \item \textbf{G2 — Phân biệt nguồn}: Đánh dấu rõ \texttt{[TỪ DESIGN]} vs \texttt{[GỢI Ý BỔ SUNG]}
+    \item \textbf{G3 — Không phát minh}: Chỉ phân rã thiết kế, không thêm requirements mới
+    \item \textbf{G4 — Liệt kê, không tự làm}: Liệt kê kiến thức cần → user chuẩn bị. Không tự search web hoặc hallucinate
+    \item \textbf{G5 — Neo vào design.md}: Ground truth duy nhất. Thiếu → ghi Notes, không đoán
+\end{itemize}
+
+\subsection{Skill Builder — Kỹ sư triển khai}
+
+Skill Builder là skill \#3 (cuối cùng) trong pipeline Master Skill Suite, nhận \texttt{design.md + todo.md} và tạo ra skill package hoàn chỉnh tại \texttt{.agent/skills/\{skill-name\}/}. Hình~\ref{fig:builder-pipeline} thể hiện vị trí của Builder trong toàn bộ pipeline.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/skills/skill-builder/02}
+    \caption{Pipeline đầy đủ: User → Architect → Planner → Builder → Skill Package}
+    \label{fig:builder-pipeline}
+\end{figure}
+
+\subsubsection{Cấu trúc thư mục}
+
+Skill Builder sử dụng cấu trúc tối giản: Core (SKILL.md), 2 knowledge files và loop. Hình~\ref{fig:builder-folder} minh họa cấu trúc này.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/skills/skill-builder/03}
+    \caption{Cấu trúc thư mục của Skill Builder}
+    \label{fig:builder-folder}
+\end{figure}
+
+\subsubsection{Engineer Stance — Quyền phản biện thiết kế}
+
+Khác với Planner (chỉ lập kế hoạch), Builder có quyền \textbf{thẩm định logic thiết kế}. Nếu phát hiện thiết kế phi thực tế hoặc mâu thuẫn, Builder phải:
+
+\begin{enumerate}
+    \item Ghi nhận vấn đề vào \texttt{build-log.md}
+    \item Hỏi user để làm rõ
+    \item Cập nhật \texttt{design.md} §9 (Open Questions) nếu cần
+    \item Chỉ tiếp tục sau khi vấn đề được giải quyết
+\end{enumerate}
+
+\subsubsection{Phase-driven Build Strategy}
+
+Để tránh context overload, Builder chia nhỏ bước BUILD theo từng Phase trong \texttt{todo.md}. Mark-as-done từng phase ngay sau khi hoàn thành.
+
+Quy trình 5 bước, minh họa trong Hình~\ref{fig:builder-process}:
+
+\begin{enumerate}
+    \item \textbf{PREPARE}: Đọc input + Thẩm định logic thiết kế
+    \item \textbf{CLARIFY}: Xử lý \texttt{[CẦN LÀM RÕ]} + Phản biện
+    \item \textbf{BUILD}: Triển khai từng Phase, tạo files
+    \item \textbf{VERIFY}: Chạy \texttt{validate\_skill.py}, check \texttt{build-checklist.md}
+    \item \textbf{DELIVER}: Ghi \texttt{build-log.md}, trình bày kết quả
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/skills/skill-builder/01}
+    \caption{Quy trình 5 bước PREPARE → CLARIFY → BUILD → VERIFY → DELIVER của Skill Builder}
+    \label{fig:builder-process}
+\end{figure}
+
+Hình~\ref{fig:builder-seq} thể hiện chi tiết luồng tương tác giữa 9 thành phần: User, Builder, knowledge, design.md, todo.md, resources, scripts, loop, .agent/skills.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/skill-builder/04}
+    \caption{Luồng thực thi chi tiết (Sequence Diagram) của Skill Builder}
+    \label{fig:builder-seq}
+\end{figure}
+
+\subsubsection{Log-Notify-Stop Pattern}
+
+Khi gặp lỗi hệ thống (permission denied, disk full, file corruption), Builder áp dụng pattern:
+
+\begin{enumerate}
+    \item \textbf{LOG}: Ghi chi tiết lỗi vào \texttt{build-log.md}
+    \item \textbf{NOTIFY}: Báo user ngay lập tức
+    \item \textbf{STOP}: Dừng ngay, KHÔNG cố chạy tiếp
+\end{enumerate}
+
+Tuyệt đối không silent fail hoặc skip lỗi.
+
+\subsubsection{Placeholder Gate Mechanism}
+
+Builder theo dõi số lượng placeholder (nội dung tạm thời cần user điền sau):
+
+\begin{itemize}
+    \item \textbf{Mức 0-4}: OK — domain knowledge đã đầy đủ
+    \item \textbf{Mức 5-9}: WARNING — cảnh báo, yêu cầu user cung cấp thêm resources
+    \item \textbf{Mức 10+}: FAIL — quá nhiều placeholder, thiết kế thiếu ground truth
+\end{itemize}
+
+Thang đo này ngăn chặn việc tạo ra skills rỗng nội dung.
+
+\section{Bộ kỹ năng thiết kế cấu trúc dữ liệu (Class Diagram Analyst)}
+
+Class Diagram Analyst đảm nhiệm việc chuyển đổi từ ER Diagram và quy trình nghiệp vụ sang Class Diagram với định dạng dual-format (Mermaid + YAML Contract). Đây là skill thứ 4 trong chuỗi Life-2, cung cấp Contract YAML làm đầu vào tuyệt đối cho Schema Design Analyst.
+
+\subsection{Cơ chế xử lý đầu vào (Input Resolution)}
+
+Skill hỗ trợ 4 loại đầu vào khác nhau: module rõ ràng, chức năng chưa rõ, yêu cầu mơ hồ, và yêu cầu kèm file đính kèm. Hình~\ref{fig:class-input} minh họa cách skill phân loại và định tuyến từng loại tới workflow phù hợp.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/skills/class-diagram-analyst/01}
+    \caption{Input Resolution Flow của Class Diagram Analyst}
+    \label{fig:class-input}
+\end{figure}
+
+\subsection{Cấu trúc thư mục}
+
+Hình~\ref{fig:class-folder} thể hiện cấu trúc thư mục đầy đủ của Class Diagram Analyst với 6 zones, bao gồm Scripts để validate và Data cho entity inventory.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/skills/class-diagram-analyst/02}
+    \caption{Cấu trúc thư mục của Class Diagram Analyst}
+    \label{fig:class-folder}
+\end{figure}
+
+\subsection{Quy trình 6 pha và luồng thực thi}
+
+Skill thực hiện phân tích qua 6 pha có gate kiểm soát: Phase A (phân tích entity) → B (phân loại Aggregate Root/Embedded) → C (định nghĩa quan hệ) → IP1 → D (sinh Mermaid) → IP2 → E (sinh YAML) → F (validate) → IP3. Hình~\ref{fig:class-workflow} và Hình~\ref{fig:class-seq} lần lượt thể hiện workflow và luồng tương tác chi tiết.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/class-diagram-analyst/04}
+    \caption{Workflow 6 pha với Gate Control của Class Diagram Analyst}
+    \label{fig:class-workflow}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/class-diagram-analyst/03}
+    \caption{Luồng thực thi (Sequence Diagram) của Class Diagram Analyst}
+    \label{fig:class-seq}
+\end{figure}
+
+\subsection{Dual-format output strategy}
+
+Skill tạo ra hai loại output:
+\begin{itemize}
+    \item \textbf{Mermaid classDiagram} (\texttt{class-mX.md}): Dạng trực quan cho con người review
+    \item \textbf{YAML Contract} (\texttt{class-mX.yaml}): Dạng machine-readable cho AI Agent đọc
+\end{itemize}
+
+\subsection{Aggregate Root vs Embedded Document}
+
+Một trong những quyết định quan trọng là phân loại entity thành Aggregate Root (collection độc lập) hoặc Embedded Document (nhúng trong parent). Decision tree được mô tả trong Hình~\ref{fig:aggregate-decision} (sơ đồ tổng quát) và Hình~\ref{fig:class-decision-tree} (Decision Tree chi tiết trong Class Diagram Analyst).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{figures/skills/class-diagram-analyst/05}
+    \caption{Decision Tree: Aggregate Root vs Embedded Document trong Class Diagram Analyst}
+    \label{fig:class-decision-tree}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{figures/aggregate-decision-tree}
+    \caption{Decision Tree: Aggregate Root vs Embedded Document}
+    \label{fig:aggregate-decision}
+\end{figure}
+
+\subsection{Source Citation mechanism}
+
+Để chống hallucination, mọi field trong Class Diagram PHẢI có source citation rõ ràng. Guardrail bắt buộc: Field không có source → BLOCK, không ghi file.
+
+\section{Bộ kỹ năng phân tích luồng nghiệp vụ (Flow Design Analyst)}
+
+Flow Design Analyst chuyên trách vẽ Business Process Flow Diagram với Swimlane 3-lane (User / System / DB), đảm bảo mọi bước logic đều có căn cứ từ spec hoặc User Story.
+
+\subsection{Cấu trúc thư mục}
+
+Hình~\ref{fig:flow-folder} thể hiện cấu trúc thư mục của Flow Design Analyst, bao gồm knowledge files về Swimlane standards, templates Mermaid, data registry và loop checklist.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figures/skills/flow-design-analyst/01}
+    \caption{Cấu trúc thư mục của Flow Design Analyst}
+    \label{fig:flow-folder}
+\end{figure}
+
+\subsection{Quy trình Discover-before-Ask}
+
+Skill áp dụng nguyên tắc: KHÔNG hỏi user câu hỏi mở khi input mơ hồ. Thay vào đó, skill tự động:
+
+\begin{enumerate}
+    \item \textbf{DETECT}: Phân tích intent từ input mơ hồ — trích xuất keyword, domain hint, action verb
+    \item \textbf{DISCOVER}: Tìm kiếm tài nguyên tự động
+    \begin{itemize}
+        \item Quét \texttt{uc-id-registry.yaml} → UC ứng viên
+        \item Quét \texttt{Docs/life-2/specs/} → spec file khớp keyword
+        \item Quét \texttt{Docs/life-1/user-stories.md} → US liên quan
+    \end{itemize}
+    \item \textbf{EXTRACT}: Đọc tài nguyên đã xác nhận, trích xuất Trigger, Actors, Steps, Conditions, Outcomes
+    \item \textbf{STRUCTURE}: Phân bổ từng step vào đúng Actor Lane (User / System / DB)
+    \item \textbf{GENERATE}: Sinh Mermaid flowchart TD với swimlane 3 lanes + gắn UC-ID
+    \item \textbf{VALIDATE}: Kiểm tra: no dangling branch, all paths terminate, UC-ID mapped, Assumptions listed
+\end{enumerate}
+
+Hình~\ref{fig:flow-seq} minh họa toàn bộ luồng thực thi này, từ khi nhận input mơ hồ đến khi sinh diagram hoàn chỉnh, với các gates bắt buộc tại từng giai đoạn.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/flow-design-analyst/02}
+    \caption{Luồng thực thi (Sequence Diagram) của Flow Design Analyst}
+    \label{fig:flow-seq}
+\end{figure}
+
+\subsection{Guardrails chống bịa đặt logic}
+
+\begin{itemize}
+    \item \textbf{G1 — No Blind Step}: Mọi Action Node PHẢI có căn cứ từ spec/US. Không tự thêm bước không có nguồn
+    \item \textbf{G2 — Decision Completeness}: Mọi Decision Diamond PHẢI có đủ nhánh output. Không để dangling
+    \item \textbf{G3 — Lane Discipline}: Business logic → System lane. DB read/write → DB lane. UI trigger → User lane
+    \item \textbf{G4 — Path Termination}: Mọi nhánh PHẢI có điểm kết thúc rõ ràng
+    \item \textbf{G5 — Assumption Required}: Khi spec chưa rõ → PHẢI khai báo \texttt{\#\# Assumptions}
+    \item \textbf{G6 — Discover Before Ask}: PHẢI hoàn thành Discover trước khi hỏi user bất kỳ câu hỏi nào
+\end{itemize}
+
+\subsection{Actor Lane Taxonomy}
+
+Quy tắc phân chia trách nhiệm 3 lanes:
+
+\begin{itemize}
+    \item \textbf{User Lane}: UI actions, user decisions, manual input
+    \item \textbf{System Lane}: Business logic, validations, transformations, API calls
+    \item \textbf{DB Lane}: CRUD operations, queries, transactions
+\end{itemize}
+
+\section{Bộ kỹ năng phân tích sơ đồ tuần tự (Sequence Design Analyst)}
+
+Sequence Design Analyst chuyên vẽ Sequence Diagram chuẩn UML (Mermaid format), mô tả tương tác giữa các đối tượng theo thời gian.
+
+\subsection{Cấu trúc thư mục}
+
+Hình~\ref{fig:seq-folder} thể hiện cấu trúc thư mục tối giản của Sequence Design Analyst — chỉ cần 4 zones thiết yếu: Core, Knowledge (UML standards, codebase patterns), Templates (Mermaid template) và Loop (checklist).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figures/skills/sequence-design-analyst/01}
+    \caption{Cấu trúc thư mục của Sequence Design Analyst}
+    \label{fig:seq-folder}
+\end{figure}
+
+\subsection{Nguyên tắc Code-First Truth}
+
+Skill áp dụng nguyên tắc: Chỉ vẽ những gì thực sự tồn tại trong codebase hoặc được định nghĩa rõ ràng trong thiết kế. KHÔNG vẽ dựa trên suy đoán.
+
+Quy trình:
+
+\begin{enumerate}
+    \item \textbf{Scenario Discovery}: Phân tích kịch bản từ input user và \texttt{context1.md}
+    \item \textbf{Codebase Research}: Quét codebase để xác định chính xác lifelines (Actor, Service, DB)
+    \item \textbf{Traceability Analysis}: Xây dựng chuỗi tương tác — ai gọi ai, tham số gì
+    \item \textbf{Drafting \& Refinement}: Sinh code Mermaid, tối ưu vị trí lifelines
+    \item \textbf{Quality Assurance}: Kiểm tra chéo với Checklist trước bàn giao
+\end{enumerate}
+
+Hình~\ref{fig:seq-exec} minh họa luồng thực thi đầy đủ giữa Steve (user), Analyst Skill, Codebase, Knowledge Zone và Loop Zone, bao gồm nhánh xử lý khi thông tin đầy đủ (Valid) và khi thiếu thông tin (Missing Info).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/sequence-design-analyst/02}
+    \caption{Luồng thực thi (Sequence Diagram) của Sequence Design Analyst}
+    \label{fig:seq-exec}
+\end{figure}
+
+\subsection{UML Fragment Patterns}
+
+Skill hỗ trợ các UML fragments chuẩn:
+
+\begin{itemize}
+    \item \textbf{alt}: Alternative paths (if-else logic)
+    \item \textbf{opt}: Optional execution (if without else)
+    \item \textbf{loop}: Iteration patterns (for/while)
+    \item \textbf{ref}: Reference to another diagram (sub-sequence)
+\end{itemize}
+
+\subsection{Naming Consistency Rule}
+
+Tên Actor/Object trong sơ đồ PHẢI khớp 100\% với codebase. Không được tự ý đổi tên hoặc viết tắt. Ví dụ: Nếu codebase dùng \texttt{UserService}, không được viết \texttt{UserSvc} hay \texttt{User Service}.
+
+\section{Bộ kỹ năng phân tích sơ đồ hoạt động (Activity Diagram Design Analyst)}
+
+Activity Diagram Analyst vẽ sơ đồ hoạt động theo tư duy Clean Architecture (Business-UseCase-External), phát hiện Deadlocks và đảm bảo tính nhất quán giữa nghiệp vụ và thiết kế.
+
+\subsection{Cấu trúc thư mục}
+
+Skill sử dụng đầy đủ 7 zones, bao gồm thư mục \texttt{data/} lưu trữ các mẫu pattern phổ biến. Hình~\ref{fig:activity-folder} minh họa cấu trúc này.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/skills/activity-diagram-design-analyst/01}
+    \caption{Cấu trúc thư mục của Activity Diagram Design Analyst}
+    \label{fig:activity-folder}
+\end{figure}
+
+\subsection{Quy trình 4 pha và 2 Mode thực thi}
+
+Skill hỗ trợ 2 mode hoạt động: \textbf{Mode A} (thiết kế Activity Diagram mới từ spec) và \textbf{Mode B} (refactor diagram hiện có). Cả hai mode đều trải qua 4 pha với gate kiểm soát: Collect → Analyze → Design/Refactor → Explain. Hình~\ref{fig:activity-workflow} thể hiện workflow gate-based này.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/activity-diagram-design-analyst/03}
+    \caption{Workflow 4 pha Gate-based của Activity Diagram Design Analyst}
+    \label{fig:activity-workflow}
+\end{figure}
+
+Hình~\ref{fig:activity-seq} thể hiện luồng thực thi chi tiết (Sequence Diagram) theo cả 2 mode, với các interaction points tại những điểm cần xác nhận từ user.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/activity-diagram-design-analyst/02}
+    \caption{Luồng thực thi (Sequence Diagram) theo Mode A và Mode B của Activity Diagram Analyst}
+    \label{fig:activity-seq}
+\end{figure}
+
+\subsection{Clean Architecture Layering (B-U-E)}
+
+Sơ đồ activity được tổ chức theo 3 layers:
+
+\begin{itemize}
+    \item \textbf{Business Layer (B)}: Core business logic, domain rules
+    \item \textbf{Use Case Layer (U)}: Application-specific logic, orchestration
+    \item \textbf{External Layer (E)}: Infrastructure, database, external APIs
+\end{itemize}
+
+Quy tắc: Dependency chỉ đi từ ngoài vào trong (E → U → B). KHÔNG cho phép B phụ thuộc vào U hoặc E.
+
+\subsection{Deadlock Detection}
+
+Skill tự động phát hiện các pattern có khả năng gây deadlock:
+
+\begin{itemize}
+    \item Circular dependency giữa các activities
+    \item Race condition khi 2 nhánh song song cùng truy cập 1 resource
+    \item Infinite loop không có exit condition rõ ràng
+\end{itemize}
+
+Nếu phát hiện deadlock risk → Skill báo cáo ngay và yêu cầu user xác nhận logic.
+
+\subsection{Swimlane Organization}
+
+Tương tự Flow Design, Activity Diagram cũng sử dụng swimlanes nhưng theo góc nhìn Clean Architecture:
+
+\begin{itemize}
+    \item \textbf{Business Logic Lane}: Domain entities, business rules
+    \item \textbf{Use Case Lane}: Application services, workflows
+    \item \textbf{Infrastructure Lane}: Repositories, external services
+\end{itemize}
+
+\section{Bộ kỹ năng phân tích kiến trúc giao diện (UI Architecture Analyst)}
+
+UI Architecture Analyst đóng vai trò là "cầu nối" giữa logic hệ thống và giao diện người dùng. Skill này chuyển đổi từ Schema + Diagrams → UI Component Specs.
+
+\subsection{Cấu trúc thư mục và Ecosystem}
+
+Skill được tổ chức theo cấu trúc 6 zones gồm: Core (SKILL.md), Knowledge (2 file chuẩn mapping), Scripts, Templates, và Loop. Cấu trúc folder được minh họa trong Hình~\ref{fig:ui-arch-folder}. Hình~\ref{fig:ui-arch-ecosystem} thể hiện vị trí của UI Architecture Analyst trong hệ sinh thái skill — nhận đầu vào từ schema-design-analyst, flow-design-analyst, sequence-design-analyst và cung cấp đầu ra cho wireframe-designer và Developer.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/skills/ui-architecture-analyst/01}
+    \caption{Cấu trúc thư mục skill UI Architecture Analyst}
+    \label{fig:ui-arch-folder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/skills/ui-architecture-analyst/04}
+    \caption{Vị trí UI Architecture Analyst trong hệ sinh thái Agent Skills}
+    \label{fig:ui-arch-ecosystem}
+\end{figure}
+
+\subsection{Data-Component Binding}
+
+Skill thực hiện ánh xạ từ các trường dữ liệu trong Schema sang các thành phần giao diện thực tế (UI Components) dựa trên bảng mapping rules. Quy tắc: Zero Hallucination — không thêm UI field nếu không có trong Schema.
+
+\subsection{Quy trình 5 pha và luồng thực thi}
+
+Workflow được chia thành 5 pha có gate kiểm soát: Context Discovery → Screen Identification → Data Mapping → Synthesis \& Merge → Output Generation, kết hợp với vòng lặp self-verify. Hình~\ref{fig:ui-arch-workflow} minh họa workflow này. Hình~\ref{fig:ui-arch-seq} thể hiện luồng tương tác giữa User, SKILL Agent, Scripts, Knowledge và Loop qua 3 interaction points (IP-1, IP-2, IP-3).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/ui-architecture-analyst/03}
+    \caption{Workflow 5 pha của UI Architecture Analyst}
+    \label{fig:ui-arch-workflow}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/ui-architecture-analyst/02}
+    \caption{Luồng thực thi (Sequence Diagram) của UI Architecture Analyst}
+    \label{fig:ui-arch-seq}
+\end{figure}
+
+% ======================================================
+\section{Bộ kỹ năng thiết kế Schema vật lý (Schema Design Analyst)}
+
+Schema Design Analyst là "chốt chặn" cuối cùng trong pipeline thiết kế, chuyển đổi từ Class Diagram (YAML Contract) sang Physical Database Schema cho MongoDB/Payload CMS. Skill này hoạt động như một "Kiến trúc sư Data", chỉ làm việc dựa trên Contract YAML từ Class Diagram Analyst, loại bỏ hoàn toàn khả năng AI tự ý thêm field không có trong hợp đồng.
+
+\subsection{Cơ chế Input Resolution}
+
+Skill hỗ trợ 4 loại đầu vào: yêu cầu module rõ ràng, yêu cầu theo chức năng, yêu cầu mơ hồ, và yêu cầu kèm file tham chiếu. Với mỗi loại, skill tự động phân tích và định vị Contract YAML tương ứng. Hình~\ref{fig:schema-input-flow} minh họa luồng phân tích đầu vào này.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{figures/skills/schema-design-analyst/01}
+    \caption{Luồng phân tích đầu vào của Schema Design Analyst (Input Resolution Flow)}
+    \label{fig:schema-input-flow}
+\end{figure}
+
+\subsection{Cấu trúc thư mục}
+
+Skill được tổ chức với 6 zones chức năng rõ ràng, minh họa trong Hình~\ref{fig:schema-folder}:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/skills/schema-design-analyst/02}
+    \caption{Cấu trúc thư mục skill Schema Design Analyst}
+    \label{fig:schema-folder}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\caption{Zone Mapping của Schema Design Analyst}
+\begin{tabular}{|p{2.5cm}|p{6cm}|p{5cm}|}
+\hline
+\textbf{Zone} & \textbf{Files tạo ra} & \textbf{Mục đích} \\
+\hline
+Core & \texttt{SKILL.md} & Persona, phases, guardrails \\
+\hline
+Knowledge & \texttt{payload-mongodb-patterns.md} & Quy định Embed/Ref, Metadata strategy \\
+\hline
+Scripts & \texttt{validate\_schema.py} & Kiểm tra field rác/ảo giác so với hợp đồng \\
+\hline
+Templates & \texttt{schema-design.md.template}, \texttt{schema-design.yaml.template} & Format xuất Markdown \& YAML \\
+\hline
+Data & \texttt{module-map.yaml} & Map routing các module \\
+\hline
+Loop & \texttt{schema-validation-checklist.md} & Checklist verify data rules \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Luồng thực thi và Dual-Format Output}
+
+Skill tạo ra hai loại đầu ra: Markdown schema cho con người review (\texttt{mX-schema.md}) và YAML schema chuẩn hóa cho AI đọc ở giai đoạn sinh code (\texttt{mX-schema.yaml}). Luồng thực thi 4 pha được minh họa trong Hình~\ref{fig:schema-seq}:
+
+\begin{enumerate}
+    \item \textbf{Phase 0 — Contract Consumption}: Đọc và xác nhận Contract YAML từ Class Diagram Analyst
+    \item \textbf{Phase 1 — Translation \& Strategy}: Quyết định Embed/Ref, map Payload field types, thiết kế indexing
+    \item \textbf{Phase 2 — Generation}: Sinh Markdown và YAML schema song song
+    \item \textbf{Phase 3 — Self-Validation}: Chạy \texttt{validate\_schema.py} đối chiếu checklist
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/schema-design-analyst/03}
+    \caption{Luồng thực thi (Sequence Diagram) của Schema Design Analyst}
+    \label{fig:schema-seq}
+\end{figure}
+
+\subsection{Guardrails chống ảo giác}
+
+Skill áp dụng 3 guardrails cứng:
+\begin{itemize}
+    \item \textbf{G1 — Contract-Only}: Mọi field PHẢI có trong Contract YAML. Field không có nguồn → \texttt{[BLOCK]}
+    \item \textbf{G2 — Strategy Validation}: Kiểm tra MongoDB array size giới hạn 16MB trước khi chọn Embed
+    \item \textbf{G3 — Context Boundary}: Chỉ load 1 module YAML mỗi lượt qua \texttt{module-map.yaml}
+\end{itemize}
+
+% ======================================================
+\section{Bộ kỹ năng vẽ giao diện tự động (UI Pencil Drawer)}
+
+UI Pencil Drawer là skill có triết lý \textbf{AGI-Oriented Autonomous Execution} — AI tự thực thi end-to-end từ đọc spec đến vẽ hoàn chỉnh trên Pencil canvas, human chỉ cung cấp đầu vào ban đầu. Skill giải quyết bài toán bottleneck khi cần thiết kế hàng chục màn hình (M1–M6) cho Steve Void trong giai đoạn Life-2.
+
+\subsection{Cấu trúc thư mục và 4 Phases tự chủ}
+
+Skill được thiết kế với đầy đủ 7 zones, bao gồm 4 knowledge files chuyên biệt cho Pencil MCP API. Cấu trúc folder được minh họa trong Hình~\ref{fig:pencil-folder}:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/skills/ui-pencil-drawer/01}
+    \caption{Cấu trúc thư mục skill UI Pencil Drawer với 4 Phases tự chủ}
+    \label{fig:pencil-folder}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\caption{Zone Mapping của UI Pencil Drawer}
+\begin{tabular}{|p{2.5cm}|p{6cm}|p{5.5cm}|}
+\hline
+\textbf{Zone} & \textbf{Files tạo ra} & \textbf{Mục đích} \\
+\hline
+Core & \texttt{SKILL.md} & Persona + 4 Phases + 5 Guardrails \\
+\hline
+Knowledge & \texttt{pencil-tools-ref.md}, \texttt{wireframe-format.md}, \texttt{project-context.md}, \texttt{animation-tokens.md} & Tham chiếu đầy đủ Pencil MCP API \\
+\hline
+Scripts & \texttt{scan\_lib\_components.py} & Quét Lib-Component, extract node IDs \\
+\hline
+Templates & \texttt{wireframe.md.template} & Template cho 1 màn hình wireframe \\
+\hline
+Data & \texttt{layout-rules.yaml} & Static rules: gap, padding, screen width \\
+\hline
+Loop & \texttt{checklist.md} & Self-verify pass/fail threshold per phase \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Mô hình Autonomous Execution 4 Phase}
+
+Khác với các skill khác có Interaction Points, UI Pencil Drawer tự chủ hoàn toàn qua 4 pha, chỉ escalate khi bị chặn thực sự:
+
+\begin{itemize}
+    \item \textbf{Phase 0 — Context Boot}: Tự đọc \texttt{CLAUDE.md}, \texttt{check.list.md}, quét \texttt{Docs/life-2/ui/specs/}, gọi \texttt{get\_editor\_state()} trên STi.pen
+    \item \textbf{Phase 1 — Spec Analyzer}: Parse spec → extract Screens, States, Component Map với source citation
+    \item \textbf{Phase 2 — Wireframe Blueprint}: Tạo DOM Tree text blueprint, lưu vào \texttt{wireframes/\{module\}-wireframe.md}
+    \item \textbf{Phase 3 — Pencil Drawer}: Tự vẽ mỗi màn hình, screenshot verify, self-fix (max 2 retry)
+\end{itemize}
+
+Hình~\ref{fig:pencil-workflow} minh họa workflow 4 pha với các nhánh tự xử lý lỗi. Hình~\ref{fig:pencil-seq} thể hiện luồng end-to-end giữa User, AI Agent, Knowledge, Pencil MCP, File System và Loop.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/ui-pencil-drawer/03}
+    \caption{Workflow 4 pha Autonomous của UI Pencil Drawer}
+    \label{fig:pencil-workflow}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/skills/ui-pencil-drawer/02}
+    \caption{Luồng thực thi end-to-end (Sequence Diagram) của UI Pencil Drawer}
+    \label{fig:pencil-seq}
+\end{figure}
+
+\subsection{5 Guardrails đảm bảo tính chính xác}
+
+\begin{itemize}
+    \item \textbf{G-Lib-Strict}: 100\% resource phải là \texttt{ref} từ Lib-Component. Không tự vẽ primitive nếu đã có component tương đương
+    \item \textbf{G-Spec-Strict}: Không thêm element nếu spec không đề cập. Mỗi component có source citation
+    \item \textbf{G-Canvas-Space}: Bắt buộc gọi \texttt{find\_empty\_space\_on\_canvas} trước mỗi \texttt{batch\_design}
+    \item \textbf{G-One-Screen-Per-Call}: Mỗi \texttt{batch\_design} chỉ vẽ 1 màn hình, screenshot verify trước khi tiếp
+    \item \textbf{G-Bounded-Creativity}: Phân tách Strict Zones (lắp ghép 100\% đúng Spec) và Fluid Zones (sáng tạo spacing, AI image)
+\end{itemize}
+
+\section{Quy trình phối hợp và tích hợp}
+
+Toàn bộ các bộ kỹ năng hoạt động phối hợp theo một pipeline tuần tự và chặt chẽ, tạo thành một "Knowledge Factory" tự động hóa. Pipeline hoàn chỉnh được minh họa trong Hình~\ref{fig:full-pipeline}:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/full-pipeline}
+    \caption{Pipeline tổng thể của hệ thống Agent Skills}
+    \label{fig:full-pipeline}
+\end{figure}
+
+Các bước chính:
+\begin{enumerate}
+    \item \textbf{Thiết kế kỹ năng}: Sử dụng Skill Architect để định hình vai trò của từng Agent
+    \item \textbf{Phân tích nghiệp vụ}: Flow/Sequence/Activity Analyst xây dựng khung logic
+    \item \textbf{Thiết kế dữ liệu}: Class Diagram Analyst chuyển đổi sang OOP view
+    \item \textbf{Thiết kế giao diện}: UI Architecture Analyst ánh xạ Schema → UI Components
+    \item \textbf{Đóng gói tri thức}: Tổng hợp toàn bộ kết quả thành tài liệu kỹ thuật minh bạch
+\end{enumerate}
+
+Thiết kế này không chỉ tạo ra một website mạng xã hội cụ thể, mà quan trọng hơn là thiết lập được một \textbf{nhà máy sản xuất tri thức (Knowledge Factory)} cho phép AI tự động hóa quy trình phát triển phần mềm một cách tin cậy và có kiểm soát.
+
+\chapter{Triển khai và thử nghiệm hệ thống}
+\section{Mô tả quá trình triển khai hệ thống}
+\section{Trình bày kết quả thử nghiệm}
+\section{Đánh giá hệ thống}
+
+\clearpage
+\addcontentsline{toc}{chapter}{Kết luận và hướng phát triển}
+\begin{center}
+  {\Large \textbf{KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}}\\[2em]
+\end{center}
+
+\section*{Kết quả đạt được}
+Tóm tắt các kết quả quan trọng nhất.
+
+\section*{Hạn chế của nghiên cứu}
+Các vấn đề chưa giải quyết được.
+
+\section*{Hướng phát triển trong tương lai}
+Định hướng nâng cấp và mở rộng hệ thống.
+
+\chapter*{TÀI LIỆU THAM KHẢO}
+\addcontentsline{toc}{chapter}{Tài liệu tham khảo}
+\begin{thebibliography}{99}
+  \bibitem{ref-agent} Andrew Ng, "Agentic Workflow and AI Agents", DeepLearning.AI, 2024.
+  \bibitem{ref-next} Next.js Documentation, URL: \url{https://nextjs.org/docs}, truy cập tháng 02/2026.
+  \bibitem{ref-payload} Payload CMS Documentation, URL: \url{https://payloadcms.com/docs}, truy cập tháng 02/2026.
+  \bibitem{ref-atlas} MongoDB Atlas Documentation, URL: \url{https://www.mongodb.com/docs/atlas}, truy cập tháng 02/2026.
+  \bibitem{ref-radix} Radix UI Documentation, URL: \url{https://www.radix-ui.com/docs}, truy cập tháng 02/2026.
+  \bibitem{ref-anthropic} Anthropic, "Building effective agents", URL: \url{https://www.anthropic.com/research/building-effective-agents}, truy cập tháng 02/2026.
+\end{thebibliography}
+
+\appendix
+\chapter*{Phụ lục}
+\addcontentsline{toc}{chapter}{Phụ lục}
+Nội dung phụ lục (nếu có).
+
+
+\end{document}

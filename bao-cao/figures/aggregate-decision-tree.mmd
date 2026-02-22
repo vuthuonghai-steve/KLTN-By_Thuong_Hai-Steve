@@ -1,0 +1,20 @@
+flowchart TD
+    Start([Entity từ ER Diagram]) --> Q1{Nhiều Collection<br/>FK trỏ vào entity?}
+
+    Q1 -->|Có| Root
+    Q1 -->|Không| Q2{Entity có<br/>Timestamps riêng?}
+
+    Q2 -->|Có| Root
+    Q2 -->|Không| Q3{Query entity<br/>này độc lập?}
+
+    Q3 -->|Có| Root
+    Q3 -->|Không| Q4{Size có thể<br/>vượt giới hạn?}
+
+    Q4 -->|Có| Root
+    Q4 -->|Không| Embed
+
+    Root[✅ AGGREGATE ROOT<br/>Payload Collection độc lập]
+    Embed[📦 EMBEDDED DOC<br/>Nhúng vào parent]
+
+    style Root fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style Embed fill:#fff3e0,stroke:#ef6c00,stroke-width:2px

@@ -1,0 +1,16 @@
+graph TD
+    subgraph MetaSkillFramework [MÔ HÌNH KIẾN TRÚC - META-SKILL FRAMEWORK]
+        P1[PHA 1: NHẬN DIỆN<br/>Input/Output] --> P2[PHA 2: CHIẾN LƯỢC<br/>Checklist/Plan]
+        P2 --> P3[PHA 3: THỰC THI<br/>Research/Action]
+
+        P1 --> D1[Dữ liệu Gốc]
+        P2 --> D2[Quy trình Chuẩn]
+        P3 --> D3[Tương tác & Thẩm định]
+
+        D1 --> LC[VÒNG LẶP KIỂM SOÁT<br/>Verify/Fix/Loop]
+        D2 --> LC
+        D3 --> LC
+    end
+
+    style MetaSkillFramework fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style LC fill:#e1f5fe,stroke:#01579b

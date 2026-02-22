@@ -1,0 +1,697 @@
+% =============================================================================
+% CHƯƠNG 2: PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG AGENT SKILLS
+% =============================================================================
+
+\chapter{PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG AGENT SKILLS}
+
+Trong chương này, báo cáo trình bày chi tiết về kiến trúc tổng thể của hệ thống Agent Skills,
+cũng như phân tích từng bộ kỹ năng chuyên biệt được thiết kế để tự động hóa quá trình phân tích
+và thiết kế hệ thống trong giai đoạn Life-2.
+
+% =============================================================================
+\section{Kiến trúc tổng thể hệ thống Agent Skills}
+
+Hệ thống Agent Skills được xây dựng dựa trên mô hình \textbf{Meta-Skill Framework},
+bao gồm ba trụ cột chính (3 Pillars) và bảy vùng chức năng (7 Zones). Kiến trúc này
+đảm bảo tính nhất quán, khả năng kiểm soát chất lượng và khả năng mở rộng của các
+bộ Agent Skill.
+
+% -----------------------------------------------------------------------------
+\subsection{Mô hình Meta-Skill Framework}
+
+Meta-Skill Framework định nghĩa cách tiếp cận tổng thể để xây dựng một Agent Skill
+có cấu trúc, logic rõ ràng và khả năng tự kiểm soát chất lượng. Mô hình này bao gồm
+ba giai đoạn chính:
+
+\begin{enumerate}
+    \item \textbf{Pha 1 — Nhận diện (Input/Output)}: Xác định rõ ràng đầu vào và đầu ra
+    mong muốn của skill.
+
+    \item \textbf{Pha 2 — Chiến lược (Checklist/Plan)}: Lập kế hoạch thực thi với
+    checklist kiểm soát chất lượng.
+
+    \item \textbf{Pha 3 — Thực thi (Research/Action)}: Nghiên cứu và thực hiện các
+    bước được định nghĩa.
+\end{enumerate}
+
+Ba giai đoạn này được kết nối với vòng lặp kiểm soát (Verify/Fix/Loop) để đảm bảo
+chất lượng đầu ra. Mô hình được minh họa trong Hình~\ref{fig:meta-skill-framework}.
+
+\begin{figure}[h]
+    \centering
+    % TODO: Thêm hình ảnh sau khi export từ Mermaid
+    % \includegraphics[width=0.8\textwidth]{figures/meta-skill-framework}
+    \fbox{\parbox{0.8\textwidth}{\centering [Hình minh họa Meta-Skill Framework sẽ được chèn ở đây]}}
+    \caption{Mô hình Meta-Skill Framework}
+    \label{fig:meta-skill-framework}
+\end{figure}
+
+% -----------------------------------------------------------------------------
+\subsection{Ba trụ cột (3 Pillars)}
+
+Kiến trúc Agent Skill được xây dựng trên ba trụ cột chính, giống như một ngôi nhà
+vững chắc:
+
+\subsubsection{Pillar 1 — Knowledge (Tri thức)}
+
+Tập hợp các quy định, tiêu chuẩn kỹ thuật (UML, Schema Design Patterns, Best Practices)
+cung cấp "Context" cho AI Agent. Tri thức được tổ chức trong thư mục \texttt{knowledge/}
+và được nạp theo chiến lược Progressive Disclosure (nạp dần theo nhu cầu).
+
+Ví dụ tri thức trong một skill:
+\begin{itemize}
+    \item \texttt{knowledge/uml-rules.md}: Quy tắc vẽ UML diagram chuẩn
+    \item \texttt{knowledge/mongodb-patterns.md}: Các mẫu thiết kế MongoDB
+    \item \texttt{knowledge/payload-types.md}: Các loại field trong PayloadCMS
+\end{itemize}
+
+\subsubsection{Pillar 2 — Process (Quy trình)}
+
+Các bước thực thi được module hóa thành workflow rõ ràng, từ nhận diện đầu vào đến
+kiểm chứng đầu ra. Mỗi skill định nghĩa riêng quy trình phù hợp với domain của nó.
+
+Ví dụ quy trình 5-phase workflow:
+\begin{enumerate}
+    \item \textbf{Phase 1 — Collect}: Thu thập thông tin đầu vào
+    \item \textbf{Phase 2 — Research}: Nghiên cứu codebase và tài liệu
+    \item \textbf{Phase 3 — Design}: Thiết kế giải pháp
+    \item \textbf{Phase 4 — Generate}: Sinh output (diagram, code, spec)
+    \item \textbf{Phase 5 — Verify}: Kiểm chứng chất lượng
+\end{enumerate}
+
+\subsubsection{Pillar 3 — Guardrails (Kiểm soát)}
+
+Các hàng rào bảo vệ chống lại hiện tượng "hallucination" (ảo giác) của AI thông qua
+các cơ chế:
+
+\begin{itemize}
+    \item \textbf{Interaction Gates}: Các điểm dừng bắt buộc để hỏi user xác nhận
+    \item \textbf{Source Citation}: Bắt buộc mọi field/entity phải có nguồn trích dẫn
+    \item \textbf{Self-Scoring}: AI tự đánh giá chất lượng output theo rubric định trước
+    \item \textbf{Checklist Verification}: Kiểm tra output với danh sách câu hỏi chuẩn
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+\subsection{Bảy vùng chức năng (7 Zones)}
+
+Mỗi Agent Skill được tổ chức thành 7 zones chuẩn như mô tả trong Bảng~\ref{tab:7-zones}.
+Cấu trúc này đảm bảo tính đồng nhất giữa các skills và dễ dàng bảo trì.
+
+\begin{table}[h]
+\centering
+\caption{Bảng mô tả 7 Zones trong Agent Skill}
+\label{tab:7-zones}
+\begin{tabular}{|p{0.15\textwidth}|p{0.35\textwidth}|p{0.35\textwidth}|}
+\hline
+\textbf{Zone} & \textbf{Mục đích} & \textbf{Ví dụ nội dung} \\
+\hline
+Core & Linh hồn điều khiển — Persona, Workflow, Guardrails &
+Persona: Senior Architect; 5-phase workflow; Interaction Points \\
+\hline
+knowledge/ & Tri thức chuẩn — Standards, Best practices &
+UML rules, Design patterns, MongoDB patterns \\
+\hline
+scripts/ & Công cụ tự động hóa — Python, Bash, JavaScript &
+analyzer.py, validator.py, generator.py \\
+\hline
+templates/ & Mẫu đầu ra — Code stubs, Diagram templates &
+sequence.mmd, class.mmd, design.md.template \\
+\hline
+data/ & Cấu hình và dữ liệu cứng — Config YAML, JSON schema &
+config.yaml, allowed-types.json \\
+\hline
+loop/ & Kiểm soát chất lượng — Checklist, Test cases &
+checklist.md, phase-verify.md, test-cases/ \\
+\hline
+assets/ & Tài nguyên tĩnh — Icons, Fonts, Images &
+icons/, fonts/, images/ \\
+\hline
+\end{tabular}
+\end{table}
+
+% -----------------------------------------------------------------------------
+\subsection{Quy trình 5 bước xây dựng Skill}
+
+Quy trình xây dựng một Agent Skill tuân theo 5 bước chuẩn được minh họa trong
+Hình~\ref{fig:5-step-workflow}:
+
+\begin{enumerate}
+    \item \textbf{Bước 1 — Khảo sát (Research \& Discovery)}:
+    \begin{itemize}
+        \item Xác định Input: Người dùng sẽ đưa cái gì? (Rác hay vàng?)
+        \item Xác định Tools: AI sẽ dùng Terminal, Browser hay Library nào?
+        \item Tìm ra "Điểm mù" của AI: AI thường sai ở đâu trong công việc này?
+    \end{itemize}
+
+    \item \textbf{Bước 2 — Thiết kế (System Design)}:
+    \begin{itemize}
+        \item Xây dựng Quy trình logic (Flowchart): Bước A → Bước B
+        \item Xác định Điểm dừng tương tác: Khi nào AI PHẢI hỏi người dùng?
+        \item Định nghĩa Định dạng Output: Mermaid, Markdown, hay Code?
+    \end{itemize}
+
+    \item \textbf{Bước 3 — Xây dựng (Build)}:
+    \begin{itemize}
+        \item Persona: Định vị AI là Senior Architect hay Senior Coder
+        \item Phase-based Steps: Chia nhỏ công việc thành các Pha
+        \item Tạo templates, scripts, knowledge files
+    \end{itemize}
+
+    \item \textbf{Bước 4 — Kiểm định (Verify)}:
+    \begin{itemize}
+        \item Chạy Test Cases
+        \item Verify Checklist
+        \item Rollback nếu phát hiện lỗi
+    \end{itemize}
+
+    \item \textbf{Bước 5 — Bảo trì (Maintenance)}:
+    \begin{itemize}
+        \item Feedback Loop: Ghi lại chỗ AI làm dở
+        \item Version Control: Cập nhật khi môi trường thay đổi
+    \end{itemize}
+\end{enumerate}
+
+\begin{figure}[h]
+    \centering
+    % TODO: Thêm hình ảnh sau khi export từ Mermaid
+    % \includegraphics[width=0.9\textwidth]{figures/5-step-workflow}
+    \fbox{\parbox{0.9\textwidth}{\centering [Hình minh họa 5-step workflow sẽ được chèn ở đây]}}
+    \caption{Quy trình 5 bước xây dựng Agent Skill}
+    \label{fig:5-step-workflow}
+\end{figure}
+
+% =============================================================================
+\section{Bộ kỹ năng kiến trúc sư (Skill Architect)}
+
+Skill Architect là meta-skill trung tâm, chịu trách nhiệm thiết kế cấu trúc cho các
+Agent Skills khác. Đây là điểm khởi đầu của toàn bộ Skill Suite trong pipeline
+\texttt{Architect → Planner → Builder}.
+
+% -----------------------------------------------------------------------------
+\subsection{Vai trò và vị trí trong pipeline}
+
+Skill Architect đóng vai trò như một "kiến trúc sư trưởng", nhận yêu cầu từ người dùng
+và tạo ra bản thiết kế chi tiết (\texttt{design.md}) cho skill mới. Bản thiết kế này
+tuân theo format chuẩn 10 sections:
+
+\begin{enumerate}
+    \item Problem Statement — Mô tả vấn đề cần giải quyết
+    \item Capability Map — Phân tích 3 Pillars (Knowledge, Process, Guardrails)
+    \item Zone Mapping — Contract bắt buộc giữa Architect và Planner
+    \item Folder Structure — Sơ đồ Mermaid mindmap
+    \item Execution Flow — Các sơ đồ sequence/flowchart minh họa
+    \item Interaction Points — Các điểm dừng tương tác với user
+    \item Progressive Disclosure Plan — Chiến lược nạp tài nguyên (Tier 1/2)
+    \item Risks \& Blind Spots — Rủi ro và cách mitigation
+    \item Open Questions — Câu hỏi còn mở cần giải đáp
+    \item Metadata — Thông tin phiên bản, tác giả, trạng thái
+\end{enumerate}
+
+Vị trí của Skill Architect trong pipeline được minh họa trong Hình~\ref{fig:skill-suite-pipeline}.
+
+\begin{figure}[h]
+    \centering
+    % TODO: Thêm hình ảnh pipeline
+    % \includegraphics[width=0.9\textwidth]{figures/skill-suite-pipeline}
+    \fbox{\parbox{0.9\textwidth}{\centering [Sơ đồ Pipeline: Architect → Planner → Builder → Skill Files]}}
+    \caption{Pipeline Skill Suite: Architect → Planner → Builder}
+    \label{fig:skill-suite-pipeline}
+\end{figure}
+
+% -----------------------------------------------------------------------------
+\subsection{Quy trình Adaptive Workflow}
+
+Skill Architect sử dụng quy trình Adaptive Workflow, tự động phân loại độ phức tạp
+của yêu cầu và chọn workflow phù hợp:
+
+\begin{itemize}
+    \item \textbf{Simple}: DETECT → COLLECT (rút gọn) → DESIGN (merge Analyze + Design) → DONE
+    \item \textbf{Medium}: DETECT → COLLECT → ANALYZE → DESIGN → DONE
+    \item \textbf{Complex}: DETECT → COLLECT → ANALYZE → ARCH-REVIEW → DESIGN → DONE
+\end{itemize}
+
+Trong đó:
+\begin{itemize}
+    \item \textbf{DETECT}: Đọc input, áp \texttt{complexity-matrix.md}, chọn path tự động
+    \item \textbf{COLLECT}: Hỏi đúng gap còn thiếu (không hỏi lại những gì đã biết)
+    \item \textbf{ANALYZE}: Phân tích 3 Pillars + Zone Mapping contract (§3 bắt buộc)
+    \item \textbf{ARCH-REVIEW}: (Complex only) Kiểm tra dependency với skill-planner/builder
+    \item \textbf{DESIGN}: Tạo ≥3 Mermaid diagrams + self-score từng section trước deliver
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+\subsection{Cơ chế Self-Scoring và Quality Gates}
+
+Skill Architect tích hợp cơ chế tự đánh giá (Self-Scoring) để đảm bảo chất lượng
+thiết kế trước khi chuyển sang giai đoạn thực thi. Các tiêu chí đánh giá được
+mô tả trong Bảng~\ref{tab:self-scoring}.
+
+\begin{table}[h]
+\centering
+\caption{Rubric tự đánh giá Skill Architect}
+\label{tab:self-scoring}
+\begin{tabular}{|l|p{0.5\textwidth}|c|}
+\hline
+\textbf{Section} & \textbf{Tiêu chí} & \textbf{Điểm tối thiểu} \\
+\hline
+§1 Problem & Pain Point rõ ràng, User xác định, Output cụ thể & 3/5 \\
+\hline
+§2 Capability & 3 Pillars đầy đủ, Process có workflow diagram & 3/5 \\
+\hline
+§3 Zone Mapping & Tên file cụ thể (regex compliant), không placeholder & 4/5 \\
+\hline
+§4 Folder & Có Mermaid mindmap rõ ràng & 3/5 \\
+\hline
+§5 Execution Flow & Có ≥2 diagrams (sequence/flowchart) & 3/5 \\
+\hline
+§6 Interaction Points & Có ≥2 IPs với lý do dừng rõ ràng & 3/5 \\
+\hline
+§7 Progressive Disclosure & Phân biệt rõ Tier 1 (mandatory) và Tier 2 (conditional) & 3/5 \\
+\hline
+§8 Risks & Có ≥5 risks kèm mitigation cụ thể & 3/5 \\
+\hline
+§9 Open Questions & Có ≥2 câu hỏi thực chất (không phải placeholder) & 3/5 \\
+\hline
+§10 Metadata & Đầy đủ thông tin: name, version, status, handoff checklist & 3/5 \\
+\hline
+\end{tabular}
+\end{table}
+
+Quy tắc: Nếu bất kỳ section nào có điểm < 3/5, AI phải re-work section đó trước khi deliver.
+
+% -----------------------------------------------------------------------------
+\subsection{Zone Mapping Contract}
+
+§3 Zone Mapping trong \texttt{design.md} là contract bắt buộc giữa Architect và Planner.
+Nó quy định rõ ràng các file cần tạo, nội dung từng zone, và trạng thái bắt buộc/tùy chọn.
+
+Ví dụ Zone Mapping cho Skill Architect được mô tả trong Bảng~\ref{tab:zone-mapping-architect}.
+
+\begin{table}[h]
+\centering
+\caption{Zone Mapping Contract của Skill Architect}
+\label{tab:zone-mapping-architect}
+\begin{tabular}{|l|p{0.3\textwidth}|p{0.3\textwidth}|c|}
+\hline
+\textbf{Zone} & \textbf{Files} & \textbf{Nội dung} & \textbf{Bắt buộc?} \\
+\hline
+Core & SKILL.md & Persona v2, Adaptive workflow, Guardrails & ✅ \\
+\hline
+Knowledge & complexity-matrix.md & Bảng phân loại Simple/Medium/Complex & ✅ \\
+\hline
+Knowledge & zone-contract-spec.md & Schema §3, regex validation, examples & ✅ \\
+\hline
+Scripts & init\_context.py & Khởi tạo .skill-context/\{name\}/ & ✅ \\
+\hline
+Templates & design.md.template & 10-section template cập nhật & ✅ \\
+\hline
+Loop & design-checklist.md & Quality gate tổng (cập nhật) & ✅ \\
+\hline
+Loop & phase-verify.md & Per-phase checklist & ✅ \\
+\hline
+\end{tabular}
+\end{table}
+
+% =============================================================================
+\section{Bộ kỹ năng phân tích luồng nghiệp vụ}
+
+Hệ thống bao gồm ba bộ kỹ năng chuyên biệt cho việc phân tích và thiết kế các
+luồng nghiệp vụ: Sequence Design Analyst, Flow Design Analyst, và Activity Diagram
+Design Analyst.
+
+% -----------------------------------------------------------------------------
+\subsection{Sequence Design Analyst}
+
+\subsubsection{Vai trò}
+
+Sequence Design Analyst chuyên trách việc thiết kế Sequence Diagram (sơ đồ tuần tự)
+chuẩn UML, mô tả tương tác giữa các objects theo thời gian.
+
+\subsubsection{Quy trình 5 pha}
+
+\begin{enumerate}
+    \item \textbf{Phase 1 — Scenario Discovery}: Phân tích kịch bản từ input và \texttt{context1.md}
+    \item \textbf{Phase 2 — Codebase Research}: Quét codebase xác định classes/methods tham gia
+    \item \textbf{Phase 3 — Traceability Analysis}: Xây dựng chuỗi tương tác (ai gọi ai, tham số gì)
+    \item \textbf{Phase 4 — Drafting \& Refinement}: Sinh code Mermaid và tối ưu layout
+    \item \textbf{Phase 5 — Quality Assurance}: Kiểm tra chéo với Checklist trước khi bàn giao
+\end{enumerate}
+
+\subsubsection{Guardrails}
+
+\begin{itemize}
+    \item \textbf{Code-First Truth}: Chỉ vẽ những gì thực sự tồn tại trong codebase
+    \item \textbf{Readability Limit}: Cảnh báo nếu sơ đồ quá phức tạp (> 8 lifelines)
+    \item \textbf{Naming Consistency}: Tên Actor/Object khớp 100\% với codebase
+\end{itemize}
+
+\subsubsection{Sản phẩm đầu ra}
+
+File Mermaid sequence diagram (\texttt{.mmd}) với format chuẩn:
+\begin{verbatim}
+sequenceDiagram
+    participant U as User
+    participant S as System
+    participant DB as Database
+
+    U->>S: Login request
+    S->>DB: Query user
+    DB-->>S: User data
+    S-->>U: Access granted
+\end{verbatim}
+
+% -----------------------------------------------------------------------------
+\subsection{Flow Design Analyst}
+
+\subsubsection{Vai trò}
+
+Flow Design Analyst thiết kế Business Process Flow Diagram (High-Fidelity) theo
+chuẩn 3-lane Swimlane (User / System / Database).
+
+\subsubsection{Đặc điểm nổi bật}
+
+\begin{itemize}
+    \item \textbf{3-lane Swimlane}: Phân định rõ trách nhiệm xử lý dữ liệu
+    \item \textbf{Auto Discovery}: Tự động phân tích intent và khám phá tài nguyên dự án
+    \item \textbf{Trích xuất logic}: Từ spec/user-story → Mermaid flowchart
+\end{itemize}
+
+\subsubsection{Sản phẩm đầu ra}
+
+Mermaid flowchart với swimlane rõ ràng, minh họa toàn bộ luồng nghiệp vụ từ
+User action → System processing → Database operations.
+
+% -----------------------------------------------------------------------------
+\subsection{Activity Diagram Design Analyst}
+
+\subsubsection{Vai trò}
+
+Activity Diagram Design Analyst phân tích và thiết kế sơ đồ Activity Diagram
+(High-Fidelity) theo tư duy Clean Architecture (B-U-E: Boundary-UseCase-Entity).
+
+\subsubsection{Khả năng phản biện}
+
+Skill này không chỉ vẽ diagram mà còn:
+\begin{itemize}
+    \item \textbf{Phát hiện Deadlocks}: Tìm các luồng có thể bị kẹt (vòng lặp vô hạn)
+    \item \textbf{Kiểm tra nhất quán}: Đảm bảo logic trong diagram khớp với nghiệp vụ
+    \item \textbf{Refactor Risk Detection}: Cảnh báo khi logic quá phức tạp cần refactor
+\end{itemize}
+
+\subsubsection{Sản phẩm đầu ra}
+
+Activity Diagram với phân tầng B-U-E rõ ràng, kèm báo cáo phân tích rủi ro.
+
+% =============================================================================
+\section{Bộ kỹ năng thiết kế cấu trúc dữ liệu (Class Diagram Analyst)}
+
+Class Diagram Analyst (Skill 2.5) đảm nhiệm việc chuyển đổi từ ER Diagram và quy trình
+nghiệp vụ sang Class Diagram với định dạng dual-format (Mermaid + YAML Contract).
+
+% -----------------------------------------------------------------------------
+\subsection{Dual-format output strategy}
+
+Skill tạo ra hai loại output cho hai đối tượng khác nhau:
+
+\begin{itemize}
+    \item \textbf{Mermaid classDiagram} (\texttt{class-mX.md}): Dạng trực quan cho
+    con người review, bao gồm sơ đồ lớp và bảng Traceability (field → source mapping).
+
+    \item \textbf{YAML Contract} (\texttt{class-mX.yaml}): Dạng machine-readable cho
+    AI Agent đọc (đặc biệt là \texttt{schema-design-analyst} ở giai đoạn tiếp theo).
+    File này có header LOCKED để tránh chỉnh sửa thủ công.
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+\subsection{Aggregate Root vs Embedded Document}
+
+Một trong những quyết định quan trọng là phân loại entity thành Aggregate Root
+(collection độc lập) hoặc Embedded Document (nhúng trong parent). Decision tree
+được mô tả trong Hình~\ref{fig:aggregate-decision}.
+
+Quy tắc quyết định:
+\begin{enumerate}
+    \item Nếu nhiều collection khác FK trỏ vào → \textbf{Aggregate Root}
+    \item Nếu entity có timestamps riêng (createdAt, updatedAt) → \textbf{Aggregate Root}
+    \item Nếu query entity độc lập (không thông qua parent) → \textbf{Aggregate Root}
+    \item Nếu size có thể vượt giới hạn 16MB MongoDB → \textbf{Aggregate Root}
+    \item Ngược lại → \textbf{Embedded Document}
+\end{enumerate}
+
+\begin{figure}[h]
+    \centering
+    % TODO: Thêm hình decision tree
+    % \includegraphics[width=0.85\textwidth]{figures/aggregate-decision-tree}
+    \fbox{\parbox{0.85\textwidth}{\centering [Decision Tree: Aggregate Root vs Embedded Document]}}
+    \caption{Decision Tree: Aggregate Root vs Embedded Document}
+    \label{fig:aggregate-decision}
+\end{figure}
+
+% -----------------------------------------------------------------------------
+\subsection{Source Citation mechanism}
+
+Để chống hallucination, mọi field trong Class Diagram PHẢI có source citation rõ ràng.
+Ví dụ trong YAML Contract:
+
+\begin{verbatim}
+fields:
+  - name: "email"
+    type: "email"
+    required: true
+    unique: true
+    indexed: true
+    source: "er-diagram.md#L169"
+  - name: "bio"
+    type: "text"
+    source: "activity-diagrams/m1-a1-registration.md#L45"
+\end{verbatim}
+
+Guardrail bắt buộc:
+\begin{itemize}
+    \item Field không có source → BLOCK, không ghi file
+    \item Field có source từ file context (không có trong ER) → Mark \texttt{[FROM\_CONTEXT]}
+    \item Field không tìm thấy nguồn nào → Mark \texttt{[ASSUMPTION]}, alert user ngay IP1
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+\subsection{Quy trình 6 phases với 3 Interaction Points}
+
+Skill thực thi theo 6 phases với 3 Interaction Points bắt buộc:
+
+\begin{enumerate}
+    \item \textbf{Phase A — Extract Entities}: Đọc \texttt{er-diagram.md}, lấy entity list + fields
+    \item \textbf{Phase B — Cross-Reference}: Grep \texttt{activity-diagrams/} tìm Hooks/Behavior
+    \item \textbf{Phase C — Classify}: Quyết định Root/Embed theo decision tree
+    \item \textbf{[IP1] Confirm Entity List}: CHỜ user xác nhận danh sách entities
+    \item \textbf{Phase D — Generate Markdown}: Sinh \texttt{class-mX.md}
+    \item \textbf{[IP2] Review Markdown}: CHỜ user approve file .md
+    \item \textbf{Phase E — Generate YAML}: Chuyển .md → .yaml contract (LOCKED)
+    \item \textbf{Phase F — Self-Validate}: Chạy \texttt{validate\_contract.py}
+    \item \textbf{[IP3] Report Result}: Báo cáo validation pass/fail
+\end{enumerate}
+
+Interaction Points đảm bảo AI không đi sai hướng khi xử lý. Workflow được minh họa
+trong Hình~\ref{fig:class-6-phase}.
+
+\begin{figure}[h]
+    \centering
+    % TODO: Thêm hình workflow 6 phases
+    % \includegraphics[width=0.95\textwidth]{figures/class-diagram-6-phase}
+    \fbox{\parbox{0.95\textwidth}{\centering [Workflow 6 Phases với 3 Interaction Points]}}
+    \caption{Workflow 6 Phases của Class Diagram Analyst}
+    \label{fig:class-6-phase}
+\end{figure}
+
+% -----------------------------------------------------------------------------
+\subsection{Sản phẩm đầu ra}
+
+Mỗi module tạo ra 2 files trong thư mục tương ứng:
+
+\begin{itemize}
+    \item \texttt{Docs/life-2/diagrams/class-diagrams/m1-auth-profile/class-m1.md}
+    \item \texttt{Docs/life-2/diagrams/class-diagrams/m1-auth-profile/class-m1.yaml}
+\end{itemize}
+
+File \texttt{.md} phục vụ human review, file \texttt{.yaml} là input cho
+\textbf{schema-design-analyst} (Skill 2.6) ở giai đoạn tiếp theo.
+
+% =============================================================================
+\section{Bộ kỹ năng phân tích kiến trúc giao diện (UI Architecture Analyst)}
+
+UI Architecture Analyst đóng vai trò là "cầu nối" giữa logic hệ thống và giao diện
+người dùng. Skill này chuyển đổi từ Schema + Diagrams → UI Component Specs.
+
+% -----------------------------------------------------------------------------
+\subsection{Data-Component Binding}
+
+Skill thực hiện ánh xạ (Mapping) từ các trường dữ liệu trong Schema sang các thành phần
+giao diện thực tế (UI Components) dựa trên bảng mapping rules trong
+\texttt{knowledge/mapping-rules.md}.
+
+Ví dụ ánh xạ:
+
+\begin{table}[h]
+\centering
+\caption{Ánh xạ Schema Type → UI Component}
+\label{tab:schema-ui-mapping}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Schema Type} & \textbf{UI Component (shadcn)} & \textbf{Props} \\
+\hline
+text & Input & type="text", placeholder, maxLength \\
+\hline
+email & Input & type="email", required \\
+\hline
+select & Select & options[], defaultValue \\
+\hline
+richText & RichTextEditor & toolbar config \\
+\hline
+upload & ImageUpload & maxSize, accept \\
+\hline
+relationship & RelationPicker & collection, multiple \\
+\hline
+\end{tabular}
+\end{table}
+
+Quy tắc:
+\begin{itemize}
+    \item \textbf{Zero Hallucination}: Không thêm UI field nếu không có trong Schema
+    \item \textbf{Validation Sync}: Validation rules từ Schema → Component props
+    \item \textbf{Required/Optional}: Khớp với Schema definition
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+\subsection{Screen Inventory và UI Contract}
+
+Skill tạo ra file \texttt{mX-ui-spec.md} theo format 3-section:
+
+\subsubsection{Section 1 — Screen Inventory}
+
+Bảng liệt kê màn hình với format:
+\begin{itemize}
+    \item Screen ID: \texttt{SC-M[X]-0N}
+    \item Tên màn hình
+    \item Mục tiêu (User goal)
+    \item Actor (ai sử dụng)
+    \item Use Case reference
+\end{itemize}
+
+\subsubsection{Section 2 — Detailed Screen Logic}
+
+Mỗi màn hình có 3 sub-sections:
+\begin{itemize}
+    \item \textbf{(A) Data-Component Binding Table}: UI Element → Source Field → Component Type
+    \item \textbf{(B) Interaction Flow}: Pre-conditions, Post-conditions, Error handling
+    \item \textbf{(C) States \& Variations}: Loading, Empty, Error states
+\end{itemize}
+
+\subsubsection{Section 3 — UI Contract}
+
+Bảng mapping \texttt{UI ID → data-testid} cho AI Life-3 code được ngay.
+
+% -----------------------------------------------------------------------------
+\subsection{Quy trình 5 phases}
+
+\begin{enumerate}
+    \item \textbf{Phase 1 — Context Discovery}: Module ID → Danh sách files cần đọc
+    \item \textbf{Phase 2 — Screen Identification}: Flow/Use Case → Screen Inventory draft
+    \item \textbf{[IP-1]}: Confirm Screen Inventory với user
+    \item \textbf{Phase 3 — Data \& Component Mapping}: Schema + Inventory → Binding table
+    \item \textbf{Phase 4 — Synthesis \& Merge}: Merge với file cũ (nếu có)
+    \item \textbf{[IP-2]}: Nếu file cũ tồn tại, confirm merge plan
+    \item \textbf{Phase 5 — Output Generation}: Ghi file \texttt{mX-ui-spec.md}
+\end{enumerate}
+
+% -----------------------------------------------------------------------------
+\subsection{Sản phẩm đầu ra}
+
+File \texttt{Docs/life-2/ui/specs/m[X]-*-ui-spec.md} với đầy đủ 3 sections.
+File này là input chính cho \textbf{ui-wireframe-designer} (sử dụng MCP Pencil để
+vẽ wireframe trực tiếp lên canvas).
+
+% =============================================================================
+\section{Quy trình phối hợp và tích hợp}
+
+Toàn bộ các bộ kỹ năng hoạt động phối hợp theo một pipeline tuần tự và chặt chẽ,
+tạo thành một "Knowledge Factory" tự động hóa.
+
+% -----------------------------------------------------------------------------
+\subsection{Pipeline tổng thể}
+
+Pipeline hoàn chỉnh được minh họa trong Hình~\ref{fig:full-pipeline}:
+
+\begin{figure}[h]
+    \centering
+    % TODO: Thêm hình pipeline đầy đủ
+    % \includegraphics[width=\textwidth]{figures/full-pipeline}
+    \fbox{\parbox{\textwidth}{\centering [Full Pipeline: Life-2 Analysis \& Design]}}
+    \caption{Pipeline tổng thể của hệ thống Agent Skills}
+    \label{fig:full-pipeline}
+\end{figure}
+
+Các bước:
+\begin{enumerate}
+    \item \textbf{Thiết kế kỹ năng}: Sử dụng Skill Architect để định hình vai trò của từng Agent
+    \item \textbf{Phân tích nghiệp vụ}: Flow/Sequence/Activity Analyst xây dựng khung logic
+    \item \textbf{Thiết kế dữ liệu}: Class Diagram Analyst chuyển đổi sang OOP view
+    \item \textbf{Thiết kế giao diện}: UI Architecture Analyst ánh xạ Schema → UI Components
+    \item \textbf{Đóng gói tri thức}: Tổng hợp toàn bộ kết quả thành tài liệu kỹ thuật minh bạch
+\end{enumerate}
+
+% -----------------------------------------------------------------------------
+\subsection{Interaction Points và Quality Gates}
+
+Mỗi skill có từ 2-3 Interaction Points (IPs) bắt buộc — các điểm dừng để:
+\begin{itemize}
+    \item Xác nhận scope trước khi đi sâu
+    \item Review draft output trước khi finalize
+    \item Báo cáo validation results trước khi deliver
+\end{itemize}
+
+Quality Gates đảm bảo:
+\begin{itemize}
+    \item Zero hallucination (mọi field có source citation)
+    \item Zero invented flow (mọi interaction có trong diagram)
+    \item Consistency check (Class Diagram ↔ ER Diagram ↔ Spec)
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+\subsection{Traceability matrix}
+
+Hệ thống đảm bảo traceability xuyên suốt từ Use Case → Diagram → Schema → UI:
+
+\begin{table}[h]
+\centering
+\caption{Traceability Matrix ví dụ}
+\label{tab:traceability}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Use Case} & \textbf{Diagram} & \textbf{Schema} & \textbf{UI Screen} \\
+\hline
+UC01 Register & sequence-m1-a1.md & class-m1.yaml & SC-M1-01 \\
+\hline
+UC02 Login & sequence-m1-a2.md & class-m1.yaml & SC-M1-02 \\
+\hline
+UC03 Edit Profile & flow-m1-b3.md & class-m1.yaml & SC-M1-03 \\
+\hline
+\end{tabular}
+\end{table}
+
+% -----------------------------------------------------------------------------
+\subsection{Knowledge Factory model}
+
+Thiết kế này không chỉ tạo ra một website mạng xã hội cụ thể, mà quan trọng hơn
+là thiết lập được một \textbf{"Knowledge Factory"} — nhà máy sản xuất tri thức
+cho phép AI tự động hóa quy trình phát triển phần mềm một cách tin cậy và có kiểm soát.
+
+Ưu điểm:
+\begin{itemize}
+    \item \textbf{Tái sử dụng}: Mỗi skill có thể áp dụng cho nhiều dự án khác
+    \item \textbf{Nhất quán}: 3 Pillars + 7 Zones đảm bảo tính đồng nhất
+    \item \textbf{Kiểm soát}: Interaction Points + Self-Scoring chống hallucination
+    \item \textbf{Mở rộng}: Dễ dàng thêm skill mới theo framework chuẩn
+\end{itemize}
+
+% =============================================================================
+% KẾT THÚC CHƯƠNG 2
+% =============================================================================

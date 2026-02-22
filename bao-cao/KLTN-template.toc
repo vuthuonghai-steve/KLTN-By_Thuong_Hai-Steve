@@ -1,0 +1,92 @@
+\babel@toc {vietnamese}{}\relax 
+\contentsline {chapter}{Bản cam đoan}{i}{Doc-Start}%
+\contentsline {chapter}{Lời cảm ơn}{ii}{Doc-Start}%
+\contentsline {chapter}{Tóm tắt}{iii}{Doc-Start}%
+\contentsline {chapter}{Danh mục bảng biểu}{viii}{chapter*.1}%
+\contentsline {chapter}{Danh mục hình ảnh}{ix}{chapter*.2}%
+\contentsline {chapter}{Danh mục ký hiệu, chữ viết tắt}{xi}{chapter*.3}%
+\contentsline {chapter}{Mở đầu}{1}{chapter*.3}%
+\contentsline {section}{1. Giới thiệu đơn vị thực tập}{1}{section*.4}%
+\contentsline {section}{2. Lý do chọn đề tài}{2}{section*.5}%
+\contentsline {section}{3. Mục tiêu nghiên cứu}{4}{section*.6}%
+\contentsline {section}{4. Đối tượng và phạm vi nghiên cứu}{5}{section*.7}%
+\contentsline {section}{5. Phương pháp nghiên cứu}{8}{section*.10}%
+\contentsline {section}{6. Dự kiến kết quả nghiên cứu đạt được}{11}{section*.11}%
+\contentsline {section}{7. Ý nghĩa khoa học và ý nghĩa thực tiễn của nghiên cứu}{14}{section*.16}%
+\contentsline {section}{8. Bố cục của báo cáo}{17}{section*.19}%
+\contentsline {chapter}{\numberline {1}CƠ SỞ LÝ THUYẾT}{20}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Tổng quan về trí tuệ nhân tạo và AI Chatbot}{20}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Quy trình làm việc dựa trên Agent (Agentic Workflow)}{20}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Các công nghệ nền tảng trong phát triển Website}{21}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Phân tích hệ thống mạng xã hội và bài toán chia sẻ kiến thức}{21}{section.1.4}%
+\contentsline {chapter}{\numberline {2}PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG AGENT SKILLS}{24}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Kiến trúc tổng thể hệ thống Agent Skills}{24}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Mô hình Meta-Skill Framework}{25}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Ba trụ cột (3 Pillars)}{25}{subsection.2.1.2}%
+\contentsline {subsubsection}{Pillar 1 — Knowledge (Tri thức)}{25}{section*.20}%
+\contentsline {subsubsection}{Pillar 2 — Process (Quy trình)}{26}{section*.21}%
+\contentsline {subsubsection}{Pillar 3 — Guardrails (Kiểm soát)}{26}{section*.22}%
+\contentsline {subsection}{\numberline {2.1.3}Quy trình 5 bước xây dựng Skill}{26}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Bộ kỹ năng Meta-Skills cho xây dựng Agent}{27}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Skill Architect — Kiến trúc sư thiết kế Skills}{27}{subsection.2.2.1}%
+\contentsline {subsubsection}{Vai trò và vị trí trong pipeline}{27}{section*.23}%
+\contentsline {subsubsection}{Cấu trúc thư mục và Skill Suite Pipeline}{27}{section*.24}%
+\contentsline {subsubsection}{Kiến trúc 7 Zones}{29}{section*.25}%
+\contentsline {subsubsection}{Quy trình Adaptive Workflow và luồng Runtime}{30}{section*.26}%
+\contentsline {subsubsection}{Cơ chế Self-Scoring}{32}{section*.27}%
+\contentsline {subsubsection}{Guardrails chống Hallucination}{32}{section*.28}%
+\contentsline {subsection}{\numberline {2.2.2}Skill Planner — Lập kế hoạch triển khai}{33}{subsection.2.2.2}%
+\contentsline {subsubsection}{Cấu trúc thư mục}{33}{section*.29}%
+\contentsline {subsubsection}{Mô hình 3 tầng kiến thức}{34}{section*.30}%
+\contentsline {subsubsection}{Quy trình Read → Analyze → Write}{34}{section*.31}%
+\contentsline {subsubsection}{Guardrails chống bịa đặt}{35}{section*.32}%
+\contentsline {subsection}{\numberline {2.2.3}Skill Builder — Kỹ sư triển khai}{36}{subsection.2.2.3}%
+\contentsline {subsubsection}{Cấu trúc thư mục}{36}{section*.33}%
+\contentsline {subsubsection}{Engineer Stance — Quyền phản biện thiết kế}{37}{section*.34}%
+\contentsline {subsubsection}{Phase-driven Build Strategy}{37}{section*.35}%
+\contentsline {subsubsection}{Log-Notify-Stop Pattern}{39}{section*.36}%
+\contentsline {subsubsection}{Placeholder Gate Mechanism}{39}{section*.37}%
+\contentsline {section}{\numberline {2.3}Bộ kỹ năng thiết kế cấu trúc dữ liệu (Class Diagram Analyst)}{39}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Cơ chế xử lý đầu vào (Input Resolution)}{40}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Cấu trúc thư mục}{41}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Quy trình 6 pha và luồng thực thi}{41}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Dual-format output strategy}{42}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Aggregate Root vs Embedded Document}{43}{subsection.2.3.5}%
+\contentsline {subsection}{\numberline {2.3.6}Source Citation mechanism}{46}{subsection.2.3.6}%
+\contentsline {section}{\numberline {2.4}Bộ kỹ năng phân tích luồng nghiệp vụ (Flow Design Analyst)}{46}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Cấu trúc thư mục}{46}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Quy trình Discover-before-Ask}{46}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Guardrails chống bịa đặt logic}{48}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Actor Lane Taxonomy}{49}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}Bộ kỹ năng phân tích sơ đồ tuần tự (Sequence Design Analyst)}{49}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Cấu trúc thư mục}{49}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Nguyên tắc Code-First Truth}{50}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}UML Fragment Patterns}{51}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.4}Naming Consistency Rule}{51}{subsection.2.5.4}%
+\contentsline {section}{\numberline {2.6}Bộ kỹ năng phân tích sơ đồ hoạt động (Activity Diagram Design Analyst)}{52}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Cấu trúc thư mục}{52}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Quy trình 4 pha và 2 Mode thực thi}{52}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Clean Architecture Layering (B-U-E)}{54}{subsection.2.6.3}%
+\contentsline {subsection}{\numberline {2.6.4}Deadlock Detection}{54}{subsection.2.6.4}%
+\contentsline {subsection}{\numberline {2.6.5}Swimlane Organization}{54}{subsection.2.6.5}%
+\contentsline {section}{\numberline {2.7}Bộ kỹ năng phân tích kiến trúc giao diện (UI Architecture Analyst)}{55}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}Cấu trúc thư mục và Ecosystem}{55}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Data-Component Binding}{56}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}Quy trình 5 pha và luồng thực thi}{56}{subsection.2.7.3}%
+\contentsline {section}{\numberline {2.8}Bộ kỹ năng thiết kế Schema vật lý (Schema Design Analyst)}{57}{section.2.8}%
+\contentsline {subsection}{\numberline {2.8.1}Cơ chế Input Resolution}{58}{subsection.2.8.1}%
+\contentsline {subsection}{\numberline {2.8.2}Cấu trúc thư mục}{60}{subsection.2.8.2}%
+\contentsline {subsection}{\numberline {2.8.3}Luồng thực thi và Dual-Format Output}{60}{subsection.2.8.3}%
+\contentsline {subsection}{\numberline {2.8.4}Guardrails chống ảo giác}{61}{subsection.2.8.4}%
+\contentsline {section}{\numberline {2.9}Bộ kỹ năng vẽ giao diện tự động (UI Pencil Drawer)}{62}{section.2.9}%
+\contentsline {subsection}{\numberline {2.9.1}Cấu trúc thư mục và 4 Phases tự chủ}{62}{subsection.2.9.1}%
+\contentsline {subsection}{\numberline {2.9.2}Mô hình Autonomous Execution 4 Phase}{63}{subsection.2.9.2}%
+\contentsline {subsection}{\numberline {2.9.3}5 Guardrails đảm bảo tính chính xác}{65}{subsection.2.9.3}%
+\contentsline {section}{\numberline {2.10}Quy trình phối hợp và tích hợp}{66}{section.2.10}%
+\contentsline {chapter}{\numberline {3}Triển khai và thử nghiệm hệ thống}{68}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Mô tả quá trình triển khai hệ thống}{68}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Trình bày kết quả thử nghiệm}{68}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Đánh giá hệ thống}{68}{section.3.3}%
+\contentsline {chapter}{Kết luận và hướng phát triển}{69}{section.3.3}%
+\contentsline {chapter}{Tài liệu tham khảo}{70}{chapter*.41}%
+\contentsline {chapter}{Phụ lục}{72}{appendix*.43}%

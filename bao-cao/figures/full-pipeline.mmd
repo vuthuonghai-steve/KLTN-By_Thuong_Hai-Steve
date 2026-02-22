@@ -1,0 +1,25 @@
+flowchart LR
+    subgraph Life2 [LIFE-2 ANALYSIS & DESIGN]
+        direction TB
+        SA[Skill Architect<br/>Design Skill Structure]
+        FD[Flow Design Analyst<br/>Business Process Flow]
+        SEQ[Sequence Design Analyst<br/>Interaction Flow]
+        CD[Class Diagram Analyst<br/>Data Structure]
+        UI[UI Architecture Analyst<br/>Screen Specs]
+    end
+
+    SA --> FD
+    SA --> SEQ
+    SA --> CD
+    FD --> UI
+    SEQ --> UI
+    CD --> UI
+
+    UI --> L3[LIFE-3<br/>Code Implementation]
+
+    style SA fill:#ff8a65,stroke:#bf360c,stroke-width:2px
+    style FD fill:#90caf9,stroke:#1565c0
+    style SEQ fill:#90caf9,stroke:#1565c0
+    style CD fill:#a5d6a7,stroke:#2e7d32
+    style UI fill:#fff9c4,stroke:#f9a825
+    style L3 fill:#e1bee7,stroke:#6a1b9a

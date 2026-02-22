@@ -1,0 +1,15 @@
+flowchart TD
+    U([User]) -->|trigger + input| SA[skill-architect]
+    SA -->|design.md| SC[.skill-context/name/]
+    SC -->|§2 §3 §7| SP[skill-planner]
+    SP -->|todo.md + resources/| SB[skill-builder]
+    SB -->|skill files| SF([Skill Files<br/>SKILL.md + all zones])
+
+    SA -.->|§3 Zone Mapping contract| SP
+    SA -.->|§7 PD Plan Tier 1/2| SB
+    SA -.->|§8 Risks → Guardrails| SB
+
+    style SA fill:#ff8a65,stroke:#bf360c,stroke-width:2px
+    style SP fill:#90caf9,stroke:#1565c0
+    style SB fill:#a5d6a7,stroke:#2e7d32
+    style SF fill:#fff9c4,stroke:#f9a825
