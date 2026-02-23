@@ -6,22 +6,22 @@
 \contentsline {chapter}{Danh mục hình ảnh}{x}{chapter*.5}%
 \contentsline {chapter}{Danh mục ký hiệu, chữ viết tắt}{xii}{chapter*.7}%
 \contentsline {chapter}{Mở đầu}{1}{chapter*.9}%
-\contentsline {section}{\numberline {0.1}Giới thiệu đơn vị thực tập}{1}{section.0.1}%
-\contentsline {section}{\numberline {0.2}Lý do chọn đề tài}{2}{section.0.2}%
-\contentsline {section}{\numberline {0.3}Mục tiêu nghiên cứu}{4}{section.0.3}%
-\contentsline {section}{\numberline {0.4}Đối tượng và phạm vi nghiên cứu}{5}{section.0.4}%
-\contentsline {subsection}{\numberline {0.4.1}Phạm vi nghiên cứu}{5}{subsection.0.4.1}%
-\contentsline {subsection}{\numberline {0.4.2}Đối tượng nghiên cứu}{7}{subsection.0.4.2}%
-\contentsline {section}{\numberline {0.5}Phương pháp nghiên cứu}{8}{section.0.5}%
-\contentsline {section}{\numberline {0.6}Dự kiến kết quả nghiên cứu đạt được}{10}{section.0.6}%
-\contentsline {subsection}{\numberline {0.6.1}Sản phẩm phần mềm}{11}{subsection.0.6.1}%
-\contentsline {subsection}{\numberline {0.6.2}Tài liệu nghiên cứu và thiết kế}{12}{subsection.0.6.2}%
-\contentsline {subsection}{\numberline {0.6.3}Kiến thức và đóng góp học thuật}{13}{subsection.0.6.3}%
-\contentsline {subsection}{\numberline {0.6.4}Sản phẩm bổ trợ}{14}{subsection.0.6.4}%
-\contentsline {section}{\numberline {0.7}Ý nghĩa khoa học và ý nghĩa thực tiễn của nghiên cứu}{14}{section.0.7}%
-\contentsline {subsection}{\numberline {0.7.1}Ý nghĩa khoa học}{14}{subsection.0.7.1}%
-\contentsline {subsection}{\numberline {0.7.2}Ý nghĩa thực tiễn}{15}{subsection.0.7.2}%
-\contentsline {section}{\numberline {0.8}Bố cục của báo cáo}{17}{section.0.8}%
+\contentsline {section}{Giới thiệu đơn vị thực tập}{1}{section*.10}%
+\contentsline {section}{Lý do chọn đề tài}{2}{section*.10}%
+\contentsline {section}{Mục tiêu nghiên cứu}{4}{section*.10}%
+\contentsline {section}{Đối tượng và phạm vi nghiên cứu}{5}{Item.4}%
+\contentsline {subsection}{Phạm vi nghiên cứu}{5}{section*.11}%
+\contentsline {subsection}{Đối tượng nghiên cứu}{7}{section*.11}%
+\contentsline {section}{Phương pháp nghiên cứu}{8}{Item.8}%
+\contentsline {section}{Dự kiến kết quả nghiên cứu đạt được}{10}{Item.13}%
+\contentsline {subsection}{Sản phẩm phần mềm}{11}{section*.12}%
+\contentsline {subsection}{Tài liệu nghiên cứu và thiết kế}{12}{Item.16}%
+\contentsline {subsection}{Kiến thức và đóng góp học thuật}{13}{Item.19}%
+\contentsline {subsection}{Sản phẩm bổ trợ}{14}{Item.22}%
+\contentsline {section}{Ý nghĩa khoa học và ý nghĩa thực tiễn của nghiên cứu}{14}{Item.22}%
+\contentsline {subsection}{Ý nghĩa khoa học}{14}{section*.13}%
+\contentsline {subsection}{\numberline {0.0.1}Ý nghĩa thực tiễn}{15}{subsection.0.0.1}%
+\contentsline {section}{Bố cục của báo cáo}{17}{Item.30}%
 \contentsline {chapter}{\numberline {1}CƠ SỞ LÝ THUYẾT}{20}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Tổng quan về trí tuệ nhân tạo và mô hình ngôn ngữ lớn}{20}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Khái niệm trí tuệ nhân tạo}{20}{subsection.1.1.1}%
@@ -56,21 +56,21 @@
 \contentsline {section}{\numberline {2.2}Bộ kỹ năng Meta-Skills cho xây dựng Agent}{33}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Skill Architect — Kiến trúc sư thiết kế Skills}{34}{subsection.2.2.1}%
 \contentsline {subsubsection}{Vai trò và vị trí trong pipeline}{34}{subsection.2.2.1}%
-\contentsline {subsubsection}{Cấu trúc thư mục và Skill Suite Pipeline}{35}{figure.caption.15}%
-\contentsline {subsubsection}{Kiến trúc 7 Zones}{36}{figure.caption.17}%
-\contentsline {subsubsection}{Quy trình Adaptive Workflow và luồng Runtime}{36}{table.caption.18}%
-\contentsline {subsubsection}{Cơ chế Self-Scoring}{38}{figure.caption.20}%
-\contentsline {subsubsection}{Guardrails chống Hallucination}{38}{figure.caption.20}%
+\contentsline {subsubsection}{Cấu trúc thư mục và Skill Suite Pipeline}{35}{figure.caption.19}%
+\contentsline {subsubsection}{Kiến trúc 7 Zones}{36}{figure.caption.21}%
+\contentsline {subsubsection}{Quy trình Adaptive Workflow và luồng Runtime}{36}{table.caption.22}%
+\contentsline {subsubsection}{Cơ chế Self-Scoring}{38}{figure.caption.24}%
+\contentsline {subsubsection}{Guardrails chống Hallucination}{38}{figure.caption.24}%
 \contentsline {subsection}{\numberline {2.2.2}Skill Planner — Lập kế hoạch triển khai}{39}{subsection.2.2.2}%
 \contentsline {subsubsection}{Cấu trúc thư mục}{39}{subsection.2.2.2}%
-\contentsline {subsubsection}{Mô hình 3 tầng kiến thức}{39}{figure.caption.21}%
+\contentsline {subsubsection}{Mô hình 3 tầng kiến thức}{39}{figure.caption.25}%
 \contentsline {subsubsection}{Quy trình Read → Analyze → Write}{40}{Item.54}%
-\contentsline {subsubsection}{Guardrails chống bịa đặt}{41}{figure.caption.22}%
+\contentsline {subsubsection}{Guardrails chống bịa đặt}{41}{figure.caption.26}%
 \contentsline {subsection}{\numberline {2.2.3}Skill Builder — Kỹ sư triển khai}{42}{subsection.2.2.3}%
-\contentsline {subsubsection}{Cấu trúc thư mục}{42}{figure.caption.23}%
-\contentsline {subsubsection}{Engineer Stance — Quyền phản biện thiết kế}{43}{figure.caption.24}%
+\contentsline {subsubsection}{Cấu trúc thư mục}{42}{figure.caption.27}%
+\contentsline {subsubsection}{Engineer Stance — Quyền phản biện thiết kế}{43}{figure.caption.28}%
 \contentsline {subsubsection}{Phase-driven Build Strategy}{43}{Item.61}%
-\contentsline {subsubsection}{Log-Notify-Stop Pattern}{45}{figure.caption.26}%
+\contentsline {subsubsection}{Log-Notify-Stop Pattern}{45}{figure.caption.30}%
 \contentsline {subsubsection}{Placeholder Gate Mechanism}{45}{Item.69}%
 \contentsline {section}{\numberline {2.3}Bộ kỹ năng thiết kế cấu trúc dữ liệu (Class Diagram Analyst)}{45}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Cơ chế xử lý đầu vào (Input Resolution)}{46}{subsection.2.3.1}%
@@ -123,26 +123,26 @@
 \contentsline {subsection}{\numberline {3.2.6}Kết quả sơ đồ quan hệ thực thể (ER Diagram)}{84}{subsection.3.2.6}%
 \contentsline {subsection}{\numberline {3.2.7}Kết quả thiết kế cơ sở dữ liệu vật lý (Schema Design)}{86}{subsection.3.2.7}%
 \contentsline {subsubsection}{Các design patterns áp dụng}{87}{subsection.3.2.7}%
-\contentsline {subsubsection}{Ví dụ: Collection Users (M1)}{87}{table.caption.66}%
+\contentsline {subsubsection}{Ví dụ: Collection Users (M1)}{87}{table.caption.70}%
 \contentsline {subsubsection}{Hệ thống Access Control}{88}{table.3.10}%
 \contentsline {subsubsection}{Kiểm chứng chất lượng}{89}{table.3.10}%
 \contentsline {subsection}{\numberline {3.2.8}Kết quả thiết kế giao diện người dùng}{89}{subsection.3.2.8}%
 \contentsline {subsubsection}{Đặc tả UI (UI Specs)}{89}{subsection.3.2.8}%
-\contentsline {subsubsection}{Wireframe Blueprints}{90}{table.caption.67}%
+\contentsline {subsubsection}{Wireframe Blueprints}{90}{table.caption.71}%
 \contentsline {section}{\numberline {3.3}Đánh giá hệ thống}{92}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Đánh giá về độ bao phủ (Coverage)}{92}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Đánh giá về tính nhất quán (Consistency)}{92}{subsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.3.3}Đánh giá về chất lượng kỹ thuật}{93}{subsection.3.3.3}%
 \contentsline {subsubsection}{Hiệu quả của Guardrails chống ảo giác}{93}{subsection.3.3.3}%
-\contentsline {subsubsection}{Các design patterns đã áp dụng thành công}{94}{table.caption.70}%
+\contentsline {subsubsection}{Các design patterns đã áp dụng thành công}{94}{table.caption.74}%
 \contentsline {subsection}{\numberline {3.3.4}Đánh giá về khả năng sẵn sàng cho giai đoạn triển khai (Life-3)}{95}{subsection.3.3.4}%
 \contentsline {subsection}{\numberline {3.3.5}Hạn chế và bài học kinh nghiệm}{95}{subsection.3.3.5}%
-\contentsline {chapter}{Kết luận và hướng phát triển}{97}{chapter*.71}%
+\contentsline {chapter}{Kết luận và hướng phát triển}{97}{chapter*.75}%
 \contentsline {section}{\numberline {3.4}Kết quả đạt được}{97}{section.3.4}%
 \contentsline {section}{\numberline {3.5}Hạn chế của nghiên cứu}{98}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Hướng phát triển trong tương lai}{99}{section.3.6}%
-\contentsline {chapter}{Tài liệu tham khảo}{102}{chapter*.72}%
-\contentsline {chapter}{Phụ lục}{105}{appendix*.74}%
+\contentsline {chapter}{Tài liệu tham khảo}{102}{chapter*.76}%
+\contentsline {chapter}{Phụ lục}{105}{appendix*.78}%
 \contentsline {section}{\numberline {.1}Phụ lục A: Cấu trúc thư mục Agent Skill}{105}{section.Alph0.1}%
 \contentsline {section}{Phụ lục B: Trích mẫu SKILL.md}{106}{section.Alph0.1}%
 \contentsline {section}{Phụ lục C: Cấu trúc sản phẩm đầu ra Life-2}{107}{section.Alph0.1}%

@@ -1,25 +1,25 @@
 \babel@toc {vietnamese}{}\relax 
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {1.1}{\ignorespaces Các loại sơ đồ UML sử dụng trong nghiên cứu}}{27}{table.caption.10}%
-\contentsline {table}{\numberline {1.2}{\ignorespaces Mô hình 4-Life Lifecycle}}{28}{table.caption.11}%
-\contentsline {table}{\numberline {1.3}{\ignorespaces So sánh các nền tảng chia sẻ kiến thức hiện có}}{30}{table.caption.12}%
+\contentsline {table}{\numberline {1.1}{\ignorespaces Các loại sơ đồ UML sử dụng trong nghiên cứu}}{27}{table.caption.14}%
+\contentsline {table}{\numberline {1.2}{\ignorespaces Mô hình 4-Life Lifecycle}}{28}{table.caption.15}%
+\contentsline {table}{\numberline {1.3}{\ignorespaces So sánh các nền tảng chia sẻ kiến thức hiện có}}{30}{table.caption.16}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces 7 Zones trong cấu trúc Agent Skill}}{36}{table.caption.18}%
-\contentsline {table}{\numberline {2.2}{\ignorespaces Zone Mapping của Schema Design Analyst}}{65}{table.caption.46}%
-\contentsline {table}{\numberline {2.3}{\ignorespaces Zone Mapping của UI Pencil Drawer}}{68}{table.caption.49}%
+\contentsline {table}{\numberline {2.1}{\ignorespaces 7 Zones trong cấu trúc Agent Skill}}{36}{table.caption.22}%
+\contentsline {table}{\numberline {2.2}{\ignorespaces Zone Mapping của Schema Design Analyst}}{65}{table.caption.50}%
+\contentsline {table}{\numberline {2.3}{\ignorespaces Zone Mapping của UI Pencil Drawer}}{68}{table.caption.53}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Môi trường triển khai Agent Skills}}{72}{table.caption.53}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces Tổng hợp artifacts thiết kế được tạo ra bởi Agent Skills}}{75}{table.caption.54}%
-\contentsline {table}{\numberline {3.3}{\ignorespaces Phân bổ Use Cases theo module}}{76}{table.caption.55}%
-\contentsline {table}{\numberline {3.4}{\ignorespaces Kết quả Activity Diagrams theo module}}{78}{table.caption.57}%
-\contentsline {table}{\numberline {3.5}{\ignorespaces Kết quả Sequence Diagrams theo module}}{79}{table.caption.58}%
-\contentsline {table}{\numberline {3.6}{\ignorespaces Kết quả Flow Diagrams theo module và Use Case}}{81}{table.caption.60}%
-\contentsline {table}{\numberline {3.7}{\ignorespaces Kết quả Class Diagrams theo module}}{83}{table.caption.62}%
-\contentsline {table}{\numberline {3.8}{\ignorespaces Danh sách 13 collections trong ER Diagram}}{85}{table.caption.64}%
-\contentsline {table}{\numberline {3.9}{\ignorespaces Design Patterns trong Schema Design}}{87}{table.caption.66}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces Môi trường triển khai Agent Skills}}{72}{table.caption.57}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Tổng hợp artifacts thiết kế được tạo ra bởi Agent Skills}}{75}{table.caption.58}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Phân bổ Use Cases theo module}}{76}{table.caption.59}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces Kết quả Activity Diagrams theo module}}{78}{table.caption.61}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces Kết quả Sequence Diagrams theo module}}{79}{table.caption.62}%
+\contentsline {table}{\numberline {3.6}{\ignorespaces Kết quả Flow Diagrams theo module và Use Case}}{81}{table.caption.64}%
+\contentsline {table}{\numberline {3.7}{\ignorespaces Kết quả Class Diagrams theo module}}{83}{table.caption.66}%
+\contentsline {table}{\numberline {3.8}{\ignorespaces Danh sách 13 collections trong ER Diagram}}{85}{table.caption.68}%
+\contentsline {table}{\numberline {3.9}{\ignorespaces Design Patterns trong Schema Design}}{87}{table.caption.70}%
 \contentsline {table}{\numberline {3.10}{\ignorespaces Schema chi tiết collection \texttt {users} (M1)}}{88}{table.3.10}%
-\contentsline {table}{\numberline {3.11}{\ignorespaces Số lượng màn hình theo module trong UI Specs}}{90}{table.caption.67}%
-\contentsline {table}{\numberline {3.12}{\ignorespaces Wireframe blueprints theo module}}{91}{table.caption.68}%
-\contentsline {table}{\numberline {3.13}{\ignorespaces Ma trận bao phủ: Module × Loại sơ đồ}}{92}{table.caption.69}%
-\contentsline {table}{\numberline {3.14}{\ignorespaces Hiệu quả Guardrails trong quá trình triển khai}}{94}{table.caption.70}%
+\contentsline {table}{\numberline {3.11}{\ignorespaces Số lượng màn hình theo module trong UI Specs}}{90}{table.caption.71}%
+\contentsline {table}{\numberline {3.12}{\ignorespaces Wireframe blueprints theo module}}{91}{table.caption.72}%
+\contentsline {table}{\numberline {3.13}{\ignorespaces Ma trận bao phủ: Module × Loại sơ đồ}}{92}{table.caption.73}%
+\contentsline {table}{\numberline {3.14}{\ignorespaces Hiệu quả Guardrails trong quá trình triển khai}}{94}{table.caption.74}%
 \contentsfinish 

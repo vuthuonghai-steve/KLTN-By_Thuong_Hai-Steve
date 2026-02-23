@@ -1,12 +1,12 @@
 # Fdb version 4
-["xdvipdfmx"] 1771786684.27497 "KLTN-template.xdv" "KLTN-template.pdf" "KLTN-template" 1771786687.34967 0
-  "KLTN-template.xdv" 1771786684.18437 1306212 7fdd323065c73c8728a984461b0eb8ad "xelatex"
+["xdvipdfmx"] 1771854851.29499 "KLTN-template.xdv" "KLTN-template.pdf" "KLTN-template" 1771854851.29149 0
+  "KLTN-template.xdv" 1771854851.10059 1304704 6f40dc4ac405c70c6984dc3123054715 "xelatex"
   (generated)
   "KLTN-template.pdf"
   (rewritten before read)
-["xelatex"] 1771786683.14463 "/home/steve/Documents/KLTN/bao-cao/KLTN-template.tex" "KLTN-template.xdv" "KLTN-template" 1771786687.34806 0
+["xelatex"] 1771854848.55841 "/home/steve/Documents/KLTN/bao-cao/KLTN-template.tex" "KLTN-template.xdv" "KLTN-template" 1771854851.28606 0
   "/etc/texmf/web2c/texmf.cnf" 1771699411.71998 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/steve/Documents/KLTN/bao-cao/KLTN-template.tex" 1771786651.66165 149645 ff4b3a353cf578831a29187b2e28f60e ""
+  "/home/steve/Documents/KLTN/bao-cao/KLTN-template.tex" 1771854848.44304 150686 2dd74b013f3955605cb548ac77ec95f5 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -162,12 +162,12 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1771699432 9159227 5e81d378c16635c15f77c079f77b49bf ""
-  "KLTN-template.aux" 1771786684.17967 40068 ff346932fe42b5c1dd4957da734d0dce "xelatex"
-  "KLTN-template.lof" 1771786684.18437 6156 b8e0c489b63d6daf25dc1c7eb9e4e811 "xelatex"
-  "KLTN-template.lot" 1771786684.18437 2589 3e63c9a80360dbb8406a3e624bdb8fe6 "xelatex"
-  "KLTN-template.out" 1771786684.18267 29908 9ceda3884c4fc4e625c09338d5de4ad5 "xelatex"
-  "KLTN-template.tex" 1771786651.66165 149645 ff4b3a353cf578831a29187b2e28f60e ""
-  "KLTN-template.toc" 1771786684.18437 15025 caf91bd00e88f1b71e048b1de5340b4c "xelatex"
+  "KLTN-template.aux" 1771854851.09326 39730 7c1934f9c9014dce52b7bf6c75366428 "xelatex"
+  "KLTN-template.lof" 1771854851.10059 6156 700822798cacf98d1e82c9b29faf553a "xelatex"
+  "KLTN-template.lot" 1771854851.10059 2589 92d353515faccad93b32e2ae9a3a1090 "xelatex"
+  "KLTN-template.out" 1771854851.10026 29805 98e68abb5ee5fbfd2a87835641573347 "xelatex"
+  "KLTN-template.tex" 1771854848.44304 150686 2dd74b013f3955605cb548ac77ec95f5 ""
+  "KLTN-template.toc" 1771854851.10059 14687 95ddccd1e464e4a98444adc7b41812e7 "xelatex"
   "figures/5-step-workflow.png" 1771746754.74739 20032 07d4e3088653193e36697d0567ef633a ""
   "figures/aggregate-decision-tree.png" 1771746759.63744 75522 b02c15c54dca352ac2c7580428267b05 ""
   "figures/full-pipeline.png" 1771746762.02911 45952 4a07ea1090b9648ec37d296822d04321 ""
