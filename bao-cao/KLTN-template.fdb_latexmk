@@ -1,12 +1,12 @@
 # Fdb version 4
-["xdvipdfmx"] 1771854851.29499 "KLTN-template.xdv" "KLTN-template.pdf" "KLTN-template" 1771854851.29149 0
-  "KLTN-template.xdv" 1771854851.10059 1304704 6f40dc4ac405c70c6984dc3123054715 "xelatex"
+["xdvipdfmx"] 1771866656.13241 "KLTN-template.xdv" "KLTN-template.pdf" "KLTN-template" 1771866659.07564 0
+  "KLTN-template.xdv" 1771866656.05092 1537364 f289c925805b3822accbf6b701a3c5fd "xelatex"
   (generated)
   "KLTN-template.pdf"
   (rewritten before read)
-["xelatex"] 1771854848.55841 "/home/steve/Documents/KLTN/bao-cao/KLTN-template.tex" "KLTN-template.xdv" "KLTN-template" 1771854851.28606 0
+["xelatex"] 1771866655.00853 "/home/steve/Documents/KLTN/bao-cao/KLTN-template.tex" "KLTN-template.xdv" "KLTN-template" 1771866659.07417 0
   "/etc/texmf/web2c/texmf.cnf" 1771699411.71998 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/steve/Documents/KLTN/bao-cao/KLTN-template.tex" 1771854848.44304 150686 2dd74b013f3955605cb548ac77ec95f5 ""
+  "/home/steve/Documents/KLTN/bao-cao/KLTN-template.tex" 1771866653.61194 178168 8248979948fc06b0d5d6050e2aefffe6 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -112,6 +112,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty" 1696191071 56128 c2ccf1a29d78c33bc553880402e4fb9a ""
   "/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty" 1696191071 72619 ee90b6612147680fd73c3b1406a74245 ""
   "/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty" 1645391520 7418 021d7c4eb11bde94592761855a3d046e ""
+  "/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty" 1659300143 12441 3b2a708337608012a865c7d9b7f05d28 ""
   "/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty" 1601931149 46845 3b58f70c6e861a13d927bff09d35ecbc ""
   "/usr/share/texlive/texmf-dist/tex/latex/extsizes/extreport.cls" 1137110130 23786 cbd79291aa0922c48a73753b97cabb5f ""
   "/usr/share/texlive/texmf-dist/tex/latex/extsizes/size14.clo" 1137110130 6214 cc6d832fdd2fc5f4a20ee1a002f45d0f ""
@@ -123,6 +124,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg" 1459978653 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1465944070 1224 978390e9c2234eab29404bc21b268d1e ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics-def/xetex.def" 1663965824 14788 1dde73f396dd97d88c838bee2a352abe ""
+  "/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty" 1654720880 7233 e46ce9241d2b2ca2a78155475fdd557a ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty" 1654720880 18387 8f900a490197ebaf93c02ae9476d4b09 ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty" 1654720880 8010 a8d949cbdbc5c983593827c9eec252e1 ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty" 1654720880 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
@@ -139,6 +141,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-xetex.def" 1704491087 31815 935a376385ab1feff82e3d2187c4f47a ""
   "/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty" 1705955748 6565 cfd9fd0a1d5f5ad985151778771ff7a9 ""
   "/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty" 1696969620 9327 c30c00c0072edba199ede5889311aaa9 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/makecell/makecell.sty" 1249334690 15773 2dd7dde1ec1c2a3d0c85bc3b273e04d8 ""
   "/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty" 1601326656 1090 bae35ef70b3168089ef166db3e66f5b2 ""
   "/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty" 1673816307 373 00b204b1d7d095b892ad31a7494b0373 ""
   "/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty" 1601326656 21013 f4ff83d25bb56552493b030f27c075ae ""
@@ -162,12 +165,12 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1771699432 9159227 5e81d378c16635c15f77c079f77b49bf ""
-  "KLTN-template.aux" 1771854851.09326 39730 7c1934f9c9014dce52b7bf6c75366428 "xelatex"
-  "KLTN-template.lof" 1771854851.10059 6156 700822798cacf98d1e82c9b29faf553a "xelatex"
-  "KLTN-template.lot" 1771854851.10059 2589 92d353515faccad93b32e2ae9a3a1090 "xelatex"
-  "KLTN-template.out" 1771854851.10026 29805 98e68abb5ee5fbfd2a87835641573347 "xelatex"
-  "KLTN-template.tex" 1771854848.44304 150686 2dd74b013f3955605cb548ac77ec95f5 ""
-  "KLTN-template.toc" 1771854851.10059 14687 95ddccd1e464e4a98444adc7b41812e7 "xelatex"
+  "KLTN-template.aux" 1771866656.04792 38910 0236cde04e61d4b64f44243fbcc78724 "xelatex"
+  "KLTN-template.lof" 1771866656.05092 6170 f914aef691012e50229a2deb308da8de "xelatex"
+  "KLTN-template.lot" 1771866656.05092 2711 49b51273fd4d7730dea6b072c0c53acb "xelatex"
+  "KLTN-template.out" 1771866656.05077 28156 ebeb385b068d0dc775142a7a643d1835 "xelatex"
+  "KLTN-template.tex" 1771866653.61194 178168 8248979948fc06b0d5d6050e2aefffe6 ""
+  "KLTN-template.toc" 1771866656.05092 13885 52611834b275b4ef754721e3dc2946b0 "xelatex"
   "figures/5-step-workflow.png" 1771746754.74739 20032 07d4e3088653193e36697d0567ef633a ""
   "figures/aggregate-decision-tree.png" 1771746759.63744 75522 b02c15c54dca352ac2c7580428267b05 ""
   "figures/full-pipeline.png" 1771746762.02911 45952 4a07ea1090b9648ec37d296822d04321 ""

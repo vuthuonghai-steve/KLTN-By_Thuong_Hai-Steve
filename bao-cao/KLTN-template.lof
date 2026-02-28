@@ -1,47 +1,47 @@
 \babel@toc {vietnamese}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Mô hình Meta-Skill Framework}}{32}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Quy trình 5 bước xây dựng Agent Skill}}{33}{figure.caption.18}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Pipeline Skill Suite: Architect → Planner → Builder}}{34}{figure.caption.19}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Cấu trúc thư mục của Skill Architect v2}}{35}{figure.caption.20}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Pipeline Skill Suite: Skill Architect → Planner → Builder}}{35}{figure.caption.21}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Luồng thực thi Runtime (Sequence Diagram) của Skill Architect}}{37}{figure.caption.23}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Adaptive Workflow của Skill Architect: Simple/Medium/Complex paths}}{38}{figure.caption.24}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Cấu trúc thư mục tối giản của Skill Planner}}{39}{figure.caption.25}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Luồng thực thi (Sequence Diagram) của Skill Planner: READ → ANALYZE → WRITE}}{41}{figure.caption.26}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Pipeline đầy đủ: User → Architect → Planner → Builder → Skill Package}}{42}{figure.caption.27}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Cấu trúc thư mục của Skill Builder}}{43}{figure.caption.28}%
-\contentsline {figure}{\numberline {2.12}{\ignorespaces Quy trình 5 bước PREPARE → CLARIFY → BUILD → VERIFY → DELIVER của Skill Builder}}{44}{figure.caption.29}%
-\contentsline {figure}{\numberline {2.13}{\ignorespaces Luồng thực thi chi tiết (Sequence Diagram) của Skill Builder}}{44}{figure.caption.30}%
-\contentsline {figure}{\numberline {2.14}{\ignorespaces Input Resolution Flow của Class Diagram Analyst}}{46}{figure.caption.31}%
-\contentsline {figure}{\numberline {2.15}{\ignorespaces Cấu trúc thư mục của Class Diagram Analyst}}{47}{figure.caption.32}%
-\contentsline {figure}{\numberline {2.16}{\ignorespaces Workflow 6 pha với Gate Control của Class Diagram Analyst}}{47}{figure.caption.33}%
-\contentsline {figure}{\numberline {2.17}{\ignorespaces Luồng thực thi (Sequence Diagram) của Class Diagram Analyst}}{48}{figure.caption.34}%
-\contentsline {figure}{\numberline {2.18}{\ignorespaces Decision Tree: Aggregate Root vs Embedded Document trong Class Diagram Analyst}}{49}{figure.caption.35}%
-\contentsline {figure}{\numberline {2.19}{\ignorespaces Decision Tree: Aggregate Root vs Embedded Document}}{50}{figure.caption.36}%
-\contentsline {figure}{\numberline {2.20}{\ignorespaces Cấu trúc thư mục của Flow Design Analyst}}{51}{figure.caption.37}%
-\contentsline {figure}{\numberline {2.21}{\ignorespaces Luồng thực thi (Sequence Diagram) của Flow Design Analyst}}{53}{figure.caption.38}%
-\contentsline {figure}{\numberline {2.22}{\ignorespaces Cấu trúc thư mục của Sequence Design Analyst}}{55}{figure.caption.39}%
-\contentsline {figure}{\numberline {2.23}{\ignorespaces Luồng thực thi (Sequence Diagram) của Sequence Design Analyst}}{56}{figure.caption.40}%
-\contentsline {figure}{\numberline {2.24}{\ignorespaces Cấu trúc thư mục của Activity Diagram Design Analyst}}{57}{figure.caption.41}%
-\contentsline {figure}{\numberline {2.25}{\ignorespaces Workflow 4 pha Gate-based của Activity Diagram Design Analyst}}{58}{figure.caption.42}%
-\contentsline {figure}{\numberline {2.26}{\ignorespaces Luồng thực thi (Sequence Diagram) theo Mode A và Mode B của Activity Diagram Analyst}}{58}{figure.caption.43}%
-\contentsline {figure}{\numberline {2.27}{\ignorespaces Cấu trúc thư mục skill UI Architecture Analyst}}{60}{figure.caption.44}%
-\contentsline {figure}{\numberline {2.28}{\ignorespaces Vị trí UI Architecture Analyst trong hệ sinh thái Agent Skills}}{61}{figure.caption.45}%
-\contentsline {figure}{\numberline {2.29}{\ignorespaces Workflow 5 pha của UI Architecture Analyst}}{61}{figure.caption.46}%
-\contentsline {figure}{\numberline {2.30}{\ignorespaces Luồng thực thi (Sequence Diagram) của UI Architecture Analyst}}{62}{figure.caption.47}%
-\contentsline {figure}{\numberline {2.31}{\ignorespaces Luồng phân tích đầu vào của Schema Design Analyst (Input Resolution Flow)}}{64}{figure.caption.48}%
-\contentsline {figure}{\numberline {2.32}{\ignorespaces Cấu trúc thư mục skill Schema Design Analyst}}{65}{figure.caption.49}%
-\contentsline {figure}{\numberline {2.33}{\ignorespaces Luồng thực thi (Sequence Diagram) của Schema Design Analyst}}{66}{figure.caption.51}%
-\contentsline {figure}{\numberline {2.34}{\ignorespaces Cấu trúc thư mục skill UI Pencil Drawer với 4 Phases tự chủ}}{67}{figure.caption.52}%
-\contentsline {figure}{\numberline {2.35}{\ignorespaces Workflow 4 pha Autonomous của UI Pencil Drawer}}{69}{figure.caption.54}%
-\contentsline {figure}{\numberline {2.36}{\ignorespaces Luồng thực thi end-to-end (Sequence Diagram) của UI Pencil Drawer}}{69}{figure.caption.55}%
-\contentsline {figure}{\numberline {2.37}{\ignorespaces Pipeline tổng thể của hệ thống Agent Skills}}{70}{figure.caption.56}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Mô hình Meta-Skill Framework}}{34}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Quy trình 5 bước xây dựng Agent Skill}}{35}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Pipeline Skill Suite: Architect → Planner → Builder}}{36}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Cấu trúc thư mục của Skill Architect v2}}{37}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Pipeline Skill Suite: Skill Architect → Planner → Builder}}{37}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Luồng thực thi Runtime (Sequence Diagram) của Skill Architect}}{39}{figure.caption.21}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Adaptive Workflow của Skill Architect: Simple/Medium/Complex paths}}{40}{figure.caption.22}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Cấu trúc thư mục tối giản của Skill Planner}}{41}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Luồng thực thi (Sequence Diagram) của Skill Planner: READ → ANALYZE → WRITE}}{43}{figure.caption.24}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Pipeline đầy đủ: User → Architect → Planner → Builder → Skill Package}}{44}{figure.caption.25}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Cấu trúc thư mục của Skill Builder}}{45}{figure.caption.26}%
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Quy trình 5 bước PREPARE → CLARIFY → BUILD → VERIFY → DELIVER của Skill Builder}}{46}{figure.caption.27}%
+\contentsline {figure}{\numberline {2.13}{\ignorespaces Luồng thực thi chi tiết (Sequence Diagram) của Skill Builder}}{47}{figure.caption.28}%
+\contentsline {figure}{\numberline {2.14}{\ignorespaces Input Resolution Flow của Class Diagram Analyst}}{49}{figure.caption.29}%
+\contentsline {figure}{\numberline {2.15}{\ignorespaces Cấu trúc thư mục của Class Diagram Analyst}}{50}{figure.caption.30}%
+\contentsline {figure}{\numberline {2.16}{\ignorespaces Workflow 6 pha với Gate Control của Class Diagram Analyst}}{50}{figure.caption.31}%
+\contentsline {figure}{\numberline {2.17}{\ignorespaces Luồng thực thi (Sequence Diagram) của Class Diagram Analyst}}{51}{figure.caption.32}%
+\contentsline {figure}{\numberline {2.18}{\ignorespaces Decision Tree: Aggregate Root vs Embedded Document trong Class Diagram Analyst}}{52}{figure.caption.33}%
+\contentsline {figure}{\numberline {2.19}{\ignorespaces Decision Tree: Aggregate Root vs Embedded Document}}{53}{figure.caption.34}%
+\contentsline {figure}{\numberline {2.20}{\ignorespaces Cấu trúc thư mục của Flow Design Analyst}}{54}{figure.caption.35}%
+\contentsline {figure}{\numberline {2.21}{\ignorespaces Luồng thực thi (Sequence Diagram) của Flow Design Analyst}}{56}{figure.caption.36}%
+\contentsline {figure}{\numberline {2.22}{\ignorespaces Cấu trúc thư mục của Sequence Design Analyst}}{58}{figure.caption.37}%
+\contentsline {figure}{\numberline {2.23}{\ignorespaces Luồng thực thi (Sequence Diagram) của Sequence Design Analyst}}{59}{figure.caption.38}%
+\contentsline {figure}{\numberline {2.24}{\ignorespaces Cấu trúc thư mục của Activity Diagram Design Analyst}}{60}{figure.caption.39}%
+\contentsline {figure}{\numberline {2.25}{\ignorespaces Workflow 4 pha Gate-based của Activity Diagram Design Analyst}}{61}{figure.caption.40}%
+\contentsline {figure}{\numberline {2.26}{\ignorespaces Luồng thực thi (Sequence Diagram) theo Mode A và Mode B của Activity Diagram Analyst}}{61}{figure.caption.41}%
+\contentsline {figure}{\numberline {2.27}{\ignorespaces Cấu trúc thư mục skill UI Architecture Analyst}}{63}{figure.caption.42}%
+\contentsline {figure}{\numberline {2.28}{\ignorespaces Vị trí UI Architecture Analyst trong hệ sinh thái Agent Skills}}{64}{figure.caption.43}%
+\contentsline {figure}{\numberline {2.29}{\ignorespaces Workflow 5 pha của UI Architecture Analyst}}{64}{figure.caption.44}%
+\contentsline {figure}{\numberline {2.30}{\ignorespaces Luồng thực thi (Sequence Diagram) của UI Architecture Analyst}}{65}{figure.caption.45}%
+\contentsline {figure}{\numberline {2.31}{\ignorespaces Luồng phân tích đầu vào của Schema Design Analyst (Input Resolution Flow)}}{67}{figure.caption.46}%
+\contentsline {figure}{\numberline {2.32}{\ignorespaces Cấu trúc thư mục skill Schema Design Analyst}}{68}{figure.caption.47}%
+\contentsline {figure}{\numberline {2.33}{\ignorespaces Luồng thực thi (Sequence Diagram) của Schema Design Analyst}}{69}{figure.caption.49}%
+\contentsline {figure}{\numberline {2.34}{\ignorespaces Cấu trúc thư mục skill UI Pencil Drawer với 4 Phases tự chủ}}{71}{figure.caption.50}%
+\contentsline {figure}{\numberline {2.35}{\ignorespaces Workflow 4 pha Autonomous của UI Pencil Drawer}}{72}{figure.caption.52}%
+\contentsline {figure}{\numberline {2.36}{\ignorespaces Luồng thực thi end-to-end (Sequence Diagram) của UI Pencil Drawer}}{73}{figure.caption.53}%
+\contentsline {figure}{\numberline {2.37}{\ignorespaces Chu trình vận hành tổng thể của hệ thống Agent Skills}}{74}{figure.caption.54}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Sơ đồ Use Case tổng quan hệ thống Steve Void}}{77}{figure.caption.60}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Sơ đồ tuần tự: Đăng ký tài khoản (M1-A1)}}{80}{figure.caption.63}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Sơ đồ luồng nghiệp vụ: Đăng ký tài khoản (UC01)}}{82}{figure.caption.65}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Class Diagram: Collection User (M1 — Auth \& Profile)}}{84}{figure.caption.67}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Sơ đồ quan hệ thực thể (ER Diagram) tổng quan hệ thống Steve Void}}{86}{figure.caption.69}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Sơ đồ Use Case tổng quan hệ thống Steve Void}}{81}{figure.caption.58}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Sơ đồ tuần tự: Đăng ký tài khoản (M1-A1)}}{84}{figure.caption.61}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Sơ đồ luồng nghiệp vụ: Đăng ký tài khoản (UC01)}}{86}{figure.caption.63}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Class Diagram: Collection User (M1 — Auth \& Profile)}}{88}{figure.caption.65}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Sơ đồ quan hệ thực thể (ER Diagram) tổng quan hệ thống Steve Void}}{90}{figure.caption.67}%
 \contentsfinish 
