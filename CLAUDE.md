@@ -70,6 +70,114 @@ Auto-logs session end (async). Useful for tracking work across sessions.
 
 ---
 
+## Dynamic Variables {} Rule
+
+**Design Principle:** Use `{}` variables for scalable, reusable configurations instead of hard-coded values.
+
+### Why Dynamic Variables?
+
+| Hard-coded | Dynamic {} |
+|------------|------------|
+| Specific pipeline name | `{pipeline_name}` |
+| Specific file paths | `{input_path}`, `{output_dir}` |
+| Specific skill names | `{skill_name}` |
+| Specific stage IDs | `{stage_id}` |
+| One-time use | Reusable across projects |
+
+### Variable Categories
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    VARIABLE CATEGORIES                            │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  SYSTEM VARIABLES (Pre-defined)                                  │
+│  {project_root}     → Root directory                            │
+│  {skill_context}   → .skill-context/ path                      │
+│  {skills_dir}      → .agent/skills/ path                       │
+│  {agents_dir}      → .claude/agents/ path                     │
+│  {hooks_dir}       → .claude/hooks/ path                       │
+│                                                                 │
+│  PIPELINE VARIABLES (Configurable)                              │
+│  {pipeline_name}   → Name of pipeline (e.g., fr-to-life2)      │
+│  {pipeline_id}    → Unique run ID                              │
+│  {pipeline_config}→ pipeline.yaml path                          │
+│  {state_file}     → _queue.json path                           │
+│                                                                 │
+│  INPUT/OUTPUT VARIABLES (Dynamic)                               │
+│  {input_sources}  → Array of input documents                  │
+│  {output_dir}     → Base output directory                      │
+│  {output_diagrams}→ {output_dir}/diagrams/                    │
+│  {output_database}→ {output_dir}/database/                     │
+│  {output_ui}      → {output_dir}/ui/                           │
+│                                                                 │
+│  SKILL VARIABLES (Runtime-resolved)                             │
+│  {skill_name}     → Current skill name                         │
+│  {skill_path}     → Path to SKILL.md                           │
+│  {input_contracts}→ Required inputs (from SKILL.md)           │
+│  {output_contracts}→ Output artifacts (from SKILL.md)           │
+│                                                                 │
+│  EXECUTION VARIABLES (Runtime state)                           │
+│  {current_stage}   → Stage currently running                    │
+│  {stage_status}   → COMPLETED/IN_PROGRESS/FAILED/BLOCKED       │
+│  {predecessor_output}→ Output from previous stage             │
+│  {successor_needs}→ Requirements for next stage                │
+│  {handoff_note}  → Note from previous stage                  │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### When to Use Dynamic Variables
+
+**✅ USE {} when:**
+- Creating reusable templates
+- Defining pipeline configurations
+- Writing SKILL.md metadata
+- Building validation rules
+- Generating task contexts
+
+**❌ DON'T USE {} when:**
+- Hard-coded constants specific to one use
+- Simple string literals that won't change
+- When exact value is known at design time
+
+### Example: Good vs Bad
+
+```yaml
+# ❌ BAD: Hard-coded (not reusable)
+pipeline:
+  name: "fr-to-life2-deliverables"
+  inputs:
+    - path: "Docs/life-1/01-vision/FR/feature-map-and-priority.md"
+
+# ✅ GOOD: Dynamic (reusable)
+pipeline:
+  name: "{pipeline_name}"
+  inputs:
+    - path: "{input_path}"
+```
+
+### Variable Resolution
+
+Variables are resolved at runtime by the Pipeline Orchestrator:
+
+```python
+# VariableResolver resolves {} at runtime
+context = {
+    "pipeline_name": "fr-to-life2",
+    "input_path": "Docs/life-1/01-vision/FR/feature-map.md"
+}
+
+template = "{pipeline_name}: {input_path}"
+resolved = resolve(template, context)  # "fr-to-life2: Docs/..."
+```
+
+### Design.md Reference
+
+See `DESIGN.md` for complete variable system architecture and implementation details.
+
+---
+
 ## Document Hierarchy (Authority Order)
 
 When conflicts arise, consult this order:
