@@ -1,0 +1,285 @@
+20
+
+Phụ lục 07
+HƯỚNG DẪN TRÌNH BÀY BÁO CÁO KHÓA LUẬN TỐT NGHIỆP
+1. Bố cục
+Số chương của một khóa luận tốt nghiệp tuỳ thuộc vào từng ngành, hướng chuyên
+sâu và đề tài cụ thể, nhưng thông thường bao gồm những phần và chương sau:
+- MỞ ĐẦU: Tổng quan về cơ sở thực tập (Giới thiệu về cơ sở thực tập và môi
+trường làm việc của cơ sở thực tập,…), trình bày lý do chọn đề tài, nội dung, phương
+pháp, cấu trúc của khóa luận và lời cảm ơn (nếu có).
+- CHƯƠNG 1: (tuỳ theo đề tài của các lĩnh vực khác nhau)
+- CHƯƠNG 2: (tuỳ theo đề tài của các lĩnh vực khác nhau)
+- CHƯƠNG 3: (tuỳ theo đề tài của các lĩnh vực khác nhau)
+- CHƯƠNG 4: (tuỳ theo đề tài của các lĩnh vực khác nhau)
+- KẾT LUẬN VÀ KIẾN NGHỊ
+- DANH MỤC TÀI LIỆU THAM KHẢO: chỉ bao gồm các tài liệu được trích dẫn,
+sử dụng và đề cập tới để bàn luận trong khóa luận.
+- PHỤ LỤC.
+2. Trình bày
+Khóa luận tốt nghiệp phải được trình bày ngắn gọn, rõ ràng, mạch lạc, sạch sẽ,
+không được tẩy xoá, có đánh số trang, đánh số bảng biểu, hình vẽ, đồ thị. Khóa luận tốt
+nghiệp đóng bìa cứng, in chữ nhũ đủ dấu tiếng Việt (theo mẫu). Trang phụ bìa (theo
+mẫu).
+2.1. Soạn thảo văn bản
+Khóa luận tốt nghiệp sử dụng chữ Times New Roman cỡ chữ 13 hoặc 14 theo
+chuẩn unicode; mật độ chữ bình thường, không được nén hoặc kéo dãn khoảng cách giữa
+các chữ; dãn dòng đặt chế độ 1,5 lines; lề trên 3 cm; lề dưới 3cm; lề trái 3,5 cm; lề phải
+2cm. Số trang được đánh ở giữa, phía dưới ở mỗi trang giấy. Nếu có bảng biểu, hình vẽ
+trình bày theo chiều ngang khổ giấy thì đầu bảng là lề trái của trang, nhưng nên hạn chế
+trình bày theo cách này.
+Khóa luận tốt nghiệp được in trên một mặt giấy trắng khổ A4 (210 x 297 mm),
+dày tối thiểu khoảng 50 trang (không kể phụ lục).
+2.2. Tiểu mục
+Các tiểu mục của khóa luận tốt nghiệp được trình bày và đánh số thành nhóm chữ
+số, nhiều nhất gồm 3 chữ số với số thứ nhất chỉ số chương (ví dụ 1.1.1. chỉ tiểu mục 1
+mục 1 chương 1). Tại mỗi nhóm mục và tiểu mục phải có ít nhất hai mục và tiểu mục,
+nghĩa là có tiểu mục 1.1.1 thì phải có tiểu mục 1.1.2 tiếp theo.
+2.3. Bảng biểu, hình vẽ, phương trình
+
+21
+
+Việc đánh số bảng biểu, hình vẽ, phương trình phải gắn với số chương; ví dụ Hình
+3.4 có nghĩa là hình thứ 4 trong Chương 3. Mọi đồ thị, bảng biểu lấy từ các nguồn khác
+phải được trích dẫn đầy đủ, ví dụ "Nguồn: Bộ Tài chính 1996". Nguồn được trích dẫn
+phải được liệt kê chính xác trong danh mục Tài liệu tham khảo. Đầu đề của bảng biểu ghi
+phía trên bảng, đầu đề của hình vẽ ghi phía dưới hình. Thông thường, những bảng ngắn
+và đồ thị nhỏ phải đi liền với phần nội dung đề cập tới các bảng và đồ thị này ở lần thứ
+nhất. Các bảng dài có thể để ở những trang riêng nhưng cũng phải tiếp theo ngay phần
+nội dung đề cập tới bảng này ở lần đầu tiên.
+Các bảng rộng vẫn nên trình bày theo chiều đứng dài 297 mm của trang giấy.
+Chiều rộng của trang giấy có thể hơn 210 mm. Khi đó gấp trang giấy này như minh hoạ ở
+Hình 1.1 sao cho số và đầu đề của hình vẽ hoặc bảng vẫn có thể nhìn thấy ngay mà không
+cần mở rộng tờ giấy. Cách làm này cũng giúp để tránh bị đóng vào gáy của khóa luận
+phần mép gấp bên trong hoặc xén rời mất phần mép gấp bên ngoài. Tuy nhiên nên hạn
+chế sử dụng các bảng quá rộng này.
+195
+160
+
+297
+
+185
+
+Hình 1.1 Cách gấp trang giấy rộng hơn 210 mm
+Trong mọi trường hợp, bốn lề bao quanh phần văn bản và bảng biểu vẫn như quy
+định tại khoản 1 mục I.2 Hướng dẫn này.
+Đối với những trang giấy có chiều đứng hơn 297 mm (bản đồ, bản vẽ ...) thì có thể
+để trong một phong bì cứng đính bên trong bìa sau khóa luận tốt nghiệp.
+Trong khóa luận tốt nghiệp, các hình vẽ phải được vẽ sạch sẽ bằng mực đen để có
+thể sao chụp lại; có đánh số và ghi đầy đủ đầu đề; cỡ chữ phải bằng cỡ chữ sử dụng trong
+văn bản khóa luận tốt nghiệp. Khi đề cập đến các bảng biểu và hình vẽ phải nêu rõ số của
+hình và bảng biểu đó, ví dụ "... được nêu trong Bảng 1.1" hoặc " (xem Hình 2.3)" mà
+
+22
+
+không được viết "... được nêu trong bảng dưới đây" hoặc " trong đồ thị sau".
+Việc trình bày phương trình toán học trên một dòng đơn hoặc dòng kép là tuỳ ý,
+tuy nhiên phải thống nhất trong toàn khóa luận tốt nghiệp. Khi ký hiệu xuất hiện lần đầu
+tiên thì phải giải thích và đơn vị tính phải đi kèm ngay trong phương trình có ký hiệu đó.
+Nếu cần thiết, danh mục của tất cả các ký hiệu, chữ viết tắt và nghĩa của chúng cần được
+liệt kê và để ở phần đầu của khóa luận tốt nghiệp. Tất cả các phương trình cần được đánh
+số và để trong ngoặc đơn đặt bên phía lề phải. Nếu một nhóm phương trình mang cùng
+một số thì những số này cũng được để trong ngoặc, hoặc mỗi phương trình trong nhóm
+phương trình (5.1) có thể được đánh số là (5.1.1), (5.1.2), (5.1.3).
+2.4. Viết tắt
+Không lạm dụng việc viết tắt trong khóa luận tốt nghiệp. Chỉ viết tắt những từ,
+cụm từ hoặc thuật ngữ được sử dụng nhiều lần trong khóa luận tốt nghiệp. Không viết tắt
+những cụm từ dài, những mệnh đề; không viết tắt những cụm từ ít xuất hiện trong khóa
+luận tốt nghiệp. Nếu cần viết tắt những từ, thuật ngữ, tên cơ quan, tổ chức... thì được viết
+tắt sau lần viết thứ nhất có kèm theo chữ viết tắt trong ngoặc đơn. Nếu khóa luận tốt
+nghiệp có nhiều chữ viết tắt thì phải có bảng danh mục các chữ viết tắt (xếp theo thứ tự
+ABC) ở phần đầu khóa luận.
+2.5. Phụ lục của khóa luận
+Phần này bao gồm những nội dung cần thiết nhằm minh họa hoặc bổ sung cho nội
+dung khóa luận như số liệu, mẫu biểu, tranh ảnh... Nếu khóa luận tốt nghiệp sử dụng
+những câu trả lời cho một bảng câu hỏi thì bảng câu hỏi mẫu này phải được đưa vào phần
+Phụ lục ở dạng nguyên bản đã dùng để điều tra, thăm dò ý kiến; không được tóm tắt hoặc
+sửa đổi. Các tính toán mẫu trình bày tóm tắt trong các bảng biểu cũng cần nêu trong Phụ
+lục của khóa luận tốt nghiệp. Phụ lục không được dày hơn phần chính của khóa luận tốt
+nghiệp.
+Hình 1.2 là ví dụ minh họa bố cục của khóa luận qua trang Mục lục. Nên sắp xếp
+sao cho mục lục của khóa luận gọn trong một trang giấy.
+MỤC LỤC
+
+Trang phụ bìa
+Lời cam đoan
+Mục lục
+Danh mục các ký hiệu, các chữ viết tắt
+Danh mục các bảng
+Danh mục các hình vẽ, đồ thị
+MỞ ĐẦU
+Chương 11.1. …
+1.2. …
+Chương 2- ….
+
+23
+
+2.1. …
+2.1.1. …
+2.1.2. …
+2.2. ….
+…..
+Chương 3KẾT LUẬN VÀ KIẾN NGHỊ
+TÀI LIỆU THAM KHẢO
+PHỤ LỤC
+
+24
+
+MẪU BÌA KHÓA LUẬN TỐT NGHIỆP
+
+Khổ 210 x 297 mm
+
+TRƯỜNG ĐẠI HỌC TÀI NGUYÊN VÀ MÔI TRƯỜNG HÀ NỘI
+KHOA ...................
+
+TÊN KHÓA LUẬN
+HỌ VÀ TÊN SINH VIÊN
+
+Hà Nội – Năm…
+
+25
+
+MẪU TRANG PHỤ BÌA KHÓA LUẬN
+
+TRƯỜNG ĐẠI HỌC TÀI NGUYÊN VÀ MÔI TRƯỜNG HÀ NỘI
+KHOA ...................
+
+TÊN KHÓA LUẬN
+Họ và tên sinh viên:
+Ngành đào tạo:
+
+NGƯỜI HƯỚNG DẪN: 1
+
+2
+
+Hà Nội – Năm….
+
+26
+
+HƯỚNG DẪN CÁCH TRÍCH DẪN TÀI LIỆU THAM KHẢO
+VÀ LẬP DANH MỤC TÀI LIỆU THAM KHẢO
+1. Tài liệu tham khảo
+- Tài liệu tham khảo bao gồm các tài liệu được trích dẫn, sử dụng và đề cập trong
+khóa luận tốt nghiệp.
+- Trích dẫn tham khảo có ý nghĩa quan trọng đối với khóa luận tốt nghiệp (làm
+tăng giá trị khóa luận tốt nghiệp nhờ có đối chiếu, tham khảo, so sánh,... với các nguồn
+tài liệu từ bên ngoài, thể hiện rõ nguồn gốc các thông tin thu thập được) và với sinh viên
+(phát triển năng lực nghiên cứu: nhờ quá trình tìm kiếm và chọn lọc những thông tin có
+chất lượng, giúp làm tăng khả nặng tự học, tự tìm kiếm thông tin và khai thác thông tin;
+bồi dưỡng ý thức đạo đức nghề nghiệp, tránh hành động đạo văn...). Có hai cách trích dẫn
+phổ biến nhất là trích dẫn theo “tên tác giả - năm” (hệ thống Havard) và trích dẫn theo
+chữ số (hệ thống Vancouver) là cách hiện đang được Bộ Giáo dục và Đào tạo Việt Nam
+lựa chọn.
+- Nguồn trích dẫn phải được ghi nhận ngay khi thông tin được sử dụng. Nguồn
+trích dẫn có thể được đặt ở đầu, giữa hoặc cuối một câu, cuối một đoạn văn hay cuối một
+trích dẫn trực tiếp (ví dụ hình vẽ, sơ đồ, công thức, một đoạn nguyên văn).
+2. Các hình thức và nguyên tắc trích dẫn tài liệu tham khảo
+2.1. Hình thức trích dẫn
+- Trích dẫn trực tiếp là trích dẫn nguyên văn một phần câu, một câu, một đoạn văn,
+hình ảnh, sơ đồ, quy trình,… của bản gốc vào bài viết. Trích dẫn nguyên văn phải bảo
+đảm đúng chính xác từng câu, từng chữ, từng dấu câu được sử dụng trong bản gốc được
+trích dẫn. “Phần trích dẫn được đặt trong ngoặc kép”, [số TLTK] đặt trong ngoặc vuông.
+Không nên dùng quá nhiều cách trích dẫn này vì bài viết sẽ nặng nề và đơn điệu.
+- Trích dẫn gián tiếp là sử dụng ý tưởng, kết quả, hoặc ý của một vấn đề để diễn tả
+lại theo cách viết của mình nhưng phải đảm bảo đúng nội dung của bản gốc. Đây là cách
+trích dẫn được khuyến khích sử dụng trong nghiên cứu khoa học. Khi trích dẫn theo cách
+này cần cẩn trọng và chính xác để tránh diễn dịch sai, đảm bảo trung thành với nội dung
+của bài gốc.
+- Trích dẫn thứ cấp là khi người viết muốn trích dẫn một thông tin qua trích dẫn
+trong một tài liệu của tác giả khác. Ví dụ khi người viết muốn trích dẫn một thông tin có
+nguồn gốc từ tác giả A, nhưng không tìm được trực tiếp bản gốc tác giả A mà thông qua
+một tài liệu của tác giả B. Khi trích dẫn theo cách này không liệt kê tài liệu trích dẫn của
+tác giả A trong danh mục tài liệu tham khảo. Một tài liệu có yêu cầu khoa học càng cao
+thì càng hạn chế trích dẫn thứ cấp mà phải tiếp cận càng nhiều tài liệu gốc càng tốt.
+2.2. Một số nguyên tắc về trích dẫn tài liệu tham khảo
+
+27
+
+- Tài liệu tham khảo có thể được trích dẫn và sử dụng trong các phần đặt vấn đề,
+tổng quan, phương pháp nghiên cứu, bàn luận. Phần giả thiết nghiên cứu, kết quả nghiên
+cứu, kết luận, kiến nghị không sử dụng tài liệu tham khảo.
+- Cách ghi trích dẫn phải thống nhất trong toàn bộ khóa luận tốt nghiệp và phù hợp
+với cách trình bày trong danh mục tài liệu tham khảo.
+- Việc trích dẫn là theo thứ tự của tài liệu tham khảo ở danh mục Tài liệu tham
+khảo và được đặt trong ngoặc vuông, khi cần có cả số trang, ví dụ [15, 314-315]. Đối với
+phần được trích dẫn từ nhiều tài liệu khác nhau, số của từng tài liệu được đặt độc lập
+trong từng ngoặc vuông và theo thứ tự tăng dần, cách nhau bằng dấu phảy và không có
+khoảng trắng, ví dụ [19],[25],[41].
+- Việc sử dụng hoặc trích dẫn kết quả nghiên cứu của người khác, của đồng tác giả
+phải được dẫn nguồn đầy đủ và rõ ràng. Nếu sử dụng tài liệu của người khác (trích dẫn
+bảng, biểu, công thức, đồ thị cùng những tài liệu khác) mà không chú dẫn tác giả và
+nguồn tài liệu thì khóa luận tốt nghiệp không được duyệt để chấm báo cáo.
+- Không ghi học hàm, học vị, địa vị xã hội của tác giả vào thông tin trích dẫn.
+- Tài liệu được trích dẫn trong bài viết phải có trong danh mục tài liệu tham khảo.
+- Tài liệu được liệt kê trong danh mục tham khảo phải có trích dẫn trong bài viết.
+- Không trích dẫn tài liệu mà người viết chưa đọc. Chỉ trích dẫn khi người viết
+phải có tài liệu đó trong tay và đã đọc tài liệu đó. Không nên trích dẫn những chi tiết nhỏ,
+ý kiến cá nhân, kinh nghiệm chủ quan, những kiến thức đã trở nên phổ thông.
+- Khi một thông tin có nhiều người nói đến thì nên trích dẫn những nghiên cứu/
+bài báo/ tác giả có tiếng trong chuyên ngành.
+3. Xây dựng và cách trình bày danh mục tài liệu tham khảo
+Danh mục tài liệu tham khảo được sắp xếp theo trình tự ABC theo thứ tự tiếng
+Việt, Anh, Pháp, Nga, Trung...Tài liệu tham khảo được trích dẫn theo số (đã được xác
+định trong danh mục tài liệu tham khảo), không theo tên tác giả và năm. Các tài liệu bằng
+tiếng nước ngoài phải giữ nguyên văn, không phiên âm, không dịch. Những tài liệu viết
+bằng tiếng nước ngoài ít người Việt biết thì có thể ghi thêm phần tiếng Việt đi kèm theo
+mỗi tài liệu. Không nên dùng luận văn, luận án, Website và hạn chế dùng sách giáo khoa
+làm tài liệu tham khảo.
+3.1. Tài liệu tham khảo là bài báo trong tạp chí, tập san được trình bày như sau:
+Họ và tên tác giả được viết đầy đủ đối với tên người Việt Nam; Họ (viết đầy đủ),
+tên gọi và tên đệm (viết tắt) đối với tên người nước ngoài. Nếu bài báo có nhiều tác giả,
+cần ghi tên 3 tác giả đầu và cộng sự (et al-tiếng Anh), năm xuất bản (trong ngoặc đơn).
+Tên bài báo. Tên tạp chí, tập san (ghi nghiêng), tập (số, không có dấu ngăn cách, đặt
+trong ngoặc đơn, dấu phẩy sau ngoặc đơn), các số trang (gạch nối giữa hai số, dấu chấm
+kết thúc).
+3.2. Tài liệu tham khảo là một chương (một phần) trong cuốn sách ghi như sau:
+
+28
+
+Họ và tên tác giả hoặc cơ quan ban hành; năm xuất bản (đặt trong ngoặc đơn). Tên
+phần (hoặc chương), Tên sách (ghi nghiêng, dấu phẩy cuối tên), lần xuất bản (chỉ ghi
+mục này với lần xuất bản thứ hai trở đi), nhà xuất bản (dấu phẩy cuối tên nhà xuất bản);
+nơi xuất bản (ghi tên thành phố, không phải ghi tên quốc gia), tập, trang.. Nếu sách có hai
+tác giả thì sử dụng chữ và (hoặc chữ and) để nối tên hai tác giả. Nếu sách có 3 tác giả trở
+lên thì ghi tên tác giả thứ nhất và cụm từ cộng sự (hoặc et al.)..
+3.3. Tài liệu tham khảo là sách ghi như sau:
+Tên tác giả hoặc cơ quan ban hành; năm xuất bản (đặt trong ngoặc đơn). Tên sách
+(ghi nghiêng, dấu phẩy cuối), lần xuất bản (chỉ ghi mục này với lần xuất bản thứ hai trở
+đi), nhà xuất bản (dấu phẩy cuối tên nhà xuất bản); nơi xuất bản (ghi tên thành phố,
+không phải ghi tên quốc gia, đặt dấu chấm kết thúc). Nếu sách có hai tác giả thì sử dụng
+chữ và (hoặc chữ and) để nối tên hai tác giả. Nếu sách có 3 tác giả trở lên thì ghi tên tác
+giả thứ nhất và cụm từ cộng sự (hoặc et al.).
+3.4. Tài liệu tham khảo là luận án, luận văn, khóa luận ghi như sau:
+Tên tác giả, năm xuất bản (đặt trong ngoặc đơn). Tên đề tài luận án, luận văn (ghi
+nghiêng, dấu phẩy cuối tên luận án/luận văn), bậc học, tên chính thức của cơ sở đào tạo.
+3.5. Tài liệu tham khảo là bài báo đăng trong các kỷ yếu của hội nghị, hội thảo, diễn
+đàn... ghi như sau:
+Tên tác giả (năm). Tên bài báo. Tên kỷ yếu/tên hội nghị/diễn đàn (ghi nghiêng),
+Địa điểm, thời gian tổ chức, cơ quan tổ chức, số thứ tự trang của bài báo trong kỷ yếu.
+3.6. Tài liệu tham khảo là các giáo trình, bài giảng hay tài liệu lưu hành nội bộ:
+Cần cung cấp thông tin cơ bản về tên tác giả, năm xuất bản, tên giáo trình, bài
+giảng, nhà xuất bản (nếu có), đơn vị chủ quản.
+3.7. Tài liệu tham khảo trích dẫn từ nguồn internet, báo mạng (hết sức hạn chế loại
+trích dẫn này).
+Tên tác giả (nếu có), năm (nếu có). Tên tài liệu tham khảo, <đường dẫn để tiếp cận
+tài liệu đó>, thời gian trích dẫn.
+
+29
+
+HƯỚNG DẪN CÁCH ĐẶT TÊN FILE
+BÁO CÁO KHÓA LUẬN TỐT NGHIỆP
+1. Sau khi nhận được các phiếu yêu cầu chỉnh sửa/hoàn thiện báo cáo khóa luận
+tốt nghiệp từ hai giảng viên chấm, sinh viên thực hiện chỉnh sửa báo cáo khóa luận tốt
+nghiệp; nộp file cuối đã chỉnh sửa kèm phiếu giải trình chỉnh sửa dưới định dạng pdf (có
+chữ ký của sinh viên, giảng viên hướng dẫn, trưởng bộ môn quản lý học phần) theo thứ tự
+sau:
+- Các trang đầu: Báo cáo khóa luận tốt nghiệp;
+- Trang cuối: Phiếu giải trình chỉnh sửa.
+Các nội dung trên được gộp chung thành 01 file và đảm bảo quy tắc đặt tên file ở
+định dạng pdf: Mã SV_Họ tên SV.
+Ví dụ: 21111102218_Nguyễn Văn Toàn
+2. Khoa thu toàn bộ file báo cáo khóa luận tốt nghiệp của sinh viên và thực hiện
+nén file theo quy tắc: KLTN_”Tên lớp”
+Ví dụ: KLTN_ĐH11QĐ1
+
+

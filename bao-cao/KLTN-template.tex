@@ -3,7 +3,7 @@
 \documentclass[14pt,a4paper,oneside]{extreport}
 
 % Compile with XeLaTeX
-\usepackage[a4paper,top=2.0cm,bottom=2.0cm,left=3.5cm,right=2.0cm]{geometry}
+\usepackage[a4paper,top=3.0cm,bottom=3.0cm,left=3.5cm,right=2.0cm]{geometry}
 \usepackage{fontspec}
 \IfFontExistsTF{Times New Roman}
   {\setmainfont{Times New Roman}}
@@ -18,6 +18,7 @@
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{amsmath,amssymb}
+\numberwithin{equation}{chapter}
 \usepackage[hidelinks]{hyperref}
 \usepackage{float}
 \usepackage{tikz}
@@ -219,15 +220,6 @@ Kết quả thực nghiệm cho thấy \textit{Agent Skill Framework} giúp tăn
 \tableofcontents
 
 \clearpage
-\addcontentsline{toc}{chapter}{Danh mục bảng biểu}
-\listoftables
-\vspace{0.5cm} % Tạo khoảng cách nhỏ nếu cần
-
-\clearpage
-\addcontentsline{toc}{chapter}{Danh mục hình ảnh}
-\listoffigures
-
-\clearpage
 \chapter*{DANH MỤC KÝ HIỆU, CHỮ VIẾT TẮT}
 \addcontentsline{toc}{chapter}{Danh mục ký hiệu, chữ viết tắt}
 \begin{center}
@@ -272,6 +264,15 @@ Kết quả thực nghiệm cho thấy \textit{Agent Skill Framework} giúp tăn
     Guardrail & Safety Guardrail (Hàng rào bảo vệ và kiểm soát chất lượng) \\ \hline
   \end{longtable}
 \end{center}
+
+\clearpage
+\addcontentsline{toc}{chapter}{Danh mục bảng biểu}
+\listoftables
+\vspace{0.5cm} % Tạo khoảng cách nhỏ nếu cần
+
+\clearpage
+\addcontentsline{toc}{chapter}{Danh mục hình ảnh}
+\listoffigures
 
 % ==================== PHẦN NỘI DUNG (BẮT ĐẦU ĐÁNH SỐ TRANG) ====================
 \clearpage
@@ -2357,8 +2358,8 @@ Trong quá trình triển khai, một số hạn chế đã được nhận di�
 
 Bài học rút ra: Hệ thống Guardrails và Interaction Points đã chứng minh vai trò then chốt trong việc duy trì chất lượng đầu ra. Nguyên tắc \textbf{Source Citation} và \textbf{Contract-Only} là hai cơ chế hiệu quả nhất để chống ảo giác AI trong quá trình thiết kế hệ thống.
 
-\chapter*{KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}
-\addcontentsline{toc}{chapter}{Kết luận và hướng phát triển}
+\chapter*{KẾT LUẬN VÀ KIẾN NGHỊ}
+\addcontentsline{toc}{chapter}{Kết luận và kiến nghị}
 
 \section{Kết quả đạt được}
 
