@@ -19,6 +19,8 @@
 \usepackage{array}
 \usepackage{amsmath,amssymb}
 \numberwithin{equation}{chapter}
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
 \usepackage[hidelinks]{hyperref}
 \usepackage{float}
 \usepackage{tikz}
@@ -171,21 +173,12 @@ Tôi xin cam đoan đây là đề tài nghiên cứu của riêng tôi và đư
 \end{flushright}
 
 \vspace{0.2cm}
-\noindent
-\begin{minipage}[t]{0.5\textwidth}
+\begin{minipage}[t]{\textwidth}
   \centering
-  \textbf{Giáo viên hướng dẫn}\\
+  \textbf{Sinh viên thực hiện}\\
   \textit{(Ký và ghi rõ họ tên)}
-  \vspace{3cm} % Khoảng trống rộng cho chữ ký
-  
-  \textbf{ThS. Trương Mạnh Đạt}
-\end{minipage}
-\begin{minipage}[t]{0.5\textwidth}
-  \centering
-  \textbf{Sinh viên}\\
-  \textit{(Ký và ghi rõ họ tên)}
-  \vspace{3cm} % Khoảng trống rộng cho chữ ký
-  
+  \vspace{2cm} % Khoảng trống rộng cho chữ ký
+
   \textbf{Vũ Thượng Hải}
 \end{minipage}
 
@@ -1624,7 +1617,7 @@ Skill tạo ra hai loại đầu ra: Markdown schema cho con người review (\t
     \label{fig:schema-seq}
 \end{figure}
 
-\subsection{Guardrails chống ảo giác}
+\subsection{Ràng buộc chống ảo giác}
 
 Skill áp dụng 3 guardrails cứng:
 \begin{itemize}

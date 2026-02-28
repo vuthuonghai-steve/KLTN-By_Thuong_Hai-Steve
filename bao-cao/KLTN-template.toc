@@ -1,10 +1,10 @@
 \babel@toc {vietnamese}{}\relax 
 \contentsline {chapter}{Bản cam đoan}{i}{Doc-Start}%
-\contentsline {chapter}{Lời cảm ơn}{iii}{chapter*.1}%
-\contentsline {chapter}{Tóm tắt}{iv}{chapter*.2}%
-\contentsline {chapter}{Danh mục ký hiệu, chữ viết tắt}{xii}{chapter*.4}%
-\contentsline {chapter}{Danh mục bảng biểu}{xiv}{table.0.1}%
-\contentsline {chapter}{Danh mục hình ảnh}{xv}{chapter*.5}%
+\contentsline {chapter}{Lời cảm ơn}{ii}{chapter*.1}%
+\contentsline {chapter}{Tóm tắt}{iii}{chapter*.2}%
+\contentsline {chapter}{Danh mục ký hiệu, chữ viết tắt}{xi}{chapter*.4}%
+\contentsline {chapter}{Danh mục bảng biểu}{xiii}{table.0.1}%
+\contentsline {chapter}{Danh mục hình ảnh}{xiv}{chapter*.5}%
 \contentsline {chapter}{Mở đầu}{1}{chapter*.7}%
 \contentsline {section}{Giới thiệu đơn vị thực tập}{1}{section*.8}%
 \contentsline {section}{Lý do chọn đề tài}{2}{section*.8}%
@@ -99,7 +99,7 @@
 \contentsline {subsection}{\numberline {2.8.1}Cơ chế Input Resolution}{71}{subsection.2.8.1}%
 \contentsline {subsection}{\numberline {2.8.2}Cấu trúc thư mục}{73}{subsection.2.8.2}%
 \contentsline {subsection}{\numberline {2.8.3}Luồng thực thi và Dual-Format Output}{73}{subsection.2.8.3}%
-\contentsline {subsection}{\numberline {2.8.4}Guardrails chống ảo giác}{75}{subsection.2.8.4}%
+\contentsline {subsection}{\numberline {2.8.4}Ràng buộc chống ảo giác}{75}{subsection.2.8.4}%
 \contentsline {section}{\numberline {2.9}Bộ kỹ năng vẽ giao diện tự động (UI Pencil Drawer)}{76}{section.2.9}%
 \contentsline {subsection}{\numberline {2.9.1}Cấu trúc thư mục và 4 Phases tự chủ}{76}{subsection.2.9.1}%
 \contentsline {subsection}{\numberline {2.9.2}Mô hình Autonomous Execution 4 Phase}{77}{subsection.2.9.2}%
