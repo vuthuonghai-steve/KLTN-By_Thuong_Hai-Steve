@@ -1,0 +1,29 @@
+{
+  "task_id": "task-{stage_id}",
+  "stage_id": "{stage_id}",
+  "skill_name": "{skill_name}",
+  "skill_path": "{skill_path}",
+  "input": {
+    "project": "{project}",
+    "source_docs": [
+      "{input_doc_1}",
+      "{input_doc_2}"
+    ]
+  },
+  "output": {
+    "target_dir": "{output_dir}",
+    "index_file": "{index_file}"
+  },
+  "validation": {
+    "script": "{validation_script}",
+    "expected_exit_code": 0,
+    "required_outputs": [
+      "{output_1}",
+      "{output_2}"
+    ]
+  },
+  "handoff": {
+    "from_stage": "{previous_stage_id}",
+    "previous_output": "{previous_output_path}"
+  }
+}

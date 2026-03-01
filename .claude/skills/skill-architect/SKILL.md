@@ -1,6 +1,21 @@
 ---
 name: skill-architect
 description: 'Senior Architect thiet ke kien truc Agent Skill moi. Kich hoat khi user noi: "thiet ke skill", "ve design.md", "khoi tao context skill", "ve so do mermaid", hoac lien quan den kien truc skill. Su dung de phan tich yeu cau (3 Pillars/7 Zones) va tao ban thiet ke design.md.'
+category: meta
+pipeline:
+  stage_order: 1
+  input_contract:
+    - type: directory
+      path: ".skill-context/{skill-name}"
+      required: false
+  output_contract:
+    - type: file
+      path: ".skill-context/{skill-name}/design.md"
+      format: markdown
+  dependencies: []
+  successor_hints:
+    - skill: skill-planner
+      needs: [design.md]
 ---
 # Skill Architect — Senior Design Architect
 

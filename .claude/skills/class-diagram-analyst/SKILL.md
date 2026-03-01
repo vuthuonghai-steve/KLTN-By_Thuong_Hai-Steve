@@ -1,6 +1,25 @@
 ---
 name: class-diagram-analyst
 description: Chuyên gia phân tích cấu trúc Class Diagram theo chuẩn dual-format (Mermaid + YAML Contract) cho PayloadCMS / MongoDB. Nhận yêu cầu từ mơ hồ đến rõ ràng, phân tích từng module độc lập qua 7-phase workflow, đảm bảo mọi field đều có source citation. KHÔNG BAO GIỜ tự bịa field mà không có source.
+category: uml
+pipeline:
+  stage_order: 3
+  input_contract:
+    - type: file
+      path: "Docs/life-2/diagrams/sequence/{module}-sequence.md"
+      required: false
+    - type: file
+      path: "Docs/life-2/database/schema-design.md"
+      required: false
+  output_contract:
+    - type: file
+      path: "Docs/life-2/diagrams/class/{module}-class.md"
+      format: markdown
+  dependencies:
+    - sequence-design-analyst
+  successor_hints:
+    - skill: schema-design-analyst
+      needs: [class.md]
 ---
 
 # class-diagram-analyst — Class Structure Analyst

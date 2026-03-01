@@ -1,6 +1,25 @@
 ---
-name: drawing-ui-screens
+name: ui-pencil-drawer
 description: Automates end-to-end drawing of UI screens in Pencil canvas from module spec files. Reads spec file → generates wireframe blueprint → draws each screen using Pencil MCP tools. Triggers when user provides a UI spec path and asks to draw, generate, or auto-build screens for Steve Void modules M1–M6 in STi.pen.
+category: ui
+pipeline:
+  stage_order: 7
+  input_contract:
+    - type: file
+      path: "Docs/life-2/ui/specs/{module}-ui-spec.md"
+      required: true
+    - type: file
+      path: "Docs/life-2/ui/wireframes/{module}.pen"
+      required: false
+  output_contract:
+    - type: file
+      path: "Docs/life-2/ui/wireframes/{module}.pen"
+      format: pen
+  validation:
+    script: null
+    expected_exit_code: 0
+  dependencies:
+    - ui-architecture-analyst
 ---
 
 # UI Pencil Drawer — Autonomous UI Design Agent

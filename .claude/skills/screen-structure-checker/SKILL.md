@@ -1,6 +1,12 @@
 ---
 name: screen-structure-checker
 description: Skill kiểm tra cấu trúc thư mục screens theo kiến trúc quản lý tập trung. Sử dụng khi cần (1) audit cấu trúc screen mới tạo, (2) kiểm tra toàn bộ screens trong dự án, (3) tìm các vi phạm naming convention, (4) phát hiện file cần refactor do quá lớn.
+category: utility
+pipeline:
+  stage_order: 0
+  input_contract: []
+  output_contract: []
+  dependencies: []
 ---
 
 # Screen Structure Checker

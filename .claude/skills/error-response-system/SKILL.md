@@ -1,6 +1,15 @@
 ---
 name: error-response-system
 description: Skill chuan hoa Error Response cho API. Su dung khi can (1) tao error response moi, (2) them error code cho feature, (3) debug loi API, (4) migration tu format cu sang format moi. Skill nay nen duoc su dung khi nguoi dung can thong nhat error response format hoac tao he thong error handling moi.
+category: implementation
+pipeline:
+  stage_order: 11
+  input_contract: []
+  output_contract:
+    - type: directory
+      path: "src/lib/errors"
+      format: directory
+  dependencies: []
 ---
 
 # Error Response System

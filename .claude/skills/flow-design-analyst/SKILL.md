@@ -1,6 +1,26 @@
 ---
 name: flow-design-analyst
 description: Chuyên gia phân tích và thiết kế Business Process Flow Diagram (High-Fidelity) theo chuẩn 3-lane Swimlane (User/System/DB). Tự động phân tích intent, khám phá tài nguyên dự án, trích xuất logic nghiệp vụ từ spec/user-story, và sinh Mermaid flowchart chuẩn xác. Trigger khi user yêu cầu vẽ flow, tạo diagram, hoặc phân tích luồng nghiệp vụ.
+category: uml
+pipeline:
+  stage_order: 1
+  input_contract:
+    - type: directory
+      path: "Docs/life-1/{module}"
+      required: true
+  output_contract:
+    - type: file
+      path: "Docs/life-2/diagrams/flow/{module}-flow.md"
+      format: markdown
+  validation:
+    script: null
+    expected_exit_code: 0
+  dependencies: []
+  successor_hints:
+    - skill: sequence-design-analyst
+      needs: [flow.md]
+    - skill: activity-diagram-design-analyst
+      needs: [flow.md]
 ---
 
 # Flow Design Analyst

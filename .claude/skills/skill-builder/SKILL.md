@@ -1,6 +1,22 @@
 ---
 name: skill-builder
 description: Kỹ sư triển khai Agent Skill (Senior Implementation Engineer). Thực thi bản thiết kế (design.md) và kế hoạch (todo.md). Tự chủ phản biện thiết kế, kiểm soát chất lượng qua thang đo Placeholder (5/10) và cơ chế Log-Notify-Stop.
+category: meta
+pipeline:
+  stage_order: 3
+  input_contract:
+    - type: file
+      path: ".skill-context/{skill-name}/design.md"
+      required: true
+    - type: file
+      path: ".skill-context/{skill-name}/todo.md"
+      required: true
+  output_contract:
+    - type: directory
+      path: ".agent/skills/{skill-name}"
+      format: directory
+  dependencies:
+    - skill-planner
 ---
 # Skill Builder (Senior Implementation Engineer)
 

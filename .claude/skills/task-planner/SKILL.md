@@ -1,6 +1,12 @@
 ---
 name: task-planner
 description: 'Skill phan tach yeu cau/tinh nang thanh cac phase, task va subtask cu the. Tao bo tai lieu planning clean, khong chua code mau, tap trung mo ta logic va nghiep vu. Su dung khi: (1) nhan yeu cau tinh nang moi can lap ke hoach, (2) co tai lieu nghien cuu can chuyen thanh task plan, (3) nguoi dung yeu cau phan tach cong viec, (4) can tao roadmap trien khai cho du an/tinh nang. Trigger: /task-planner, /plan-tasks, "phan tach task", "lap ke hoach", "tao plan", "chia phase".'
+category: utility
+pipeline:
+  stage_order: 0
+  input_contract: []
+  output_contract: []
+  dependencies: []
 ---
 
 # Task Planner

@@ -1,0 +1,26 @@
+{
+  "pipeline_id": "test-001",
+  "pipeline_name": "test-uml-pipeline",
+  "started_at": "2026-03-01T13:50:00Z",
+  "status": "COMPLETED",
+  "started_execution_at": "2026-03-01T14:04:00Z",
+  "completed_at": "2026-03-01T14:15:00Z",
+
+  "stages": {
+    "flow-design-test": {
+      "skill": "flow-design-analyst",
+      "subagent": "flow-design-analyst",
+      "status": "COMPLETED",
+      "depends_on": [],
+      "started_at": "2026-03-01T14:04:00Z",
+      "completed_at": "2026-03-01T14:15:00Z",
+      "output_path": "Docs/life-2/diagrams/flow/test/"
+    }
+  },
+
+  "context": {
+    "total_stages": 1,
+    "completed_stages": 1,
+    "failed_stages": 0
+  }
+}

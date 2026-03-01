@@ -1,21 +1,18 @@
-# Claude Code Pipeline Runner
+# Steve Void Project Setup
 
-Hệ thống tự động hóa workflow cho Life-2 (Design & Specification phase).
+Hệ thống quản lý và cài đặt Claude Code cho dự án **NeoSocial - Knowledge Sharing Social Network**.
 
 ## Tổng Quan
 
-Pipeline Runner cho phép tự động chạy chuỗi các skill (flow-design, sequence-design, class-diagram,...) theo thứ tự được định nghĩa trong pipeline configuration.
+Steve Void là dự án khóa luận tốt nghiệp - một mạng xã hội chia sẻ kiến thức cho cộng đồng developer/tech Việt Nam.
 
-```
-Input (FR/Requirements) → [Skill 1] → [Skill 2] → [Skill 3] → Output (Life-2 deliverables)
-```
+**Giai đoạn hiện tại:** Life-2 (Design & Specification)
 
 ## Cài Đặt
 
-### Cách 1: Sử dụng Setup Script
+### Cách 1: Chạy Setup Script (dự án hiện tại)
 
 ```bash
-# Chạy setup script
 bash scripts/setup.sh
 ```
 
@@ -23,80 +20,54 @@ bash scripts/setup.sh
 
 ```bash
 # Giải nén package
-unzip claude-pipeline-setup.zip
+unzip scripts/steve-void-setup.zip
 
 # Chạy setup
-cd claude-pipeline-setup
+cd steve-void-setup
 bash setup.sh
 ```
 
 ## Cấu Trúc Thư Mục
 
 ```
-.claude/
-├── settings.json        # Cấu hình hooks
-└── hooks/
-    ├── subagent-start.sh   # Hook khi subagent bắt đầu
-    └── subagent-stop.sh    # Hook khi subagent kết thúc
-
-.skill-context/
-├── skills/            # Tất cả skill được đóng gói
-├── logs/              # Pipeline logs
-├── results/           # Kết quả từ mỗi stage
-├── shared/            # Shared state giữa các stage
-├── pipelines/         # Pipeline configuration files
-└── templates/         # Templates cho pipeline
-
-scripts/
-├── setup.sh           # Script setup chính
-├── package.sh        # Script đóng gói
-└── README.md         # Hướng dẫn sử dụng
+KLTN/
+├── Docs/
+│   ├── life-1/           # Vision, research, technical decisions
+│   ├── life-2/           # Specifications, diagrams, DB schema
+│   │   ├── specs/        # Module specs (M1-M6)
+│   │   ├── database/     # Schema design
+│   │   ├── api/          # API specifications
+│   │   ├── diagrams/     # UML diagrams
+│   │   └── ui/           # Wireframes
+│   ├── life-3/           # Implementation (sẽ bắt đầu)
+│   └── life-4/           # Verification
+│
+├── .claude/
+│   ├── settings.json      # Claude Code configuration
+│   ├── hooks/            # Hook scripts
+│   │   ├── pre-write-check.sh
+│   │   ├── session-end.sh
+│   │   ├── subagent-start.sh
+│   │   └── subagent-stop.sh
+│   ├── rules/            # Claude Code rules
+│   │   ├── lifecycle.md
+│   │   ├── payload-conventions.md
+│   │   ├── spec-first.md
+│   │   └── ui-stack.md
+│   └── memory/           # Session memory
+│
+├── .agent/
+│   └── skills/           # All agent skills (canonical source)
+│
+└── scripts/
+    ├── setup.sh          # Main setup script
+    ├── package.sh        # Package creation script
+    └── README.md         # This file
 ```
 
-## Cách Sử Dụng
+## Các Skills Được Cài Đặt
 
-### 1. Tạo Pipeline Configuration
-
-```bash
-# Copy template
-cp .skill-context/templates/pipeline-template.yaml .skill-context/pipelines/my-pipeline.yaml
-
-# Chỉnh sửa pipeline.yaml theo nhu cầu
-```
-
-### 2. Cấu Hình Pipeline
-
-Xem file `pipeline-template.yaml` để biết các tùy chọn:
-
-```yaml
-name: "my-pipeline"
-version: "1.0"
-description: "My custom pipeline"
-
-stages:
-  - id: stage_01
-    skill: flow-design-analyst
-    depends_on: []
-    input: .skill-context/tasks/stage_01_input.json
-    output_path: Docs/life-2/diagrams/flow/
-
-execution:
-  mode: sequential  # sequential | parallel
-  max_retries: 2
-  continue_on_error: false
-```
-
-### 3. Chạy Pipeline
-
-Sau khi restart Claude Code, hệ thống sẽ tự động:
-- Log khi subagent bắt đầu (`SubagentStart` hook)
-- Log khi subagent kết thúc (`SubagentStop` hook)
-- Lưu kết quả vào `.skill-context/results/`
-- Cập nhật progress vào `.skill-context/shared/progress.md`
-
-## Các Skill Được Hỗ Trợ
-
-### Design Skills (Analysis)
+### Design & Specification (Life-2)
 
 | Skill | Mô Tả |
 |-------|-------|
@@ -108,28 +79,84 @@ Sau khi restart Claude Code, hệ thống sẽ tự động:
 | `ui-architecture-analyst` | Phân tích UI Architecture (Schema → Screens) |
 | `ui-pencil-drawer` | Vẽ UI Wireframes trong Pencil canvas |
 
-### Meta Skills (Skill Development)
+### Implementation (Life-3)
+
+| Skill | Mô Tả |
+|-------|-------|
+| `build-crud-admin-page` | Xây dựng trang admin CRUD cho PayloadCMS |
+| `error-response-system` | Hệ thống chuẩn hóa error response |
+| `api-from-ui` | Xây dựng custom API từ UI |
+| `api-integration` | Tích hợp API backend vào frontend |
+| `screen-structure-checker` | Kiểm tra cấu trúc thư mục screens |
+
+### Skill Development
 
 | Skill | Mô Tả |
 |-------|-------|
 | `skill-architect` | Thiết kế kiến trúc Agent Skill mới |
 | `skill-builder` | Triển khai Agent Skill từ design.md |
 | `skill-planner` | Lập kế hoạch triển khai chi tiết (todo.md) |
-| `master-skill` | Orchestrate end-to-end skill delivery |
+| `skill-creator` | Hướng dẫn tạo skill mới |
 
-### Pipeline Skills
+### OpenSpec Workflow
 
-Skills trong `.skill-context/skills/` được đóng gói và sẵn sàng sử dụng khi cài đặt package.
+| Skill | Mô Tả |
+|-------|-------|
+| `openspec-new-change` | Tạo change mới với artifacts |
+| `openspec-apply-change` | Triển khai tasks từ change |
+| `openspec-verify-change` | Xác minh implementation vs spec |
+| `openspec-archive-change` | Lưu trữ completed change |
+| `openspec-sync-specs` | Đồng bộ specs từ change |
 
-## Templates
+### Utilities
 
-### Pipeline Template
+| Skill | Mô Tả |
+|-------|-------|
+| `task-planner` | Phân tách requirement thành tasks |
+| `prompt-improver` | Cải thiện và tối ưu prompt |
+| `typescript-error-explainer` | Giải thích lỗi TypeScript |
+| `latex-report-specialist` | Hỗ trợ viết báo cáo LaTeX |
 
-Xem `.skill-context/templates/pipeline-template.yaml` để biết cấu trúc đầy đủ.
+## Sử Dụng Skills
 
-### Queue Template
+Gọi skill bằng lệnh `/skill-name`:
 
-Xem `.skill-context/templates/_queue-template.json` để biết cấu trúc queue.
+```bash
+# Design skills
+/flow-design-analyst
+/sequence-design-analyst
+/class-diagram-analyst
+
+# Implementation skills
+/payload
+/build-crud-admin-page
+/api-from-ui
+
+# Meta skills
+/skill-architect
+/task-planner
+```
+
+## Life-2 Modules (Specs)
+
+| Module | Spec File | Coverage |
+|--------|-----------|----------|
+| M1 | `m1-auth-profile-spec.md` | Authentication & Profile |
+| M2 | `m2-content-engine-spec.md` | Posts (create/edit/delete) |
+| M3 | `m3-discovery-feed-spec.md` | News Feed (ranking algorithm) |
+| M4 | `m4-engagement-spec.md` | Likes, Comments, Connections |
+| M5 | `m5-bookmarking-spec.md` | Collections & Bookmarks |
+| M6 | `m6-notifications-moderation-spec.md` | SSE Notifications, Reports |
+
+## Công Nghệ Sử Dụng
+
+| Layer | Technology |
+|-------|------------|
+| Frontend | Next.js 15 + React 19 |
+| Backend | Payload CMS 3.x |
+| Database | MongoDB Atlas |
+| Styling | Tailwind CSS v4 + Radix UI |
+| State | Redux Toolkit |
 
 ## Giải Quyết Sự Cố
 
@@ -147,10 +174,13 @@ Xem `.skill-context/templates/_queue-template.json` để biết cấu trúc que
 
 3. Restart Claude Code để load hooks mới.
 
-### Logs không được tạo
+### Skills không hoạt động
 
-Kiểm tra thư mục `.skill-context/logs/` có tồn tại không.
+Kiểm tra skills đã được cài đặt đúng:
+```bash
+ls -la .agent/skills/
+```
 
-## Giấy Phép
+## License
 
-MIT License
+MIT

@@ -1,6 +1,22 @@
 ---
 name: activity-diagram-design-analyst
 description: Chuyên gia phân tích và thiết kế sơ đồ Activity Diagram (High-Fidelity) theo tư duy Clean Architecture (B-U-E). Phản biện logic, phát hiện Deadlocks và đảm bảo tính nhất quán giữa nghiệp vụ và thiết kế.
+category: uml
+pipeline:
+  stage_order: 4
+  input_contract:
+    - type: file
+      path: "Docs/life-2/diagrams/flow/{module}-flow.md"
+      required: false
+  output_contract:
+    - type: file
+      path: "Docs/life-2/diagrams/activity/{module}-activity.md"
+      format: markdown
+  dependencies:
+    - flow-design-analyst
+  successor_hints:
+    - skill: schema-design-analyst
+      needs: [activity.md]
 ---
 # Activity Diagram Design Analyst (Senior System Architect)
 

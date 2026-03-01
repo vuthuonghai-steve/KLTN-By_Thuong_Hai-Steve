@@ -1,6 +1,25 @@
 ---
 name: ui-architecture-analyst
 description: Extracts UI Screen Specs by analyzing Schema and Diagrams. Use when you need to bridge database logic and flow diagrams into intermediate UI component specifications for a given module. Trigger when user says "analyze UI for module X", "generate ui spec", "phân tích UI module", or invokes "ui-architecture-analyst --module M[X]".
+category: ui
+pipeline:
+  stage_order: 6
+  input_contract:
+    - type: file
+      path: "Docs/life-2/database/schema-{module}.yaml"
+      required: false
+    - type: file
+      path: "Docs/life-2/diagrams/sequence/{module}-sequence.md"
+      required: false
+  output_contract:
+    - type: file
+      path: "Docs/life-2/ui/specs/{module}-ui-spec.md"
+      format: markdown
+  dependencies:
+    - schema-design-analyst
+  successor_hints:
+    - skill: ui-pencil-drawer
+      needs: [ui-spec.md]
 ---
 
 # ui-architecture-analyst — Senior UI Spec Analyst

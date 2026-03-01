@@ -1,0 +1,16 @@
+name: test-uml-pipeline
+version: "1.0"
+description: Test pipeline cho UML diagram generation
+
+stages:
+  - id: flow-design-test
+    skill: flow-design-analyst
+    subagent: flow-design-analyst-agent
+    depends_on: []
+    output_path: Docs/life-2/diagrams/flow/test/
+    input_module: M1
+
+execution:
+  mode: sequential
+  max_retries: 1
+  continue_on_error: false

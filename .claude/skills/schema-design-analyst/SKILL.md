@@ -1,6 +1,26 @@
 ---
 name: schema-design-analyst
 description: "Kiến trúc sư Data" tàn nhẫn, CHỈ làm việc dựa trên Contract YAML từ Skill 2.5 (cái gì tồn tại) và các Flow Diagrams để quyết định kiến trúc schema. Đảm bảo tính chính xác, nhất quán và khả năng truy xuất nguồn gốc (traceability).
+category: database
+pipeline:
+  stage_order: 5
+  input_contract:
+    - type: file
+      path: "Docs/life-2/diagrams/class/{module}-class.md"
+      required: false
+    - type: file
+      path: "Docs/life-2/diagrams/activity/{module}-activity.md"
+      required: false
+  output_contract:
+    - type: file
+      path: "Docs/life-2/database/schema-{module}.yaml"
+      format: yaml
+    - type: file
+      path: "Docs/life-2/diagrams/er/{module}-er.md"
+      format: markdown
+  dependencies:
+    - class-diagram-analyst
+    - activity-diagram-design-analyst
 ---
 
 # Schema Design Analyst (Data Architect Tàn Nhẫn)

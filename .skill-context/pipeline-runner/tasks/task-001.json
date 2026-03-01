@@ -1,0 +1,17 @@
+{
+  "task_id": "flow-design-test-001",
+  "skill_name": "flow-design-analyst",
+  "subagent": "flow-design-analyst",
+  "module": "M1",
+  "input": {
+    "source_dir": "Docs/life-1/01-vision/FR",
+    "module_hint": "auth",
+    "description": "Tạo flow diagram cho chức năng đăng ký và đăng nhập"
+  },
+  "output_dir": "Docs/life-2/diagrams/flow/test",
+  "pipeline_awareness": {
+    "position": "Stage 1 of 1 (Test)",
+    "predecessor": null,
+    "successor": null
+  }
+}
