@@ -9,6 +9,13 @@ trigger_patterns:
   - "generate uml"
 ---
 
+> 🚨 **MỆNH LỆNH BẮT BUỘC TỪ HỆ THỐNG (CRITICAL DIRECTIVE)**:
+> Bạn CHỈ MỚI ĐỌC file `SKILL.md` này. Trí tuệ của bạn chưa được nạp đầy đủ.
+> Hệ thống **KHÔNG** tự động nạp các file kiến thức khác trong thư mục.
+> Bạn **BẮT BUỘC PHẢI** sử dụng tool `view_file` hoặc `list_dir` để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
+> Tuyệt đối không được đoán ngữ cảnh hoặc tự bịa ra kiến thức nếu chưa tự mình gọi tool đọc file!
+
+
 # Pipeline Runner — Orchestrator Skill
 
 ## Mission
@@ -19,10 +26,33 @@ trigger_patterns:
 
 1. Read this `SKILL.md` (Core orchestration logic).
 2. Read `knowledge/pipeline-config.md` — Pipeline YAML schema.
-3. Read `.skill-context/{pipeline_name}/pipeline.yaml` — User's pipeline definition.
-4. Read `.skill-context/{pipeline_name}/_queue.json` — Runtime state (if resuming).
+3. **Read `.claude/skills/skills.yaml`** ← PRIMARY SOURCE FOR PIPELINE DEFINITIONS
+4. Extract pipeline definition by name (e.g., `uml-generation`, `skill-creation`)
+5. Read `.skill-context/{pipeline_name}/_queue.json` — Runtime state (if resuming).
 
 *Additional files load per-step below (Progressive Disclosure).*
+
+---
+
+## CRITICAL: Load Pipeline from skills.yaml
+
+The pipeline runner MUST load pipeline definitions from `.claude/skills/skills.yaml` NOT from hardcoded configs.
+
+### Loading Process
+
+1. **Read skills.yaml** at `.claude/skills/skills.yaml`
+2. **Find pipeline by name** in `pipelines` section
+3. **Extract stages** with full DAG metadata:
+   - `id`: Stage identifier
+   - `skill`: Skill name to invoke
+   - `depends_on`: Array of stage IDs this depends on
+   - `checkpoint`: Boolean (true = pause after this stage)
+   - `input_contract`: Required inputs
+   - `output_contract`: Expected outputs
+
+4. **Validate all skills exist** in the skills registry
+
+5. **Create queue** with ALL stages (not just first 4)
 
 ---
 
@@ -30,22 +60,25 @@ trigger_patterns:
 
 ### Phase 1: INIT — Initialize Pipeline
 
-1. Read pipeline.yaml to get stages, dependencies, checkpoints.
-2. Validate all skills referenced exist in skills.yaml.
-3. Create or resume _queue.json with status tracking.
-4. Notify user: pipeline start, stage count, first stage.
+1. **Read skills.yaml** to get stages, dependencies, checkpoints ← PRIMARY SOURCE
+2. **Extract pipeline definition** by name (from trigger or default)
+3. **Validate all skills referenced** exist in skills registry
+4. **Create or resume _queue.json** with status tracking for ALL stages
+5. **Notify user**: pipeline name, stage count (e.g., "7 stages"), checkpoint locations
 
 ### Phase 2: EXECUTE — Run Stage Loop
 
 For each stage (in dependency order):
 
 1. **Find Runnable**: Check if all dependencies are COMPLETED.
-2. **Prepare Task**: Create task-input.json in .skill-context/{pipeline}/tasks/
+2. **Prepare Task**: Create task-input.json in .skill-context/{pipeline}/tasks/ with:
+   - Full pipeline_context (see Phase 4)
+   - Predecessor outputs from depends_on stages
 3. **Spawn Sub-agent**: Use Task tool to invoke skill-executor agent with task spec.
 4. **Execute**: skill-executor runs the skill with isolated context.
 5. **Validate**: Run validation_script, check exit code = 0.
 6. **Update Queue**: Write _queue.json with COMPLETED or FAILED.
-7. **Checkpoint**: If checkpoint=true, pause and ask user to continue.
+7. **Checkpoint**: Read `checkpoint` field from skills.yaml stage definition (NOT hardcoded)
 
 ### Phase 3: COMPLETE — Finalize
 
@@ -83,6 +116,7 @@ For each stage (in dependency order):
 ### Tier 1: Always Load
 - SKILL.md (this file)
 - knowledge/pipeline-config.md
+- `.claude/skills/skills.yaml` ← PRIMARY PIPELINE SOURCE
 
 ### Tier 2: Per-Stage
 - Current skill's SKILL.md (when spawning sub-agent)

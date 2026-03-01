@@ -1,13 +1,36 @@
-#!/usr/bin/env bash
-# Hook: PreToolUse → Write | Edit
-# Cảnh báo nếu Claude chuẩn bị ghi vào file .env hoặc secret files
+#!/bin/bash
+# =============================================================================
+# Hook: PreToolUse - Pre-write check
+# Purpose: Prevent committing sensitive files
+# =============================================================================
 
-TOOL_INPUT=$(cat)
-FILE_PATH=$(echo "$TOOL_INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('tool_input',{}).get('file_path',''))" 2>/dev/null)
+set -e
 
-if [[ "$FILE_PATH" == *".env"* ]] || [[ "$FILE_PATH" == *"secret"* ]] || [[ "$FILE_PATH" == *"credentials"* ]]; then
-  echo "⚠️  WARNING: Attempting to write to sensitive file: $FILE_PATH" >&2
-  exit 2
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
+
+# Files to block
+BLOCKED_FILES=(
+    ".env"
+    ".env.local"
+    ".env.production"
+    "credentials.json"
+    "*.key"
+)
+
+# Get input and parse JSON
+INPUT=$(cat)
+TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // empty' 2>/dev/null || echo "")
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // .tool_input.path // empty' 2>/dev/null || echo "")
+
+if [ "$TOOL_NAME" = "Write" ] || [ "$TOOL_NAME" = "Edit" ]; then
+    for pattern in "${BLOCKED_FILES[@]}"; do
+        if echo "$FILE_PATH" | grep -q "$pattern"; then
+            echo -e "${RED}ERROR: Writing to $FILE_PATH is not allowed${NC}"
+            echo "This file may contain sensitive data."
+            exit 1
+        fi
+    done
 fi
 
 exit 0

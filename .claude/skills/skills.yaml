@@ -91,6 +91,29 @@ skills:
   # UML/Diagram Skills (Life-2)
   # ─────────────────────────────────────────────────────────
 
+  - name: global-system-planner
+    path: .claude/skills/global-system-planner
+    status: active
+    description: Master System Planner. Phân tích ngữ cảnh tổng thể từ Functional Requirements, sinh ra Global Blueprint cho quá trình UML Generation.
+    category: uml
+    pipeline:
+      stage_order: 0
+      input_contract:
+        - type: directory
+          path: "Docs/life-1"
+          required: true
+      output_contract:
+        - type: file
+          path: "Docs/life-2/module-blueprint.md"
+          format: markdown
+      validation:
+        script: null
+        expected_exit_code: 0
+      dependencies: []
+      successor_hints:
+        - skill: flow-design-analyst
+          needs: [module-blueprint.md]
+
   - name: flow-design-analyst
     path: .claude/skills/flow-design-analyst
     status: active
@@ -383,57 +406,189 @@ pipelines:
   uml-generation:
     name: UML Generation Pipeline
     description: Tự động tạo tài liệu UML từ Functional Requirements
+    pipeline_awareness:
+      enabled: true
+      include_predecessor_outputs: true
+      include_global_context: true
+
+    global_context:
+      project: life-2
+      input_base: Docs/life-1
+      output_base: Docs/life-2
+
     stages:
+      - skill: global-system-planner
+        id: stage_00
+        depends_on: []
+        checkpoint: true
+        input_contract:
+          - type: directory
+            path: "Docs/life-1"
+            required: true
+        output_contract:
+          - type: file
+            path: "Docs/life-2/module-blueprint.md"
+            format: markdown
       - skill: flow-design-analyst
         id: stage_01
-        depends_on: []
+        depends_on: [stage_00]
+        checkpoint: false
+        input_contract:
+          - type: directory
+            path: "Docs/life-1/{module}"
+            required: true
+        output_contract:
+          - type: file
+            path: "Docs/life-2/diagrams/flow/{module}-flow.md"
+            format: markdown
       - skill: sequence-design-analyst
         id: stage_02
         depends_on: [stage_01]
+        checkpoint: true
+        input_contract:
+          - type: file
+            path: "Docs/life-2/diagrams/flow/{module}-flow.md"
+            required: false
+        output_contract:
+          - type: file
+            path: "Docs/life-2/diagrams/sequence/{module}-sequence.md"
+            format: markdown
       - skill: class-diagram-analyst
         id: stage_03
         depends_on: [stage_02]
+        checkpoint: false
+        input_contract:
+          - type: file
+            path: "Docs/life-2/diagrams/sequence/{module}-sequence.md"
+            required: false
+        output_contract:
+          - type: file
+            path: "Docs/life-2/diagrams/class/{module}-class.md"
+            format: markdown
       - skill: activity-diagram-design-analyst
         id: stage_04
-        depends_on: [stage_01]
+        depends_on: [stage_00]
+        checkpoint: false
+        input_contract:
+          - type: file
+            path: "Docs/life-2/diagrams/flow/{module}-flow.md"
+            required: false
+        output_contract:
+          - type: file
+            path: "Docs/life-2/diagrams/activity/{module}-activity.md"
+            format: markdown
       - skill: schema-design-analyst
         id: stage_05
         depends_on: [stage_03, stage_04]
+        checkpoint: true
+        input_contract:
+          - type: file
+            path: "Docs/life-2/diagrams/class/{module}-class.md"
+            required: false
+          - type: file
+            path: "Docs/life-2/diagrams/activity/{module}-activity.md"
+            required: false
+        output_contract:
+          - type: file
+            path: "Docs/life-2/database/schema-{module}.yaml"
+            format: yaml
+          - type: file
+            path: "Docs/life-2/diagrams/er/{module}-er.md"
+            format: markdown
       - skill: ui-architecture-analyst
         id: stage_06
         depends_on: [stage_05]
+        checkpoint: false
+        input_contract:
+          - type: file
+            path: "Docs/life-2/database/schema-{module}.yaml"
+            required: false
+          - type: file
+            path: "Docs/life-2/diagrams/sequence/{module}-sequence.md"
+            required: false
+        output_contract:
+          - type: file
+            path: "Docs/life-2/ui/specs/{module}-ui-spec.md"
+            format: markdown
       - skill: ui-pencil-drawer
         id: stage_07
         depends_on: [stage_06]
+        checkpoint: false
+        input_contract:
+          - type: file
+            path: "Docs/life-2/ui/specs/{module}-ui-spec.md"
+            required: true
+          - type: file
+            path: "Docs/life-2/ui/wireframes/{module}.pen"
+            required: false
+        output_contract:
+          - type: file
+            path: "Docs/life-2/ui/wireframes/{module}.pen"
+            format: pen
     execution:
       mode: sequential
       max_retries: 2
       continue_on_error: false
       timeout_per_stage: 1800
-    checkpoints:
-      - stage_02
-      - stage_05
 
   skill-creation:
     name: Skill Creation Pipeline
     description: Tạo skill mới từ yêu cầu đến implementation
+    pipeline_awareness:
+      enabled: true
+      include_predecessor_outputs: true
+      include_global_context: true
+
+    global_context:
+      project: skill-ecosystem
+      input_base: .skill-context
+      output_base: .agent/skills
+
     stages:
       - skill: skill-architect
         id: stage_01
         depends_on: []
+        checkpoint: true
+        input_contract:
+          - type: directory
+            path: ".skill-context/{skill-name}"
+            required: false
+        output_contract:
+          - type: file
+            path: ".skill-context/{skill-name}/design.md"
+            format: markdown
       - skill: skill-planner
         id: stage_02
         depends_on: [stage_01]
+        checkpoint: true
+        input_contract:
+          - type: file
+            path: ".skill-context/{skill-name}/design.md"
+            required: true
+        output_contract:
+          - type: file
+            path: ".skill-context/{skill-name}/todo.md"
+            format: markdown
       - skill: skill-builder
         id: stage_03
         depends_on: [stage_02]
+        checkpoint: false
+        input_contract:
+          - type: file
+            path: ".skill-context/{skill-name}/design.md"
+            required: true
+          - type: file
+            path: ".skill-context/{skill-name}/todo.md"
+            required: true
+        output_contract:
+          - type: directory
+            path: ".agent/skills/{skill-name}"
+            format: directory
     execution:
       mode: sequential
       max_retries: 2
       continue_on_error: false
-    checkpoints:
-      - stage_01
-      - stage_02
+      timeout_per_stage: 1800
 
 # ============================================================
 # CATEGORY GROUPS
@@ -462,4 +617,4 @@ categories:
 
   utility:
     description: Skills tiện ích hỗ trợ
-    color: gray
+    color: gray2

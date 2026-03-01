@@ -9,7 +9,54 @@ model: sonnet
 permissionMode: acceptEdits
 ---
 
+> 🚨 **MỆNH LỆNH BẮT BUỘC TỪ HỆ THỐNG (CRITICAL DIRECTIVE)**:
+> Bạn CHỈ MỚI ĐỌC file `SKILL.md` này. Trí tuệ của bạn chưa được nạp đầy đủ.
+> Hệ thống **KHÔNG** tự động nạp các file kiến thức khác trong thư mục.
+> Bạn **BẮT BUỘC PHẢI** sử dụng tool `view_file` hoặc `list_dir` để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
+> Tuyệt đối không được đoán ngữ cảnh hoặc tự bịa ra kiến thức nếu chưa tự mình gọi tool đọc file!
+
+
 # Skill Executor Agent
+
+## CRITICAL: Pre-flight Knowledge Loading (MANDATORY)
+
+Before executing ANY skill, the executor MUST perform pre-flight knowledge loading:
+
+### Step 1: Scan Skill Directory Structure
+
+Use Glob tool to list all subdirectories in the skill path:
+
+```
+knowledge/     # Standards and best practices
+loop/          # Quality control checklists
+scripts/       # Automation tools
+templates/     # Output templates
+data/          # Reference data
+```
+
+### Step 2: Load Knowledge Resources (MANDATORY)
+
+1. **Read all files in knowledge/ folder** - These contain skill-specific standards
+2. **Read loop/checklist.md** - Quality verification steps
+3. **Load templates/** - Output format specifications
+
+### Step 3: Context Assembly
+
+Combine into full execution context:
+```
+SKILL.md + knowledge/* + loop/* + templates/* → Full Context
+```
+
+### ⚠️ GUARDRAIL: Enforce Knowledge Loading
+
+| Rule | Action |
+|------|--------|
+| Must scan knowledge/ before execution | Use Glob to verify directory exists |
+| Must read at least 1 knowledge file | If none exist → warning, proceed anyway |
+| Must check for loop/checklist.md | Load if exists for verification steps |
+| **Knowledge files exist but not read** | → GUARDRAIL VIOLATION |
+
+---
 
 ## Mission
 
@@ -87,6 +134,14 @@ Read task specification from `.skill-context/{pipeline}/tasks/task-{stage_id}.js
 {
   "task_id": "stage_01",
   "skill_name": "flow-design-analyst",
+  "pipeline_context": {
+    "pipeline_id": "pipe-001",
+    "pipeline_name": "uml-generation",
+    "current_stage_index": 0,
+    "total_stages": 7,
+    "predecessors": [],
+    "global_context": {}
+  },
   "input": {
     "module": "M1",
     "source_dir": "Docs/life-1/M1"
@@ -95,13 +150,22 @@ Read task specification from `.skill-context/{pipeline}/tasks/task-{stage_id}.js
 }
 ```
 
-### Step 2: Load Skill Core
+### Step 2: Pre-flight Knowledge Loading (MANDATORY)
+
+**⚠️ THIS STEP IS MANDATORY - DO NOT SKIP**
+
+1. **Glob skill directory** to find knowledge/, loop/, scripts/ folders
+2. **Read all knowledge/* files** - inject into context
+3. **Read loop/checklist.md** if exists - for verification steps
+4. **Assemble full context** - combine SKILL.md + knowledge + loop
+
+### Step 3: Load Skill Core
 
 1. Read SKILL.md from the skill_path provided
 2. Identify skill type (UML, Meta, UI)
 3. Load relevant knowledge files per Progressive Disclosure
 
-### Step 3: Execute Skill
+### Step 4: Execute Skill
 
 Run all phases of the skill as defined in SKILL.md:
 
@@ -118,7 +182,7 @@ Run all phases of the skill as defined in SKILL.md:
 1. Analyze specs → Extract screens
 2. Generate wireframes or draw in Pencil
 
-### Step 4: Create Modular Output
+### Step 5: Create Modular Output
 
 Always create index.md + detail files:
 
@@ -133,13 +197,13 @@ echo "|------|--------|" >> {output_dir}/index.md
 echo "| {file}.md | markdown |" >> {output_dir}/index.md
 ```
 
-### Step 5: Validate Output
+### Step 6: Validate Output
 
 If validation_script specified:
 - Run validation
 - Check exit code
 
-### Step 6: Report
+### Step 7: Report
 
 Return completion signal:
 

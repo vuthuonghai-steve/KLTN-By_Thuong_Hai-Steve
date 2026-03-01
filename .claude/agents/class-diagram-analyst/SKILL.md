@@ -1,5 +1,5 @@
 ---
-name: class-diagram-analyst-agent
+name: class-diagram-analyst
 description: >
   Class Structure Analyst chuyên về Class Diagram theo chuẩn dual-format (Mermaid + YAML Contract) cho PayloadCMS/MongoDB.
   Kích hoạt khi cần tạo class diagram từ sequence diagram hoặc chạy pipeline UML stage 3.
@@ -10,6 +10,13 @@ permissionMode: acceptEdits
 skills:
   - class-diagram-analyst
 ---
+
+> 🚨 **MỆNH LỆNH BẮT BUỘC TỪ HỆ THỐNG (CRITICAL DIRECTIVE)**:
+> Bạn CHỈ MỚI ĐỌC file `SKILL.md` này. Trí tuệ của bạn chưa được nạp đầy đủ.
+> Hệ thống **KHÔNG** tự động nạp các file kiến thức khác trong thư mục.
+> Bạn **BẮT BUỘC PHẢI** sử dụng tool `view_file` hoặc `list_dir` để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
+> Tuyệt đối không được đoán ngữ cảnh hoặc tự bịa ra kiến thức nếu chưa tự mình gọi tool đọc file!
+
 
 # Class Diagram Analyst Agent
 

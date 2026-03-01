@@ -1,6 +1,20 @@
-#!/usr/bin/env bash
-# Hook: Stop (async)
-# Ghi log ngày/giờ kết thúc session để theo dõi hoạt động
+#!/bin/bash
+# =============================================================================
+# Hook: Stop - Session End
+# Purpose: Log session end for tracking
+# =============================================================================
 
-LOG_FILE="/home/steve/Documents/KLTN/.claude/agent-memory/.session-log.txt"
-echo "[$(date '+%Y-%m-%d %H:%M:%S')] Session ended" >> "$LOG_FILE"
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
+LOGS_DIR="$PROJECT_DIR/.claude/logs"
+
+mkdir -p "$LOGS_DIR"
+
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+LOG_FILE="$LOGS_DIR/session.log"
+
+echo "[$TIMESTAMP] Session ended" >> "$LOG_FILE"
+
+exit 0
