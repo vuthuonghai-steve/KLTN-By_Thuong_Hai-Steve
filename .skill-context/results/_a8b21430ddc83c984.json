@@ -1,0 +1,12 @@
+{
+  "session_id": "60cf0502-d762-401c-b22f-2331f77532ef",
+  "transcript_path": "/home/steve/.claude/projects/-home-steve-Documents-KLTN/60cf0502-d762-401c-b22f-2331f77532ef.jsonl",
+  "cwd": "/home/steve/Documents/KLTN",
+  "permission_mode": "default",
+  "hook_event_name": "SubagentStop",
+  "stop_hook_active": false,
+  "agent_id": "a8b21430ddc83c984",
+  "agent_transcript_path": "/home/steve/.claude/projects/-home-steve-Documents-KLTN/60cf0502-d762-401c-b22f-2331f77532ef/subagents/agent-a8b21430ddc83c984.jsonl",
+  "agent_type": "",
+  "last_assistant_message": "test thử một skill xem hoạt động không"
+}

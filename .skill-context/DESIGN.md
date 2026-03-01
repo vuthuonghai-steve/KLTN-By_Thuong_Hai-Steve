@@ -55,7 +55,7 @@ Mục tiêu: Giúp người dùng đi từ **ý tưởng mơ hồ** → **bản 
 ┌──────────────────┐
 │  SKILL #1        │
 │  Architect       │     Tao & ghi vao
-│  (.agent/skills/ │────────────────────▶ .skill-context/
+│  (.claude/skills/ │────────────────────▶ .skill-context/
 │   skill-architect│                      ├── design.md  ◀── Skill #1 output
 │   /SKILL.md)     │                      ├── todo.md    ◀── Skill #2 output
 └──────────────────┘                      ├── build-log.md ◀── Skill #3 output
@@ -65,7 +65,7 @@ Mục tiêu: Giúp người dùng đi từ **ý tưởng mơ hồ** → **bản 
 ┌──────────────────┐
 │  SKILL #2        │     Doc design.md
 │  Planner         │◀───────────────────── .skill-context/
-│  (.agent/skills/ │     Ghi todo.md
+│  (.claude/skills/ │     Ghi todo.md
 │   skill-planner  │────────────────────▶ .skill-context/
 │   /SKILL.md)     │
 └──────────────────┘
@@ -75,8 +75,8 @@ Mục tiêu: Giúp người dùng đi từ **ý tưởng mơ hồ** → **bản 
 ┌──────────────────┐
 │  SKILL #3        │     Doc design.md + todo.md
 │  Builder         │◀───────────────────── .skill-context/
-│  (.agent/skills/ │     Trien khai xay dung
-│   skill-builder  │────────────────────▶ .agent/skills/{new-skill}/
+│  (.claude/skills/ │     Trien khai xay dung
+│   skill-builder  │────────────────────▶ .claude/skills/{new-skill}/
 │   /SKILL.md)     │
 └──────────────────┘
 ```

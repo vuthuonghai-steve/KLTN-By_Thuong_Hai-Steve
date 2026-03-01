@@ -1,0 +1,54 @@
+{
+  "module": "M1",
+  "module_name": "Authentication & Profile",
+  "spec_file": "Docs/life-2/specs/m1-auth-profile-spec.md",
+  "collections": [
+    {
+      "name": "users",
+      "description": "Main user collection with profile data",
+      "fields": [
+        {
+          "name": "email",
+          "type": "string",
+          "required": true,
+          "validation": "valid email format"
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "required": true,
+          "unique": true,
+          "validation": "min 3, max 20, regex: ^[a-zA-Z0-9_]+$"
+        },
+        {
+          "name": "password",
+          "type": "password",
+          "required": true,
+          "security": "never expose in reads"
+        },
+        {
+          "name": "roles",
+          "type": "select",
+          "options": ["admin", "user"],
+          "default": "user"
+        },
+        {
+          "name": "profile",
+          "type": "group",
+          "fields": [
+            { "name": "display_name", "type": "string" },
+            { "name": "avatar", "type": "upload", "relation": "media" },
+            { "name": "bio", "type": "text", "validation": "max 160 characters" },
+            { "name": "social_links", "type": "array", "items": { "type": "url" } }
+          ]
+        }
+      ],
+      "access_control": {
+        "read": "Anyone (public profile)",
+        "create": "Public",
+        "update": "Owner only",
+        "delete": "Admin only"
+      }
+    }
+  ]
+}

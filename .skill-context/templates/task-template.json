@@ -1,0 +1,35 @@
+{
+  "task_id": "{{task_id}}",
+  "stage_id": "{{stage_id}}",
+  "skill_name": "{{skill_name}}",
+
+  "pipeline_awareness": {
+    "position": "{{position}}",
+    "total_stages": {{total_stages}},
+    "predecessor": {
+      "skill": "{{pred_skill}}",
+      "status": "{{pred_status}}",
+      "note": "{{pred_note}}",
+      "output_files": ["{{pred_output_file}}"]
+    },
+    "successor": {
+      "skill": "{{succ_skill}}",
+      "what_they_need": "{{succ_need}}"
+    }
+  },
+
+  "instruction": "{{instruction}}",
+
+  "input_sources": [
+    {
+      "name": "{{input_name}}",
+      "path": "{{input_path}}",
+      "type": "file"
+    }
+  ],
+
+  "expected_output": {
+    "path": "{{output_path}}",
+    "format": "{{output_format}}"
+  }
+}

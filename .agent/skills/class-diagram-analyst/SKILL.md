@@ -1,6 +1,44 @@
 ---
 name: class-diagram-analyst
 description: Chuyên gia phân tích cấu trúc Class Diagram theo chuẩn dual-format (Mermaid + YAML Contract) cho PayloadCMS / MongoDB. Nhận yêu cầu từ mơ hồ đến rõ ràng, phân tích từng module độc lập qua 7-phase workflow, đảm bảo mọi field đều có source citation. KHÔNG BAO GIỜ tự bịa field mà không có source.
+
+# Pipeline Frontmatter - FOR INTERNAL ORCHESTRATOR USE
+pipeline:
+  stage_order: 3
+  role: domain-skill-class
+  input_contract:
+    - type: file
+      name: flow_diagrams
+      path: "{input_path}/diagrams/flow/"
+      description: "Flow diagrams for entity extraction"
+      required: true
+    - type: file
+      name: sequence_diagrams
+      path: "{input_path}/diagrams/sequence/"
+      description: "Sequence diagrams for method extraction"
+      required: false
+  output_contract:
+    - type: file
+      name: class_diagram
+      path: "{output_path}/diagrams/class-diagram.md"
+      description: "Mermaid class diagram"
+      format: markdown
+    - type: file
+      name: class_contract
+      path: "{output_path}/database/class-contract.yaml"
+      description: "YAML contract for code generation"
+      format: yaml
+  validation:
+    script: "scripts/validate_contract.py"
+    expected_exit_code: 0
+    description: "Validate class contract completeness"
+  successor_hints:
+    - skill: schema-design-analyst
+      needs: ["class_contract"]
+      description: "Generates database schema from class structure"
+    - skill: ui-architecture-analyst
+      needs: ["class_diagram"]
+      description: "Maps entities to UI screens"
 ---
 
 # class-diagram-analyst — Class Structure Analyst

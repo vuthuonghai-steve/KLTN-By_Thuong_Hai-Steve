@@ -1,6 +1,42 @@
 ---
 name: activity-diagram-design-analyst
 description: Chuyên gia phân tích và thiết kế sơ đồ Activity Diagram (High-Fidelity) theo tư duy Clean Architecture (B-U-E). Phản biện logic, phát hiện Deadlocks và đảm bảo tính nhất quán giữa nghiệp vụ và thiết kế.
+
+# Pipeline Frontmatter - FOR INTERNAL ORCHESTRATOR USE
+pipeline:
+  stage_order: 4
+  role: domain-skill-activity
+  input_contract:
+    - type: file
+      name: sequence_diagrams
+      path: "{input_path}/diagrams/sequence/"
+      description: "Sequence diagrams for activity derivation"
+      required: true
+    - type: file
+      name: flow_diagrams
+      path: "{input_path}/diagrams/flow/"
+      description: "Flow diagrams for reference"
+      required: false
+  output_contract:
+    - type: directory
+      name: activity_diagrams
+      path: "{output_path}/diagrams/activity/"
+      description: "Mermaid activity diagram files"
+    - type: file
+      name: activity_index
+      path: "{output_path}/diagrams/activity/index.md"
+      description: "Index of all activity diagrams"
+  validation:
+    script: "scripts/validate_syntax.py"
+    expected_exit_code: 0
+    description: "Validate Mermaid activity syntax"
+  successor_hints:
+    - skill: schema-design-analyst
+      needs: ["activity_diagrams"]
+      description: "Extracts database operations from activities"
+    - skill: ui-architecture-analyst
+      needs: ["activity_diagrams"]
+      description: "Maps user flows to UI screens"
 ---
 # Activity Diagram Design Analyst (Senior System Architect)
 

@@ -1,0 +1,34 @@
+{
+  "module": "M1",
+  "module_name": "Authentication & Profile",
+  "spec_file": "Docs/life-2/specs/m1-auth-profile-spec.md",
+  "features": [
+    "User Login (Email/Password)",
+    "User Registration",
+    "Profile View",
+    "Profile Edit"
+  ],
+  "lane_actors": [
+    "User",
+    "System (Payload CMS)",
+    "Database (MongoDB)"
+  ],
+  "flows": [
+    {
+      "name": "Login Flow",
+      "description": "User logs in with email/password"
+    },
+    {
+      "name": "Registration Flow",
+      "description": "User registers with email, username, password - auto-creates profile"
+    },
+    {
+      "name": "Profile View Flow",
+      "description": "View public profile information"
+    },
+    {
+      "name": "Profile Edit Flow",
+      "description": "Update profile (avatar, bio, social links)"
+    }
+  ]
+}

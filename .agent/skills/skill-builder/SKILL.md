@@ -1,6 +1,51 @@
 ---
 name: skill-builder
 description: Kỹ sư triển khai Agent Skill (Senior Implementation Engineer). Thực thi bản thiết kế (design.md) và kế hoạch (todo.md). Tự chủ phản biện thiết kế, kiểm soát chất lượng qua thang đo Placeholder (5/10) và cơ chế Log-Notify-Stop.
+
+# Pipeline Frontmatter - FOR INTERNAL ORCHESTRATOR USE
+pipeline:
+  stage_order: 2
+  role: meta-skill-builder
+  input_contract:
+    - type: file
+      name: design_doc
+      path: ".skill-context/{skill-name}/design.md"
+      description: "Architecture blueprint from skill-architect"
+      required: true
+    - type: file
+      name: todo_doc
+      path: ".skill-context/{skill-name}/todo.md"
+      description: "Implementation plan from skill-planner"
+      required: true
+    - type: directory
+      name: resources
+      path: ".skill-context/{skill-name}/resources/"
+      description: "Domain resources for building"
+      required: false
+    - type: directory
+      name: knowledge_base
+      path: "knowledge/"
+      description: "Builder framework references"
+      required: false
+  output_contract:
+    - type: directory
+      name: skill_package
+      path: ".claude/skills/{skill-name}/"
+      description: "Complete skill package with SKILL.md, knowledge/, loop/, templates/"
+      required: true
+    - type: file
+      name: build_log
+      path: ".skill-context/{skill-name}/build-log.md"
+      description: "Build execution log"
+      required: true
+  validation:
+    script: "scripts/validate_skill.py"
+    expected_exit_code: 0
+    description: "Validate skill package completeness and quality"
+  successor_hints:
+    - skill: pipeline-runner
+      needs: ["skill_package", "build_log"]
+      description: "Completed skill ready for integration into pipeline"
 ---
 # Skill Builder (Senior Implementation Engineer)
 

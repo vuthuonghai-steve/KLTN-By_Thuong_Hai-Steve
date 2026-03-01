@@ -1,6 +1,44 @@
 ---
 name: ui-architecture-analyst
 description: Extracts UI Screen Specs by analyzing Schema and Diagrams. Use when you need to bridge database logic and flow diagrams into intermediate UI component specifications for a given module. Trigger when user says "analyze UI for module X", "generate ui spec", "phân tích UI module", or invokes "ui-architecture-analyst --module M[X]".
+
+# Pipeline Frontmatter - FOR INTERNAL ORCHESTRATOR USE
+pipeline:
+  stage_order: 6
+  role: domain-skill-ui-architecture
+  input_contract:
+    - type: file
+      name: schema_design
+      path: "{input_path}/database/schema-design.md"
+      description: "Database schema for entity mapping"
+      required: true
+    - type: file
+      name: flow_diagrams
+      path: "{input_path}/diagrams/flow/"
+      description: "Flow diagrams for screen flow"
+      required: false
+    - type: file
+      name: er_diagram
+      path: "{input_path}/diagrams/er-diagram.md"
+      description: "ER diagram for relationships"
+      required: false
+  output_contract:
+    - type: directory
+      name: ui_specs
+      path: "{output_path}/ui/specs/"
+      description: "UI screen specifications"
+    - type: file
+      name: ui_architecture_doc
+      path: "{output_path}/ui/ui-architecture.md"
+      description: "UI architecture document"
+  validation:
+    script: "scripts/validate_specs.py"
+    expected_exit_code: 0
+    description: "Validate UI specs completeness"
+  successor_hints:
+    - skill: ui-pencil-drawer
+      needs: ["ui_specs"]
+      description: "Generates Pencil wireframes from specs"
 ---
 
 # ui-architecture-analyst — Senior UI Spec Analyst

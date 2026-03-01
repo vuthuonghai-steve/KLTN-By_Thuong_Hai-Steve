@@ -1,0 +1,56 @@
+# Pipeline Configuration Template
+# Copy to .skill-context/pipeline.yaml and customize
+
+name: "{{pipeline_name}}"
+version: "1.0"
+description: "{{description}}"
+
+# Define stages in execution order
+stages:
+  - id: stage_01
+    skill: flow-design-analyst
+    depends_on: []
+    input: .skill-context/tasks/stage_01_input.json
+    output_path: Docs/life-2/diagrams/flow/
+
+  - id: stage_02
+    skill: sequence-design-analyst
+    depends_on: [stage_01]
+    input: .skill-context/tasks/stage_02_input.json
+    output_path: Docs/life-2/diagrams/sequence/
+
+  - id: stage_03
+    skill: class-diagram-analyst
+    depends_on: [stage_02]
+    input: .skill-context/tasks/stage_03_input.json
+    output_path: Docs/life-2/diagrams/class/
+
+  - id: stage_04
+    skill: activity-diagram-design-analyst
+    depends_on: [stage_02]
+    input: .skill-context/tasks/stage_04_input.json
+    output_path: Docs/life-2/diagrams/activity/
+
+  - id: stage_05
+    skill: schema-design-analyst
+    depends_on: [stage_03, stage_04]
+    input: .skill-context/tasks/stage_05_input.json
+    output_path: Docs/life-2/database/
+
+  - id: stage_06
+    skill: ui-architecture-analyst
+    depends_on: [stage_03]
+    input: .skill-context/tasks/stage_06_input.json
+    output_path: Docs/life-2/ui/
+
+# Execution settings
+execution:
+  mode: sequential  # sequential | parallel
+  max_retries: 2
+  continue_on_error: false
+  timeout_per_stage: 1800  # 30 minutes in seconds
+
+# Checkpoints - pipeline will pause at these stages for human review
+checkpoints:
+  - stage_02  # Pause after flow design
+  - stage_05  # Pause after schema design

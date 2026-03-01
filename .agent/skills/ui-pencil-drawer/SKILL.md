@@ -1,6 +1,36 @@
 ---
 name: drawing-ui-screens
 description: Automates end-to-end drawing of UI screens in Pencil canvas from module spec files. Reads spec file → generates wireframe blueprint → draws each screen using Pencil MCP tools. Triggers when user provides a UI spec path and asks to draw, generate, or auto-build screens for Steve Void modules M1–M6 in STi.pen.
+
+# Pipeline Frontmatter - FOR INTERNAL ORCHESTRATOR USE
+pipeline:
+  stage_order: 7
+  role: domain-skill-ui-drawer
+  input_contract:
+    - type: directory
+      name: ui_specs
+      path: "{input_path}/ui/specs/"
+      description: "UI screen specifications"
+      required: true
+    - type: file
+      name: pen_template
+      path: "{input_path}/ui/template.pen"
+      description: "Pencil template file"
+      required: false
+  output_contract:
+    - type: file
+      name: wireframes
+      path: "{output_path}/ui/wireframes.pen"
+      description: "Pencil wireframe file with all screens"
+      format: pen
+  validation:
+    script: "scripts/validate_wireframes.py"
+    expected_exit_code: 0
+    description: "Validate wireframe completeness"
+  successor_hints:
+    - skill: pipeline-complete
+      needs: ["wireframes"]
+      description: "Final output - pipeline complete"
 ---
 
 # UI Pencil Drawer — Autonomous UI Design Agent

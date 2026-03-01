@@ -1,6 +1,42 @@
 ---
 name: sequence-design-analyst
 description: Chuyên gia phân tích và thiết kế Sequence Diagram (UML) chuẩn Mermaid. Kích hoạt khi user yêu cầu vẽ sơ đồ tuần tự, phân tích luồng tương tác, hoặc thiết kế message flow cho chức năng. Tự động nghiên cứu codebase để đảm bảo tính thực tế.
+
+# Pipeline Frontmatter - FOR INTERNAL ORCHESTRATOR USE
+pipeline:
+  stage_order: 2
+  role: domain-skill-sequence
+  input_contract:
+    - type: file
+      name: flow_diagrams
+      path: "{input_path}/diagrams/flow/"
+      description: "Flow diagrams for sequence derivation"
+      required: true
+    - type: file
+      name: requirements
+      path: "{input_path}/requirements.md"
+      description: "Functional requirements"
+      required: true
+  output_contract:
+    - type: directory
+      name: sequence_diagrams
+      path: "{output_path}/diagrams/sequence/"
+      description: "Mermaid sequence diagram files"
+    - type: file
+      name: sequence_index
+      path: "{output_path}/diagrams/sequence/index.md"
+      description: "Index of all sequence diagrams"
+  validation:
+    script: "scripts/validate_syntax.py"
+    expected_exit_code: 0
+    description: "Validate Mermaid sequence syntax"
+  successor_hints:
+    - skill: class-diagram-analyst
+      needs: ["sequence_diagrams"]
+      description: "Extracts class structure from sequence messages"
+    - skill: activity-diagram-design-analyst
+      needs: ["sequence_diagrams"]
+      description: "Derives activity flows from sequences"
 ---
 # Sequence Design Analyst
 

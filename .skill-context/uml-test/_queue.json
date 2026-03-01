@@ -1,0 +1,54 @@
+{
+  "pipeline_id": "uml-test-001",
+  "pipeline_name": "uml-documentation-test",
+  "started_at": "2026-03-01T12:00:00+07:00",
+  "status": "PENDING",
+  "current_stage": null,
+
+  "stages": {
+    "stage_01_er": {
+      "skill": "schema-design-analyst",
+      "status": "COMPLETED",
+      "completed_at": "2026-03-01T13:00:00+07:00",
+      "output": "/home/steve/Documents/KLTN/Test/output/diagrams/er-diagram.md",
+      "depends_on": []
+    },
+    "stage_02_flow": {
+      "skill": "flow-design-analyst",
+      "status": "COMPLETED",
+      "completed_at": "2026-03-01T13:05:00+07:00",
+      "output": "/home/steve/Documents/KLTN/Docs/life-2/diagrams/flow/flow.md",
+      "depends_on": ["stage_01_er"]
+    },
+    "stage_03_sequence": {
+      "skill": "sequence-design-analyst",
+      "status": "COMPLETED",
+      "completed_at": "2026-03-01T13:10:00+07:00",
+      "output": "/home/steve/Documents/KLTN/Test/output/diagrams/sequence.md",
+      "depends_on": ["stage_02_flow"]
+    },
+    "stage_04_class": {
+      "skill": "class-diagram-analyst",
+      "status": "COMPLETED",
+      "completed_at": "2026-03-01T13:15:00+07:00",
+      "output": "/home/steve/Documents/KLTN/Test/output/diagrams/class.md",
+      "depends_on": ["stage_01_er", "stage_03_sequence"]
+    },
+    "stage_05_activity": {
+      "skill": "activity-diagram-design-analyst",
+      "status": "COMPLETED",
+      "completed_at": "2026-03-01T13:20:00+07:00",
+      "output": "/home/steve/Documents/KLTN/Test/output/diagrams/class.md",
+      "depends_on": ["stage_02_flow"]
+    },
+    "stage_06_ui": {
+      "skill": "ui-architecture-analyst",
+      "status": "COMPLETED",
+      "completed_at": "2026-03-01T13:25:00+07:00",
+      "output": "/home/steve/Documents/KLTN/Test/output/diagrams/activity.md",
+      "depends_on": ["stage_04_class"]
+    }
+  },
+
+  "history": []
+}

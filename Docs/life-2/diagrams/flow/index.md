@@ -5,6 +5,7 @@
 
 | Flow File | Business Function | Module | UC-ID | Created |
 | --- | --- | --- | --- | --- |
+| [flow.md](./flow.md) | Tổng hợp 5 Business Flows (Auth, Content, Engagement, Bookmark, Notification) | M1-M6 | UC01-UC24 | 2026-03-01 |
 | [flow-user-registration.md](./flow-user-registration.md) | Đăng ký tài khoản | M1 | UC01 | 2026-02-20 |
 | [flow-login-email.md](./flow-login-email.md) | Đăng nhập Email/Password | M1 | UC02 | 2026-02-20 |
 | [flow-login-oauth.md](./flow-login-oauth.md) | Đăng nhập OAuth (Google) 🔒 | M1 | UC03 | 2026-02-20 |

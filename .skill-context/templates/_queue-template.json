@@ -1,0 +1,47 @@
+{
+  "pipeline_id": "{{pipeline_id}}",
+  "pipeline_name": "{{pipeline_name}}",
+  "version": "1.0",
+  "description": "{{description}}",
+  "started_at": "{{started_at}}",
+  "status": "PENDING",
+  "current_stage": null,
+
+  "stages": {
+    "{{stage_id_1}}": {
+      "skill": "{{skill_name_1}}",
+      "depends_on": [],
+      "status": "PENDING",
+      "agent_id": null,
+      "started_at": null,
+      "completed_at": null,
+      "output_path": "{{output_path_1}}",
+      "retry_count": 0
+    },
+    "{{stage_id_2}}": {
+      "skill": "{{skill_name_2}}",
+      "depends_on": ["{{stage_id_1}}"],
+      "status": "PENDING",
+      "agent_id": null,
+      "started_at": null,
+      "completed_at": null,
+      "output_path": "{{output_path_2}}",
+      "retry_count": 0
+    }
+  },
+
+  "execution": {
+    "mode": "sequential",
+    "max_retries": 2,
+    "continue_on_error": false
+  },
+
+  "context": {
+    "total_stages": {{total_stages}},
+    "completed_stages": 0,
+    "failed_stages": 0,
+    "current_errors": []
+  },
+
+  "history": []
+}

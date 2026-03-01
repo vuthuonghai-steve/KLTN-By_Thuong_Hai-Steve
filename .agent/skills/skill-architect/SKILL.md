@@ -1,6 +1,35 @@
 ---
 name: skill-architect
 description: Designs AI agent skill architectures by analyzing requirements and mapping them into the 3 Pillars (Knowledge, Process, Guardrails) across 7 Zones. Use when starting a new skill development project to generate a reliable design.md blueprint.
+
+# Pipeline Frontmatter - FOR INTERNAL ORCHESTRATOR USE
+pipeline:
+  stage_order: 0
+  role: meta-skill-architect
+  input_contract:
+    - type: prompt
+      name: user_requirement
+      description: "Vague or clear requirement from user"
+      required: true
+    - type: directory
+      name: knowledge_base
+      path: "knowledge/"
+      description: "Architect framework references"
+      required: false
+  output_contract:
+    - type: file
+      path: "design.md"
+      format: markdown
+      description: "Architecture blueprint output"
+      required: true
+  validation:
+    script: "scripts/validate_design.py"
+    expected_exit_code: 0
+    description: "Validate design.md has all required sections"
+  successor_hints:
+    - skill: skill-planner
+      needs: ["design.md"]
+      description: "Requires design.md as input for planning phase"
 ---
 # Skill Architect — Senior Design Architect (v2)
 

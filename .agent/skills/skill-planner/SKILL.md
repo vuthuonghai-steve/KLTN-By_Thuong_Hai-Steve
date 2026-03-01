@@ -1,6 +1,41 @@
 ---
 name: skill-planner
 description: 'Doc ban thiet ke kien truc (design.md) va tao ke hoach trien khai chi tiet (todo.md). Trigger khi user noi: "lap ke hoach skill", "tao todo.md", "phan ra task tu design.md", "trace design -> task". Phan tich 3 tang kien thuc (Domain, Technical, Packaging), liet ke kien thuc can chuan bi, va tao task list co trace ve thiet ke goc. Skill nay la #2 trong bo Master Skill Suite (Architect -> Planner -> Builder).'
+
+# Pipeline Frontmatter - FOR INTERNAL ORCHESTRATOR USE
+pipeline:
+  stage_order: 1
+  role: meta-skill-planner
+  input_contract:
+    - type: file
+      name: design_doc
+      path: ".skill-context/{skill-name}/design.md"
+      description: "Architecture blueprint from skill-architect"
+      required: true
+    - type: directory
+      name: knowledge_base
+      path: "knowledge/"
+      description: "Planner framework references"
+      required: false
+    - type: directory
+      name: resources
+      path: ".skill-context/{skill-name}/resources/"
+      description: "Domain resources for audit"
+      required: false
+  output_contract:
+    - type: file
+      path: ".skill-context/{skill-name}/todo.md"
+      format: markdown
+      description: "Implementation plan output"
+      required: true
+  validation:
+    script: "scripts/validate_todo.py"
+    expected_exit_code: 0
+    description: "Validate todo.md has all required sections and trace tags"
+  successor_hints:
+    - skill: skill-builder
+      needs: ["design.md", "todo.md"]
+      description: "Requires both design.md and todo.md as inputs for build phase"
 ---
 # Skill Planner
 

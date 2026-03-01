@@ -1,6 +1,48 @@
 ---
 name: flow-design-analyst
 description: Chuyên gia phân tích và thiết kế Business Process Flow Diagram (High-Fidelity) theo chuẩn 3-lane Swimlane (User/System/DB). Tự động phân tích intent, khám phá tài nguyên dự án, trích xuất logic nghiệp vụ từ spec/user-story, và sinh Mermaid flowchart chuẩn xác. Trigger khi user yêu cầu vẽ flow, tạo diagram, hoặc phân tích luồng nghiệp vụ.
+
+# Pipeline Frontmatter - FOR INTERNAL ORCHESTRATOR USE
+pipeline:
+  stage_order: 1
+  role: domain-skill-flow
+  input_contract:
+    - type: file
+      name: requirements
+      path: "{input_path}/requirements.md"
+      description: "Functional requirements document"
+      required: true
+    - type: file
+      name: user_stories
+      path: "{input_path}/user-stories.md"
+      description: "User stories for flow extraction"
+      required: false
+    - type: file
+      name: use_cases
+      path: "{input_path}/use-case-diagram.md"
+      description: "Use case diagram for context"
+      required: false
+  output_contract:
+    - type: directory
+      name: flow_diagrams
+      path: "{output_path}/diagrams/flow/"
+      description: "Mermaid flowchart files"
+      format: markdown
+    - type: file
+      name: flow_index
+      path: "{output_path}/diagrams/flow/index.md"
+      description: "Index of all flow diagrams"
+  validation:
+    script: "scripts/flow_lint.py"
+    expected_exit_code: 0
+    description: "Validate Mermaid syntax and required sections"
+  successor_hints:
+    - skill: sequence-design-analyst
+      needs: ["flow_index", "flow_diagrams"]
+      description: "Requires flow diagrams for sequence generation"
+    - skill: class-diagram-analyst
+      needs: ["flow_diagrams"]
+      description: "Extracts entities from flow operations"
 ---
 
 # Flow Design Analyst

@@ -30,6 +30,30 @@
           }
         ]
       }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /home/steve/Documents/KLTN/.claude/hooks/subagent-start.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /home/steve/Documents/KLTN/.claude/hooks/subagent-stop.sh",
+            "timeout": 60
+          }
+        ]
+      }
     ]
   },
 

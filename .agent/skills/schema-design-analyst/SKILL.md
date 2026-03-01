@@ -1,6 +1,46 @@
 ---
 name: schema-design-analyst
 description: "Kiến trúc sư Data" tàn nhẫn, CHỈ làm việc dựa trên Contract YAML từ Skill 2.5 (cái gì tồn tại) và các Flow Diagrams để quyết định kiến trúc schema. Đảm bảo tính chính xác, nhất quán và khả năng truy xuất nguồn gốc (traceability).
+
+# Pipeline Frontmatter - FOR INTERNAL ORCHESTRATOR USE
+pipeline:
+  stage_order: 5
+  role: domain-skill-schema
+  input_contract:
+    - type: file
+      name: class_contract
+      path: "{input_path}/database/class-contract.yaml"
+      description: "YAML contract from class-diagram-analyst"
+      required: true
+    - type: file
+      name: flow_diagrams
+      path: "{input_path}/diagrams/flow/"
+      description: "Flow diagrams for operation extraction"
+      required: false
+    - type: file
+      name: activity_diagrams
+      path: "{input_path}/diagrams/activity/"
+      description: "Activity diagrams for database operations"
+      required: false
+  output_contract:
+    - type: file
+      name: er_diagram
+      path: "{output_path}/diagrams/er-diagram.md"
+      description: "Entity Relationship Diagram"
+      format: markdown
+    - type: file
+      name: schema_design
+      path: "{output_path}/database/schema-design.md"
+      description: "Detailed database schema for PayloadCMS"
+      format: markdown
+  validation:
+    script: "scripts/validate_schema.py"
+    expected_exit_code: 0
+    description: "Validate schema completeness and relationships"
+  successor_hints:
+    - skill: ui-architecture-analyst
+      needs: ["schema_design"]
+      description: "Maps entities to UI screen specifications"
 ---
 
 # Schema Design Analyst (Data Architect Tàn Nhẫn)

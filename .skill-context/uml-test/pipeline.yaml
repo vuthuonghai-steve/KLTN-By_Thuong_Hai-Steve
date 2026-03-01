@@ -1,0 +1,76 @@
+pipeline:
+  name: "uml-documentation-test"
+  version: "1.0"
+  description: "Test pipeline for UML documentation from Test/docs"
+  # Dynamic variables - resolved at runtime
+  variables:
+    output_base: "/home/steve/Documents/KLTN/Test/output"
+
+inputs:
+  - name: feature_map
+    path: "{output_base}/../docs/life-1/01-vision/FR/feature-map-and-priority.md"
+    type: markdown
+    required: true
+  - name: product_vision
+    path: "{output_base}/../docs/life-1/01-vision/product-vision.md"
+    type: markdown
+    required: true
+  - name: technical_decisions
+    path: "{output_base}/../docs/life-1/02-decisions/technical-decisions.md"
+    type: markdown
+    required: false
+
+stages:
+  - id: stage_01_er
+    skill: schema-design-analyst
+    depends_on: []
+    input_sources: [feature_map, product_vision, technical_decisions]
+    output_path: "{output_base}/diagrams/er-diagram.md"
+    checkpoint: false
+    auto_advance: true
+
+  - id: stage_02_flow
+    skill: flow-design-analyst
+    depends_on: [stage_01_er]
+    input_sources: [feature_map, product_vision]
+    output_path: "{output_base}/diagrams/flow.md"
+    checkpoint: false
+    auto_advance: true
+
+  - id: stage_03_sequence
+    skill: sequence-design-analyst
+    depends_on: [stage_02_flow]
+    input_sources: [feature_map, stage_02_flow.output]
+    output_path: "{output_base}/diagrams/sequence.md"
+    checkpoint: false
+    auto_advance: true
+
+  - id: stage_04_class
+    skill: class-diagram-analyst
+    depends_on: [stage_01_er, stage_03_sequence]
+    input_sources: [stage_01_er.output, stage_03_sequence.output]
+    output_path: "{output_base}/diagrams/class.md"
+    checkpoint: false
+    auto_advance: true
+
+  - id: stage_05_activity
+    skill: activity-diagram-design-analyst
+    depends_on: [stage_02_flow]
+    input_sources: [stage_02_flow.output]
+    output_path: "{output_base}/diagrams/activity.md"
+    checkpoint: false
+    auto_advance: true
+
+  - id: stage_06_ui
+    skill: ui-architecture-analyst
+    depends_on: [stage_04_class]
+    input_sources: [stage_04_class.output]
+    output_path: "{output_base}/ui/"
+    checkpoint: true
+    auto_advance: true
+
+settings:
+  timeout_per_stage: 1800
+  max_retries: 2
+  checkpoint_on_error: true
+  human_pause_enabled: false
