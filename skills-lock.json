@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "latex-thesis-zh": {
+      "source": "bahayonghang/academic-writing-skills",
+      "sourceType": "github",
+      "computedHash": "43454ae5f082b55eb07fefbfec354dc0954da86b3d4db097b6c6245c87b32906"
+    }
+  }
+}
