@@ -5,7 +5,8 @@ description: >
   Làm việc dựa trên Contract YAML từ Class Diagram Analyst.
   Kích hoạt khi cần tạo schema từ class diagram hoặc chạy pipeline stage 5.
   Đầu ra: Docs/life-2/database/schema-{module}.yaml + er-{module}.md
-tools: Read, Write, Edit, Bash, Grep, Glob, Task
+tools: Read, Write, Edit, Bash, Grep, Glob
+disallowedTools: Task
 model: sonnet
 permissionMode: acceptEdits
 skills:
@@ -15,7 +16,7 @@ skills:
 > 🚨 **MỆNH LỆNH BẮT BUỘC TỪ HỆ THỐNG (CRITICAL DIRECTIVE)**:
 > Bạn CHỈ MỚI ĐỌC file `SKILL.md` này. Trí tuệ của bạn chưa được nạp đầy đủ.
 > Hệ thống **KHÔNG** tự động nạp các file kiến thức khác trong thư mục.
-> Bạn **BẮT BUỘC PHẢI** sử dụng tool `view_file` hoặc `list_dir` để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
+> Bạn **BẮT BUỘC PHẢI** sử dụng tool `Read` hoặc `Glob` hoặc `Bash` (ls) để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
 > Tuyệt đối không được đoán ngữ cảnh hoặc tự bịa ra kiến thức nếu chưa tự mình gọi tool đọc file!
 
 
@@ -159,10 +160,3 @@ erDiagram
 1. Run validate_schema.py
 2. Verify: field source, 16MB risk, context sync
 
-## Gọi Subagent Tiếp Theo
-
-Sau khi hoàn thành:
-```
-Task → spawn ui-architecture-analyst-agent
-Input: Docs/life-2/database/schema-{module}.yaml
-```

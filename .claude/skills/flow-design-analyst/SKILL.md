@@ -6,7 +6,7 @@ pipeline:
   stage_order: 1
   input_contract:
     - type: directory
-      path: "Docs/life-1/{module}"
+      path: "Docs/life-2/module-blueprint.md (hoặc dynamic specs do Sếp cung cấp)"
       required: true
   output_contract:
     - type: file
@@ -26,218 +26,22 @@ pipeline:
 > 🚨 **MỆNH LỆNH BẮT BUỘC TỪ HỆ THỐNG (CRITICAL DIRECTIVE)**:
 > Bạn CHỈ MỚI ĐỌC file `SKILL.md` này. Trí tuệ của bạn chưa được nạp đầy đủ.
 > Hệ thống **KHÔNG** tự động nạp các file kiến thức khác trong thư mục.
-> Bạn **BẮT BUỘC PHẢI** sử dụng tool `view_file` hoặc `list_dir` để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
+> Bạn **BẮT BUỘC PHẢI** sử dụng tool `Read` hoặc `Glob` hoặc `Bash` (ls) để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
 > Tuyệt đối không được đoán ngữ cảnh hoặc tự bịa ra kiến thức nếu chưa tự mình gọi tool đọc file!
 
 
 # Flow Design Analyst
 
-## Persona: Senior Business Analyst — Flow Design Specialist
 
-Act as a **Senior Business Analyst** specializing in Business Process Flow diagrams. Mission: produce high-fidelity Mermaid `flowchart TD` diagrams with **3-lane swimlane (User / System / DB)** from project documentation (specs, user stories, use cases).
 
-**Core Principles:**
-- Every Action Node must be **traceable to a source document** (spec file, US-ID, UC-ID).
-- Never invent business logic — use **Assumption Mode** (G5) instead.
-- **Discover Before Ask** (G6): Always complete resource discovery BEFORE asking the user anything.
-- Every Decision Diamond must have **≥ 2 branches with labels** (G2).
+> ⚡ **CHẾ ĐỘ TỰ ĐỘNG (PIPELINE AUTOMATION MODE)**:
+> Bạn đang chạy dưới sự ủy quyền của Orchestrator (Tool `Task`).
+> 1. **KHÔNG CHÀO HỎI, KHÔNG CHỜ ĐỢI**: BẮT ĐẦU DÙNG TOOL LÀM VIỆC NGAY LẬP TỨC! Đừng bao giờ trả lời kiểu "Tôi đã hiểu, hãy cung cấp UC-ID...". Prompt bạn nhận được CHÍNH LÀ LỆNH THỰC THI Cuối cùng, hãy dùng Tool Read đọc file Blueprint và Generate Output ngay!
+> 2. **KHÔNG ĐƯỢC PHÉP HỎI (NO INTERACTION GATE)**: Bỏ qua TẤT CẢ các GATE trạm dừng, không được dừng lại hỏi ý kiến user. Tự suy luận và quyết định theo spec!
+> 3. **INPUT ĐỘNG (DYNAMIC INPUT)**: TUYỆT ĐỐI không đi tìm `project-registry.json` trừ khi Orchestrator bảo. CHỈ đọc các file mà Orchestrator chỉ định trong Prompt.
+> 4. **OUTPUT TRỰC TIẾP (DIRECT OUTPUT)**: Sau khi đọc input và suy luận `<think>` xong, GHI THẲNG CODE vào file ở thư mục đích bằng tool `Write`. Đừng hỏi "Ghi file chưa?".
 
----
-
-## Mandatory Boot Sequence
-
-Thực hiện NGAY LẬP TỨC theo đúng thứ tự sau mỗi khi skill được kích hoạt:
-
-**Bước 0 — Registry Check (BẮT BUỘC, BLOCKING — chạy trước mọi thứ):**
-Xem Phase -1: BOOTSTRAP bên dưới. Phải hoàn thành trước khi đọc bất kỳ file nào khác.
-
-**Bước 1 — Đọc Knowledge Files (chỉ sau khi registry đã sẵn sàng):**
-
-1. Đọc [knowledge/resource-discovery-guide.md](knowledge/resource-discovery-guide.md) — Intent Parsing + Confidence Scoring + Keyword Mapping
-2. Đọc [knowledge/mermaid-flowchart-guide.md](knowledge/mermaid-flowchart-guide.md) — Cú pháp Mermaid, Safe Label Rules, Swimlane Syntax
-3. Đọc [loop/flow-checklist.md](loop/flow-checklist.md) — 6 điểm tự kiểm tra trước khi output bất kỳ diagram nào
-
----
-
-## Workflow — 7 Phases (Phase -1 → Phase 5)
-
-### Phase -1: BOOTSTRAP — Kiểm tra và Khởi động Registry
-
-> **BLOCKING PHASE — Không có ngoại lệ.**
-> Dù user nhập rõ ràng hay mơ hồ, Phase này LUÔN chạy đầu tiên trước Phase 0.
-
-**Bước 1 — Xác định đường dẫn registry:**
-
-Tìm file `project-registry.json` bằng `find_by_name`:
-- `SearchDirectory`: thư mục gốc workspace (`.agent/skills/flow-design-analyst/data/`)
-- `Pattern`: `project-registry.json`
-
-**Bước 2 — Phân nhánh theo trạng thái:**
-
-| Tình huống | Điều kiện | Hành động |
-|------------|-----------|----------|
-| **READY** | File tồn tại và `files` array có ≥ 1 entry | In `🗂️ Registry loaded: [N] files — [project_name]` → sang Phase 0 |
-| **EMPTY** | File tồn tại nhưng rỗng hoặc `"files": []` | → Chạy Bước 3 (auto-build) |
-| **MISSING** | File không tồn tại | → Chạy Bước 3 (auto-build) |
-
-**Bước 3 — Tự động chạy `build_registry.py` (khi EMPTY hoặc MISSING):**
-
-1. Thông báo ngay cho user (không hỏi xin phép):
-   ```
-   🔍 Registry chưa tồn tại hoặc rỗng.
-   ⏳ Đang tự động index tài liệu dự án...
-   ```
-2. Tìm `docs_dir` bằng `find_by_name`:
-   - Pattern: `Docs`, Type: `directory`, MaxDepth: 2
-   - Nếu không tìm thấy `Docs/` → thử `docs/` (lowercase)
-   - Nếu vẫn không có → **dừng và hỏi user**: "Tài liệu dự án nằm ở thư mục nào?"
-3. Tìm `skill_root` bằng `find_by_name`:
-   - Pattern: `build_registry.py`, SearchDirectory: `.agent/`
-   - Lấy parent directory của kết quả tìm được → `skill_root`
-4. Chạy script qua `run_command`:
-   ```bash
-   python {skill_root}/scripts/build_registry.py \
-     --docs-dir {docs_dir} \
-     --output {skill_root}/data/project-registry.json \
-     --verbose
-   ```
-5. Kiểm tra kết quả:
-   - **Exit 0** → Đọc lại `project-registry.json` → In `✅ Registry sẵn sàng: [N] files được index.` → sang Phase 0.
-   - **Exit 1** → In lỗi chi tiết → Dừng, báo user cách khắc phục. **Không chuyển Phase 0.**
-
-**Bước 4 — Nạp registry vào working context:**
-
-Sau khi registry READY (từ Bước 2 hoặc sau Bước 3), đọc và ghi nhớ:
-- `meta.project_name` → tên dự án hiện tại
-- `summary.all_uc_ids` → danh sách UC-ID tồn tại trong dự án
-- `summary.file_types.spec_files` → danh sách spec files để query ở Phase 1
-- `summary.file_types.use_case_files` → danh sách UC diagram files
-- `files[*]` → lookup table đầy đủ: `{relative_path, h1_title, uc_ids, keywords, is_spec}`
-
-> **Lưu ý**: Nếu registry có `generated_at` cũ hơn 7 ngày, in cảnh báo:
-> `⚠️ Registry đã cũ ([N] ngày). Cân nhắc chạy lại build_registry.py để cập nhật.`
-> Nhưng vẫn tiếp tục dùng registry cũ — KHÔNG block Phase 0.
-
----
-
-### Phase 0: DETECT — Phân tích Intent
-
-1. Nhận input từ user (có thể mơ hồ).
-2. Đọc `knowledge/resource-discovery-guide.md` §2 (Intent Parsing Framework).
-3. Trích xuất 3 loại keyword:
-   - **(a) Action Verb**: "vẽ", "tạo", "diagram", "draw", "generate"
-   - **(b) Domain Noun**: "đăng nhập", "bookmark", "follow", "feed", "post", "notification"
-   - **(c) Module Hint**: "M1", "auth", "M2", "content", "M3", "feed", "M4", "M5", "M6"
-4. Tính Confidence Score theo Rubric (§3 trong `resource-discovery-guide.md`):
-   - Action Verb: +20pt | Domain Noun: +30pt | Module Hint: +30pt | UC matched: +20pt
-5. Ghi nhận kết quả detection. **Không tương tác với user tại Phase này.**
-
-### Phase 1: DISCOVER — Khám phá Tài nguyên (Dynamic)
-
-**Bước 1 — Tải Registry (ưu tiên theo thứ tự):**
-
-| Ưu tiên | Nguồn | Mô tả |
-|---------|-------|-------|
-| 1st | `data/project-registry.json` | Auto-generated bởi `build_registry.py` — đầy đủ nhất |
-| 2nd | `data/uc-id-registry.yaml` | Static registry fallback (KLTN hardcode) |
-| 3rd | Scan trực tiếp | Dùng `grep_search` + `find_by_name` nếu không có registry nào |
-
-**Bước 2 — Query Registry:**
-- Tìm entries có `keywords` hoặc `h1_title` khớp với Domain Nouns từ Phase 0.
-- Lọc theo `is_spec: true` hoặc `is_use_case: true` để ưu tiên tài liệu chuyên môn.
-- Đọc `uc_ids` và `relative_path` của entry khớp nhất.
-
-**Bước 3 — Xác nhận file tồn tại và đọc:**
-- Với mỗi candidate file từ Registry → dùng `view_file` để đọc nội dung thực tế.
-- Tổng hợp **Discovery Report** (template tại `knowledge/resource-discovery-guide.md` §5).
-
-**→ [GATE 1] Bắt buộc dừng và trình bày với user:**
-
-| Confidence | Hành động tại Gate 1 |
-|-----------|---------------------|
-| ≥ 70pt (và không tie) | Trình bày Discovery Report → hỏi Yes/No xác nhận |
-| 40–69pt hoặc có tie | Đưa numbered options (tối đa 3) — KHÔNG hỏi câu mở |
-| < 40pt | Đưa danh sách file từ Registry để user chọn — KHÔNG hỏi "Bạn muốn vẽ gì?" |
-
-> ⚠️ **G6 Violation**: TUYỆT ĐỐI không hỏi câu mở — phải luôn có gợi ý cụ thể dựa trên discover results.
-
-### Phase 2: EXTRACT — Trích xuất Logic Nghiệp vụ
-
-1. Đọc spec/US đã xác nhận ở Gate 1.
-2. Trích xuất **6 yếu tố** theo `knowledge/spec-extraction-guide.md` (nếu cần):
-   - Trigger → Actors → Preconditions → Steps → Conditions → Outcomes
-3. Nếu logic thiếu hoặc không có trong tài liệu:
-
-**→ [GATE 2] Dừng và trình bày với user:**
-- Liệt kê rõ phần nào thiếu trong spec.
-- Đề xuất Assumptions hợp lý dựa trên context.
-- Hỏi: "Xác nhận các giả định này không?" — KHÔNG tự điền logic ngầm.
-
-### Phase 3: STRUCTURE — Phân bổ vào Lane
-
-1. Đọc `knowledge/actor-lane-taxonomy.md` nếu chưa chắc action thuộc lane nào.
-2. Với mỗi Step đã extract: gán vào đúng lane theo Decision Table:
-   - **User Lane**: click, input, submit, navigate, upload — mọi thao tác UI của người dùng
-   - **System Lane**: validate, authenticate, process, call external API, send email, build response
-   - **DB Lane**: INSERT, SELECT, UPDATE, DELETE trực tiếp lên MongoDB
-3. Xác định Decision Points từ Conditions → tạo Diamond node `{}`.
-4. Phân loại Path types:
-   - Đọc `knowledge/business-flow-patterns.md` nếu flow có > 2 nhánh alternative hoặc exception.
-
-### Phase 3.5: TƯ DUY VÀ PHÂN RÃ (Thinking Space)
-
-> **BẮT BUỘC (CRITICAL):**
-> Ngay cả khi bạn sắp vẽ Mermaid Flowchart, bạn KHÔNG ĐƯỢC PHÉP nhảy ngay vào code.
-> Việc thiếu context tổng sẽ dẫn tới flowchart cứng ngắc và bị cụt lủn.
-
-1. Bắt buộc mở khối `<think> ... </think>` để thực hiện quá trình nhẩm tính (verbalize).
-2. Quy định dành cho khối `<think>` như sau:
-   - Tham khảo Global Blueprint tổng quát từ `Docs/life-2/module-blueprint.md` (nếu có).
-   - Tự diễn giải nháp luồng đi: "Ok mình thấy Luồng A sẽ chạy qua System module X, sau đó lưu DB, tuy nhiên theo Blueprint thì..."
-   - Cân nhắc các điểm mù, edge cases có thể chưa có trong specs.
-3. Việc lẩm bẩm này giúp não bộ AI thiết lập chuỗi logic (Chain-of-thought) vững chắc trước khi output UML.
-
-### Phase 4: GENERATE — Sinh Mermaid Flowchart
-
-1. Nạp `templates/swimlane-flow.mmd` làm khung chuẩn.
-2. Sinh Mermaid `flowchart TD` với cấu trúc 3-lane:
-
-```
-flowchart TD
-  subgraph User ["👤 User"]
-    direction TB
-    ...user actions...
-  end
-  subgraph System ["⚙️ System"]
-    direction TB
-    ...system logic...
-  end
-  subgraph DB ["🗄️ Database"]
-    direction TB
-    ...db operations...
-  end
-  %% UC-ID: [UC-ID]
-  %% Business Function: [function]
-```
-
-3. Áp dụng Safe Label Rules (từ `knowledge/mermaid-flowchart-guide.md §4`):
-   - Mọi label > 1 từ → BẮT BUỘC wrap trong `""`
-   - Dùng `<br/>` cho xuống dòng — KHÔNG dùng `\n`
-   - Node ID: chỉ `a-z, A-Z, 0-9, _`
-4. Gắn `%% UC-ID %%` comment vào mọi Action Node chính.
-5. Đặt tên file output: `flow-{business-function}.md` (kebab-case, mô tả nghiệp vụ).
-
-### Phase 5: VALIDATE — Tự Kiểm tra
-
-1. Tự kiểm tra theo `loop/flow-checklist.md` (6 điểm C1–C6).
-2. Nếu fail bất kỳ điểm nào → quay lại Phase 3 hoặc 4 tương ứng để sửa.
-3. Khi pass 6/6:
-
-**→ [GATE 3] Trình bày với user:**
-- Hiển thị bản nháp Mermaid code hoàn chỉnh.
-- Liệt kê `## Assumptions` nếu có (G5).
-- Hỏi: "OK ghi file chưa?" hoặc "Cần sửa phần nào không?"
-- Khi user confirm → ghi file vào `{output_path}/flow-{business-function}.md` (đọc `output_path` từ Registry meta nếu có, fallback: `diagrams/flow/`).
+- Tự động ghi file vào `{output_path}/flow-{business-function}.md` (đọc `output_path` từ Registry meta nếu có, fallback: `diagrams/flow/`).
 - Cập nhật `index.md` trong cùng thư mục output.
 
 ---
@@ -274,7 +78,7 @@ flowchart TD
 | **G3** | **Lane Discipline** | Business logic → System lane. DB read/write → DB lane. UI trigger → User lane. Không được đặt sai lane — xem `knowledge/actor-lane-taxonomy.md`. |
 | **G4** | **Path Termination** | Mọi nhánh trong flow PHẢI có điểm kết thúc: `(["✅ End"])` hoặc endpoint có tên rõ ràng. Không được để path lơ lửng. |
 | **G5** | **Assumption Required** | Khi spec chưa rõ logic, PHẢI khai báo `## Assumptions` bên dưới sơ đồ. Liệt kê từng giả định cụ thể. Tuyệt đối không suy đoán ngầm. |
-| **G6** | **Discover Before Ask** | Skill PHẢI hoàn thành Phase 0 DETECT + Phase 1 DISCOVER trước khi tương tác với user. Gate 1 PHẢI kèm Discovery Report. KHÔNG được hỏi câu mở "Bạn muốn vẽ gì?". |
+| **G6** | **Autonomous Execution** | Ở chế độ Pipeline, KHÔNG ĐƯỢC HỎI user. Phải tự động lấy file từ Prompt của Orchestrator và tiến hành phân tích, tạo file. |
 | **G7** | **Thinking Space Required** | Bắt buộc phải có thẻ `<think> ... </think>` trước khi đưa ra kết quả UML cuối cùng. Quá trình verbalize logic bên trong suy nghĩ là bắt buộc. |
 
 ---

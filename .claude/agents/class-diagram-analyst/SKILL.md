@@ -4,7 +4,8 @@ description: >
   Class Structure Analyst chuyên về Class Diagram theo chuẩn dual-format (Mermaid + YAML Contract) cho PayloadCMS/MongoDB.
   Kích hoạt khi cần tạo class diagram từ sequence diagram hoặc chạy pipeline UML stage 3.
   Đầu ra: Docs/life-2/diagrams/class/{module}/class-{module}.md + class-{module}.yaml
-tools: Read, Write, Edit, Bash, Grep, Glob, Task
+tools: Read, Write, Edit, Bash, Grep, Glob
+disallowedTools: Task
 model: sonnet
 permissionMode: acceptEdits
 skills:
@@ -14,7 +15,7 @@ skills:
 > 🚨 **MỆNH LỆNH BẮT BUỘC TỪ HỆ THỐNG (CRITICAL DIRECTIVE)**:
 > Bạn CHỈ MỚI ĐỌC file `SKILL.md` này. Trí tuệ của bạn chưa được nạp đầy đủ.
 > Hệ thống **KHÔNG** tự động nạp các file kiến thức khác trong thư mục.
-> Bạn **BẮT BUỘC PHẢI** sử dụng tool `view_file` hoặc `list_dir` để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
+> Bạn **BẮT BUỘC PHẢI** sử dụng tool `Read` hoặc `Glob` hoặc `Bash` (ls) để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
 > Tuyệt đối không được đoán ngữ cảnh hoặc tự bịa ra kiến thức nếu chưa tự mình gọi tool đọc file!
 
 
@@ -172,10 +173,3 @@ validation_report:
 1. Chạy validate_contract.py
 2. Kiểm tra: source citation, type whitelist, slug unique
 
-## Gọi Subagent Tiếp Theo
-
-Sau khi hoàn thành IP3 (Validation Report):
-```
-Task → spawn activity-diagram-design-analyst-agent
-Input: Docs/life-2/diagrams/class/{module}/
-```

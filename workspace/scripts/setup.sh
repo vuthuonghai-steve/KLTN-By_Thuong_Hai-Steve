@@ -248,6 +248,17 @@ HOOK_STOP
     echo "  - subagent-stop.sh (created default)"
 fi
 
+# orchestrator-write-blocker.sh and task-review-prompt.sh are copied directly via package if exists
+if [ -f "$PACKAGE_HOOKS_DIR/orchestrator-write-blocker.sh" ]; then
+    cp "$PACKAGE_HOOKS_DIR/orchestrator-write-blocker.sh" "$PROJECT_ROOT/.claude/hooks/"
+    echo "  - orchestrator-write-blocker.sh (from package)"
+fi
+
+if [ -f "$PACKAGE_HOOKS_DIR/task-review-prompt.sh" ]; then
+    cp "$PACKAGE_HOOKS_DIR/task-review-prompt.sh" "$PROJECT_ROOT/.claude/hooks/"
+    echo "  - task-review-prompt.sh (from package)"
+fi
+
 chmod +x "$PROJECT_ROOT/.claude/hooks/"*.sh
 echo -e "${GREEN}✓ Installed hook scripts${NC}"
 
@@ -434,6 +445,21 @@ cat > "$SETTINGS_FILE" << 'SETTINGS_JSON'
             "type": "command",
             "command": "bash {project_root}/.claude/hooks/pre-write-check.sh",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash {project_root}/.claude/hooks/orchestrator-write-blocker.sh",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {project_root}/.claude/hooks/orchestrator-write-blocker.sh",
+            "timeout": 10
           }
         ]
       }
@@ -446,6 +472,18 @@ cat > "$SETTINGS_FILE" << 'SETTINGS_JSON'
             "command": "bash {project_root}/.claude/hooks/session-end.sh",
             "timeout": 100,
             "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {project_root}/.claude/hooks/task-review-prompt.sh",
+            "timeout": 10
           }
         ]
       }

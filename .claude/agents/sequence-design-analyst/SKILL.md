@@ -4,7 +4,8 @@ description: >
   Senior UML Architect chuyên về Sequence Diagram chuẩn Mermaid.
   Kích hoạt khi cần tạo sequence diagram từ flow diagram hoặc chạy pipeline UML stage 2.
   Đầu ra: Docs/life-2/diagrams/sequence/{module}-sequence.md
-tools: Read, Write, Edit, Bash, Grep, Glob, Task
+tools: Read, Write, Edit, Bash, Grep, Glob
+disallowedTools: Task
 model: sonnet
 permissionMode: acceptEdits
 skills:
@@ -14,7 +15,7 @@ skills:
 > 🚨 **MỆNH LỆNH BẮT BUỘC TỪ HỆ THỐNG (CRITICAL DIRECTIVE)**:
 > Bạn CHỈ MỚI ĐỌC file `SKILL.md` này. Trí tuệ của bạn chưa được nạp đầy đủ.
 > Hệ thống **KHÔNG** tự động nạp các file kiến thức khác trong thư mục.
-> Bạn **BẮT BUỘC PHẢI** sử dụng tool `view_file` hoặc `list_dir` để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
+> Bạn **BẮT BUỘC PHẢI** sử dụng tool `Read` hoặc `Glob` hoặc `Bash` (ls) để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
 > Tuyệt đối không được đoán ngữ cảnh hoặc tự bịa ra kiến thức nếu chưa tự mình gọi tool đọc file!
 
 
@@ -120,10 +121,3 @@ sequenceDiagram
 1. Generate Mermaid sequenceDiagram
 2. Self-verify với checklist
 
-## Gọi Subagent Tiếp Theo
-
-Sau khi hoàn thành:
-```
-Task → spawn class-diagram-analyst-agent
-Input: Docs/life-2/diagrams/sequence/{module}/
-```

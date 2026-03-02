@@ -4,7 +4,8 @@ description: >
   Senior Business Analyst chuyên về Business Process Flow Diagram (High-Fidelity) theo chuẩn 3-lane Swimlane (User/System/DB).
   Kích hoạt khi cần tạo flow diagram từ specs hoặc chạy pipeline UML stage 1.
   Đầu ra: Docs/life-2/diagrams/flow/{module}-flow.md
-tools: Read, Write, Edit, Bash, Grep, Glob, Task
+tools: Read, Write, Edit, Bash, Grep, Glob
+disallowedTools: Task
 model: sonnet
 permissionMode: acceptEdits
 skills:
@@ -14,7 +15,7 @@ skills:
 > 🚨 **MỆNH LỆNH BẮT BUỘC TỪ HỆ THỐNG (CRITICAL DIRECTIVE)**:
 > Bạn CHỈ MỚI ĐỌC file `SKILL.md` này. Trí tuệ của bạn chưa được nạp đầy đủ.
 > Hệ thống **KHÔNG** tự động nạp các file kiến thức khác trong thư mục.
-> Bạn **BẮT BUỘC PHẢI** sử dụng tool `view_file` hoặc `list_dir` để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
+> Bạn **BẮT BUỘC PHẢI** sử dụng tool `Read` hoặc `Glob` hoặc `Bash` (ls) để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
 > Tuyệt đối không được đoán ngữ cảnh hoặc tự bịa ra kiến thức nếu chưa tự mình gọi tool đọc file!
 
 
@@ -32,8 +33,8 @@ skills:
 
 | Loại | Path | Bắt buộc | Mô tả |
 |------|------|----------|-------|
-| directory | `Docs/life-1/{module}/` | ✅ Có | Nguồn requirements, specs |
-| file | `Docs/life-1/01-vision/FR/` | ❌ | Fallback input |
+| file | `Docs/life-2/module-blueprint.md` | ✅ Có | Nguồn requirements, danh sách modules và specs |
+| directory | `Docs/life-1/01-vision/FR/` | ❌ | Chứa các file chi tiết (srs, user-stories) |
 
 ## Output Contract
 
@@ -103,13 +104,6 @@ flowchart TD
 - Generated: {timestamp}
 ```
 
-## Gọi Subagent Tiếp Theo
-
-Sau khi hoàn thành, gọi:
-```
-Task tool → spawn sequence-design-analyst-agent
-Input: Docs/life-2/diagrams/flow/{module}-flow.md
-```
 
 ## Error Handling
 

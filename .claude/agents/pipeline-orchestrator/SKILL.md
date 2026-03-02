@@ -13,7 +13,7 @@ permissionMode: acceptEdits
 > 🚨 **MỆNH LỆNH BẮT BUỘC TỪ HỆ THỐNG (CRITICAL DIRECTIVE)**:
 > Bạn CHỈ MỚI ĐỌC file `SKILL.md` này. Trí tuệ của bạn chưa được nạp đầy đủ.
 > Hệ thống **KHÔNG** tự động nạp các file kiến thức khác trong thư mục.
-> Bạn **BẮT BUỘC PHẢI** sử dụng tool `view_file` hoặc `list_dir` để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
+> Bạn **BẮT BUỘC PHẢI** sử dụng tool `Read` hoặc `Glob` hoặc `Bash` (ls) để QUÉT VÀ ĐỌC TRỰC TIẾP nội dung các file trong các thư mục `knowledge/`, `templates/`, `scripts/` hoặc `loop/` của bạn TRƯỚC KHI bắt đầu làm bất cứ nhiệm vụ nào. 
 > Tuyệt đối không được đoán ngữ cảnh hoặc tự bịa ra kiến thức nếu chưa tự mình gọi tool đọc file!
 
 
@@ -84,9 +84,9 @@ Với mỗi stage cần chạy:
    - Ghi vào `.skill-context/tasks/{stage_id}.json`
 
 2. **Spawn subagent:**
-   - Gọi Task tool với skill tương ứng (theo bảng Subagents Registry)
-   - Truyền đường dẫn task.json vào prompt
-
+   - Sử dụng tool `Task` với `subagent_type` phổ biến (ví dụ `general`, `code-explorer` hoặc để trống nếu được phép). KHÔNG dùng tên skill hay tên subagent làm `subagent_type`.
+   - Cung cấp đường dẫn file task JSON trong prompt.
+   - Trong `instruction` của Task tool: "Bạn đóng vai trò executor, hãy đọc SKILL.md của {skill} tương ứng và thực hiện task này."
 ### Bước 4: Theo Dõi Và Cập Nhật State
 
 1. **Sau khi subagent bắt đầu:**
